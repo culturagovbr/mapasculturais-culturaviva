@@ -124,44 +124,24 @@
 
             </label>
             <div class="colunm-50">
-                <label class="label-radio"><input type="radio" name="certificacao"> Sim</label>
-                <label class="label-radio"><input type="radio" name="certificacao"> Não </label>
+                <label class="label-radio">
+                    <input type="radio"
+                           name="certificacao"
+                           ng-value="1"ng-change="save_field('metodologia1_certificacao')"
+                           ng-model="agent.metodologia1_certificacao"> Sim</label>
+                <label class="label-radio">
+                    <input type="radio"
+                           name="certificacao"
+                           ng-value="0"ng-change="save_field('metodologia1_certificacao')"
+                           ng-model="agent.metodologia1_certificacao"> Não </label>
             </div>
             <div class="colunm-full">
                 <span class="destaque">Tipo de Metodologia</span>
             </div>
-            <div class="colunm-full">
-            <label class="colunm3">
-                <input type="checkbox" name="" > Não formal
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Conhecimento popular
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Conhecimento empírico
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Outro. Qual?
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Acadêmica
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Ensino básico
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Ensino médio
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Ensino superior
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Graduação
-            </label>
-            <label class="colunm3">
-                <input type="checkbox" name="" > Pós-graduação
-            </label>
-          </div>
+            <taxonomy-checkboxes taxonomy="metodologias_areas" entity="agent" terms="termos.metodologias_areas"></taxonomy-checkboxes>
+
+
+
         </div>
         <!--<div class="row">
 

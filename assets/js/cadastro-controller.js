@@ -213,11 +213,19 @@
                 'Emprego/salário',
                 'Convênio com Órgão público',
                 'Moeda complementar (social)' 
+            ],
+            
+            'metodologias_areas': [ 
+               'Não formal',
+               'Conhecimento popular',
+               'Conhecimento empírico',
+               'Acadêmica',
+               'Ensino básico',
+               'Ensino médio',
+               'Ensino superior',
+               'Graduação',
+               'Pós-graduação'
             ]
-            // Formação
-//            'ponto_areas_conhecimento':[
-//                
-//            ]
         };
 
     function extendController($scope, $timeout, Entity, agent_id){
@@ -575,7 +583,7 @@
                 '@select': 'id,terms,formador1_nome,formador1_email,formador1_telefone,formador1_operadora,formador1_areaAtuacao,' + 
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' + 
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' + 
-                    'metodologia1_cargaHoraria,metodologia1_certificacao,metodologia1_tipo',
+                    'metodologia1_cargaHoraria,metodologia1_certificacao',
                 '@permissions': 'view'
             };
 
