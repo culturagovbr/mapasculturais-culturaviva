@@ -433,13 +433,6 @@
                                     }
                                 }
                               }
-                              for(i = 0; i < erroEntidade.length; i++){
-                                for(j = 0; j < agentPontoFinanciamento.length; j++){
-                                  if(erroEntidade[i] === agentPontoFinanciamento[j]){
-                                    $scope.data.mostrarErroEntidade = "entidade_showfinanciamento";
-                                  }
-                                }
-                              }
                             }
                         });
             };
