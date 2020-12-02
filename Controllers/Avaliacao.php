@@ -266,7 +266,7 @@ class Avaliacao extends \MapasCulturais\Controller {
                 AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
             JOIN agent ponto ON ponto.id = rel_ponto.agent_id
             JOIN agent entidade ON entidade.id = rel_entidade.agent_id
-            JOIN agent_meta tp
+            LEFT JOIN agent_meta tp
                 ON tp.key = 'tipoPontoCulturaDesejado'
                 AND tp.object_id = entidade.id
             LEFT JOIN agent_meta dsc
