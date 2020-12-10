@@ -44,7 +44,7 @@ cd mapas
 Faremos o clone apenas da **branch estável v2**, não é necessário baixar todo o repositório do **Mapas Culturais**.
 
 ```bash
-git clone -b v2 --single-branch https://github.com/hacklabr/mapasculturais.git
+git clone -b master --single-branch https://github.com/culturagovbr/mapasculturais.git
 
 cd mapasculturais
 ```
