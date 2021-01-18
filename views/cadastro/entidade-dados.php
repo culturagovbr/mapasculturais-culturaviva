@@ -1,14 +1,14 @@
 <?php
-    require __DIR__.'/../../assets/php/functions.php';
-    $this->bodyProperties['ng-app'] = "culturaviva";
-    $this->layout = 'cadastro';
-    $this->cadastroTitle = '2. Dados da Entidade ou Coletivo Cultural';
-    $this->cadastroText = 'Inclua os dados da Entidade ou Coletivo Cultural responsável pelo Ponto de Cultura';
-    $this->cadastroIcon = 'icon-home';
-    $this->cadastroPageClass = 'dados-entidade page-base-form';
-    //$this->cadastroLinkContinuar = 'pontoMapa';
-    $this->cadastroLinkContinuar = 'portifolio';
-    $this->cadastroLinkBack = 'responsavel';
+require __DIR__.'/../../assets/php/functions.php';
+$this->bodyProperties['ng-app'] = "culturaviva";
+$this->layout = 'cadastro';
+$this->cadastroTitle = '2. Dados da Entidade ou Coletivo Cultural';
+$this->cadastroText = 'Inclua os dados da Entidade ou Coletivo Cultural responsável pelo Ponto de Cultura';
+$this->cadastroIcon = 'icon-home';
+$this->cadastroPageClass = 'dados-entidade page-base-form';
+//$this->cadastroLinkContinuar = 'pontoMapa';
+$this->cadastroLinkContinuar = 'portifolio';
+$this->cadastroLinkBack = 'responsavel';
 ?>
 
 <!--Dados da Entidade ou Coletivo Cultural-->
@@ -47,6 +47,7 @@
                            ng-blur="validaCNPJ()"
                            ng-model="agent.cnpj"
                            ui-mask="99.999.999/9999-99" required>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.cnpj.$error.required">Favor Digitar o CNPJ</span>
                 </label>
             </div>
         </div>
@@ -59,6 +60,7 @@
                        type="text"
                        ng-blur="save_field('nomeCompleto')"
                        ng-model="agent.nomeCompleto">
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor, digitar o nome da razão social</span>
             </label>
 
             <label class="colunm1">
@@ -69,7 +71,8 @@
                     <div ng-message="minlength">Your field is too short</div>
                     <div ng-message="maxlength">Your field is too long</div>
                 </div>
-                <input required type="text" ng-blur="save_field('name')" ng-model="agent.name" >
+                <input required type="text" name="nomeFantasia" ng-blur="save_field('name')" ng-model="agent.name" >
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeFantasia.$error.required">Favor, digitar o nome fantasia</span>
             </label>
         </div>
 
@@ -80,6 +83,7 @@
                     <span class="destaque">Nome do Coletivo Cultural* <i class='hltip' title='Nome dado ao grupo que compõe o coletivo cultural'>?</i>
                     </span>
                         <input required name="name" type="text" ng-blur="save_field('name')" ng-model="agent.name">
+                        <span ng-class="error" style="color: red" ng-show="form_entity.name.$error.required">Nome do Coletivo Obrigatório</span>
                     </label>
                 </div>
                 <div class="clear"></div>
@@ -98,6 +102,7 @@
                         ng-blur="save_field('nomePonto')"
                         ng-model="agent.nomePonto"
                 >
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomePonto.$error.required">Nome do Ponto Obrigatório</span>
             </label>
         </div>
         <!--Fim Nome ponto-->
@@ -113,7 +118,8 @@
 
                     <i class='hltip' title='Este e-mail será utilizado pela Secretaria para comunicação, chamada de atualização, realização de pesquisa e quaisquer outros contatos que se fizerem necessários.'>?</i>
                 </span>
-                <input name="emailPrivado" type="email" ng-blur="save_field('emailPrivado')" ng-model="agent.emailPrivado" />
+                <input required name="emailPrivado" type="email" ng-blur="save_field('emailPrivado')" ng-model="agent.emailPrivado" >
+                <span ng-class="error" style="color: red" ng-show="form_entity.emailPrivado.$error.required">E-mail Obrigatório</span>
             </label>
         </div>
         <div class="clear"></div>
@@ -128,7 +134,8 @@
                     <label ng-if="agent.tipoPonto == 'ponto_coletivo'"> do Coletivo </label>
                     <label ng-if="agent.tipoPonto == 'pontao'"> do Pontão </label> *
                 </span>
-                <input name="telefone1" type="text" ng-blur="save_field('telefone1')" ng-model="agent.telefone1" ui-mask="(99) ?99999-9999">
+                <input required name="telefone1" type="text" ng-blur="save_field('telefone1')" ng-model="agent.telefone1" ui-mask="(99) ?99999-9999">
+                <span ng-class="error" style="color: red" ng-show="form_entity.telefone1.$error.required">Telefone Obrigatório</span>
             </label>
         </div>
         <!-- Fim Telefone entidade-->
@@ -179,7 +186,7 @@
                     <span class="destaque">{{agent.pais == 'Brasil' ? 'Cidade*' : 'Cidade'}}</span>
                     <input required name="En_Municipio" type="text" ng-blur="save_field('En_Municipio'); cidadecoder.code(agent.En_Municipio, agent.pais)"
                            ng-model="agent.En_Municipio"/>
-                    <span class="error" ng-repeat="error in errors.cidade">{{ error }}</span>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.En_Municipio.$error.required">Cidade Obrigatória</span>
                 </label>
 
                 <label class="colunm2" ng-class="{'busy': cepcoder.busy}">
@@ -202,15 +209,18 @@
                 <label class="colunm2">
                     <span class="destaque">{{agent.pais == 'Brasil' ? 'Rua*' : 'Rua'}}</span>
                     <input required name="En_Nome_Logradouro" type="text" ng-blur="save_field('En_Nome_Logradouro'); endcoder.code();" ng-model="agent.En_Nome_Logradouro"/>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.En_Nome_Logradouro.$error.required">Rua Obrigatória</span>
                 </label>
                 <label class="colunm2">
                     <span class="destaque">{{agent.pais == 'Brasil' ? 'Número*' : 'Número'}}</span>
                     <input required name="En_Num" type="text" ng-blur="save_field('En_Num')" ng-model="agent.En_Num"/>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.En_Num.$error.required">Número Obrigatório</span>
                 </label>
 
                 <label class="colunm2">
                     <span class="destaque">{{agent.pais == 'Brasil' ? 'Bairro*' : 'Bairro'}}</span>
                     <input required name="En_Bairro" type="text" ng-blur="save_field('En_Bairro'); endcoder.code();" ng-model="agent.En_Bairro"/>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.En_Bairro.$error.required">Bairro Obrigatório</span>
                 </label>
 
                 <label class="colunm2">
