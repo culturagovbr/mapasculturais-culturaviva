@@ -60,7 +60,7 @@ $this->cadastroLinkBack = 'responsavel';
                        type="text"
                        ng-blur="save_field('nomeCompleto')"
                        ng-model="agent.nomeCompleto">
-                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor, digitar o nome da razão social</span>
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor digitar o nome da razão social</span>
             </label>
 
             <label class="colunm1">
@@ -72,7 +72,7 @@ $this->cadastroLinkBack = 'responsavel';
                     <div ng-message="maxlength">Your field is too long</div>
                 </div>
                 <input required type="text" name="nomeFantasia" ng-blur="save_field('name')" ng-model="agent.name" >
-                <span ng-class="error" style="color: red" ng-show="form_entity.nomeFantasia.$error.required">Favor, digitar o nome fantasia</span>
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeFantasia.$error.required">Favor digitar o nome fantasia</span>
             </label>
         </div>
 
@@ -135,7 +135,7 @@ $this->cadastroLinkBack = 'responsavel';
                     <label ng-if="agent.tipoPonto == 'pontao'"> do Pontão </label> *
                 </span>
                 <input required name="telefone1" type="text" ng-blur="save_field('telefone1')" ng-model="agent.telefone1" ui-mask="(99) ?99999-9999">
-                <span ng-class="error" style="color: red" ng-show="form_entity.telefone1.$error.required">Telefone Obrigatório</span>
+<!--                <span ng-class="error" style="color: red" ng-show="form_entity.telefone1.$error.required">Telefone Obrigatório</span>-->
             </label>
         </div>
         <!-- Fim Telefone entidade-->
@@ -202,6 +202,7 @@ $this->cadastroLinkBack = 'responsavel';
                            ng-blur="save_field('cep')"
                            ng-model="agent.cep"
                            ng-if="agent.pais !== 'Brasil'">
+                    <span ng-class="error" style="color: red" ng-show="form_entity.cep.$error.required">CEP Obrigatória</span>
                 </label>
             </div>
             <div class="clear"></div>
@@ -347,23 +348,27 @@ $this->cadastroLinkBack = 'responsavel';
             <label class="colunm1">
                 <span class="destaque">Nome do Responsável {{agent.tipoPonto == 'ponto_coletivo' ? 'pelo Coletivo' : 'pela Entidade'}}* <i class='hltip' title='Pessoa que representa o Ponto de Cultura'>?</i></span>
                 <input name="responsavel_nome" type="text" ng-blur="save_field('responsavel_nome')" ng-model="agent.responsavel_nome"/>
+                <span ng-class="error" style="color: red" ng-show="form_entity.responsavel_nome.$error.required">Favor preencher o Responsável</span>
             </label>
 
             <label class="colunm05">
                 <span class="destaque">CPF do Responsável*</span>
                 <input type="text" ui-mask="999.999.999-99" name="responsavel_cpf" type="text" ng-blur="save_field('responsavel_cpf')" ng-model="agent.responsavel_cpf"/>
+                <span ng-class="error" style="color: red" ng-show="form_entity.responsavel_cpf.$error.required">Favor preencher o CPF</span>
             </label>
         </div>
         <div class="clear"></div>
         <div class="row">
             <label class="colunm1">
                 <span class="destaque">E-mail do Responsável* </span>
-                <input name="responsavel_email" type="email" ng-blur="save_field('responsavel_email')" ng-model="agent.responsavel_email" />
+                <input name="responsavel_email1" type="email" ng-blur="save_field('responsavel_email1')" ng-model="agent.responsavel_email1" />
+<!--                <span ng-class="error" style="color: red" ng-show="form_entity.responsavel_email1.$error.required">E-mail Obrigatório</span>-->
             </label>
 
             <label class="colunm05">
                 <span class="destaque">Telefone do Responsável*</span>
                 <input name="responsavel_telefone" type="text" ng-blur="save_field('responsavel_telefone')" ng-model="agent.responsavel_telefone" ui-mask="(99) ?99999-9999"/>
+<!--                <span ng-class="error" style="color: red" ng-show="form_entity.responsavel_telefone.$error.required">Telefone Obrigatório</span>-->
             </label>
         </div>
         <!-- Fim Informações do responsavel -->
