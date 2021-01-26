@@ -18,6 +18,7 @@
             <label class="colunm1">
                 <span class="destaque">Nome completo*</span>
                 <input type="text" name="nomeCompleto" ng-blur="save_field('nomeCompleto')" ng-model="agent.nomeCompleto" required >
+                <span ng-class="error" style="color: red" ng-show="form_responsavel.nomeCompleto.$error.required">Nome Obrigatório</span>
             </label>
 
             <label class="colunm2">
@@ -27,6 +28,7 @@
                        ng-blur="save_field('cpf')"
                        ng-model="agent.cpf"
                        ui-mask="999.999.999-99" required>
+                <span ng-class="error" style="color: red" ng-show="form_responsavel.cpf.$error.required">CPF Obrigatório</span>
             </label>
         </div>
         <div class="clear"></div>
@@ -34,11 +36,13 @@
             <label class="colunm1">
                 <span class="destaque">E-mail Pessoal*</span>
                 <input type="email" name="emailPrivado" ng-blur="save_field('emailPrivado')" ng-model="agent.emailPrivado" required>
+                <span ng-class="error" style="color: red" ng-show="form_responsavel.emailPrivado.$error.required">E-mail Obrigatório</span>
             </label>
 
             <label class="colunm2">
                 <span class="destaque">Telefone Pessoal (com DDD)*</span>
                 <input type="text" name="telefone1" ng-blur="save_field('telefone1')" ng-model="agent.telefone1" ui-mask="(99) ?99999 9999" required>
+                <span ng-class="error" style="color: red" ng-show="form_responsavel.telefone1.$error.required">Telefone Obrigatório</span>
             </label>
         </div>
         <div class="clear"></div>
