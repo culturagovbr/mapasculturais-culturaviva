@@ -77,7 +77,7 @@ function AppConfigRoutas($stateProvider, $urlRouterProvider, $locationProvider) 
                 mdl: resolveModule('Configuracao')
             }
         })
-        .state('pagina.configuracao.avaliacao.redistribuir', {
+        .state('pagina.configuracao.redistribuir', {
             url: '/redistribuir',
             templateUrl: templateURL('AvaliacaoRedistribuicao', 'Configuracao')
         })

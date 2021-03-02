@@ -1,0 +1,19 @@
+<div ng-controller="AvaliacaoRedistribuicaoCtrl" ng-cloak>
+    <tc-form name="formCertificador" on-save="salvar()">
+        <div class="col-md-12">
+            <tc-notitication id="formulario"></tc-notitication>
+        </div>
+        <div class="col-md-12">
+            <p>Incluir/Remover certificadores federais na redistribuição dos estados:</p>
+            <div class="row">
+                <div class="col-md-3 form-check" ng-repeat="row in ufs">
+                    <input class="form-check-input" type="checkbox" ng-model="ufs[row.sigla]" value="{{row.sigla}}" id="{{row.sigla}}" ng-checked="row.redistribuicao">
+                    <label class="form-check-label" for="{{row.sigla}}" style="padding-left: 5px;">
+                        {{row.nome}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </tc-form>
+</div>

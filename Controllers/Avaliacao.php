@@ -4,6 +4,7 @@ namespace CulturaViva\Controllers;
 
 use CulturaViva\Entities\Avaliacao as AvaliacaoEntity;
 use CulturaViva\Entities\AvaliacaoCriterio as AvaliacaoCriterioEntity;
+use CulturaViva\Entities\Uf;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
 
@@ -475,6 +476,40 @@ class Avaliacao extends \MapasCulturais\Controller {
         ];
 
         return (new NativeQueryUtil($sql, $campos, $parametros))->getResult();
+    }
+
+    /**
+     * Configura estados que distribuirão para os entes federais
+     */
+    function POST_configurar() {
+        $this->requireAuthentication();
+        $app = App::i();
+        $conn = $app->em->getConnection();
+        $data = json_decode($app->request()->getBody());
+
+        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf");
+
+        foreach($ufs as $u){
+            if(in_array($u['sigla'], $data)){
+                $update = "UPDATE culturaviva.uf set redistribuicao = true where sigla = '{$u['sigla']}'";
+            }else{
+                $update = "UPDATE culturaviva.uf set redistribuicao = false where sigla = '{$u['sigla']}'";
+            }
+            $conn->executeQuery($update);
+        }
+        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf");
+        $this->json($ufs);
+    }
+
+    /**
+     * Configura estados que distribuirão para os entes federais
+     */
+    function GET_configurar() {
+        $this->requireAuthentication();
+        $app = App::i();
+        $conn = $app->em->getConnection();
+        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf order by nome");
+        $this->json($ufs);
     }
 
 }

@@ -8,7 +8,6 @@ angular
 AvaliacaoRedistribuicaoCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
 
 
-
 /**
  * Formulário de cadastro e edição de agentes de certificação
  *
@@ -23,8 +22,8 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     var novoRegistro = (!codigo || codigo === '');
 
     // Configuração da página
-    $scope.pagina.titulo = novoRegistro ? 'Cadastrar Agente de Certificação' : 'Editar Agente de Certificação';
-    $scope.pagina.subTitulo = '';
+    $scope.pagina.titulo = 'Redistribuição';
+    $scope.pagina.subTitulo = 'Configuração de rotina de redistribuição de avaliações para certificação de inscrições';
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
     $scope.pagina.breadcrumb = [
@@ -36,35 +35,29 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             title: 'Configurações'
         },
         {
-            title: 'Certificadores',
-            sref: 'pagina.configuracao.certificador.lista'
+            title: 'Redistribuição',
         }
     ];
-    AvaliacaoRedistribuicaoCtrl.ESTADOS = (function () {
-        var out = [];
-        for (var uf in estadosBrasil) {
-            if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-            }
+    $http.get('/avaliacao/configurar').then(function (response) {
+        $scope.ufs = response.data;
+    }, function (response) {
+        var msg = 'Erro inesperado recuperar dados';
+        if (response.data && response.data.message) {
+            msg = response.data.message;
         }
-        return out;
-    })();
+        $scope.$emit('msg', msg, null, 'error', 'formulario');
+    });
+
 
     $scope.salvar = function () {
-        var dto = AvaliacaoRedistribuicaoCtrl.converterParaSalvar($scope.dto);
-        $http.post('/certificador/salvar', dto).then(function (response) {
-            $scope.$emit('msgNextState', 'Agente de Certificação salvo com sucesso', null, 'success');
-            if (novoRegistro) {
-                $state.go('pagina.configuracao.certificador.formulario', {
-                    id: response.data.id
-                }, {
-                    reload: true,
-                    inherit: true,
-                    notify: true
-                });
-            } else {
-                $state.reload();
-            }
+        var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
+        $http.post('/avaliacao/configurar', dto).then(function (response) {
+            $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
+            $state.go('pagina.configuracao.redistribuir', {}, {
+                reload: true,
+                inherit: true,
+                notify: true
+            });
         }, function (response) {
             var msg = 'Erro inesperado salvar dados';
             if (response.data && response.data.message) {
@@ -105,3 +98,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         $scope.ref.buscarAgente = false;
     };
 }
+
+AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
+    var out = [];
+    for (var uf in dto) {
+        out.push(uf);
+    }
+    return out;
+};
