@@ -16,6 +16,7 @@
                         col="4"
                         field="label"
                         options="estadosBrasil"
+
                         >
                     </tc-select>
 
@@ -27,7 +28,7 @@
                     </tc-input>
 
                     <div class="col-md-12 text-right">
-                        <button class="btn btn-primary" ng-click="filtrar()" type="button">
+                        <button class="btn btn-primary" ng-click="this.filtrar()" type="button">
                             Filtrar
                         </button>
                     </div>
@@ -87,26 +88,44 @@
                                                 class="list-group-item list-view-pf-stacked"
                                                 style="border: 0; margin: 0 -10px; padding: 0;"
                                                 >
-
                                                 <avaliacao-lista-certificador
-                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_civil') > -1"
-                                                    certificador-tipo="Poder Publico"
-                                                    avaliacao-id="{{inscricao.avaliacaoPublicaId}}"
-                                                    certificador-id="{{inscricao.avaliacaoPublicaCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}"
+                                                    ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilFederalId != null"
+                                                    certificador-tipo="Sociedade Civil"
+                                                    avaliacao-id="{{inscricao.avaliacaoCivilFederalId}}"
+                                                    certificador-id="{{inscricao.avaliacaoCivilFederalCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoCivilFederalEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoCivilFederalCertificador}}"
                                                     >
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
-                                                    ng-if="inscricao.avaliacaoCivilId"
-                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_publico') > -1"
-                                                    certificador-tipo="Sociedade Civil"
-                                                    avaliacao-id="{{inscricao.avaliacaoCivilId}}"
-                                                    certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoCivilCertificador}}"
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilEstadualId != null"
+                                                        certificador-tipo="Sociedade Civil - {{inscricao.avaliacaoCivilEstadualCertificadorUf}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoCivilEstadualId}}"
+                                                        certificador-id="{{inscricao.avaliacaoCivilEstadualCertificadorId}}"
+                                                        estado-avaliacao="{{inscricao.avaliacaoCivilEstadualEstado}}"
+                                                        certificador-nome="{{inscricao.avaliacaoCivilEstadualCertificador}}"
+                                                >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                    ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaFederalId != null"
+                                                    certificador-tipo="Poder Público Federal"
+                                                    avaliacao-id="{{inscricao.avaliacaoPublicaFederalId}}"
+                                                    certificador-id="{{inscricao.avaliacaoPublicaFederalCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaFederalEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoPublicaFederalCertificador}}"
                                                     >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaEstadualId != null"
+                                                        certificador-tipo="Poder Público - {{inscricao.avaliacaoPublicaEstadualCertificadorUf}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoCivilId}}"
+                                                        certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
+                                                        estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
+                                                        certificador-nome="{{inscricao.avaliacaoCivilCertificador}}"
+                                                >
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador

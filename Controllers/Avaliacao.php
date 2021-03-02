@@ -91,6 +91,7 @@ class Avaliacao extends \MapasCulturais\Controller {
                     avl.certificador_id,
                     cert.tipo AS certificador_tipo,
                     cert.agente_id,
+                    cert.uf AS certificador_uf,
                     agt.name AS certificador_nome,
                     avl.estado
                 FROM culturaviva.avaliacao avl
@@ -108,14 +109,29 @@ class Avaliacao extends \MapasCulturais\Controller {
                 entidade.name           AS entidade_nome,
                 entidade.id             AS entidade_id,
                 tp.value                AS tipo_ponto_desejado,
-                avl_c.id                AS avaliacao_civil_id,
-                avl_c.estado            AS avaliacao_civil_estado,
-                avl_c.certificador_nome AS avaliacao_civil_certificador,
-                avl_c.agente_id         AS avaliacao_civil_certificador_id,
-                avl_p.id                AS avaliacao_publica_id,
-                avl_p.estado            AS avaliacao_publica_estado,
-                avl_p.certificador_nome AS avaliacao_publica_certificador,
-                avl_p.agente_id         AS avaliacao_publica_certificador_id,
+                
+                avl_p.id                AS avaliacao_publica_federal_id,
+                avl_p.estado            AS avaliacao_publica_federal_estado,
+                avl_p.certificador_nome AS avaliacao_publica_federal_certificador,
+                avl_p.agente_id         AS avaliacao_publica_federal_certificador_id,
+                
+                avl_e.id                AS avaliacao_publica_estadual_id,
+                avl_e.estado            AS avaliacao_publica_estadual_estado,
+                avl_e.certificador_nome AS avaliacao_publica_estadual_certificador,
+                avl_e.agente_id         AS avaliacao_publica_estadual_certificador_id,
+                avl_e.certificador_uf   AS avaliacao_publica_estadual_certificador_uf,
+                
+                avl_c.id                AS avaliacao_civil_federal_id,
+                avl_c.estado            AS avaliacao_civil_federal_estado,
+                avl_c.certificador_nome AS avaliacao_civil_federal_certificador,
+                avl_c.agente_id         AS avaliacao_civil_federal_certificador_id,
+                
+                avl_s.id                AS avaliacao_civil_estadual_id,
+                avl_s.estado            AS avaliacao_civil_estadual_estado,
+                avl_s.certificador_nome AS avaliacao_civil_estadual_certificador,
+                avl_s.agente_id         AS avaliacao_civil_estadual_certificador_id,
+                avl_s.certificador_uf   AS avaliacao_civil_estadual_certificador_uf,
+                
                 avl_m.id                AS avaliacao_minerva_id,
                 avl_m.estado            AS avaliacao_minerva_estado,
                 avl_m.certificador_nome AS avaliacao_minerva_certificador,
@@ -138,20 +154,26 @@ class Avaliacao extends \MapasCulturais\Controller {
             LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
             LEFT JOIN agent_meta ent_meta_uf
                 ON  ent_meta_uf.object_id = entidade.id
-                AND ent_meta_uf.key = 'geoEstado'
+                AND ent_meta_uf.key = 'En_Estado'
             LEFT JOIN agent_meta ent_meta_municipio
                 ON  ent_meta_municipio.object_id = entidade.id
-                AND ent_meta_municipio.key = 'geoMunicipio'
+                AND ent_meta_municipio.key = 'En_Municipio'
             LEFT JOIN agent ponto ON ponto.id = rel_ponto.agent_id
             LEFT JOIN agent_meta tp
                 ON tp.key = 'tipoPontoCulturaDesejado'
                 AND tp.object_id = entidade.id
-            LEFT JOIN avaliacoes avl_c
-                ON insc.id = avl_c.inscricao_id
-                AND avl_c.certificador_tipo = 'C'
             LEFT JOIN avaliacoes avl_p
                 ON insc.id = avl_p.inscricao_id
                 AND avl_p.certificador_tipo = 'P'
+            LEFT JOIN avaliacoes avl_e
+                ON insc.id = avl_e.inscricao_id
+                AND avl_e.certificador_tipo = 'E'    
+            LEFT JOIN avaliacoes avl_c
+                ON insc.id = avl_c.inscricao_id
+                AND avl_c.certificador_tipo = 'C'
+            LEFT JOIN avaliacoes avl_s
+                ON insc.id = avl_s.inscricao_id
+                AND avl_s.certificador_tipo = 'S'
             LEFT JOIN avaliacoes avl_m
                 ON insc.id = avl_m.inscricao_id
                 AND avl_m.certificador_tipo = 'M'
@@ -159,8 +181,8 @@ class Avaliacao extends \MapasCulturais\Controller {
             AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)
             AND (
                 :estado = ''
-                OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado])
-                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado]::varchar[]))
+                OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado])
+                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado]::varchar[]))
             )
             AND (
                 :nome = ''
@@ -169,10 +191,12 @@ class Avaliacao extends \MapasCulturais\Controller {
                 OR unaccent(lower(avl_c.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
+                OR unaccent(lower(avl_e.certificador_nome)) LIKE unaccent(lower(:nome))
+                OR unaccent(lower(avl_s.certificador_nome)) LIKE unaccent(lower(:nome))
             )
             AND (:uf = '' OR ent_meta_uf.value = :uf)
             AND (:municipio = ''
-                OR unaccent(lower(ent_meta_municipio.value)) LIKE unaccent(lower(:municipio)))
+                OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
             ORDER BY insc.agente_id, ts_criacao DESC";
 
 
@@ -186,14 +210,29 @@ class Avaliacao extends \MapasCulturais\Controller {
             'entidade_nome',
             'entidade_id',
             'tipo_ponto_desejado',
-            'avaliacao_civil_id',
-            'avaliacao_civil_estado',
-            'avaliacao_civil_certificador',
-            'avaliacao_civil_certificador_id',
-            'avaliacao_publica_id',
-            'avaliacao_publica_estado',
-            'avaliacao_publica_certificador',
-            'avaliacao_publica_certificador_id',
+
+            'avaliacao_publica_federal_id',
+            'avaliacao_publica_federal_estado',
+            'avaliacao_publica_federal_certificador',
+            'avaliacao_publica_federal_certificador_id',
+
+            'avaliacao_publica_estadual_id',
+            'avaliacao_publica_estadual_estado',
+            'avaliacao_publica_estadual_certificador',
+            'avaliacao_publica_estadual_certificador_id',
+            'avaliacao_publica_estadual_certificador_uf',
+
+            'avaliacao_civil_federal_id',
+            'avaliacao_civil_federal_estado',
+            'avaliacao_civil_federal_certificador',
+            'avaliacao_civil_federal_certificador_id',
+
+            'avaliacao_civil_estadual_id',
+            'avaliacao_civil_estadual_estado',
+            'avaliacao_civil_estadual_certificador',
+            'avaliacao_civil_estadual_certificador_id',
+            'avaliacao_civil_estadual_certificador_uf',
+
             'avaliacao_minerva_id',
             'avaliacao_minerva_estado',
             'avaliacao_minerva_certificador',
@@ -391,7 +430,6 @@ class Avaliacao extends \MapasCulturais\Controller {
     function GET_distribuir() {
         $this->requireAuthentication();
         $app = App::i();
-
         if($app->user->is('rcv_agente_area')){
             include (__DIR__ . "/../scripts/rotinas/importar-inscricoes.php");
             importar();

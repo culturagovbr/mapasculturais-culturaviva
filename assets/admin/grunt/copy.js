@@ -31,5 +31,13 @@ module.exports = {
                 dest: '<%= distDir %>/../../../views/admin/index.php'
             }
         ]
+    },
+    dist_asset: {
+        files: {
+            cwd: '<%= distDir %>',  // set working folder / root to copy
+            src: '**/*',           // copy all files and subfolders
+            dest: '<%= distDir %>/../../../../assets/admin',    // destination folder
+            expand: true           // required when using cwd
+        }
     }
 };

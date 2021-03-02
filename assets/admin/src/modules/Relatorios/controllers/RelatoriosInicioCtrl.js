@@ -17,8 +17,8 @@ RelatoriosInicioCtrl.$inject = ['$scope', '$state', '$http'];
 function RelatoriosInicioCtrl($scope, $state, $http) {
 
     // Configuração da página
-    $scope.pagina.titulo = 'Início';
-    $scope.pagina.subTitulo = 'Resumo dos processos de certificação';
+    $scope.pagina.titulo = 'Política Nacional de Cultura Viva';
+    $scope.pagina.subTitulo = '';
     $scope.pagina.classTitulo = 'header-pre-cards-pf';
     $scope.pagina.ajudaTemplateUrl = '';
     $scope.pagina.breadcrumb = null;
