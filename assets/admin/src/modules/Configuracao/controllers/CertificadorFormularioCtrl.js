@@ -73,7 +73,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId ? dto.agenteId : dto._agente.id,
         tipo: dto.tipo.codigo,
-        titular: dto.titular.valor,
+        titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
         uf: dto.uf
     };

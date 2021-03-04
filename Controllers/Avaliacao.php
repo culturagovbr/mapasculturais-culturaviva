@@ -247,7 +247,6 @@ class Avaliacao extends \MapasCulturais\Controller {
             'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
             'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
         ];
-
         $pagina = isset($this->data['pagina']) ? intval($this->data['pagina']) : 1;
         $this->json((new NativeQueryUtil($sql, $campos, $parametros))->paginate($pagina));
     }
@@ -432,7 +431,7 @@ class Avaliacao extends \MapasCulturais\Controller {
         $this->requireAuthentication();
         $app = App::i();
         if($app->user->is('rcv_agente_area')){
-            include (__DIR__ . "/../scripts/rotinas/importar-inscricoes.php");
+            include (__DIR__ . "/../scripts/rotinas/importar-inscricoes2.php");
             importar();
         }else {
             return $this->json(["message" => 'Você não tem permissão para realizar essa ação'], 403);

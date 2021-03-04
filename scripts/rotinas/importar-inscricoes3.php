@@ -168,21 +168,20 @@ function importar()
     $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
 
     foreach ($ufs as $uf) {
-        if ($uf['sigla'] == 'DF') {
-            $filter['uf'] = $uf['sigla'];
-            $filter['tipo'] = 'S';
-            if ($uf['redistribuicao'] == true) {
-                $filter['tipo1'] = 'E';
-            }
-            print("Distribuir avaliações para Representantes da Sociedade Civil\n");
-            inserirAvaliacaoCertificador($conn, $filter, $uf);
+        if ($uf['sigla'] == 'AC') {
+            print("Distribuir avaliações para Representantes da Sociedade Civil Estadual\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'S'], $uf);
 
-            $filter['tipo'] = 'P';
+            print("Distribuir avaliações para Representantes do Poder Público Estadual\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'E'], $uf);
+
             if ($uf['redistribuicao'] == true) {
-                $filter['tipo1'] = 'C';
+                print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
+                inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
+
+                print("Distribuir avaliações para Representantes do Poder Público Federal\n");
+                inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
             }
-            print("Distribuir avaliações para Representantes do Poder Publico\n");
-            inserirAvaliacaoCertificador($conn, $filter, $uf);
         }
     }
 
@@ -205,11 +204,8 @@ function importar()
  */
 function inserirAvaliacaoCertificador($conn, $filtro, $uf)
 {
-    if ($uf['redistribuicao'] == true) {
-        $whereCertTipo = 'AND (cert.tipo = :tipo OR cert.tipo = :tipo1)';
-    } else {
-        $whereCertTipo = 'AND cert.tipo = :tipo';
-    }
+    $filtro['uf'] = $uf['sigla'];
+
     $inscricoes = $conn->fetchAll("SELECT
                                         insc.id
                                     FROM culturaviva.inscricao insc
@@ -239,7 +235,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                                             FROM culturaviva.avaliacao aval
                                             JOIN culturaviva.certificador cert
                                                     on cert.id = aval.certificador_id
-                                                    " . $whereCertTipo . "
+                                                    AND cert.tipo = :tipo
                                             WHERE aval.estado <> 'C'
                                             AND aval.inscricao_id = insc.id
                                         )
@@ -248,7 +244,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                                             FROM culturaviva.avaliacao aval
                                             JOIN culturaviva.certificador cert
                                                     on cert.id = aval.certificador_id
-                                                    " . $whereCertTipo . "
+                                                    AND cert.tipo = :tipo
                                             WHERE aval.estado = 'P'
                                             AND aval.inscricao_id = insc.id
                                         )
@@ -259,15 +255,13 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
         return;
     }
 
-    if ($uf['redistribuicao'] == true) {
-        $whereCertTipo = $whereCertTipo . 'AND cert.uf = :uf ';
-    }
     $certificadores = $conn->fetchAll("SELECT
                                             *
                                         FROM culturaviva.certificador cert
                                         WHERE cert.ativo = TRUE
                                         AND cert.titular = TRUE
-                                        " . $whereCertTipo . "
+                                        AND cert.tipo = :tipo
+                                        AND cert.uf = :uf
                                         ORDER BY cert.id", $filtro);
     if (!isset($certificadores) || empty($certificadores)) {
         // Nao existem AVALIADORES para o tipo
@@ -286,8 +280,6 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
         }
         array_push($certInscric[$idx], $inscricao['id']);
     }
-
-
     foreach ($certificadores as $index => $certificador) {
         $idCertificador = $certificador['id'];
         if (!isset($certInscric[$index])) {
@@ -304,10 +296,9 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                         ON cert.id = aval.certificador_id
                         AND cert.tipo = '{$filtro['tipo']}'
                     WHERE aval.estado <> 'C'
-                    AND aval.inscricao_id = ?
+                    AND aval.inscricao_id =  ?
                     AND aval.certificador_id = ?
                     ", [$idInscricao, $idCertificador]);
-
             if ($existe > 0) {
                 continue;
             }
@@ -325,6 +316,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                         AND aval.inscricao_id = ?
                     )
                     ", [$idInscricao]);
+
 
             // Registra avaliação com o certificador atual
             $conn->executeQuery(

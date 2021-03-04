@@ -179,7 +179,6 @@ class Certificador extends \MapasCulturais\Controller {
                 }
             }
         }
-        dump($certificador);die;
         $certificador->save(true);
         //-------------------------------------------
         // Faz a manutenção das permissões do usuario
