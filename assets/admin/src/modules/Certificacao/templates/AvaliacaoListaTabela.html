@@ -37,9 +37,6 @@
                     <hr/>
 
                     <div class="col-md-12">
-                        <button class="btn btn-danger" ng-click="redistribuir()" type="button" access-level="AGENTE_AREA">
-                            Executar redistribuição e certificação
-                        </button>
                         <tc-notitication id="bag-filtro-agentes"></tc-notitication>
 
                         <div ng-if="ref.data.total > 0" style="margin-top: 20px;">
@@ -90,7 +87,7 @@
                                                 >
                                                 <avaliacao-lista-certificador
                                                     ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilFederalId != null"
-                                                    certificador-tipo="Sociedade Civil"
+                                                    certificador-tipo="Sociedade Civil Federal"
                                                     avaliacao-id="{{inscricao.avaliacaoCivilFederalId}}"
                                                     certificador-id="{{inscricao.avaliacaoCivilFederalCertificadorId}}"
                                                     estado-avaliacao="{{inscricao.avaliacaoCivilFederalEstado}}"

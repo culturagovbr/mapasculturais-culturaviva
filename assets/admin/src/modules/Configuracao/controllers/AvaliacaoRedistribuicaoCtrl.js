@@ -26,6 +26,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.subTitulo = 'Configuração de rotina de redistribuição de avaliações para certificação de inscrições';
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
+    $scope.marcaTodos = false;
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
@@ -47,8 +48,26 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         }
         $scope.$emit('msg', msg, null, 'error', 'formulario');
     });
-
-
+    $scope.redistribuir = function () {
+        if(confirm("Tem certeza que deseja executar a rotina de distribuição e certificação? Esta ação não pode ser desfeita.")){
+            $http.get('/avaliacao/distribuir').then(function (response) {
+                $scope.filtrar();
+            });
+        }
+    };
+    $scope.marcarTodos = function (teste) {
+        if($scope.marcaTodos == false){
+            $scope.marcaTodos = true;
+            for (var uf in $scope.ufs) {
+                $scope.ufs[uf].redistribuicao = true;
+            }
+        }else{
+            $scope.marcaTodos = false;
+            for (var uf in $scope.ufs) {
+                $scope.ufs[uf].redistribuicao = false;
+            }
+        }
+    };
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         $http.post('/avaliacao/configurar', dto).then(function (response) {
@@ -101,8 +120,14 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
+    console.log(dto);
     for (var uf in dto) {
-        out.push(uf);
+        if(dto[uf] == true){
+            out.push(uf);
+        }
+        if(dto[uf].redistribuicao == true){
+            out.push(dto[uf].sigla);
+        }
     }
     return out;
 };

@@ -1,9 +1,9 @@
 /* global google */
 
 angular
-        .module('Certificacao')
-        .controller('AvaliacaoListaCtrl', AvaliacaoListaCtrl)
-        .directive('avaliacaoListaCertificador', AvaliacaoListaCertificadorDirective);
+    .module('Certificacao')
+    .controller('AvaliacaoListaCtrl', AvaliacaoListaCtrl)
+    .directive('avaliacaoListaCertificador', AvaliacaoListaCertificadorDirective);
 
 AvaliacaoListaCtrl.$inject = ['$scope', '$state', '$http', 'UsuarioSrv'];
 
@@ -34,6 +34,7 @@ function AvaliacaoListaCtrl($scope, $state, $http, UsuarioSrv) {
     $scope.certificadores = {};
 
     // Obtém totais de avaliações
+
     $http.get('/avaliacao/total').then(function (response) {
         $scope.total = response.data;
     });

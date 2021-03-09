@@ -171,14 +171,14 @@ function importar()
             $filter['uf'] = $uf['sigla'];
             $filter['tipo'] = 'S';
             if ($uf['redistribuicao'] == true) {
-                $filter['tipo1'] = 'E';
+                $filter['tipo'] = 'E';
             }
             print("Distribuir avaliações para Representantes da Sociedade Civil\n");
             inserirAvaliacaoCertificador($conn, $filter, $uf);
 
             $filter['tipo'] = 'P';
             if ($uf['redistribuicao'] == true) {
-                $filter['tipo1'] = 'C';
+                $filter['tipo'] = 'C';
             }
             print("Distribuir avaliações para Representantes do Poder Publico\n");
             inserirAvaliacaoCertificador($conn, $filter, $uf);
@@ -203,11 +203,7 @@ function importar()
  */
 function inserirAvaliacaoCertificador($conn, $filtro, $uf)
 {
-    if ($uf['redistribuicao'] == true) {
-        $whereCertTipo = 'AND (cert.tipo = :tipo OR cert.tipo = :tipo1)';
-    } else {
-        $whereCertTipo = 'AND cert.tipo = :tipo';
-    }
+    $whereCertTipo = 'AND cert.tipo = :tipo';
     $inscricoes = $conn->fetchAll("SELECT
                                         insc.id
                                     FROM culturaviva.inscricao insc
@@ -257,11 +253,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
         return;
     }
 
-    if ($uf['redistribuicao'] == true) {
-        $whereCertTipo = $whereCertTipo . ' AND (cert.tipo = :tipo OR cert.tipo = :tipo1 AND cert.uf = :uf)';
-    }else{
-        $whereCertTipo = $whereCertTipo . ' AND (cert.tipo = :tipo AND cert.uf = :uf)';
-    }
+    $whereCertTipo = $whereCertTipo . ' AND (cert.tipo = :tipo AND cert.uf = :uf)';
     $certificadores = $conn->fetchAll("SELECT
                                             *
                                         FROM culturaviva.certificador cert
