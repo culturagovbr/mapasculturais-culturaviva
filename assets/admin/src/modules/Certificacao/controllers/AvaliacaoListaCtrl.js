@@ -34,9 +34,16 @@ function AvaliacaoListaCtrl($scope, $state, $http, UsuarioSrv) {
     $scope.certificadores = {};
 
     // Obtém totais de avaliações
+    function atualizaTotal(params) {
+        $http.get('/avaliacao/total', {params: params}).then(function (response) {
+            $scope.total = response.data;
+        });
+    }
 
-    $http.get('/avaliacao/total').then(function (response) {
-        $scope.total = response.data;
+    atualizaTotal();
+
+    $scope.$on("changetotal", function (event, params) {
+        atualizaTotal(params);
     });
 }
 
