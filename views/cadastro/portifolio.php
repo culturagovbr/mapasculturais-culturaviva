@@ -65,7 +65,7 @@
             <div class="row">
                 <label class="colunm-full">
                     <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura (max. 800 caracteres)* <i class='hltip' title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>  </span>
-                    <textarea rows="8" required ng-blur="save_field('longDescription')" maxlength="800" ng-model="agent.longDescription"></textarea>
+                    <textarea rows="8" required ng-change="save_field('longDescription')" maxlength="800" ng-model="agent.longDescription"></textarea>
                     <span>{{800 - agent.longDescription.length}} caracteres restantes</span>
                     <span ng-class="error" style="color: red" ng-show="form_portifolio.longDescription.$error.required">Descrição Obrigatória</span>
                 </label>
@@ -182,7 +182,7 @@
                             <img ng-if="!agent.files.cartaReferencia2" src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
                             <img ng-if="agent.files.cartaReferencia2" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                         </div>
-                    </div>
+                    </div>Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia
                     <a ng-if="agent.files.cartaReferencia2" href="{{agent.files.cartaReferencia2.url}}" target="_blank">{{agent.files.cartaReferencia2.name}}</a>
                     <div class="progress row" ng-show="f.progress >= 0">
                         <span style="width:{{f.progress}}%;" ng-bind="f.progress + '%'"></span>
