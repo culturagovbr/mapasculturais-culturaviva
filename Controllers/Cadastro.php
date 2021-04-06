@@ -672,7 +672,6 @@ class Cadastro extends \MapasCulturais\Controller{
         $app = App::i();
 
         $api_urlRF = $app->config['rcv.apiCNPJRF'] . $this->data['cnpj'];
-
         if(strlen($this->data['cnpj']) !== 14){
             $this->errorJson('CNPJ invalido', 401);
         }else{
@@ -684,7 +683,6 @@ class Cadastro extends \MapasCulturais\Controller{
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $result = curl_exec($ch);
             $f = json_decode($result, true);
-
             if ( $f == null OR array_key_exists('erro', $f) ) {
 				//if (strcmp($f["erro"], 'CNPJ Inválido') === 0) {
 				$this->errorJson('CNPJ invalido', 401);

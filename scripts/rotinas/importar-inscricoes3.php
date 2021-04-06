@@ -31,11 +31,13 @@ set_time_limit(0);
  *  2.1 - Criar registro de inscrição culturaviva.inscricao
  *  2.2 - Registrar os critérios da avaliação (culturaviva.inscricao_criterio)
  */
-function loadScript($file) {
+function loadScript($file)
+{
     return file_get_contents(__DIR__ . "/importar/$file");
 }
 
-function importar() {
+function importar()
+{
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
 
@@ -117,7 +119,17 @@ function importar() {
 
     // 2º Passo: REGISTRO DE INSCRIÇÕES
     print("Registra as inscricoes dos pontos de cultura\n");
-    $conn->executeQuery(loadScript('1-registrar-inscricoes.sql'));
+    $conn->executeQuery("INSERT INTO culturaviva.inscricao(agente_id, estado)
+                                SELECT
+                                    r.agent_id,
+                                    'P'
+                                FROM registration r
+                                LEFT JOIN culturaviva.inscricao insc
+                                    ON insc.agente_id = r.agent_id
+                                WHERE r.opportunity_id = 1
+                                AND r.status = 1
+                                AND insc.id IS NULL
+                                AND (insc.estado = 'P' OR insc.estado is null);");
 
     print("Registra as ressubmissões dos pontos de cultura\n");
     $conn->executeQuery(loadScript('11-registrar-ressubmissoes.sql'));
@@ -127,19 +139,51 @@ function importar() {
     $conn->executeQuery(loadScript('2-remover-criterios-inscricoes_B.sql'));
 
     print("Registrar os critérios das inscrições\n");
-    $conn->executeQuery(loadScript('3-incluir-criterios-inscricoes.sql'));
+    $conn->executeQuery("INSERT INTO culturaviva.inscricao_criterio (criterio_id, inscricao_id)
+                                SELECT
+                                        crit.id,
+                                        insc.id
+                                FROM culturaviva.inscricao insc
+                                JOIN culturaviva.criterio crit
+                                    ON  crit.ativo = TRUE
+                                LEFT JOIN culturaviva.inscricao_criterio incrit
+                                    ON incrit.inscricao_id = insc.id
+                                    AND incrit.criterio_id = crit.id
+                                WHERE insc.estado = ANY(ARRAY['P'::text, 'R'::text])
+                                AND incrit.inscricao_id IS NULL;");
 
 
     // 3º Passo: DISTRIBUIR AVALIAÇÕES
     print("Remover avaliações avaliadores inativos:\n");
-    $conn->executeQuery(loadScript('4-remover-avaliacoes-avaliador-inativo.sql'));
+    $conn->executeQuery("UPDATE culturaviva.avaliacao SET estado = 'C'
+                                WHERE certificador_id IN (
+                                    SELECT
+                                        id
+                                    FROM culturaviva.certificador cert
+                                    WHERE cert.ativo = FALSE OR cert.titular = FALSE
+                                )
+                                AND culturaviva.avaliacao.estado = ANY (ARRAY['P'::text, 'A'::text])");
 
-    print("Distribuir avaliações para Representantes da Sociedade Civil\n");
-    inserirAvaliacaoCertificador($conn, ['tipo' => 'C']);
+    //Procura estados selecionados para redistribuição
+    $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
 
-    print("Distribuir avaliações para Representantes do Poder Publico\n");
-    inserirAvaliacaoCertificador($conn, ['tipo' => 'P']);
+    foreach ($ufs as $uf) {
+        if ($uf['sigla'] == 'AC') {
+            print("Distribuir avaliações para Representantes da Sociedade Civil Estadual\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'S'], $uf);
 
+            print("Distribuir avaliações para Representantes do Poder Público Estadual\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'E'], $uf);
+
+            if ($uf['redistribuicao'] == true) {
+                print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
+                inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
+
+                print("Distribuir avaliações para Representantes do Poder Público Federal\n");
+                inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
+            }
+        }
+    }
 
     // 4º Passo: DISTRIBUIR VOTOS DE MINERVA
     print("Distribuir avaliações para Certificadores com Voto de Minerva\n");
@@ -158,14 +202,67 @@ function importar() {
  * @param type $filtro
  * @return type
  */
-function inserirAvaliacaoCertificador($conn, $filtro) {
-    $inscricoes = $conn->fetchAll(loadScript('5-obter-inscricoes-para-distribuir.sql'), $filtro);
+function inserirAvaliacaoCertificador($conn, $filtro, $uf)
+{
+    $filtro['uf'] = $uf['sigla'];
+
+    $inscricoes = $conn->fetchAll("SELECT
+                                        insc.id
+                                    FROM culturaviva.inscricao insc
+                                    LEFT JOIN agent agente ON agente.id = insc.agente_id
+                                    LEFT JOIN usr usuario ON usuario.id = agente.user_id
+                                    LEFT JOIN registration reg
+                                        on reg.agent_id = insc.agente_id
+                                        AND reg.opportunity_id = 1
+                                        AND reg.status = 1
+                                    LEFT JOIN agent_relation rel_entidade
+                                        ON rel_entidade.object_id = reg.id
+                                        AND rel_entidade.type = 'entidade'
+                                        AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
+                                    LEFT JOIN agent_relation rel_ponto
+                                        ON rel_ponto.object_id = reg.id
+                                        AND rel_ponto.type = 'ponto'
+                                        AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
+                                    LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
+                                    LEFT JOIN agent_meta ent_meta_uf
+                                        ON  ent_meta_uf.object_id = entidade.id
+                                        AND ent_meta_uf.key = 'En_Estado'
+                                    WHERE insc.estado = ANY(ARRAY['P','R'])
+                                      AND ent_meta_uf.value = :uf
+                                    AND (
+                                        not exists (
+                                            SELECT aval.id
+                                            FROM culturaviva.avaliacao aval
+                                            JOIN culturaviva.certificador cert
+                                                    on cert.id = aval.certificador_id
+                                                    AND cert.tipo = :tipo
+                                            WHERE aval.estado <> 'C'
+                                            AND aval.inscricao_id = insc.id
+                                        )
+                                        OR exists (
+                                            SELECT aval.id
+                                            FROM culturaviva.avaliacao aval
+                                            JOIN culturaviva.certificador cert
+                                                    on cert.id = aval.certificador_id
+                                                    AND cert.tipo = :tipo
+                                            WHERE aval.estado = 'P'
+                                            AND aval.inscricao_id = insc.id
+                                        )
+                                    )
+                                    ORDER BY insc.id", $filtro);
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
         return;
     }
 
-    $certificadores = $conn->fetchAll(loadScript('6-obter-certificadores-por-tipo.sql'), $filtro);
+    $certificadores = $conn->fetchAll("SELECT
+                                            *
+                                        FROM culturaviva.certificador cert
+                                        WHERE cert.ativo = TRUE
+                                        AND cert.titular = TRUE
+                                        AND cert.tipo = :tipo
+                                        AND cert.uf = :uf
+                                        ORDER BY cert.id", $filtro);
     if (!isset($certificadores) || empty($certificadores)) {
         // Nao existem AVALIADORES para o tipo
         return;
@@ -183,9 +280,6 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
         }
         array_push($certInscric[$idx], $inscricao['id']);
     }
-
-
-
     foreach ($certificadores as $index => $certificador) {
         $idCertificador = $certificador['id'];
         if (!isset($certInscric[$index])) {
@@ -196,23 +290,22 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
 
             // Já possui avaliação deste certificador com o perfil informado para a inscrição?
             $existe = $conn->fetchColumn(
-                    "SELECT count(0)
+                "SELECT count(0)
                     FROM culturaviva.avaliacao aval
                     JOIN culturaviva.certificador cert
                         ON cert.id = aval.certificador_id
                         AND cert.tipo = '{$filtro['tipo']}'
                     WHERE aval.estado <> 'C'
-                    AND aval.inscricao_id = ?
+                    AND aval.inscricao_id =  ?
                     AND aval.certificador_id = ?
-                    ", [ $idInscricao, $idCertificador]);
-
+                    ", [$idInscricao, $idCertificador]);
             if ($existe > 0) {
                 continue;
             }
 
             // Cancela as avaliações atuais associados a outro certificador
             $conn->executeQuery(
-                    "UPDATE culturaviva.avaliacao SET estado = 'C'
+                "UPDATE culturaviva.avaliacao SET estado = 'C'
                     WHERE id IN(
                         SELECT aval.id
                         FROM culturaviva.avaliacao aval
@@ -222,23 +315,25 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
                         WHERE aval.estado <> 'C'
                         AND aval.inscricao_id = ?
                     )
-                    ", [ $idInscricao]);
+                    ", [$idInscricao]);
+
 
             // Registra avaliação com o certificador atual
             $conn->executeQuery(
-                    "INSERT INTO culturaviva.avaliacao (inscricao_id, certificador_id, estado)
+                "INSERT INTO culturaviva.avaliacao (inscricao_id, certificador_id, estado)
                     SELECT $idInscricao, $idCertificador, 'P'");
         }
     }
 }
 
 /**
- * @todo Executar mesmo processo anterior
- *
  * @param type $conn
  * @return type
+ * @todo Executar mesmo processo anterior
+ *
  */
-function inserirAvaliacaoMinerva($conn) {
+function inserirAvaliacaoMinerva($conn)
+{
     $inscricoes = $conn->fetchAll(loadScript('7-obter-inscricoes-avaliacoes-conflitantes.sql'));
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
@@ -272,7 +367,8 @@ function inserirAvaliacaoMinerva($conn) {
     }
 }
 
-function notificarCertificacoesDeferidas($app, $conn) {
+function notificarCertificacoesDeferidas($app, $conn)
+{
     print("Notificando via e-mail as inscrições Deferidas\n");
 
     $registros = $conn->fetchAll(loadScript('9-obter-inscricoes-certificadas.sql'));
@@ -315,7 +411,8 @@ function notificarCertificacoesDeferidas($app, $conn) {
     }
 }
 
-function notificarCertificacoesIndeferidas($app, $conn) {
+function notificarCertificacoesIndeferidas($app, $conn)
+{
     print("Notificando via e-mail as inscrições Indeferidas\n");
 
     $registros = $conn->fetchAll(loadScript('10-obter-inscricoes-indeferidas.sql'));
@@ -339,15 +436,15 @@ function notificarCertificacoesIndeferidas($app, $conn) {
                 "SELECT id,certificador_id,estado,observacoes
                 FROM culturaviva.avaliacao
                 WHERE estado='I' AND inscricao_id=?"
-                ,[$registro['id']]);
+                , [$registro['id']]);
 
-            foreach($avaliacoes as &$avaliacao){
+            foreach ($avaliacoes as &$avaliacao) {
                 $avaliacao['criterios'] = $conn->fetchAll(
                     "SELECT ac.aprovado,c.descricao
                     FROM culturaviva.avaliacao_criterio ac
                     JOIN culturaviva.criterio c ON ac.criterio_id = c.id
                     WHERE ac.avaliacao_id=?"
-                    ,[$avaliacao['id']]
+                    , [$avaliacao['id']]
                 );
             }
 

@@ -8,6 +8,7 @@ angular
 ConfiguracaoConfig.$inject = ['blockUIConfig'];
 
 function ConfiguracaoConfig(blockUIConfig) {
+    debugger;
     // Faz o blockUI ignorar algumas requisições
     blockUIConfig.requestFilter = function (config) {
         // Conflito com o typeahead http://stackoverflow.com/a/29606685

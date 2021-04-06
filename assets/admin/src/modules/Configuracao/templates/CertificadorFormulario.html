@@ -1,5 +1,6 @@
 <div ng-controller="CertificadorFormularioCtrl" ng-cloak>
     <tc-form name="formCertificador" on-save="salvar()">
+
         <div class="col-md-12">
             <tc-notitication id="formulario"></tc-notitication>
         </div>
@@ -36,7 +37,15 @@
             disabled="!ref.novoRegistro"
             >
         </tc-select>
-
+        <tc-select
+                ng-model="dto.uf"
+                label="UF Certificador"
+                col="4"
+                field="label"
+                options="uf"
+                ng-if="dto.tipo.codigo != 'M' && dto.tipo.codigo != 'P' && dto.tipo.codigo != 'C'"
+        >
+        </tc-select>
         <tc-select
             ng-model="dto.titular"
             label="Grupo"
@@ -44,7 +53,7 @@
             col-input="2"
             field="label"
             options="opcoesGrupo"
-            required="true"
+            ng-if="dto.tipo.codigo != 'E' && dto.tipo.codigo != 'S'"
             >
         </tc-select>
 
