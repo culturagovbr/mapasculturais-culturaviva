@@ -14,14 +14,24 @@ use Doctrine\ORM\Mapping as ORM;
 class Certificador extends \MapasCulturais\Entity {
 
     /**
-     * Representa Agente Certificador Membro do Poder Publico
+     * Representa Agente Certificador Membro do Poder Publico Federal
      */
-    const TP_PUBLICO = 'P';
+    const TP_PUBLICO_FEDERAL = 'P';
+
+    /**
+     * Representa Agente Certificador Membro do Poder Publico Municipal
+     */
+    const TP_PUBLICO_ESTADUAL = 'E';
 
     /**
      * Representa Agente Certificador Pessoa da Sociedade Civil
      */
-    const TP_CIVIL = 'C';
+    const TP_CIVIL_FEDERAL = 'C';
+
+    /**
+     * Representa Agente Certificador Pessoa da Sociedade Civil
+     */
+    const TP_CIVIL_ESTADUAL = 'S';
 
     /**
      * Representa Agente Certificador com Voto de Minerva
@@ -112,6 +122,13 @@ class Certificador extends \MapasCulturais\Entity {
      * @var \DateTime
      */
     protected $tsAtualizacao;
+
+    /**
+     * Identifica a UF do certificador
+     * @ORM\Column(name="uf", type="string", length=2, nullable=true)
+     * @var string
+     */
+    protected $uf;
 
     //============================================================= //
     // The following lines ara used by MapasCulturais hook system.
