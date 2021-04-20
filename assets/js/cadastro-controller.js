@@ -1004,12 +1004,16 @@
 
                     }).error(function errorCallback(erro) {
                         if (erro.data === "CNPJ invalido") {
-                            $scope.inputCNPJ = undefined;
-                            alert('CNPJ Inválido');
+                            ngDialog.open({
+                                $scope.inputCNPJ = undefined;
+                                alert('CNPJ Inválido');
+                            });
 
                         } else if (erro.data === "CNPJ com fins lucrativos") {
-                            $scope.inputCNPJ = undefined;
-                            alert('CNPJ com fins lucrativos');
+                            ngDialog.open({
+                                $scope.inputCNPJ = undefined;
+                                alert('CNPJ com fins lucrativos');
+                            });
                         }
                     });
                 }
