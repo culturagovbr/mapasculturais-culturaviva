@@ -1,10 +1,11 @@
-<?php
+'<?php
 
 namespace CulturaViva\Controllers;
 
 use CulturaViva\Entities\Certificador as CertificadorEntity;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
+use Slim\Http\Request;
 
 /**
  * API usado no gerenciamento de agentes de certificação

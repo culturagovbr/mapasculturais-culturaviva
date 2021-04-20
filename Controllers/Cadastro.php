@@ -228,9 +228,8 @@ class Cadastro extends \MapasCulturais\Controller{
             $required_properties[] = 'cep';
         }
 
-        if($agent->tipoOrganizacao === 'entidade'){
+        if($agent->tipoPonto === 'ponto_entidade' || $agent->tipoPonto === 'pontao'){
             $required_properties[] = 'cnpj';
-            $required_properties[] = 'representanteLegal';
         }
 
 

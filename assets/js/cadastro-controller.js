@@ -1005,14 +1005,14 @@
                     }).error(function errorCallback(erro) {
                         if (erro.data === "CNPJ invalido") {
                             ngDialog.open({
-                                template: 'modalCNPJInvalido',
-                                scope: $scope
+                                $scope.inputCNPJ = undefined;
+                                alert('CNPJ Inválido');
                             });
 
                         } else if (erro.data === "CNPJ com fins lucrativos") {
                             ngDialog.open({
-                                template: 'modalFinsLucrativos',
-                                scope: $scope
+                                $scope.inputCNPJ = undefined;
+                                alert('CNPJ com fins lucrativos');
                             });
                         }
                     });
@@ -1404,17 +1404,12 @@
 
             }).error(function errorCallback(erro) {
                 if (erro.data === "CNPJ invalido") {
-                    ngDialog.open({
-                        template: 'modalCNPJInvalido',
-                        scope: $scope
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ Inválido');
 
                 } else if (erro.data === "CNPJ com fins lucrativos") {
-                    ngDialog.open({
-                        template: 'modalFinsLucrativos',
-                        scope: $scope
-
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ com fins lucrativos');
                 }
             });
         };
