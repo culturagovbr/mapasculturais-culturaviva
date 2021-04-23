@@ -55,11 +55,12 @@ require __DIR__.'/../../assets/php/functions.php';
         <!-- Nome fantasia e Razão Social -->
         <div class="row" ng-show="agent.tipoPonto === 'ponto_entidade' || agent.tipoPonto === 'pontao'">
             <label class="colunm1">
-                <span class="destaque">Nome da Razão Social*</span>
-                <input  name="nomeCompleto"
+                <span class="destaque">Nome da Razão Social</span>
+                <input required name="nomeCompleto"
                        type="text"
                        ng-blur="save_field('nomeCompleto')"
                        ng-model="agent.nomeCompleto">
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor digitar o nome da razão social</span>
             </label>
 
             <label class="colunm1">
@@ -71,6 +72,7 @@ require __DIR__.'/../../assets/php/functions.php';
                     <div ng-message="maxlength">Your field is too long</div>
                 </div>
                 <input required type="text" ng-blur="save_field('name')" ng-model="agent.name" >
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor digitar o nome da razão social</span>
             </label>
         </div>
 
