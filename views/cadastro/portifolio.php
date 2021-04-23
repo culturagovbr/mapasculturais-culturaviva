@@ -199,7 +199,9 @@
             <div class="clear"></div>
 
         <div class="form form-opcional">
-            <h4>Informações Opcionais</h4>
+            <div class="row">
+                <h4>Informações Opcionais</h4>
+            </div>
             <div class="row" ng-controller="ImageUploadCtrl" ng-init="init('ponto')">
                 <span class="destaque espacoleft">Fotos de Divulgação do Ponto de Cultura <i class='hltip' title='Essas imagens devem mostrar as atividades que seu Ponto de Cultura desenvolve'>?</i></span>
                 <p class="espacoleft">Inclua no máximo 10 arquivos, no formato JPG ou PNG com até 1MB</p>
