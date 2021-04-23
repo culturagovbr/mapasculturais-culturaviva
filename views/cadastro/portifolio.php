@@ -198,7 +198,7 @@
             </div>
             <div class="clear"></div>
 
-        <div class="form form-opcional">
+        <div class="form">
             <div class="row">
                 <h4>Informações Opcionais</h4>
             </div>
