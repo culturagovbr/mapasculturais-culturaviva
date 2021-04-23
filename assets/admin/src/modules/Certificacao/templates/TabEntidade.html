@@ -1,184 +1,145 @@
 <div ng-controller="AvaliacaoTabEntidadeCtrl" class="row" style="padding-top: 30px;" ng-form>
 
-    <tc-input
-        ng-model="agent.tipoPonto"
+    <tc-input ng-model="agent.tipoPonto"
         label="Deseja Ser"
         col="6"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.name"
+    <tc-input ng-model="agent.name"
         label="Nome do Coletivo Cultural"
         col="6"
         readonly="true"
-        ng-if="agent.tipoOrganizacao === 'coletivo'"
-        >
+        ng-if="agent.tipoOrganizacao === 'coletivo'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.cnpj"
+    <tc-input ng-model="agent.cnpj"
         label="CNPJ da Entidade"
         col="3"
         readonly="true"
         ui-mask="99.999.999/9999-99"
-        ng-if="agent.tipoOrganizacao === 'entidade'"
-        >
+        ng-if="agent.tipoOrganizacao === 'entidade'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.nomeCompleto"
+    <tc-input ng-model="agent.nomeCompleto"
         label="Nome da Razão Social da Entidade"
         col="6"
         readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'"
-        >
+        ng-if="agent.tipoOrganizacao === 'entidade'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.representanteLegal"
+    <tc-input ng-model="agent.representanteLegal"
         label="Nome do Representante Legal"
         col="6"
         readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'"
-        >
+        ng-if="agent.tipoOrganizacao === 'entidade'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.name"
+    <tc-input ng-model="agent.name"
         label="Nome Fantasia"
         col="6"
         readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'"
-        >
+        ng-if="agent.tipoOrganizacao === 'entidade'">
     </tc-input>
 
     <header class="section-header">
         <h2 class="col-md-12">Informações de contato {{agent.tipoOrganizacao == 'coletivo' ? 'do Coletivo' : 'da Entidade'}}</h2>
     </header>
 
-    <tc-input
-        ng-model="agent.emailPrivado"
+    <tc-input ng-model="agent.emailPrivado"
         label="Email institucional"
         col="6"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.telefone1"
+    <tc-input ng-model="agent.telefone1"
         label="Telefone institucional"
         col="6"
         readonly="true"
-        ui-mask="(99) ?99999-9999"
-        >
+        ui-mask="(99) ?99999-9999">
     </tc-input>
 
     <header class="section-header">
         <h2 class="col-md-12">Responsável {{agent.tipoOrganizacao == 'coletivo' ? 'pelo Coletivo' : 'pela Entidade'}}</h2>
     </header>
 
-    <tc-input
-        ng-model="agent.responsavel_nome"
+    <tc-input ng-model="agent.responsavel_nome"
         label="Nome do Responsável"
         col="6"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
     <tc-input
         ng-model="agent.responsavel_email"
         label="Email do Responsável"
         col="3"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.responsavel_telefone"
+    <tc-input ng-model="agent.responsavel_telefone"
         label="Telefone do Responsável"
         col="3"
         readonly="true"
-        ui-mask="(99) ?99999-9999"
-        >
+        ui-mask="(99) ?99999-9999">
     </tc-input>
 
     <header class="section-header">
         <h2 class="col-md-12">Endereço  {{agent.tipoOrganizacao == 'coletivo' ? 'do Coletivo' : 'da Entidade'}}</h2>
     </header>
 
-    <tc-input
-        ng-model="agent.pais"
+    <tc-input ng-model="agent.pais"
         label="País"
         col="3"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent._En_EstadoTexto"
+    <tc-input ng-model="agent._En_EstadoTexto"
         label="Estado"
         col="3"
         readonly="true"
-        ng-if="agent.pais === 'Brasil'"
-        >
+        ng-if="agent.pais === 'Brasil'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Estado"
+    <tc-input ng-model="agent.En_Estado"
         label="Estado"
         col="3"
         readonly="true"
-        ng-if="agent.pais !== 'Brasil'"
-        >
+        ng-if="agent.pais !== 'Brasil'">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Municipio"
+    <tc-input ng-model="agent.En_Municipio"
         label="Cidade"
         col="3"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Bairro"
+    <tc-input ng-model="agent.En_Bairro"
         label="Bairro"
         col="3"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Nome_Logradouro"
+    <tc-input ng-model="agent.En_Nome_Logradouro"
         label="Rua"
         col="3"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Num"
+    <tc-input ng-model="agent.En_Num"
         label="Número"
         col="2"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.cep"
+    <tc-input ng-model="agent.cep"
         label="CEP"
         col="2"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Complemento"
+    <tc-input ng-model="agent.En_Complemento"
         label="Complemento"
         col="4"
-        readonly="true"
-        >
+        readonly="true">
     </tc-input>
 </div>

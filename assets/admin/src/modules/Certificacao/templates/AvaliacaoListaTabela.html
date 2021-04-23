@@ -3,27 +3,21 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="row" ng-form>
-                    <tc-input
-                        ng-model="ref.filtrarTexto"
+                    <tc-input ng-model="ref.filtrarTexto"
                         label="Nome"
-                        col="4"
-                        >
+                        col="4">
                     </tc-input>
 
-                    <tc-select
-                        ng-model="ref.filtrarUf"
+                    <tc-select ng-model="ref.filtrarUf"
                         label="UF Entidade"
                         col="4"
                         field="label"
-                        options="estadosBrasil"
-                        >
+                        options="estadosBrasil">
                     </tc-select>
 
-                    <tc-input
-                        ng-model="ref.filtrarMunicipio"
+                    <tc-input ng-model="ref.filtrarMunicipio"
                         label="Município Entidade"
-                        col="4"
-                        >
+                        col="4">
                     </tc-input>
 
                     <div class="col-md-12 text-right">
@@ -42,23 +36,18 @@
                         <tc-notitication id="bag-filtro-agentes"></tc-notitication>
 
                         <div ng-if="ref.data.total > 0" style="margin-top: 20px;">
-                            <div
-                                class="row"
+                            <div class="row"
                                 ng-repeat="rows in ref.data.chunk"
-                                style="margin-bottom: 30px; border-bottom: 1px solid #efefef;"
-                                >
+                                style="margin-bottom: 30px; border-bottom: 1px solid #efefef;">
                                 <div ng-repeat="inscricao in rows" class="col-xs-12 col-md-4">
                                     <div class="card-pf card-pf-accented card-pf-aggregate-status">
-                                        <a
-                                            ng-if="inscricao.estado === 'C'"
+                                        <a ng-if="inscricao.estado === 'C'"
                                             class="ponto-certificado"
                                             ng-href="/agente/{{inscricao.pontoId}}"
-                                            target="_blank"
-                                            >
-                                            <i
-                                                class="glyphicon glyphicon-certificate"
-                                                title="Entidade certificada"
-                                                >
+                                            target="_blank">
+
+                                            <i class="glyphicon glyphicon-certificate"
+                                                title="Entidade certificada">
                                             </i>
                                         </a>
                                         <h2 class="card-pf-title">
@@ -94,8 +83,7 @@
                                                     avaliacao-id="{{inscricao.avaliacaoPublicaId}}"
                                                     certificador-id="{{inscricao.avaliacaoPublicaCertificadorId}}"
                                                     estado-avaliacao="{{inscricao.avaliacaoPublicaEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}"
-                                                    >
+                                                    certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}">
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
@@ -105,8 +93,7 @@
                                                     avaliacao-id="{{inscricao.avaliacaoCivilId}}"
                                                     certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
                                                     estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoCivilCertificador}}"
-                                                    >
+                                                    certificador-nome="{{inscricao.avaliacaoCivilCertificador}}">
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
@@ -115,8 +102,7 @@
                                                     avaliacao-id="{{inscricao.avaliacaoMinervaId}}"
                                                     certificador-id="{{inscricao.avaliacaoMinervaCertificadorId}}"
                                                     estado-avaliacao="{{inscricao.avaliacaoMinervaEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}"
-                                                    >
+                                                    certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}">
                                                 </avaliacao-lista-certificador>
                                             </div>
                                         </div>
@@ -124,16 +110,14 @@
                                 </div>
                             </div>
 
-                            <ul
-                                uib-pagination
+                            <ul uib-pagination
                                 total-items="ref.data.total"
                                 ng-model="ref.pagina"
                                 class="pagination-sm"
                                 items-per-page="10"
                                 max-size="10"
                                 previous-text="&laquo;"
-                                next-text="&raquo;"
-                                >
+                                next-text="&raquo;">
                             </ul>
                         </div>
 

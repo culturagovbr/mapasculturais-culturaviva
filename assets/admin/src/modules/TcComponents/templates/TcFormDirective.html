@@ -9,21 +9,17 @@
         <div class="text-right form-buttons-content">
             <span ng-repeat="item in buttons">
                 <span>&nbsp;</span>
-                <a
-                    ng-if="item.sref"
+                <a ng-if="item.sref"
                     class="btn {{item.class|| 'btn-primary'}}"
                     ui-sref="{{item.sref}}"
-                    ng-disabled="item.disabled"
-                    >
+                    ng-disabled="item.disabled">
                     {{item.title}}
                 </a>
-                <button
-                    ng-if="!item.sref"
+                <button ng-if="!item.sref"
                     class="btn {{item.class|| 'btn-primary'}}"
                     type="{{item.type|| 'button'}}"
                     ng-click="item.click()"
-                    ng-disabled="item.disabled"
-                    >
+                    ng-disabled="item.disabled">
                     {{item.title}}
                 </button>
             </span>
@@ -31,22 +27,14 @@
 
             <span ng-if="onClear">
                 &nbsp;
-                <button
-                    type="button"
-                    ng-click="clear()"
-                    class="btn btn-warning"
-                    >
+                <button type="button" ng-click="clear()" class="btn btn-warning">
                     Limpar
                 </button>
             </span>
 
             <span ng-if="onSave">
                 &nbsp;
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                    ng-click="submit()"
-                    >
+                <button type="submit" class="btn btn-primary" ng-click="submit()">
                     {{onSaveLabel|| 'Salvar'}}
                 </button>
             </span>
