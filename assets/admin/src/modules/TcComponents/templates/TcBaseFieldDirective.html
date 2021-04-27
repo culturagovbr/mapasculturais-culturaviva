@@ -1,10 +1,7 @@
-<div
-    class="pfBaseField form-group"
+<div class="pfBaseField form-group"
     ng-form="{{_formName}}"
     ng-class="{'has-error': baseForm[_formName].$invalid && ((baseForm[_formName].$dirty || baseForm[_formName].$touched) || baseForm.$submitted),
-                    'has-success': baseForm[_formName].$valid && ((baseForm[_formName].$dirty || baseForm[_formName].$touched) || baseForm.$submitted)}"
-
-    >
+                    'has-success': baseForm[_formName].$valid && ((baseForm[_formName].$dirty || baseForm[_formName].$touched) || baseForm.$submitted)}">
     <label class="form-field" for="{{tcInputName}}" ng-if="label">
         <span>{{label}}</span>
         <span class="required text-danger" ng-show="required">*</span>
@@ -16,10 +13,8 @@
         {{help}}
     </span>
 
-    <div
-        ng-messages="baseForm[_formName].$error"
-        ng-if="(baseForm[_formName].$dirty || baseForm[_formName].$touched) || baseForm.$submitted"
-        >
+    <div ng-messages="baseForm[_formName].$error"
+        ng-if="(baseForm[_formName].$dirty || baseForm[_formName].$touched) || baseForm.$submitted">
         <span class="help-block" ng-message-exp="type" ng-repeat="(type, msg) in _errorMessages">
             {{msg}}
         </span>
