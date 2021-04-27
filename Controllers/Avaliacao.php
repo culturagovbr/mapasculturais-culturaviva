@@ -13,7 +13,6 @@ use MapasCulturais\App;
  */
 class Avaliacao extends \MapasCulturais\Controller
 {
-
     // @todo
     protected $_user = 3;
 
@@ -422,6 +421,7 @@ class Avaliacao extends \MapasCulturais\Controller
             join agent_relation rel_entidade
                 ON rel_entidade.object_id = reg.id
                 AND (rel_entidade.type = 'entidade' or rel_entidade.type = 'coletivo')
+
                 AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
             join agent_relation rel_ponto
                 ON rel_ponto.object_id = reg.id
@@ -565,17 +565,6 @@ class Avaliacao extends \MapasCulturais\Controller
 
         $this->json(null);
     }
-
-    function GET_distribuir1() {
-        $this->requireAuthentication();
-        $app = App::i();
-
-        if($app->user->is('rcv_agente_area')){
-            include (__DIR__ . "/../scripts/rotinas/importar-inscricoes-old.php");
-            importar();
-        }else {
-            return $this->json(["message" => 'Você não tem permissão para realizar essa ação'], 403);
-        }
 
     /**
      * Obtém todos os critérios de uma avaliação
