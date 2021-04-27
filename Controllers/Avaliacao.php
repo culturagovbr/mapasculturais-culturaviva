@@ -566,7 +566,7 @@ class Avaliacao extends \MapasCulturais\Controller
         $this->json(null);
     }
 
-    function GET_distribuir() {
+    function GET_distribuir1() {
         $this->requireAuthentication();
         $app = App::i();
 
