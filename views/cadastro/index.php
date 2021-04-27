@@ -40,7 +40,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
             <h2>Seja bem-vindo(a) à Rede Cultura Viva</h2>
             <p>Esta é a página do seu Ponto de Cultura. Apenas você tem acesso a ela.</p>
             <p>Fique a vontade para ir preenchendo as sessões. Você não precisa fazer tudo agora! Quando sua página estiver completa clique em "Enviar".</p>
-            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o Ministério da Cidadania.</p>
+            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o Ministério do Turismo.</p>
         </article>
         <div ng-if="agent_ponto.homologado_rcv" id="selo-index">
           <img id="selo-img" src="<?php $this->asset('img/verified-icon-big.png') ?>">
@@ -135,7 +135,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
             </header>
             <div class="infos">
                <div class="texto">
-                     <p>Já recebeu recursos do Ministério da Cidadania? </p>
+                     <p>Já recebeu recursos do Ministério do Turismo? </p>
                 </div>
             </div>
         </article>
