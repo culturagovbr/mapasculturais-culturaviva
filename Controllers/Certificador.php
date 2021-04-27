@@ -149,7 +149,7 @@ class Certificador extends \MapasCulturais\Controller {
         }
 
         //Salva a UF
-        if(isset($data->uf)){
+        if(isset($data->uf) &&  $data->tipo !== 'M'){
             $certificador->uf = $data->uf->valor;
         }
 
