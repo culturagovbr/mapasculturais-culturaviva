@@ -7,7 +7,6 @@ server:
     - 'watch'
 
 dist:
-    - 'clean'
     - 'packModules'
     - 'replace:concat'
     - 'processhtml:dist'
