@@ -190,7 +190,6 @@ class Certificador extends \MapasCulturais\Controller {
          * @var \MapasCulturais\Entities\User
          */
         $agent = $app->repo('Agent')->find($certificador->agenteId);
-
         $perfilUsuario = null;
         if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL || $certificador->tipo == CertificadorEntity::TP_PUBLICO_ESTADUAL) {
             $perfilUsuario = CertificadorEntity::ROLE_PUBLICO;
@@ -198,6 +197,7 @@ class Certificador extends \MapasCulturais\Controller {
             $perfilUsuario = CertificadorEntity::ROLE_CIVIL;
         } else if ($certificador->tipo == CertificadorEntity::TP_MINERVA) {
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
+            $certificador->uf = null;
         }
         if ($certificador->ativo) {
             $agent->user->addRole($perfilUsuario);
