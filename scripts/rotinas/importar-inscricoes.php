@@ -374,4 +374,4 @@ function notificarCertificacoesIndeferidas($app, $conn) {
     }
 }
 
-importar();
+importar1();
