@@ -28,11 +28,11 @@
         <div class="row">
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
-              <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url" href="{{ponto['@files:carta1'].url}}" target="_blank">Baixar primeira carta</a>
+              <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url" href="{{ponto['@files:carta1'].url}}" target="_blank">{{agent.files.carta1.name}}Baixar primeira carta</a>
               <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
-              <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta2'].url" href="{{ponto['@files:carta2'].url}}" target="_blank">Baixar segunda carta</a>
+              <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta2'].url" href="{{ponto['@files:carta2'].url}}" target="_blank">{{agent.files.carta2.name}}Baixar segunda carta</a>
               <span ng-if="!ponto['@files:carta2'].url"><b>Não informado</b></span>
             </div>
         </div>
