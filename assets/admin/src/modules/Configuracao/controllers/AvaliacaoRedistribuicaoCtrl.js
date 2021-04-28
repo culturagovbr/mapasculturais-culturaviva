@@ -73,7 +73,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         $http.post('/avaliacao/configurar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
-                reload: true,
+                reload: false,
                 inherit: true,
                 notify: true
             });

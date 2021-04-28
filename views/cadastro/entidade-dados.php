@@ -69,7 +69,8 @@
                     <div ng-message="minlength">Your field is too short</div>
                     <div ng-message="maxlength">Your field is too long</div>
                 </div>
-                <input required type="text" ng-blur="save_field('name')" ng-model="agent.name" >
+                <input required type="text" name="nomeFantasia" ng-blur="save_field('name')" ng-model="agent.name" >
+                <span ng-class="error" style="color: red" ng-show="form_entity.nomeFantasia.$error.required">Favor digitar o nome fantasia</span>
             </label>
         </div>
 

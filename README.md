@@ -18,7 +18,7 @@ Tem o objetivo de promover a articulação destas iniciativas em rede, contribui
 
 Desde 23 de julho de 2014, com a sanção da Lei Cultura Viva (Lei nº 13.018/2014), o Programa Cultura Viva e os Pontos e Pontões de Cultura tornaram-se Política de Estado. Além de garantir a continuidade do Programa, a Lei simplifica e desburocratiza os processos de prestação de contas e o repasse de recursos para as organizações da sociedade civil.
 
-Atualmente está presente nos 27 estados brasileiros e em cerca de mil municípios, é um dos programas com mais capilaridade e visibilidade do Ministério da Cidadania, atualmente com 4.502 Pontos fomentados. Até 2020 deverão ser fomentados mais 10.498 Pontos de Cultura para atingir a meta de 15 mil Pontos prevista no Plano Nacional de Cultura.
+Atualmente está presente nos 27 estados brasileiros e em cerca de mil municípios, é um dos programas com mais capilaridade e visibilidade do Ministério do Turismo, atualmente com 4.502 Pontos fomentados. Até 2020 deverão ser fomentados mais 10.498 Pontos de Cultura para atingir a meta de 15 mil Pontos prevista no Plano Nacional de Cultura.
 
 
 ## Desenvolvedor: Primeiros Passos
