@@ -1,26 +1,25 @@
 <div class="tc-input-text col-md-{{col|| 12}}">
     <tc-base-field>
-        <textarea
-            id="{{tcInputName}}"
-            name="{{tcInputName}}"
-            rows="{{rows|| 3}}"
-            class="form-control"
-            ng-model="$parent.ngModel"
-            ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-            ng-required="required"
-            ng-disabled="disabled"
-            ng-readonly="readonly"
-            ng-minlength="{{minlength}}"
-            ng-maxlength ="{{maxlength}}"
-            ng-change="change"
-            ng-blur="blur"
-            ng-keyup="keyup"
-            ng-keydown="keydown"
-            ng-paste="paste"
-            ng-copy="copy"
-            ng-cut="cut"
-            ondrop="return false"
-            aria-describedby="{{tcInputName}}-help"
-            ></textarea>
+        <textarea aria-describedby="{{tcInputName}}-help"
+                  name="{{tcInputName}}"
+                  rows="{{rows|| 3}}"
+                  class="form-control"
+                  ng-model="$parent.ngModel"
+                  ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                  ng-required="required"
+                  ng-disabled="disabled"
+                  ng-readonly="readonly"
+                  ng-minlength="{{minlength}}"
+                  ng-maxlength="{{maxlength}}"
+                  ng-change="change"
+                  ng-blur="blur"
+                  ng-keyup="keyup"
+                  ng-keydown="keydown"
+                  ng-paste="paste"
+                  ng-copy="copy"
+                  ng-cut="cut"
+                  ondrop="return false"
+                  id="{{tcInputName}}">
+        </textarea>
     </tc-base-field>
 </div>

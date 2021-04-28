@@ -1,21 +1,25 @@
-<?php
+'<?php
 
 namespace CulturaViva\Controllers;
 
 use CulturaViva\Entities\Certificador as CertificadorEntity;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
+use MapasCulturais\Controller;
+use MapasCulturais\Entities\User;
 use Slim\Http\Request;
 
 /**
  * API usado no gerenciamento de agentes de certificação
  */
-class Certificador extends \MapasCulturais\Controller {
+class Certificador extends Controller
+{
 
     /**
      * Obtém um certificador por id
      */
-    function GET_obter() {
+    function GET_obter()
+    {
         $this->requireAuthentication();
         $app = App::i();
         $id = $this->getUrlData()['id'];
@@ -187,7 +191,7 @@ class Certificador extends \MapasCulturais\Controller {
         // Faz a manutenção das permissões do usuario
 
         /**
-         * @var \MapasCulturais\Entities\User
+         * @var User
          */
         $agent = $app->repo('Agent')->find($certificador->agenteId);
         $perfilUsuario = null;

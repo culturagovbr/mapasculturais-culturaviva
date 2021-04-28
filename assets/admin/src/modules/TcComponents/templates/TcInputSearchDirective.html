@@ -1,44 +1,32 @@
-<tc-form
-    name="{{'form' + inputName}}"
-    role="form"
-    class="search-pf has-button col-md-12"
-    novalidate
-    on-submit="onSubmit()"
-    >
+<tc-form class="search-pf has-button col-md-12" name="{{'form' + inputName}}" novalidate on-submit="onSubmit()"
+         role="form">
     <div class="col-md-12">
         <div class="form-group has-clear"
              ng-class="{'has-error': inputSearchForm.$invalid && ((inputSearchForm.$dirty || inputSearchForm.$touched) || inputSearchForm.$submitted),
-                    'has-success': inputSearchForm.$valid && ((inputSearchForm.$dirty || inputSearchForm.$touched) || inputSearchForm.$submitted)}"
-             >
+                    'has-success': inputSearchForm.$valid && ((inputSearchForm.$dirty || inputSearchForm.$touched) || inputSearchForm.$submitted)}">
             <div class="search-pf-input-group">
                 <label for="{{inputName}}" class="sr-only">Buscar</label>
-                <input
-                    id="{{inputName}}"
-                    name="{{inputName}}"
-                    ng-model="$parent.$parent.ngModel"
-                    tc-input-enter="onSubmit()"
-                    placeholder="{{placeholder|| 'Buscar por...'}}"
-                    type="search"
-                    class="form-control"
-                    ng-required="true"
-                    ng-minlength="2"
-                    >
-                <button
-                    type="button"
-                    class="clear"
-                    aria-hidden="true"
-                    ng-show="text"
-                    ng-click="text = ''"
-                    title="Limpar filtro"
-                    >
+                <input id="{{inputName}}"
+                       name="{{inputName}}"
+                       ng-model="$parent.$parent.ngModel"
+                       tc-input-enter="onSubmit()"
+                       placeholder="{{placeholder|| 'Buscar por...'}}"
+                       type="search"
+                       class="form-control"
+                       ng-required="true"
+                       ng-minlength="2">
+                <button title="Limpar filtro"
+                        class="clear"
+                        aria-hidden="true"
+                        ng-show="text"
+                        ng-click="text = ''"
+                        type="button">
                     <span class="pficon pficon-close"></span>
                 </button>
             </div>
         </div>
         <div class="form-group">
-            <tc-form-button
-                class="btn btn-default"
-                >
+            <tc-form-button class="btn btn-default">
                 <span class="fa fa-search"></span>
             </tc-form-button>
         </div>

@@ -3,51 +3,45 @@
 
         <div  ng-repeat="(key,value) in $parent.values track by $index">
             <div class="form-group input-group">
-                <input
-                    type="text"
-                    ng-if="iMask"
-                    name="{{tcInputName}}_{{$index}}"
-                    class="form-control"
+                <input aria-describedby="{{tcInputName}}-help"
+                       ng-if="iMask"
+                       name="{{tcInputName}}_{{$index}}"
+                       class="form-control"
 
-                    ng-model="values[$index]"
-                    ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-                    ng-disabled="ngDisabled"
-                    ng-readonly="ngReadonly"
+                       ng-model="values[$index]"
+                       ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                       ng-disabled="ngDisabled"
+                       ng-readonly="ngReadonly"
 
-                    autocomplete="off"
-                    ondrop="return false"
-                    mask="{{iMask}}"
-                    clean="true"
-                    restrict="reject"
-                    aria-describedby="{{tcInputName}}-help"
-                    />
-                <input
-                    type="text"
-                    ng-if="!iMask"
-                    name="{{tcInputName}}_{{$index}}"
-                    class="form-control"
+                       autocomplete="off"
+                       ondrop="return false"
+                       mask="{{iMask}}"
+                       clean="true"
+                       restrict="reject"
+                       type="text"/>
 
-                    ng-model="values[$index]"
-                    ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-                    ng-disabled="ngDisabled"
-                    ng-readonly="ngReadonly"
+                <input aria-describedby="{{tcInputName}}-help"
+                       ng-if="!iMask"
+                       name="{{tcInputName}}_{{$index}}"
+                       class="form-control"
 
-                    autocomplete="off"
-                    ondrop="return false"
-                    aria-describedby="{{tcInputName}}-help"
-                    />
+                       ng-model="values[$index]"
+                       ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                       ng-disabled="ngDisabled"
+                       ng-readonly="ngReadonly"
+
+                       autocomplete="off"
+                       ondrop="return false"
+                       type="text"/>
                 <span class="input-group-btn">
                     <button
-                        type="button"
-                        class="btn btn-primary"
-                        ng-disabled="!allowAdd($index)"
-                        ng-click="($last) ? add() : remove(key)"
-                        ng-class="{'btn-primary':$last, 'btn-warning':!$last}"
-                        >
-                        <span
-                            class="fa fa-plus-circle"
-                            ng-class="{'fa-plus-circle':$last, 'fa-minus-circle':!$last}"
-                            >
+                            type="button"
+                            class="btn btn-primary"
+                            ng-disabled="!allowAdd($index)"
+                            ng-click="($last) ? add() : remove(key)"
+                            ng-class="{'btn-primary':$last, 'btn-warning':!$last}">
+                        <span class="fa fa-plus-circle"
+                              ng-class="{'fa-plus-circle':$last, 'fa-minus-circle':!$last}">
                         </span>
                     </button>
                 </span>
