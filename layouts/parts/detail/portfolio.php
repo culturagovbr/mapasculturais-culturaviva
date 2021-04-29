@@ -9,7 +9,8 @@
 
             <div>
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
-                    <img height="75px" width="50px" src="../../../assets/img/pdflogo.png" alt="Baixar portifólio"/>
+                    <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar portifólio"/>
+                    <p>Baixar arquivo</p>
                 </a>
                 <br>
                 <a style="font-size: 12px" ng-if="ponto.atividadesEmRealizacaoLink"
@@ -22,7 +23,8 @@
             <div class="row">
                 <div class="colunm1">
                     <a ng-if="ponto['@files:ata'].url" href="{{ponto['@files:ata'].url}}" target="_blank">
-                        <img height="75px" width="50px" src="../../../assets/img/pdflogo.png" alt="Baixar arquivo"/>
+                        <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar arquivo"/>
+                        <p>Baixar arquivo</p>
                     </a>
                     <span ng-if="!ponto['@files:ata'].url"><b>Não informado</b></span>
                 </div>
@@ -38,17 +40,18 @@
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
                    href="{{ponto['@files:carta1'].url}}"
                    target="_blank">
-                    <img height="75px" width="50px" src="../../../assets/img/pdflogo.png" alt="Baixar primeira carta"/>
+                    <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar primeira carta"/>
                     {{agent.files.carta1.name}}
+                    <p>Baixar primeira carta</p>
                 </a>
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta2'].url"
                    href="{{ponto['@files:carta2'].url}}" target="_blank">
-                    <img height="75px" width="50px" src="../../../assets/img/pdflogo.png" alt="Baixar segunda carta"/>
+                    <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar segunda carta"/>
                     {{agent.files.carta2.name}}
-                    Baixar segunda carta
+                    <p>Baixar segunda carta</p>
                 </a>
                 <span ng-if="!ponto['@files:carta2'].url"><b>Não informado</b></span>
             </div>
