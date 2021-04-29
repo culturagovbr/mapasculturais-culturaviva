@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcSelect', TcSelectDirective);
+    .module('TcComponents')
+    .directive('tcSelect', TcSelectDirective);
 
 TcSelectDirective.$inject = ['$http'];
 function TcSelectDirective($http) {

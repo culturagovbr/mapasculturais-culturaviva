@@ -1,4 +1,4 @@
-'<?php
+<?php
 
 namespace CulturaViva\Controllers;
 
@@ -44,10 +44,10 @@ class Certificador extends Controller
                 AND c.id = :id';
 
         $agents = $app->em->createQuery($query)
-                ->setParameters([
-                    'id' => $id
-                ])
-                ->getSingleResult();
+            ->setParameters([
+                'id' => $id
+            ])
+            ->getSingleResult();
 
         $this->json($agents);
 

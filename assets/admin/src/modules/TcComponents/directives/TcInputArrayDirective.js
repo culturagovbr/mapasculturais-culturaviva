@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcInputArray', TcInputArrayDirective);
+    .module('TcComponents')
+    .directive('tcInputArray', TcInputArrayDirective);
 
 /**
  * Inspirado em http://bootsnipp.com/snippets/featured/dynamic-form-fields-add-amp-remove

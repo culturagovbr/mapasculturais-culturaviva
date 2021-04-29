@@ -6,15 +6,27 @@
                     <span class="input-group-addon" ng-if="icon">
                         <span class="{{icon}}"></span>
                     </span>
-                    <input aria-describedby="{{tcInputName}}-help" class="form-control" id="{{tcInputName}}"
-                           name="{{tcInputName}}"
-                           ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-                           ng-blur="blur" ng-change="change" ng-copy="copy" ng-cut="cut"
-                           ng-disabled="disabled" ng-keydown="keydown" ng-keyup="keyup" ng-maxlength="maxlength"
-                           ng-minlength="minlength"
-                           ng-model="$parent.ngModel" ng-paste="paste" ng-readonly="readonly"
-                           ondrop="return false"
-                           ng-required="required"/>
+                    <input
+                            aria-describedby="{{tcInputName}}-help"
+                            class="form-control"
+                            id="{{tcInputName}}"
+                            name="{{tcInputName}}"
+                            ng-blur="blur"
+                            ng-change="change"
+                            ng-copy="copy"
+                            ng-cut="cut"
+                            ng-disabled="disabled"
+                            ng-keydown="keydown"
+                            ng-keyup="keyup"
+                            ng-maxlength="maxlength"
+                            ng-minlength="minlength"
+                            ng-model="$parent.ngModel"
+                            ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                            ng-paste="paste"
+                            ng-readonly="readonly"
+                            ng-required="required"
+                            ondrop="return false"
+                    />
                 </div>
             </div>
         </div>

@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcInputText', TcInputTextDirective);
+    .module('TcComponents')
+    .directive('tcInputText', TcInputTextDirective);
 
 
 function TcInputTextDirective() {

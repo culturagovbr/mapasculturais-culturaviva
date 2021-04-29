@@ -4,42 +4,50 @@
         <div  ng-repeat="(key,value) in $parent.values track by $index">
             <div class="form-group input-group">
                 <input
-                        aria-describedby="{{tcInputName}}-help"
                         autocomplete="off"
+                        ng-if="iMask"
                         class="form-control"
                         clean="true"
-                        mask="{{iMask}}"
-                        name="{{tcInputName}}_{{$index}}"
-                        ng-disabled="ngDisabled"
-                        ng-if="iMask"
+
                         ng-model="values[$index]"
                         ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                        mask="{{iMask}}"
                         ng-readonly="ngReadonly"
+
+                        name="{{tcInputName}}_{{$index}}"
                         ondrop="return false"
+                        ng-disabled="ngDisabled"
+                        type="text"
                         restrict="reject"
-                        type="text"/>
+                        aria-describedby="{{tcInputName}}-help"
+                />
                 <input
                         aria-describedby="{{tcInputName}}-help"
+                        ng-if="!iMask"
                         autocomplete="off"
                         class="form-control"
-                        name="{{tcInputName}}_{{$index}}"
 
-                        ng-disabled="ngDisabled"
-                        ng-if="!iMask"
                         ng-model="values[$index]"
                         ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-
+                        name="{{tcInputName}}_{{$index}}"
                         ng-readonly="ngReadonly"
+
+                        ng-disabled="ngDisabled"
                         ondrop="return false"
-                        type="text"/>
+                        type="text"
+                />
                 <span class="input-group-btn">
-                    <button type="button"
+                    <button
+                            ng-class="{'btn-primary':$last, 'btn-warning':!$last}"
                             class="btn btn-primary"
                             ng-disabled="!allowAdd($index)"
                             ng-click="($last) ? add() : remove(key)"
-                            ng-class="{'btn-primary':$last, 'btn-warning':!$last}">
-                        <span class="fa fa-plus-circle"
-                              ng-class="{'fa-plus-circle':$last, 'fa-minus-circle':!$last}">
+                            type="button"
+                    >
+                        <span
+                                class="fa fa-plus-circle"
+                                ng-class="{'fa-plus-circle':$last, 'fa-minus-circle':!$last}"
+                        >
                         </span>
                     </button>
                 </span>

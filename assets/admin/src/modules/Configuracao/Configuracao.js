@@ -1,8 +1,8 @@
 'use strict';
 
 angular
-        .module('Configuracao', [])
-        .config(ConfiguracaoConfig);
+    .module('Configuracao', [])
+    .config(ConfiguracaoConfig);
 
 
 ConfiguracaoConfig.$inject = ['blockUIConfig'];

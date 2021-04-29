@@ -2,21 +2,23 @@
     <tc-base-field>
         <div class="row">
             <div class="col-md-{{colInput|| 12}}">
-                <input id="{{tcInputName}}"
-                       name="{{tcInputName}}"
-                       class="form-control"
-                       ng-model="$parent.ngModel"
-                       ng-required="required"
-                       ng-disabled="disabled"
-                       ng-readonly="readonly"
-                       ondrop="return false"
-                       aria-describedby="{{tcInputName}}-help"
-                       uib-typeahead="agent as agent.name for agent in buscar($viewValue)"
-                       typeahead-template-url="modules/Configuracao/templates/InputAgenteDirectiveItem.html"
-                       typeahead-show-hint="true"
-                       typeahead-wait-ms="400"
-                       typeahead-min-length="3"
-                       typeahead-editable="false"/>
+                <input
+                        aria-describedby="{{tcInputName}}-help"
+                        class="form-control"
+                        id="{{tcInputName}}"
+                        name="{{tcInputName}}"
+                        ng-disabled="disabled"
+                        ng-model="$parent.ngModel"
+                        ng-readonly="readonly"
+                        ng-required="required"
+                        ondrop="return false"
+                        typeahead-editable="false"
+                        typeahead-min-length="3"
+                        typeahead-show-hint="true"
+                        typeahead-template-url="modules/Configuracao/templates/InputAgenteDirectiveItem.html"
+                        typeahead-wait-ms="400"
+                        uib-typeahead="agent as agent.name for agent in buscar($viewValue)"
+                />
             </div>
         </div>
     </tc-base-field>
