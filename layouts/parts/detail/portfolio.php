@@ -7,7 +7,7 @@
         <div class="row">
             <span class="destaque">Portfólio*</span>
             <div class="colunm1">
-                <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
+                <img ng-if="agent.files.portifolio" src="../assets/img/pdflogo.png" width="160"
                      height="138">
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
                     Baixar Arquivo
