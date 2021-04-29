@@ -1,8 +1,8 @@
 /* global google */
 
 angular
-        .module('Certificacao')
-        .controller('AvaliacaoFormularioCtrl', AvaliacaoFormularioCtrl);
+    .module('Certificacao')
+    .controller('AvaliacaoFormularioCtrl', AvaliacaoFormularioCtrl);
 
 AvaliacaoFormularioCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
@@ -213,4 +213,3 @@ function AvaliacaoFormularioCtrl($scope, $state, $http, $window) {
         }
     };
 }
-

@@ -3,17 +3,19 @@
         <div class="row">
             <div class="col-md-{{colInput|| 12}}">
                 <!--pf-select-->
-                <select                    
-                    id="{{tcInputName}}"
-                    name="{{tcInputName}}"
-                    class="removido--selectpicker form-control"
-                    ng-model="$parent.ngModel"
-                    ng-required="required"
-                    ng-disabled="disabled"
-                    ng-options="o as o[field] for o in $parent.options| orderBy: (order || field)"
-                    aria-describedby="{{tcInputName}}-help"
-                    >
-                    <option value="" ng-if="!hideNoneOption">{{noneSelectedText ? noneSelectedText : 'Selecione uma opção'}}</option>
+                <select
+                        aria-describedby="{{tcInputName}}-help"
+                        name="{{tcInputName}}"
+                        class="removido--selectpicker form-control"
+                        ng-model="$parent.ngModel"
+                        ng-required="required"
+                        ng-disabled="disabled"
+                        ng-options="o as o[field] for o in $parent.options| orderBy: (order || field)"
+                        id="{{tcInputName}}"
+                >
+                    <option ng-if="!hideNoneOption" value="">
+                        {{noneSelectedText ? noneSelectedText : 'Selecione uma opção'}}
+                    </option>
                 </select>
             </div>
         </div>

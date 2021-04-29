@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcInputEnter', TcInputEnterDirective);
+    .module('TcComponents')
+    .directive('tcInputEnter', TcInputEnterDirective);
 
 function TcInputEnterDirective() {
     return function (scope, iElement, attrs) {
