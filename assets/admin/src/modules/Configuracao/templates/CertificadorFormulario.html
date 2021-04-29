@@ -20,15 +20,16 @@
                   readonly="true">
         </tc-input>
 
-        <tc-select disabled="!ref.novoRegistro"
-                   label="Tipo de Certificador"
-                   help="Selecione o tipo do certificador sendo cadastrado."
-                   col-input="3"
-                   field="label"
-                   order="codigo"
-                   options="tipos"
-                   required="true"
-                   ng-model="dto.tipo">
+        <tc-select
+                col-input="3"
+                disabled="!ref.novoRegistro"
+                field="label"
+                help="Selecione o tipo do certificador sendo cadastrado."
+                label="Tipo de Certificador"
+                ng-model="dto.tipo"
+                options="tipos"
+                order="codigo"
+                required="true">
         </tc-select>
 
         <tc-select ng-model="dto.titular"
@@ -47,8 +48,7 @@
                 col-input="2"
                 field="label"
                 options="opcoesGrupo"
-                required="true">
-            ng-if="dto.tipo.codigo != 'E' && dto.tipo.codigo != 'S'" >
+                ng-if="dto.tipo.codigo != 'E' && dto.tipo.codigo != 'S'">
         </tc-select>
 
         <tc-select
