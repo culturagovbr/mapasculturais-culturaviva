@@ -7,7 +7,7 @@
         <div class="row">
             <span class="destaque">Portfólio*</span>
             <div class="colunm1">
-                <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
+                <img ng-if="agent.files.portifolio" src="<?php $this->asset('assests/img/pdflogo.png') ?>" width="160"
                      height="138">
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
                     Baixar Arquivo
@@ -45,7 +45,6 @@
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
-
                 <img ng-if="agent.files.carta2" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta2'].url"
                    href="{{ponto['@files:carta2'].url}}" target="_blank">
