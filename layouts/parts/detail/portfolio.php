@@ -65,9 +65,9 @@
                 <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura<i class='hltip'
                                                                                              title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?
                     </i>  </span>
-                <textarea readonly="readonly" rows="8" name="longDescription" required
+                <textarea rows="8" name="longDescription" required
                           ng-blur="save_field('longDescription')"
-                          maxlength="800" ng-model="agent.longDescription"></textarea>
+                          maxlength="800" ng-model="agent.longDescription" disabled></textarea>
                 <span>{{800 - agent.longDescription.length}} caracteres restantes</span>
                 <span ng-class="error" style="color: red" ng-show="form_portifolio.longDescription.$error.required">Descrição Obrigatória</span>
             </label>
