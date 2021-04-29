@@ -21,6 +21,7 @@
         <div ng-if="entidade.tipoOrganizacao == 'coletivo'">
             <h4>Ata de composição e constituição do coletivo</h4>
             <div class="row">
+                <span class="destaque">Ata*</span>
                 <div class="colunm1">
                     <a ng-if="ponto['@files:ata'].url" href="{{ponto['@files:ata'].url}}" target="_blank">
                         <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar arquivo"/>
