@@ -37,13 +37,10 @@
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
-                   href="{{ponto['@files:carta1'].url}}" target="_blank">
+                   href="{{ponto['@files:carta1'].url}}" src="<?php $this->asset('img/incluir_img.png') ?>"
+                   target="_blank">
                     {{agent.files.carta1.name}}
                     Baixar primeira carta</a>
-                <div type="file">
-                    <img ng-if="!agent.files.carta1" src="<?php $this->asset('img/incluir_img.png') ?>" width="160"
-                         height="138">
-                </div>
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
