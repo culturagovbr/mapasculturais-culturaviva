@@ -68,8 +68,8 @@
             <label class="colunm1">
                 <span><b>{{ponto.longDescription}}</b></span>
                 <span ng-if="!ponto.longDescription"><b>Não informado</b></span>
-            </label>
 
+            </label>
         </div>
         <div class="clear"></div>
         <div class="row">
