@@ -6,11 +6,11 @@
         <!-- <h4>Informações Obrigatórias</h4> -->
         <div class="row">
             <span class="destaque">Portfólio*</span>
+
             <div>
-                <img ng-if="agent.files.portifolio" src="../../assets/img/pdflogo.png" width="160"
-                     height="138">
+
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
-                    Baixar Arquivo
+                    Baixar Arquivo 123
                 </a>
                 <a style="font-size: 12px" ng-if="ponto.atividadesEmRealizacaoLink"
                    href="{{ponto.atividadesEmRealizacaoLink}}" target="_blank">{{ponto.atividadesEmRealizacaoLink}}</a>
