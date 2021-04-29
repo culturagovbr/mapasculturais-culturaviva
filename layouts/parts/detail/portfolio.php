@@ -37,8 +37,9 @@
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
-                   href="{{ponto['@files:carta1'].url}}" src="<?php $this->asset('img/incluir_img.png') ?>"
+                   href="{{ponto['@files:carta1'].url}}"
                    target="_blank">
+                    <img src="../../../assets/img/pdflogo.png"/>
                     {{agent.files.carta1.name}}
                     Baixar primeira carta</a>
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
