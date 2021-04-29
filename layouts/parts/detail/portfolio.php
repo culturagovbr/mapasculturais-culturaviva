@@ -7,9 +7,9 @@
         <div class="row">
             <span class="destaque">Portfólio*</span>
             <div class="colunm1">
+                <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
+                     height="138">
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
-                    <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
-                         height="138">
                     Baixar Arquivo
                 </a>
                 <a style="font-size: 12px" ng-if="ponto.atividadesEmRealizacaoLink"
@@ -21,9 +21,9 @@
             <h4>Ata de composição e constituição do coletivo</h4>
             <div class="row">
                 <div class="colunm1">
+                    <img ng-if="agent.files.ata" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
+                         height="138">
                     <a ng-if="ponto['@files:ata'].url" href="{{ponto['@files:ata'].url}}" target="_blank">
-                        <img ng-if="agent.files.ata" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
-                             height="138">
                         Baixar Arquivo
                     </a>
                     <span ng-if="!ponto['@files:ata'].url"><b>Não informado</b></span>
@@ -40,17 +40,15 @@
                 <img ng-if="agent.files.carta1" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
                    href="{{ponto['@files:carta1'].url}}" target="_blank">
-                    <img ng-if="agent.files.carta1" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
-                         height="138">
                     {{agent.files.carta1.name}}
                     Baixar primeira carta</a>
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
+
+                <img ng-if="agent.files.carta2" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta2'].url"
                    href="{{ponto['@files:carta2'].url}}" target="_blank">
-                    <img ng-if="agent.files.carta2" src="<?php $this->asset('img/pdflogo.png') ?>" width="160"
-                         height="138">
                     {{agent.files.carta2.name}}
                     Baixar segunda carta
                 </a>
