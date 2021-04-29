@@ -1,6 +1,6 @@
 <?php
-    require __DIR__.'/../../assets/php/functions.php';
-    $this->bodyProperties['ng-app'] = "culturaviva";
+require __DIR__ . '/../../assets/php/functions.php';
+$this->bodyProperties['ng-app'] = "culturaviva";
     $this->layout = 'cadastro';
     $this->cadastroTitle = '2. Dados da Entidade ou Coletivo Cultural';
     $this->cadastroText = 'Inclua os dados da Entidade ou Coletivo Cultural responsável pelo Ponto de Cultura';
@@ -47,6 +47,7 @@
                            ng-change="validaCNPJ()"
                            ng-model="agent.cnpj"
                            ui-mask="99.999.999/9999-99" required>
+                    <span ng-class="error" style="color: red" ng-show="form_entity.cnpj.$error.required">Favor Digitar o CNPJ</span>
                 </label>
             </div>
         </div>
@@ -59,10 +60,12 @@
                        type="text"
                        ng-blur="save_field('nomeCompleto')"
                        ng-model="agent.nomeCompleto">
+                <!--                <span ng-class="error" style="color: red" ng-show="form_entity.nomeCompleto.$error.required">Favor digitar o nome da razão social</span>-->
             </label>
 
             <label class="colunm1">
-                <span class="destaque">Nome Fantasia* <i class='hltip' title='Nome da entidade, tal como se reconhece e é reconhecida junto à comunidade'>?</i></span>
+                <span class="destaque">Nome Fantasia* <i class='hltip'
+                                                         title='Nome da entidade, tal como se reconhece e é reconhecida junto à comunidade'>?</i></span>
                 </span>
                 <div ng-messages="agent.name.$error" style="color:maroon" role="alert">
                     <div ng-message="required">You did not enter a field</div>
@@ -78,9 +81,11 @@
             <div ng-show="agent.tipoPonto==='ponto_coletivo'">
                 <div class="row">
                     <label>
-                    <span class="destaque">Nome do Coletivo Cultural* <i class='hltip' title='Nome dado ao grupo que compõe o coletivo cultural'>?</i>
+                    <span class="destaque">Nome do Coletivo Cultural* <i class='hltip'
+                                                                         title='Nome dado ao grupo que compõe o coletivo cultural'>?</i>
                     </span>
                         <input required name="name" type="text" ng-blur="save_field('name')" ng-model="agent.name">
+                        <span ng-class="error" style="color: red" ng-show="form_entity.name.$error.required">Nome do Coletivo Obrigatório</span>
                     </label>
                 </div>
                 <div class="clear"></div>
@@ -94,11 +99,10 @@
                 <span class="destaque">
                     Nome do ponto*
                 </span>
-                <input  required type="text"
-                        name="nomePonto"
-                        ng-blur="save_field('nomePonto')"
-                        ng-model="agent.nomePonto"
-                >
+                <input required type="text"
+                       name="nomePonto"
+                       ng-blur="save_field('nomePonto')"
+                       ng-model="agent.nomePonto">
             </label>
         </div>
         <!--Fim Nome ponto-->

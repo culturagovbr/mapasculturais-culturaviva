@@ -7,11 +7,12 @@ use CulturaViva\Entities\AvaliacaoCriterio as AvaliacaoCriterioEntity;
 use CulturaViva\Entities\Uf;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
+use MapasCulturais\Controller;
 
 /**
  * Api base do processo de certificação
  */
-class Avaliacao extends \MapasCulturais\Controller
+class Avaliacao extends Controller
 {
     // @todo
     protected $_user = 3;
@@ -421,7 +422,6 @@ class Avaliacao extends \MapasCulturais\Controller
             join agent_relation rel_entidade
                 ON rel_entidade.object_id = reg.id
                 AND (rel_entidade.type = 'entidade' or rel_entidade.type = 'coletivo')
-
                 AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
             join agent_relation rel_ponto
                 ON rel_ponto.object_id = reg.id

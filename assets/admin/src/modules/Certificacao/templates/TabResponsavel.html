@@ -1,52 +1,40 @@
 <div ng-controller="AvaliacaoTabResponsavelCtrl" class="row" style="padding-top: 30px;" ng-form>
-    <tc-input
-        ng-model="agent.cpf"
-        label="CPF"
-        col="3"
-        readonly="true"
-        ui-mask="999.999.999-99"
-        >
+    <tc-input ng-model="agent.cpf"
+              label="CPF"
+              col="3"
+              readonly="true"
+              ui-mask="999.999.999-99">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.nomeCompleto"
-        label="Nome completo"
-        col="6"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.nomeCompleto"
+              label="Nome completo"
+              col="6"
+              readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.emailPrivado"
-        label="E-mail Pessoal"
-        col="3"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.emailPrivado"
+              label="E-mail Pessoal"
+              col="3"
+              readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.telefone1"
-        label="Telefone Pessoal"
-        col="3"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.telefone1"
+              label="Telefone Pessoal"
+              col="3"
+              readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.telefone2"
-        label="Outro Telefone"
-        col="3"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.telefone2"
+              label="Outro Telefone"
+              col="3"
+              readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent._relacaoPontoTexto"
-        label="Relação com o Ponto/Pontão de Cultura"
-        col="6"
-        input-col="3"
-        readonly="true"
-        >
+    <tc-input ng-model="agent._relacaoPontoTexto"
+              label="Relação com o Ponto/Pontão de Cultura"
+              col="6"
+              input-col="3"
+              readonly="true">
     </tc-input>
 
     <header class="section-header">
@@ -55,13 +43,11 @@
 
     <!--<img ng-if="agent.files.avatar" src="{{agent.files.avatar.files.avatarBig.url}}" width="160" height="138">-->
 
-    <tc-input
-        ng-model="agent.name"
-        label="Como gostaria de ser chamado"
-        col="6"
-        input-col="3"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.name"
+              label="Como gostaria de ser chamado"
+              col="6"
+              input-col="3"
+              readonly="true">
     </tc-input>
 
 
@@ -69,29 +55,23 @@
         <h2 class="col-md-12">Onde mora</h2>
     </header>
 
-    <tc-input
-        ng-model="agent.pais"
-        label="País"
-        col="4"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.pais"
+              label="País"
+              col="4"
+              readonly="true">
     </tc-input>
 
-    <tc-input
-        ng-model="agent._En_EstadoTexto"
-        label="Estado"
-        col="4"
-        readonly="true"
-        ng-if="agent.pais === 'Brasil'"
-        >
+    <tc-input ng-if="agent.pais === 'Brasil'"
+              label="Estado"
+              col="4"
+              readonly="true"
+              ng-model="agent._En_EstadoTexto">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.En_Municipio"
-        label="Cidade"
-        col="4"
-        readonly="true"
-        >
+    <tc-input ng-model="agent.En_Municipio"
+              label="Cidade"
+              col="4"
+              readonly="true">
     </tc-input>
 
     <header class="section-header">
@@ -99,103 +79,83 @@
     </header>
 
 
-    <tc-input
-        ng-model="agent.facebook"
-        label="Facebook"
-        col="6"
-        readonly="true"
-        icon="fa fa-facebook-official"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.facebook"
+              label="Facebook"
+              col="6"
+              readonly="true"
+              icon="fa fa-facebook-official"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.twitter"
-        label="Twitter"
-        col="6"
-        readonly="true"
-        icon="fa fa-twitter"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.twitter"
+              label="Twitter"
+              col="6"
+              readonly="true"
+              icon="fa fa-twitter"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.googleplus"
-        label="Google+"
-        col="6"
-        readonly="true"
-        icon="fa fa-google-plus"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.googleplus"
+              label="Google+"
+              col="6"
+              readonly="true"
+              icon="fa fa-google-plus"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.telegram"
-        label="Telegram"
-        col="6"
-        readonly="true"
-        icon="fa fa-telegram"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.telegram"
+              label="Telegram"
+              col="6"
+              readonly="true"
+              icon="fa fa-telegram"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.whatsapp"
-        label="WhatsApp"
-        col="6"
-        readonly="true"
-        icon="fa fa-whatsapp"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.whatsapp"
+              label="WhatsApp"
+              col="6"
+              readonly="true"
+              icon="fa fa-whatsapp"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.instagram"
-        label="Instagram"
-        col="6"
-        readonly="true"
-        icon="fa fa-instagram"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.instagram"
+              label="Instagram"
+              col="6"
+              readonly="true"
+              icon="fa fa-instagram"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.flickr"
-        label="Flickr"
-        col="6"
-        readonly="true"
-        icon="fa fa-flickr"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.flickr"
+              label="Flickr"
+              col="6"
+              readonly="true"
+              icon="fa fa-flickr"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.youtube"
-        label="Youtube"
-        col="6"
-        readonly="true"
-        icon="fa fa-youtube"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.youtube"
+              label="Youtube"
+              col="6"
+              readonly="true"
+              icon="fa fa-youtube"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.culturadigital"
-        label="CulturaDigital.br"
-        col="6"
-        readonly="true"
-        icon="fa fa-user-circle-o"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.culturadigital"
+              label="CulturaDigital.br"
+              col="6"
+              readonly="true"
+              icon="fa fa-user-circle-o"
+              placeholder="http://">
     </tc-input>
 
-    <tc-input
-        ng-model="agent.diaspora"
-        label="Diáspora"
-        col="6"
-        readonly="true"
-        icon="fa fa-asterisk"
-        placeholder="http://"
-        >
+    <tc-input ng-model="agent.diaspora"
+              label="Diáspora"
+              col="6"
+              readonly="true"
+              icon="fa fa-asterisk"
+              placeholder="http://">
     </tc-input>
 </div>

@@ -1,8 +1,8 @@
 'use strict';
 
 angular
-        .module('Configuracao')
-        .directive('inputAgente', InputAgenteDirective);
+    .module('Configuracao')
+    .directive('inputAgente', InputAgenteDirective);
 
 InputAgenteDirective.$inject = ['$http', '$q'];
 function InputAgenteDirective($http, $q) {

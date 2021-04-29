@@ -11,9 +11,9 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcDebug', TcDebugDirective)
-        .filter('prettyjson', PrettyPrintJsonFilter);
+    .module('TcComponents')
+    .directive('tcDebug', TcDebugDirective)
+    .filter('prettyjson', PrettyPrintJsonFilter);
 
 /**
  * Permite imprimir um json formatado.
@@ -86,22 +86,21 @@ function prettyPrintJson(obj, showAngularFields) {
         }, 2);
 
         out += jsonStr.replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
-                .replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                .replace(jsonLine, function (match, pIndent, pKey, pVal, pEnd) {
-                    var key = '<span class="key">';
-                    var val = '<span class="value">';
-                    var str = '<span class="string">';
-                    var r = pIndent || '';
-                    if (pKey) {
-                        r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
-                    }
-                    if (pVal) {
-                        r = r + (pVal[0] === '"' ? str : val) + pVal + '</span>';
-                    }
-                    return r + (pEnd || '');
-                });
+            .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(jsonLine, function (match, pIndent, pKey, pVal, pEnd) {
+                var key = '<span class="key">';
+                var val = '<span class="value">';
+                var str = '<span class="string">';
+                var r = pIndent || '';
+                if (pKey) {
+                    r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+                }
+                if (pVal) {
+                    r = r + (pVal[0] === '"' ? str : val) + pVal + '</span>';
+                }
+                return r + (pEnd || '');
+            });
     }
     out += '</code></pre>';
     return out;
 }
-

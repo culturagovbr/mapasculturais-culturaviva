@@ -11,7 +11,7 @@
 'use strict';
 
 angular.module('TcComponents')
-        .directive('tcBaseField', TcBaseField);
+    .directive('tcBaseField', TcBaseField);
 
 
 /**
