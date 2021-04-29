@@ -1,8 +1,8 @@
 'use strict';
 
 angular
-        .module('Configuracao')
-        .directive('certificadorListaTabela', CertificadorListaTabelaDirective);
+    .module('Configuracao')
+    .directive('certificadorListaTabela', CertificadorListaTabelaDirective);
 
 
 function CertificadorListaTabelaDirective() {

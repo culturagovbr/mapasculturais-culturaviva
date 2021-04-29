@@ -1,8 +1,8 @@
 /* global google */
 
 angular
-        .module('Certificacao')
-        .controller('AvaliacaoTabResponsavelCtrl', AvaliacaoTabResponsavelCtrl);
+    .module('Certificacao')
+    .controller('AvaliacaoTabResponsavelCtrl', AvaliacaoTabResponsavelCtrl);
 
 AvaliacaoTabResponsavelCtrl.$inject = ['$scope', 'Entity', 'estadosBrasil'];
 
@@ -61,4 +61,3 @@ function AvaliacaoTabResponsavelCtrl($scope, Entity, estadosBrasil) {
         }
     });
 }
-

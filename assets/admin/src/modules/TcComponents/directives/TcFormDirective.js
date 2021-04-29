@@ -11,9 +11,9 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcForm', TcFormDirective)
-        .directive('tcFormButton', TcFormButton);
+    .module('TcComponents')
+    .directive('tcForm', TcFormDirective)
+    .directive('tcFormButton', TcFormButton);
 
 TcFormDirective.$inject = ['$document'];
 function TcFormDirective($document) {

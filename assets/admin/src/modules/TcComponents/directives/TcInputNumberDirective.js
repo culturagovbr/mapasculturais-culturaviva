@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcInputNumber', TcInputNumberDirective);
+    .module('TcComponents')
+    .directive('tcInputNumber', TcInputNumberDirective);
 
 TcInputNumberDirective.$inject = ['$http'];
 function TcInputNumberDirective($http) {

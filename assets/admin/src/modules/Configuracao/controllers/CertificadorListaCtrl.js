@@ -99,4 +99,3 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
         })
     }
 }
-

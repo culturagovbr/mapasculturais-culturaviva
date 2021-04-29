@@ -11,8 +11,8 @@
 'use strict';
 
 angular
-        .module('TcComponents')
-        .directive('tcInputSearch', TcInputSearchDirective);
+    .module('TcComponents')
+    .directive('tcInputSearch', TcInputSearchDirective);
 
 function TcInputSearchDirective() {
     return {
