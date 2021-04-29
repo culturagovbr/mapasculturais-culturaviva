@@ -8,9 +8,8 @@
             <span class="destaque">Portfólio*</span>
 
             <div>
-
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
-                    Baixar Arquivo 123
+                    Baixar Arquivo
                 </a>
                 <a style="font-size: 12px" ng-if="ponto.atividadesEmRealizacaoLink"
                    href="{{ponto.atividadesEmRealizacaoLink}}" target="_blank">{{ponto.atividadesEmRealizacaoLink}}</a>
@@ -37,11 +36,14 @@
         <div class="row">
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
-                <img ng-if="agent.files.carta1" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
                    href="{{ponto['@files:carta1'].url}}" target="_blank">
                     {{agent.files.carta1.name}}
                     Baixar primeira carta</a>
+                <div type="file">
+                    <img ng-if="!agent.files.carta1" src="<?php $this->asset('img/incluir_img.png') ?>" width="160"
+                         height="138">
+                </div>
                 <span ng-if="!ponto['@files:carta1'].url"><b>Não informado</b></span>
             </div>
             <div class="colunm2">
@@ -58,8 +60,10 @@
     </div>
     <div class="form form-opcional">
         <div class="row">
-            <span class="destaque">Conte um pouco sobre a história do ponto de Cultura (800 caracteres) <i class='hltip'
-                                                                                                           title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>  </span>
+            <span class="destaque">Conte um pouco sobre a história do ponto de Cultura (800 caracteres)
+                <i class='hltip'
+                   title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>
+            </span>
             <label class="colunm1">
                 <span><b>{{ponto.longDescription}}</b></span>
                 <span ng-if="!ponto.longDescription"><b>Não informado</b></span>
