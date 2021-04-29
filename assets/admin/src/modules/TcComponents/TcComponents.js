@@ -1,4 +1,4 @@
 'use strict';
 
 angular
-        .module('TcComponents', ['ui.bootstrap']);
+    .module('TcComponents', ['ui.bootstrap']);

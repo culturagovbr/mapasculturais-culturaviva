@@ -1,8 +1,8 @@
 /* global google */
 
 angular
-        .module('Certificacao')
-        .controller('AvaliacaoTabEntidadeCtrl', AvaliacaoTabEntidadeCtrl);
+    .module('Certificacao')
+    .controller('AvaliacaoTabEntidadeCtrl', AvaliacaoTabEntidadeCtrl);
 
 AvaliacaoTabEntidadeCtrl.$inject = ['$scope', 'Entity', 'estadosBrasil'];
 
@@ -12,35 +12,35 @@ function AvaliacaoTabEntidadeCtrl($scope, Entity, estadosBrasil) {
         // Ver AvaliacaoFormularioCtrl.js
         'id': $scope.avaliacao.entidadeId,
         '@select': [
-           'id',
-           'rcv_tipo',
-           'name',
-           'nomeCompleto',
-           'cnpj',
-           'representanteLegal',
-           'tipoPontoCulturaDesejado',
-           'tipoOrganizacao',
-           'responsavel_operadora',
-           'responsavel_operadora2',
-           'emailPrivado',
-           'telefone1',
-           'telefone1_operadora',
-           'telefone2',
-           'telefone2_operadora',
-           'responsavel_nome',
-           'responsavel_email',
-           'responsavel_cargo',
-           'responsavel_telefone',
-           'responsavel_telefone2',
-           'En_Estado',
-           'En_Municipio',
-           'pais',
-           'En_Bairro',
-           'En_Num',
-           'En_Nome_Logradouro',
-           'cep',
-           'En_Complemento',
-           'tipoPonto'
+            'id',
+            'rcv_tipo',
+            'name',
+            'nomeCompleto',
+            'cnpj',
+            'representanteLegal',
+            'tipoPontoCulturaDesejado',
+            'tipoOrganizacao',
+            'responsavel_operadora',
+            'responsavel_operadora2',
+            'emailPrivado',
+            'telefone1',
+            'telefone1_operadora',
+            'telefone2',
+            'telefone2_operadora',
+            'responsavel_nome',
+            'responsavel_email',
+            'responsavel_cargo',
+            'responsavel_telefone',
+            'responsavel_telefone2',
+            'En_Estado',
+            'En_Municipio',
+            'pais',
+            'En_Bairro',
+            'En_Num',
+            'En_Nome_Logradouro',
+            'cep',
+            'En_Complemento',
+            'tipoPonto'
         ].join(','),
         '@permissions': 'view'
     };
@@ -63,4 +63,3 @@ function AvaliacaoTabEntidadeCtrl($scope, Entity, estadosBrasil) {
         }
     });
 }
-

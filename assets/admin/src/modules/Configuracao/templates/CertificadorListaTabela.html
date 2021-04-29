@@ -5,7 +5,8 @@
             <div class="list-view-pf-actions">
                 <button class="btn btn-primary"
                         type="button"
-                         ui-sref="pagina.configuracao.certificador.formulario({id:{{certificador.id}}})">
+                        ui-sref="pagina.configuracao.certificador.formulario({id:{{certificador.id}}})"
+                >
                     Editar
                 </button>
             </div>
@@ -13,14 +14,16 @@
             <div class="list-view-pf-main-info">
                 <div class="list-view-pf-left">
                     <span
-                        class="pficon pficon-ok list-view-pf-icon-md list-view-pf-icon-success"
-                        ng-show="certificador.ativo"
-                        title="Ativo">
+                            class="pficon pficon-ok list-view-pf-icon-md list-view-pf-icon-success"
+                            ng-show="certificador.ativo"
+                            title="Ativo"
+                    >
                     </span>
                     <span
-                        class="pficon pficon-error-circle-o list-view-pf-icon-md list-view-pf-icon-danger"
-                        ng-hide="certificador.ativo"
-                        title="Inativo">
+                            class="pficon pficon-error-circle-o list-view-pf-icon-md list-view-pf-icon-danger"
+                            ng-hide="certificador.ativo"
+                            title="Inativo"
+                    >
                     </span>
                 </div>
                 <div class="list-view-pf-body">
@@ -32,20 +35,31 @@
                     </div>
                     <div class="list-view-pf-additional-info">
                         <div
-                            class="list-view-pf-additional-info-item"
-                            title="{{certificador.avaliacoesPendentes}} Avaliações Pendentes">
+                                class="list-view-pf-additional-info-item"
+                                ng-hide="certificador.ufNome == null"
+                                title="{{certificador.ufNome}}"
+                        >
+                            <span class="pficon glyphicon glyphicon-map-marker"></span>
+                            {{certificador.ufNome}}
+                        </div>
+                        <div
+                                class="list-view-pf-additional-info-item"
+                                title="{{certificador.avaliacoesPendentes}} Avaliações Pendentes"
+                        >
                             <span class="pficon  glyphicon glyphicon-time"></span>
                             <strong>{{certificador.avaliacoesPendentes}}</strong> Pendentes
                         </div>
                         <div
-                            class="list-view-pf-additional-info-item"
-                            title="{{certificador.avaliacoesEmAnalise}} Avaliações Em Análise">
+                                class="list-view-pf-additional-info-item"
+                                title="{{certificador.avaliacoesEmAnalise}} Avaliações Em Análise"
+                        >
                             <span class="pficon  glyphicon glyphicon-play-circle"></span>
                             <strong>{{certificador.avaliacoesEmAnalise}}</strong> Em Análise
                         </div>
                         <div
-                            class="list-view-pf-additional-info-item"
-                            title="{{certificador.avaliacoesFinalizadas}} Avaliações Finalizados">
+                                class="list-view-pf-additional-info-item"
+                                title="{{certificador.avaliacoesFinalizadas}} Avaliações Finalizados"
+                        >
                             <span class="pficon  glyphicon glyphicon-ok-circle"></span>
                             <strong>{{certificador.avaliacoesFinalizadas}}</strong> Finalizados
                         </div>

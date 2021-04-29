@@ -1,17 +1,17 @@
 'use strict';
 
 angular
-        .module('AppAdmin', [
-            'ng',
-            'ngMessages',
-            'ngSanitize',
-            'ui.router',
-            'ui.bootstrap',
-            'blockUI',
-            'oc.lazyLoad'
-        ])
-        .config(AppAdminConfig)
-        .run(AppAdminRun);
+    .module('AppAdmin', [
+        'ng',
+        'ngMessages',
+        'ngSanitize',
+        'ui.router',
+        'ui.bootstrap',
+        'blockUI',
+        'oc.lazyLoad'
+    ])
+    .config(AppAdminConfig)
+    .run(AppAdminRun);
 
 AppAdminConfig.$inject = ['blockUIConfig'];
 

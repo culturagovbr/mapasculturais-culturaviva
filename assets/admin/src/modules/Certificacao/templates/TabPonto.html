@@ -3,17 +3,17 @@
     <img ng-if="agent.files.logoponto" src="{{agent.files.logoponto.url}}" width="160" height="138">
 
     <tc-input ng-model="agent.name"
-        label="Nome do Ponto/Pontão de Cultura"
-        col="12"
-        col-input="6"
-        readonly="true">
+              label="Nome do Ponto/Pontão de Cultura"
+              col="12"
+              col-input="6"
+              readonly="true">
     </tc-input>
 
-    <tc-input-text label="Breve descrição do Ponto/Pontão de Cultura"
-        ng-model="agent.shortDescription"
-        rows="8"
-        readonly="true"
-        disabled="!avaliacao.autorizaEdicao">
+    <tc-input-text disabled="!avaliacao.autorizaEdicao"
+                   ng-model="agent.shortDescription"
+                   rows="8"
+                   readonly="true"
+                   label="Breve descrição do Ponto/Pontão de Cultura">
     </tc-input-text>
 
     <header class="section-header">
@@ -21,57 +21,57 @@
     </header>
 
     <tc-input ng-model="agent.pais"
-        label="País"
-        col="3"
-        readonly="true">
+              label="País"
+              col="3"
+              readonly="true">
     </tc-input>
 
-    <tc-input ng-model="agent._En_EstadoTexto"
-        label="Estado"
-        col="3"
-        readonly="true"
-        ng-if="agent.pais === 'Brasil'">
+    <tc-input ng-if="agent.pais === 'Brasil'"
+              label="Estado"
+              col="3"
+              readonly="true"
+              ng-model="agent._En_EstadoTexto">
     </tc-input>
 
-    <tc-input ng-model="agent.En_Estado"
-        label="Estado"
-        col="3"
-        readonly="true"
-        ng-if="agent.pais !== 'Brasil'">
+    <tc-input ng-if="agent.pais !== 'Brasil'"
+              label="Estado"
+              col="3"
+              readonly="true"
+              ng-model="agent.En_Estado">
     </tc-input>
 
     <tc-input ng-model="agent.En_Municipio"
-        label="Cidade"
-        col="3"
-        readonly="true">
+              label="Cidade"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Bairro"
-        label="Bairro"
-        col="3"
-        readonly="true">
+              label="Bairro"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Nome_Logradouro"
-        label="Rua"
-        col="3"
-        readonly="true">
+              label="Rua"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Num"
-        label="Número"
-        col="2"
-        readonly="true">
+              label="Número"
+              col="2"
+              readonly="true">
     </tc-input>
 
-    <tc-input ng-model="agent.cep" label="CEP"
-        col="2"
-        readonly="true">
+    <tc-input label="CEP" ng-model="agent.cep"
+              col="2"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Complemento"
-        label="Complemento"
-        col="4"
-        readonly="true">
+              label="Complemento"
+              col="4"
+              readonly="true">
     </tc-input>
 </div>

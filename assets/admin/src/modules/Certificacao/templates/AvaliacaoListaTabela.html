@@ -3,51 +3,51 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="row" ng-form>
-                    <tc-input ng-model="ref.filtrarTexto"
-                        label="Nome"
-                        col="4">
+                    <tc-input col="4"
+                              label="Nome"
+                              ng-model="ref.filtrarTexto">
                     </tc-input>
 
                     <tc-select ng-model="ref.filtrarUf"
-                        label="UF Entidade"
-                        col="4"
-                        field="label"
-                        options="estadosBrasil">
+                               label="UF Entidade"
+                               col="4"
+                               field="label"
+                               options="estadosBrasil">
                     </tc-select>
 
-                    <tc-input ng-model="ref.filtrarMunicipio"
-                        label="Município Entidade"
-                        col="4">
+                    <tc-input col="4"
+                              label="Município Entidade"
+                              ng-model="ref.filtrarMunicipio">
                     </tc-input>
-
-                    <div class="col-md-12 text-right">
-                        <button class="btn btn-primary" ng-click="filtrar()" type="button">
-                            Filtrar
-                        </button>
-                    </div>
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary" ng-click="this.filtrar()" type="button">
+                                Filtrar
+                            </button>
+                        </div>
 
                     <div class="clearfix"></div>
                     <hr/>
 
                     <div class="col-md-12">
-                        <button class="btn btn-danger" ng-click="redistribuir()" type="button" access-level="AGENTE_AREA">
+                        <button access-level="AGENTE_AREA" class="btn btn-danger" ng-click="redistribuir()"
+                                type="button">
                             Executar redistribuição e certificação
                         </button>
                         <tc-notitication id="bag-filtro-agentes"></tc-notitication>
 
                         <div ng-if="ref.data.total > 0" style="margin-top: 20px;">
                             <div class="row"
-                                ng-repeat="rows in ref.data.chunk"
-                                style="margin-bottom: 30px; border-bottom: 1px solid #efefef;">
+                                 ng-repeat="rows in ref.data.chunk"
+                                 style="margin-bottom: 30px; border-bottom: 1px solid #efefef;">
                                 <div ng-repeat="inscricao in rows" class="col-xs-12 col-md-4">
                                     <div class="card-pf card-pf-accented card-pf-aggregate-status">
                                         <a ng-if="inscricao.estado === 'C'"
-                                            class="ponto-certificado"
-                                            ng-href="/agente/{{inscricao.pontoId}}"
-                                            target="_blank">
+                                           class="ponto-certificado"
+                                           ng-href="/agente/{{inscricao.pontoId}}"
+                                           target="_blank">
 
                                             <i class="glyphicon glyphicon-certificate"
-                                                title="Entidade certificada">
+                                               title="Entidade certificada">
                                             </i>
                                         </a>
                                         <h2 class="card-pf-title">
@@ -78,31 +78,52 @@
                                                 >
 
                                                 <avaliacao-lista-certificador
-                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_civil') > -1"
-                                                    certificador-tipo="Poder Publico"
-                                                    avaliacao-id="{{inscricao.avaliacaoPublicaId}}"
-                                                    certificador-id="{{inscricao.avaliacaoPublicaCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}">
+                                                    ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilFederalId != null"
+                                                    certificador-tipo="Sociedade Civil Federal"
+                                                    avaliacao-id="{{inscricao.avaliacaoCivilFederalId}}"
+                                                    certificador-id="{{inscricao.avaliacaoCivilFederalCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoCivilFederalEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoCivilFederalCertificador}}"
+                                                    >
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
-                                                    ng-if="inscricao.avaliacaoCivilId"
-                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_publico') > -1"
-                                                    certificador-tipo="Sociedade Civil"
-                                                    avaliacao-id="{{inscricao.avaliacaoCivilId}}"
-                                                    certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoCivilCertificador}}">
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilEstadualId != null"
+                                                        certificador-tipo="Sociedade Civil - {{inscricao.avaliacaoCivilEstadualCertificadorUf}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoCivilEstadualId}}"
+                                                        certificador-id="{{inscricao.avaliacaoCivilEstadualCertificadorId}}"
+                                                        estado-avaliacao="{{inscricao.avaliacaoCivilEstadualEstado}}"
+                                                        certificador-nome="{{inscricao.avaliacaoCivilEstadualCertificador}}"
+                                                >
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
-                                                    ng-if="inscricao.avaliacaoMinervaId"
-                                                    certificador-tipo="Voto de Minerva"
-                                                    avaliacao-id="{{inscricao.avaliacaoMinervaId}}"
-                                                    certificador-id="{{inscricao.avaliacaoMinervaCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoMinervaEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}">
+                                                    ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaFederalId != null"
+                                                    certificador-tipo="Poder Público Federal"
+                                                    avaliacao-id="{{inscricao.avaliacaoPublicaFederalId}}"
+                                                    certificador-id="{{inscricao.avaliacaoPublicaFederalCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaFederalEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoPublicaFederalCertificador}}"
+                                                    >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaEstadualId != null"
+                                                        certificador-tipo="Poder Público - {{inscricao.avaliacaoPublicaEstadualCertificadorUf}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoPublicaEstadualId}}"
+                                                        certificador-id="{{inscricao.avaliacaoPublicaEstadualCertificadorId}}"
+                                                        estado-avaliacao="{{inscricao.avaliacaoPublicaEstadualEstado}}"
+                                                        certificador-nome="{{inscricao.avaliacaoPublicaEstadualCertificador}}"
+                                                >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                        ng-if="inscricao.avaliacaoMinervaId"
+                                                        certificador-tipo="Voto de Minerva"
+                                                        avaliacao-id="{{inscricao.avaliacaoMinervaId}}"
+                                                        certificador-id="{{inscricao.avaliacaoMinervaCertificadorId}}"
+                                                        estado-avaliacao="{{inscricao.avaliacaoMinervaEstado}}"
+                                                        certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}">
                                                 </avaliacao-lista-certificador>
                                             </div>
                                         </div>
@@ -110,14 +131,14 @@
                                 </div>
                             </div>
 
-                            <ul uib-pagination
+                            <ul next-text="&raquo;"
                                 total-items="ref.data.total"
                                 ng-model="ref.pagina"
                                 class="pagination-sm"
                                 items-per-page="10"
                                 max-size="10"
                                 previous-text="&laquo;"
-                                next-text="&raquo;">
+                                uib-pagination>
                             </ul>
                         </div>
 

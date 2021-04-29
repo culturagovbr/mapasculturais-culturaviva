@@ -2,33 +2,33 @@
     <tc-form on-save="salvar()" buttons="botoes" name="formCriterios" hide-buttons="!avaliacao.autorizaEdicao">
 
         <tc-input ng-model="avaliacao.pontoNome"
-            label="Nome do Ponto/Pontão de Cultura"
-            col="4"
-            readonly="true">
+                  label="Nome do Ponto/Pontão de Cultura"
+                  col="4"
+                  readonly="true">
         </tc-input>
 
         <tc-input ng-model="avaliacao.certificadorNome"
-            label="Nome do Agente Certificador responsável pela Avaliação"
-            col="4"
-            readonly="true">
+                  label="Nome do Agente Certificador responsável pela Avaliação"
+                  col="4"
+                  readonly="true">
         </tc-input>
 
         <tc-input ng-model="situacaoAvaliacao"
-            label="Situação da Avaliação"
-            col="2"
-            readonly="true">
+                  label="Situação da Avaliação"
+                  col="2"
+                  readonly="true">
         </tc-input>
 
         <tc-input ng-model="situacaoInscricao"
-            label="Situação da Inscrição"
-            col="2"
-            readonly="true">
+                  label="Situação da Inscrição"
+                  col="2"
+                  readonly="true">
         </tc-input>
 
         <tc-input-text label="Descrição do Ponto/Pontão de Cultura"
-            ng-model="avaliacao.pontoDescricao"
-            disabled="true"
-            rows="5">
+                       ng-model="avaliacao.pontoDescricao"
+                       disabled="true"
+                       rows="5">
         </tc-input-text>
 
         <div class="col-md-12">
@@ -39,16 +39,16 @@
 
         <div class="clearfix" ng-repeat="criterio in avaliacao.criterios| orderBy:'ordem'">
             <tc-input-text label="{{$index + 1}}º Critério"
-                ng-model="criterio.descricao"
-                disabled="true"
-                rows="5">
+                           ng-model="criterio.descricao"
+                           disabled="true"
+                           rows="5">
             </tc-input-text>
-            <tc-select ng-model="criterio.aprovado"
-                label="O cadastro do Ponto/Pontão de Cultura atende ao {{$index + 1}}° Critério"
-                col-input="2"
-                field="label"
-                options="simNao"
-                disabled="!avaliacao.autorizaEdicao">
+            <tc-select disabled="!avaliacao.autorizaEdicao"
+                       label="O cadastro do Ponto/Pontão de Cultura atende ao {{$index + 1}}° Critério"
+                       col-input="2"
+                       field="label"
+                       options="simNao"
+                       ng-model="criterio.aprovado">
             </tc-select>
             <div class="clearfix"></div>
             <hr/>
@@ -56,10 +56,10 @@
 
 
         <tc-input-text label="Observações"
-            ng-model="avaliacao.observacoes"
-            rows="8"
-            disabled="!avaliacao.autorizaEdicao"
-            ng-required="indeferido()">
+                       ng-model="avaliacao.observacoes"
+                       rows="8"
+                       disabled="!avaliacao.autorizaEdicao"
+                       ng-required="indeferido()">
         </tc-input-text>
     </tc-form>
 
@@ -110,8 +110,8 @@
             <div class="blank-slate-pf" >
                 <p>
                     <a class="btn btn-primary"
-                        ng-href="/admin/cadastro/{{avaliacao.usuarioId}}"
-                        target="_blank"> Clique Aqui
+                       ng-href="/admin/cadastro/{{avaliacao.usuarioId}}"
+                       target="_blank"> Clique Aqui
                     </a>
                     para visualizar o formulário de cadastro
                 </p>

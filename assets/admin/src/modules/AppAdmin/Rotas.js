@@ -1,8 +1,8 @@
 'use strict';
 
 angular
-        .module("AppAdmin")
-        .config(AppConfigRoutas);
+    .module("AppAdmin")
+    .config(AppConfigRoutas);
 
 
 AppConfigRoutas.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -20,96 +20,100 @@ function AppConfigRoutas($stateProvider, $urlRouterProvider, $locationProvider) 
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-            /*----------------------------------------------------------------------------------------*/
-            // Template base das páginas
-            /*----------------------------------------------------------------------------------------*/
-            .state('pagina', {
-                abstract: true,
-                templateUrl: templateURL('Pagina', 'AppAdmin'),
-                data: {
-                    ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTES
-                },
-                resolve: {
-                    mdl: resolveModule('TcComponents')
-                }
-            })
-            /*----------------------------------------------------------------------------------------*/
-            // Relatórios, tela inicial
-            /*----------------------------------------------------------------------------------------*/
-            .state('pagina.relatorios', {
-                url: '/',
-                templateUrl: templateURL('Inicio', 'Relatorios'),
-                resolve: {
-                    mdl: resolveModule('Relatorios')
-                }
-            })
-            /*----------------------------------------------------------------------------------------*/
-            // Certificação
-            /*----------------------------------------------------------------------------------------*/
-            .state('pagina.certificacao', {
-                url: '/certificacao',
-                template: '<ui-view/>',
-                data: {
-                    ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTES
-                },
-                resolve: {
-                    mdl: resolveModule('Certificacao')
-                }
-            })
-            .state('pagina.certificacao.lista', {
-                url: '/',
-                templateUrl: templateURL('AvaliacaoLista', 'Certificacao')
-            })
-            .state('pagina.certificacao.formulario', {
-                url: '/formulario/:id',
-                templateUrl: templateURL('AvaliacaoFormulario', 'Certificacao')
-            })
-            /*----------------------------------------------------------------------------------------*/
-            // Configurações
-            /*----------------------------------------------------------------------------------------*/
-            .state('pagina.configuracao', {
-                url: '/configuracao',
-                template: '<ui-view/>',
-                data: {
-                    ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTE_AREA
-                },
-                resolve: {
-                    mdl: resolveModule('Configuracao')
-                }
-            })
-            // Configurações::Criterios
-            .state('pagina.configuracao.criterios', {
-                url: '/criterios',
-                templateUrl: templateURL('Criterios', 'Configuracao')
-            })
-            // Configurações::Certificadores
-            .state('pagina.configuracao.certificador', {
-                url: '/certificadores',
-                template: '<ui-view/>'
-            })
-            .state('pagina.configuracao.certificador.lista', {
-                url: '/',
-                templateUrl: templateURL('CertificadorLista', 'Configuracao')
-            })
-            .state('pagina.configuracao.certificador.formulario', {
-                url: '/formulario/:id',
-                templateUrl: templateURL('CertificadorFormulario', 'Configuracao')
-            })
+        /*----------------------------------------------------------------------------------------*/
+        // Template base das páginas
+        /*----------------------------------------------------------------------------------------*/
+        .state('pagina', {
+            abstract: true,
+            templateUrl: templateURL('Pagina', 'AppAdmin'),
+            data: {
+                ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTES
+            },
+            resolve: {
+                mdl: resolveModule('TcComponents')
+            }
+        })
+        /*----------------------------------------------------------------------------------------*/
+        // Relatórios, tela inicial
+        /*----------------------------------------------------------------------------------------*/
+        .state('pagina.relatorios', {
+            url: '/',
+            templateUrl: templateURL('Inicio', 'Relatorios'),
+            resolve: {
+                mdl: resolveModule('Relatorios')
+            }
+        })
+        /*----------------------------------------------------------------------------------------*/
+        // Certificação
+        /*----------------------------------------------------------------------------------------*/
+        .state('pagina.certificacao', {
+            url: '/certificacao',
+            template: '<ui-view/>',
+            data: {
+                ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTES
+            },
+            resolve: {
+                mdl: resolveModule('Certificacao')
+            }
+        })
+        .state('pagina.certificacao.lista', {
+            url: '/',
+            templateUrl: templateURL('AvaliacaoLista', 'Certificacao')
+        })
+        .state('pagina.certificacao.formulario', {
+            url: '/formulario/:id',
+            templateUrl: templateURL('AvaliacaoFormulario', 'Certificacao')
+        })
+        /*----------------------------------------------------------------------------------------*/
+        // Configurações
+        /*----------------------------------------------------------------------------------------*/
+        .state('pagina.configuracao', {
+            url: '/configuracao',
+            template: '<ui-view/>',
+            data: {
+                ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.AGENTE_AREA
+            },
+            resolve: {
+                mdl: resolveModule('Configuracao')
+            }
+        })
+        .state('pagina.configuracao.redistribuir', {
+            url: '/redistribuir',
+            templateUrl: templateURL('AvaliacaoRedistribuicao', 'Configuracao')
+        })
+        // Configurações::Criterios
+        .state('pagina.configuracao.criterios', {
+            url: '/criterios',
+            templateUrl: templateURL('Criterios', 'Configuracao')
+        })
+        // Configurações::Certificadores
+        .state('pagina.configuracao.certificador', {
+            url: '/certificadores',
+            template: '<ui-view/>'
+        })
+        .state('pagina.configuracao.certificador.lista', {
+            url: '/',
+            templateUrl: templateURL('CertificadorLista', 'Configuracao')
+        })
+        .state('pagina.configuracao.certificador.formulario', {
+            url: '/formulario/:id',
+            templateUrl: templateURL('CertificadorFormulario', 'Configuracao')
+        })
 
-            /*----------------------------------------------------------------------------------------*/
-            // Logout -Redireciona o usuário para a inicial da aplicação
-            /*----------------------------------------------------------------------------------------*/
-            .state('logout', {
-                url: '/logout',
-                template: '<div>logout</div>',
-                controller: function () {
-                    window.location = '/auth/logout';
-                },
-                data: {
-                    ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.PUBLIC
-                }
-            })
-            ;
+        /*----------------------------------------------------------------------------------------*/
+        // Logout -Redireciona o usuário para a inicial da aplicação
+        /*----------------------------------------------------------------------------------------*/
+        .state('logout', {
+            url: '/logout',
+            template: '<div>logout</div>',
+            controller: function () {
+                window.location = '/auth/logout';
+            },
+            data: {
+                ACCESS_LEVEL: window.RBAC.ACCESS_LEVEL.PUBLIC
+            }
+        })
+    ;
 }
 
 
@@ -123,7 +127,6 @@ function AppConfigRoutas($stateProvider, $urlRouterProvider, $locationProvider) 
 function templateURL(pagina, modulo) {
     return 'modules/' + modulo + '/templates/' + pagina + '.html';
 }
-
 
 
 /**
@@ -154,5 +157,4 @@ function resolveModule(modulo) {
         }
     ];
 }
-
 

@@ -1,53 +1,72 @@
 <div ng-controller="CertificadorFormularioCtrl" ng-cloak>
     <tc-form name="formCertificador" on-save="salvar()">
+
         <div class="col-md-12">
             <tc-notitication id="formulario"></tc-notitication>
         </div>
 
         <!--Só permite alterar o agente quando é um novo cadastro-->
-        <input-agente ng-if="ref.novoRegistro"
-            ng-model="dto._agente"
-            label="Agente Certificador"
-            help="Selecione o Agente Certificador."
-            col-input="4"
-            required="true">
+        <input-agente
+                col-input="4"
+                help="Selecione o Agente Certificador."
+                label="Agente Certificador"
+                ng-if="ref.novoRegistro"
+                ng-model="dto._agente"
+                required="true"
+        >
         </input-agente>
 
-        <tc-input ng-if="!ref.novoRegistro"
-            ng-model="dto.agenteNome"
-            label="Agente Certificador"
-            col-input="4"
-            readonly="true">
+        <tc-input
+                col-input="4"
+                label="Agente Certificador"
+                ng-if="!ref.novoRegistro"
+                ng-model="dto.agenteNome"
+                readonly="true"
+        >
         </tc-input>
 
-        <tc-select ng-model="dto.tipo"
-            label="Tipo de Certificador"
-            help="Selecione o tipo do certificador sendo cadastrado."
-            col-input="3"
-            field="label"
-            order="codigo"
-            options="tipos"
-            required="true"
-            disabled="!ref.novoRegistro">
+        <tc-select
+                disabled="!ref.novoRegistro"
+                help="Selecione o tipo do certificador sendo cadastrado."
+                label="Tipo de Certificador"
+                col-input="3"
+                field="label"
+                ng-model="dto.tipo"
+                options="tipos"
+                order="codigo"
+                required="true"
+        >
+        </tc-select>
+        <tc-select
+                ng-model="dto.uf"
+                label="UF Certificador"
+                col="4"
+                field="label"
+                options="uf"
+                ng-if="dto.tipo.codigo != 'M' && dto.tipo.codigo != 'P' && dto.tipo.codigo != 'C'"
+        >
+        </tc-select>
+        <tc-select
+                ng-model="dto.titular"
+                label="Grupo"
+                help="Informe se este Certificador é Titular ou Suplente"
+                col-input="2"
+                field="label"
+                options="opcoesGrupo"
+                ng-if="dto.tipo.codigo != 'E' && dto.tipo.codigo != 'S'"
+        >
         </tc-select>
 
-        <tc-select ng-model="dto.titular"
-            label="Grupo"
-            help="Informe se este Certificador é Titular ou Suplente"
-            col-input="2"
-            field="label"
-            options="opcoesGrupo"
-            required="true">
-        </tc-select>
-
-        <tc-select ng-model="dto.ativo"
-            ng-if="!ref.novoRegistro"
-            label="Status do registro"
-            help="Informe se este Certificador está ativo ou não."
-            col-input="2"
-            field="label"
-            options="opcoesAtivo"
-            required="true">
+        <tc-select
+                ng-model="dto.ativo"
+                ng-if="!ref.novoRegistro"
+                label="Status do registro"
+                help="Informe se este Certificador está ativo ou não."
+                col-input="2"
+                field="label"
+                options="opcoesAtivo"
+                required="true"
+        >
         </tc-select>
 
     </tc-form>

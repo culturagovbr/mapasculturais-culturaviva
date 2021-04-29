@@ -1,45 +1,45 @@
 <div ng-controller="AvaliacaoTabEntidadeCtrl" class="row" style="padding-top: 30px;" ng-form>
 
     <tc-input ng-model="agent.tipoPonto"
-        label="Deseja Ser"
-        col="6"
-        readonly="true">
+              label="Deseja Ser"
+              col="6"
+              readonly="true">
     </tc-input>
 
-    <tc-input ng-model="agent.name"
-        label="Nome do Coletivo Cultural"
-        col="6"
-        readonly="true"
-        ng-if="agent.tipoOrganizacao === 'coletivo'">
+    <tc-input ng-if="agent.tipoOrganizacao === 'coletivo'"
+              label="Nome do Coletivo Cultural"
+              col="6"
+              readonly="true"
+              ng-model="agent.name">
     </tc-input>
 
-    <tc-input ng-model="agent.cnpj"
-        label="CNPJ da Entidade"
-        col="3"
-        readonly="true"
-        ui-mask="99.999.999/9999-99"
-        ng-if="agent.tipoOrganizacao === 'entidade'">
+    <tc-input ng-if="agent.tipoOrganizacao === 'entidade'"
+              label="CNPJ da Entidade"
+              col="3"
+              readonly="true"
+              ui-mask="99.999.999/9999-99"
+              ng-model="agent.cnpj">
     </tc-input>
 
-    <tc-input ng-model="agent.nomeCompleto"
-        label="Nome da Razão Social da Entidade"
-        col="6"
-        readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'">
+    <tc-input ng-if="agent.tipoOrganizacao === 'entidade'"
+              label="Nome da Razão Social da Entidade"
+              col="6"
+              readonly="true"
+              ng-model="agent.nomeCompleto">
     </tc-input>
 
-    <tc-input ng-model="agent.representanteLegal"
-        label="Nome do Representante Legal"
-        col="6"
-        readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'">
+    <tc-input ng-if="agent.tipoOrganizacao === 'entidade'"
+              label="Nome do Representante Legal"
+              col="6"
+              readonly="true"
+              ng-model="agent.representanteLegal">
     </tc-input>
 
-    <tc-input ng-model="agent.name"
-        label="Nome Fantasia"
-        col="6"
-        readonly="true"
-        ng-if="agent.tipoOrganizacao === 'entidade'">
+    <tc-input ng-if="agent.tipoOrganizacao === 'entidade'"
+              label="Nome Fantasia"
+              col="6"
+              readonly="true"
+              ng-model="agent.name">
     </tc-input>
 
     <header class="section-header">
@@ -47,16 +47,16 @@
     </header>
 
     <tc-input ng-model="agent.emailPrivado"
-        label="Email institucional"
-        col="6"
-        readonly="true">
+              label="Email institucional"
+              col="6"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.telefone1"
-        label="Telefone institucional"
-        col="6"
-        readonly="true"
-        ui-mask="(99) ?99999-9999">
+              label="Telefone institucional"
+              col="6"
+              readonly="true"
+              ui-mask="(99) ?99999-9999">
     </tc-input>
 
     <header class="section-header">
@@ -64,23 +64,23 @@
     </header>
 
     <tc-input ng-model="agent.responsavel_nome"
-        label="Nome do Responsável"
-        col="6"
-        readonly="true">
+              label="Nome do Responsável"
+              col="6"
+              readonly="true">
     </tc-input>
 
     <tc-input
-        ng-model="agent.responsavel_email"
-        label="Email do Responsável"
-        col="3"
-        readonly="true">
+            ng-model="agent.responsavel_email"
+            label="Email do Responsável"
+            col="3"
+            readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.responsavel_telefone"
-        label="Telefone do Responsável"
-        col="3"
-        readonly="true"
-        ui-mask="(99) ?99999-9999">
+              label="Telefone do Responsável"
+              col="3"
+              readonly="true"
+              ui-mask="(99) ?99999-9999">
     </tc-input>
 
     <header class="section-header">
@@ -88,58 +88,58 @@
     </header>
 
     <tc-input ng-model="agent.pais"
-        label="País"
-        col="3"
-        readonly="true">
+              label="País"
+              col="3"
+              readonly="true">
     </tc-input>
 
-    <tc-input ng-model="agent._En_EstadoTexto"
-        label="Estado"
-        col="3"
-        readonly="true"
-        ng-if="agent.pais === 'Brasil'">
+    <tc-input ng-if="agent.pais === 'Brasil'"
+              label="Estado"
+              col="3"
+              readonly="true"
+              ng-model="agent._En_EstadoTexto">
     </tc-input>
 
-    <tc-input ng-model="agent.En_Estado"
-        label="Estado"
-        col="3"
-        readonly="true"
-        ng-if="agent.pais !== 'Brasil'">
+    <tc-input ng-if="agent.pais !== 'Brasil'"
+              label="Estado"
+              col="3"
+              readonly="true"
+              ng-model="agent.En_Estado">
     </tc-input>
 
     <tc-input ng-model="agent.En_Municipio"
-        label="Cidade"
-        col="3"
-        readonly="true">
+              label="Cidade"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Bairro"
-        label="Bairro"
-        col="3"
-        readonly="true">
+              label="Bairro"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Nome_Logradouro"
-        label="Rua"
-        col="3"
-        readonly="true">
+              label="Rua"
+              col="3"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Num"
-        label="Número"
-        col="2"
-        readonly="true">
+              label="Número"
+              col="2"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.cep"
-        label="CEP"
-        col="2"
-        readonly="true">
+              label="CEP"
+              col="2"
+              readonly="true">
     </tc-input>
 
     <tc-input ng-model="agent.En_Complemento"
-        label="Complemento"
-        col="4"
-        readonly="true">
+              label="Complemento"
+              col="4"
+              readonly="true">
     </tc-input>
 </div>

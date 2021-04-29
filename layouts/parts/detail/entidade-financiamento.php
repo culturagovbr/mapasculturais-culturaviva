@@ -4,8 +4,12 @@
 
         <div class="row">
             <div class="colunm-50">
-                <span class="destaque" ng-show="entidade.tipoOrganizacao==='entidade' || !entidade.tipoOrganizacao">A Entidade já foi financiada pelo MinC <i class='hltip' title='Marque caso você tenha recebido algum recurso direto do MinC'>?</i></span>
-                <span class="destaque" ng-show="entidade.tipoOrganizacao==='coletivo'">O Coletivo já foi financiada pelo MinC <i class='hltip' title='Marque SIM se o coletivo cultural ja recebeu algum recurso do MiniC'>?</i></span>
+                <span class="destaque" ng-show="entidade.tipoOrganizacao==='entidade' || !entidade.tipoOrganizacao">A Entidade já foi financiada pelo MinC <i
+                            class='hltip'
+                            title='Marque caso você tenha recebido algum recurso direto do MinC'>?</i></span>
+                <span class="destaque" ng-show="entidade.tipoOrganizacao==='coletivo'">O Coletivo já foi financiada pelo MinC <i
+                            class='hltip'
+                            title='Marque SIM se o coletivo cultural ja recebeu algum recurso do MiniC'>?</i></span>
                 <span ng-if="entidade.foiFomentado"><b>Sim</b></span>
                 <span ng-if="entidade.foiFomentado === 0"><b>Não</b></span>
                 <span ng-if="!entidade.foiFomentado"><b>Não informado</b></span>

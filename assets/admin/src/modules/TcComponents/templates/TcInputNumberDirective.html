@@ -2,22 +2,24 @@
     <tc-base-field>
         <div class="row">
             <div class="col-md-{{colInput|| 12}}">
-                <input id="{{tcInputName}}"
-                    name="{{tcInputName}}"
+                <input
+                        class="form-control spinner-input text-center"
+                        id="{{tcInputName}}"
 
-                    class="form-control spinner-input text-center"
+                        name="{{tcInputName}}"
 
-                    ng-required="required"
-                    ng-disabled="disabled"
-                    ng-readonly="readonly"
+                        ng-blur="blur"
+                        ng-copy="copy"
+                        ng-cut="cut"
 
-                    ng-blur="blur"
-                    ng-keyup="keyup"
-                    ng-keydown="keydown"
-                    ng-paste="paste"
-                    ng-copy="copy"
-                    ng-cut="cut"
-                    ondrop="return false"/>
+                        ng-disabled="disabled"
+                        ng-keydown="keydown"
+                        ng-keyup="keyup"
+                        ng-paste="paste"
+                        ng-readonly="readonly"
+                        ng-required="required"
+                        ondrop="return false"
+                />
             </div>
         </div>
     </tc-base-field>

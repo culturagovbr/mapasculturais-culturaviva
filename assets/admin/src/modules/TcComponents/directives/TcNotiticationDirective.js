@@ -11,7 +11,7 @@
 'use strict';
 
 angular.module('TcComponents')
-        .directive('tcNotitication', TcNotiticationDirective);
+    .directive('tcNotitication', TcNotiticationDirective);
 
 
 TcNotiticationDirective.$inject = ['TcNotitication'];
@@ -141,7 +141,6 @@ function TcNotiticationDirective(TcNotitication) {
         }
     };
 }
-
 
 
 

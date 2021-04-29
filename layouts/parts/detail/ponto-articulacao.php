@@ -7,8 +7,8 @@
         <?php /*
         <div class="row">
             <div class="colunm-full">
-                <span ng-if="entidade.tipoPontoCulturaDesejado == 'ponto'" class="destaque">Em qual edital do Ministério da Cidadania a Entidade/Coletivo Cultural já foi contemplado?</span>
-                <span ng-if="entidade.tipoPontoCulturaDesejado == 'pontao'" class="destaque">Em qual edital do Ministério da Cidadania a Entidade/Coletivo Cultural já foi contemplado?*</span>
+                <span ng-if="entidade.tipoPontoCulturaDesejado == 'ponto'" class="destaque">Em qual edital do Ministério do Turismo a Entidade/Coletivo Cultural já foi contemplado?</span>
+                <span ng-if="entidade.tipoPontoCulturaDesejado == 'pontao'" class="destaque">Em qual edital do Ministério do Turismo a Entidade/Coletivo Cultural já foi contemplado?*</span>
                 <span style="height:auto" ng-repeat="termo in ponto.terms.contemplado_edital"><b>{{termo}}</b></span>
                 <span ng-if="!ponto.terms.contemplado_edital.length"><b>Não informado</b></span>
             </div>
@@ -91,7 +91,7 @@
                 <span style="height:auto"><b>{{ponto.simForumCultural}}</b></span>
             </div>
             <div class="colunm-full">
-                <label class="destaque"> Participa de instância de representação junto ao Ministério da Cidadania?</label>
+                <label class="destaque"> Participa de instância de representação junto ao Ministério do Turismo?</label>
                 <span style="height:auto" ng-repeat="termo in ponto.terms.instancia_representacao_minc"><b>{{termo}}</b></span>
                 <span ng-if="!ponto.terms.instancia_representacao_minc.length"><b>Não informado</b></span>
             </div>
