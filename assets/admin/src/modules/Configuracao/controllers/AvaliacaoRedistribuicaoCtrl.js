@@ -126,12 +126,13 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     console.log(dto);
     for (var uf in dto) {
         console.log(uf, '2');
-        if(dto[uf] == true){
+        if (dto[uf] === true) {
             out.push(uf);
         }
-        if(dto[uf].redistribuicao == true){
+        if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
+    console.log(out, 'resultado')
     return out;
 };
