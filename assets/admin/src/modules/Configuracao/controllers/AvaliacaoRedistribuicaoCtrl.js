@@ -68,6 +68,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             }
         }
     };
+
+    $scope.redistribuicao = function (uf) {
+        console.log(uf);
+    }
+
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         console.log(dto, 'aqui');
