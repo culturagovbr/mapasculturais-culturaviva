@@ -280,7 +280,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
     }
 
     if ($uf['redistribuicao'] == true) {
-        $whereCertTipo = " AND (cert.tipo = '{$filtro['tipo']}' OR cert.tipo = '{$filtro['tipo1']}') LEFT JOIN agent_meta ent_meta_uf ON ent_meta_uf.object_id = entidade.id AND ent_meta_uf.key = 'En_Estado'";
+        $whereCertTipo = " AND (cert.tipo = '{$filtro['tipo']}' OR cert.tipo = '{$filtro['tipo1']}') ";
     } else {
         $whereCertTipo = " AND cert.tipo = '{$filtro['tipo']}' ";
     }
