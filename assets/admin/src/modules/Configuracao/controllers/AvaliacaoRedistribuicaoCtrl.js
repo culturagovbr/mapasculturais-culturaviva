@@ -70,23 +70,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     };
 
     $scope.redistribuicao = function (uf) {
-        console.log('aqui');
-
-
         for (var ufx in $scope.ufs) {
-            console.log('dentro');
-            console.log(ufx);
-            console.log($scope.ufs[ufx]);
-            console.log($scope.ufs[ufx].redistribuicao);
-            //    $scope.ufs[ufx].redistribuicao = true;
+            if ($scope.ufs[ufx].sigla == uf.row.sigla) {
+                $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
+            }
         }
-
-        console.log(uf.row);
-        console.log($scope.ufs[uf]);
-
-        $scope.ufs[uf].redistribuicao = !$scope.ufs[uf].redistribuicao;
-        console.log($scope.ufs[uf].redistribuicao);
-
     }
 
     $scope.salvar = function () {
