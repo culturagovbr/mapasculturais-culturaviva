@@ -131,10 +131,12 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
+    console.log(dto);
     for (var uf in dto) {
         if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
+    console.log(dto, '2');
     return out;
 };

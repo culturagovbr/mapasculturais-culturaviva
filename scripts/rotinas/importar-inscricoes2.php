@@ -134,8 +134,6 @@ function importar()
     print("Registrar os critérios das inscrições\n");
     $conn->executeQuery(loadScript('3-incluir-criterios-inscricoes.sql'));
 
-
-    // 3º Passo: DISTRIBUIR AVALIAÇÕES
     // 3º Passo: DISTRIBUIR AVALIAÇÕES
     print("Remover avaliações avaliadores inativos:\n");
     $conn->executeQuery(loadScript('4-remover-avaliacoes-avaliador-inativo.sql'));
