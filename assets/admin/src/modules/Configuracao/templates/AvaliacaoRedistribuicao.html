@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-3 form-check" ng-repeat="row in ufs">
                     <input class="form-check-input" type="checkbox" ng-model="ufs[row.sigla]" value="{{row.sigla}}"
-                           id="{{row.sigla}}" ng-click="checked(this)">
+                           id="{{row.sigla}}" ng-checked="row.redistribuicao">
                     <label class="form-check-label" for="{{row.sigla}}" style="padding-left: 5px;">
                         {{row.nome}}
                     </label>

@@ -57,7 +57,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         }
     };
     $scope.marcarTodos = function () {
-        if ($scope.marcaTodos == false) {
+        if ($scope.marcaTodos === false) {
             $scope.marcaTodos = true;
             for (var uf in $scope.ufs) {
                 $scope.ufs[uf].redistribuicao = true;
@@ -69,14 +69,6 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             }
         }
     };
-
-    $scope.checked = function () {
-        if ($scope.checked == true) {
-            $scope.ufs[uf].redistribuicao = true;
-        } else {
-            $scope.ufs[uf].redistribuicao = false;
-        }
-    }
 
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
