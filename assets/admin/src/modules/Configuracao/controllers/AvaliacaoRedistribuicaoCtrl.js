@@ -55,13 +55,13 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             });
         }
     };
-    $scope.marcarTodos = function (teste) {
-        if($scope.marcaTodos == false){
+    $scope.marcarTodos = function () {
+        if ($scope.marcaTodos == false) {
             $scope.marcaTodos = true;
             for (var uf in $scope.ufs) {
                 $scope.ufs[uf].redistribuicao = true;
             }
-        }else{
+        } else {
             $scope.marcaTodos = false;
             for (var uf in $scope.ufs) {
                 $scope.ufs[uf].redistribuicao = false;
@@ -70,10 +70,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     };
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
+        console.log(dto, 'aqui');
         $http.post('/avaliacao/configurar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
-                reload: false,
+                reload: true,
                 inherit: true,
                 notify: true
             });
