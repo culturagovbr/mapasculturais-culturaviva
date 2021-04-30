@@ -74,6 +74,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         console.log(uf.row['sigla']);
         console.log(uf.row.sigla);
         console.log('xxx');
+
         for (var ufx in $scope.ufs) {
             console.log('dd');
             console.log($scope.ufs[ufx].sigla);
