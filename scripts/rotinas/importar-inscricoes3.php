@@ -170,7 +170,7 @@ function importar()
     $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
 
     foreach ($ufs as $uf) {
-        if ($uf['sigla'] == 'AC') {
+        if ($uf['sigla'] == $uf) {
             print("Distribuir avaliações para Representantes da Sociedade Civil Estadual\n");
             inserirAvaliacaoCertificador($conn, ['tipo' => 'S'], $uf);
 
