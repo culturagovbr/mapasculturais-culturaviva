@@ -126,6 +126,10 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     for (var uf in dto) {
         if (dto[uf] === true) {
             out.push(uf);
+        } else {
+            var out = $scope.redistribuicao.indexOf(row.sigla);
+            $scope.redistribuicao.splice(out, 1);
+            out.push(uf);
         }
         if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
