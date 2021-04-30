@@ -69,6 +69,14 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         }
     };
 
+    $scope.redistribuicao = function (uf) {
+        for (var ufx in $scope.ufs) {
+            if ($scope.ufs[ufx].sigla == uf.row.sigla) {
+                $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
+            }
+        }
+    }
+
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         console.log(dto, 'aqui');
