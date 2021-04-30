@@ -69,14 +69,6 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         }
     };
 
-    $scope.redistribuicao = function (uf) {
-        for (var ufx in $scope.ufs) {
-            if ($scope.ufs[ufx].sigla == uf.row.sigla) {
-                $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
-            }
-        }
-    }
-
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         console.log(dto, 'aqui');
@@ -130,15 +122,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
-    console.log(dto);
-    for (var uf in dto) {
-
-        if (dto[uf] === true) {
-            out.push(uf);
-        }
-        if (dto[uf].redistribuicao === true) {
-            out.push(dto[uf].sigla);
+    for (var uf in $scope.ufs) {
+        if ($scope.ufs[uf].redistribuicao === true) {
+            out.push($scope.ufs[uf].sigla);
         }
     }
+    console.log(out);
     return out;
 };
