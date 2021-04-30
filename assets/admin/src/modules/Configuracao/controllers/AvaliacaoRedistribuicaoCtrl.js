@@ -136,7 +136,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     for (var uf in dto) {
-        if (dto[uf].redistribuicao === true) {
+        if (dto[uf].redistribuicao == true) {
             out.push(dto[uf].sigla);
         }
     }
