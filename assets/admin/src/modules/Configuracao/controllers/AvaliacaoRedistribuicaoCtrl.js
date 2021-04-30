@@ -72,7 +72,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.redistribuicao = function (uf) {
         console.log('aqui');
         console.log(uf.row.redistribuicao);
-        $scope.ufs[uf.row.sigla].redistribuicao = uf.row.redistribuicao;
+        $scope.ufs[uf.row.sigla].redistribuicao = !uf.row.redistribuicao;
         console.log(uf.row.redistribuicao);
 
     }
