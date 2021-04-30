@@ -26,7 +26,6 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.subTitulo = 'Configuração de rotina de redistribuição de avaliações para certificação de inscrições';
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
-    $scope.marcaTodos = false;
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
