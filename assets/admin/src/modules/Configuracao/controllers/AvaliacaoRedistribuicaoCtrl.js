@@ -123,7 +123,7 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     console.log(dto);
     for (var uf in dto) {
-        console
+
         if (dto[uf] === true) {
             out.push(uf);
         }
