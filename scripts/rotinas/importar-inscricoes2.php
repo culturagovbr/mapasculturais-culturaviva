@@ -33,11 +33,13 @@ set_time_limit(-1);
  */
 function loadScript($file)
 {
+    set_time_limit(-1);
     return file_get_contents(__DIR__ . "/importar/$file");
 }
 
 function importar()
 {
+    set_time_limit(-1);
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
 
@@ -310,6 +312,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
  */
 function inserirAvaliacaoMinerva($conn)
 {
+    set_time_limit(-1);
     $inscricoes = $conn->fetchAll(loadScript('7-obter-inscricoes-avaliacoes-conflitantes.sql'));
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
