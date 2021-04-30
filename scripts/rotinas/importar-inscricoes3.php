@@ -170,20 +170,20 @@ function importar()
     $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
 
     foreach ($ufs as $uf) {
-        if ($uf['sigla'] == 'AC' && $uf['sigla'] == 'BA') {
+        if ($uf['redistribuicao'] === true) {
             print("Distribuir avaliações para Representantes da Sociedade Civil Estadual\n");
             inserirAvaliacaoCertificador($conn, ['tipo' => 'S'], $uf);
 
             print("Distribuir avaliações para Representantes do Poder Público Estadual\n");
             inserirAvaliacaoCertificador($conn, ['tipo' => 'E'], $uf);
-
-            if ($uf['redistribuicao'] == true) {
-                print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
-                inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
-
-                print("Distribuir avaliações para Representantes do Poder Público Federal\n");
-                inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
-            }
+//
+//            if ($uf['redistribuicao'] == true) {
+//                print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
+//                inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
+//
+//                print("Distribuir avaliações para Representantes do Poder Público Federal\n");
+//                inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
+//            }
         }
     }
 
