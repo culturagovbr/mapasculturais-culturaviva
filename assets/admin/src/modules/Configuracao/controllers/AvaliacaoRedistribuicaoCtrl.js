@@ -27,6 +27,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
     $scope.marcaTodos = false;
+    $scope.checked = false;
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
@@ -68,6 +69,15 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             }
         }
     };
+
+    $scope.checked = function () {
+        if ($scope.checked == true) {
+            $scope.ufs[uf].redistribuicao = true;
+        } else {
+            $scope.ufs[uf].redistribuicao = false;
+        }
+    }
+
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         console.log(dto, 'aqui');
