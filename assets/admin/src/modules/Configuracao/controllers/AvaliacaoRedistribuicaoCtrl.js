@@ -73,7 +73,11 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         for (var ufx in $scope.ufs) {
             if ($scope.ufs[ufx].sigla == uf.row['sigla']) {
                 console.log('aqui');
+                console.log($scope.ufs[ufx].sigla);
+                console.log($scope.ufs[ufx].redistribuicao);
                 $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
+                console.log($scope.ufs[ufx].redistribuicao);
+
             }
         }
     }
