@@ -120,16 +120,18 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 }
 
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
-    var out = [];
+    var out = angular.module('ngchangeApp', []);
     console.log(dto);
     for (var uf in dto) {
-        console
-        if (dto[uf] === true) {
-            out.push(uf);
-        }
-        if (dto[uf].redistribuicao === true) {
-            out.push(dto[uf].sigla);
-        }
+
+        app.controller('ngchangeCtrl', function ($scope) {
+            $scope.getdetails = function () {
+                if ((dto[uf] === true) && (dto[uf].redistribuicao === true))
+                    $scope.result = true;
+                else
+                    $scope.result = false;
+            }
+        });
     }
     return out;
 };
