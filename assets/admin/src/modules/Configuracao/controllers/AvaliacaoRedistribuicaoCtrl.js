@@ -72,7 +72,6 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
-        console.log(dto, 'aqui');
         $http.post('/avaliacao/configurar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
@@ -125,11 +124,10 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     console.log(dto);
     for (var uf in dto) {
-        console.log(uf, '2');
-        if (dto[uf] === true || dto[uf] === false) {
+        if (dto[uf] === true) {
             out.push(uf);
         }
-        if (dto[uf].redistribuicao === true || dto[uf].redistribuicao === false) {
+        if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
