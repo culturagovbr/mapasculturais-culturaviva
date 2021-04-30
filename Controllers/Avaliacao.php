@@ -557,7 +557,7 @@ class Avaliacao extends Controller
         $this->requireAuthentication();
         $app = App::i();
         if ($app->user->is('rcv_agente_area')) {
-            include(__DIR__ . "/../scripts/rotinas/importar-inscricoes2.php");
+            include(__DIR__ . "/../scripts/rotinas/importar-inscricoes3.php");
             importar();
         } else {
             return $this->json(["message" => 'Você não tem permissão para realizar essa ação'], 403);
