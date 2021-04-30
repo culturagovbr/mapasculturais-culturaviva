@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../../../../../protected/application/bootstrap.php';
 
 // Remove timeout de execução do script
-set_time_limit(0);
+set_time_limit(-1);
 
 /**
  * Rotina para importação das inscrições cadastradas
@@ -33,11 +33,13 @@ set_time_limit(0);
  */
 function loadScript($file)
 {
+    set_time_limit(-1);
     return file_get_contents(__DIR__ . "/importar/$file");
 }
 
 function importar()
 {
+    set_time_limit(-1);
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
 
@@ -204,6 +206,7 @@ function importar()
  */
 function inserirAvaliacaoCertificador($conn, $filtro, $uf)
 {
+    set_time_limit(-1);
     $filtro['uf'] = $uf['sigla'];
 
     $inscricoes = $conn->fetchAll("SELECT
@@ -334,6 +337,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
  */
 function inserirAvaliacaoMinerva($conn)
 {
+    set_time_limit(-1);
     $inscricoes = $conn->fetchAll(loadScript('7-obter-inscricoes-avaliacoes-conflitantes.sql'));
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
@@ -369,6 +373,7 @@ function inserirAvaliacaoMinerva($conn)
 
 function notificarCertificacoesDeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Deferidas\n");
 
     $registros = $conn->fetchAll(loadScript('9-obter-inscricoes-certificadas.sql'));
@@ -413,6 +418,7 @@ function notificarCertificacoesDeferidas($app, $conn)
 
 function notificarCertificacoesIndeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Indeferidas\n");
 
     $registros = $conn->fetchAll(loadScript('10-obter-inscricoes-indeferidas.sql'));

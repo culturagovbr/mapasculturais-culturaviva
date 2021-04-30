@@ -203,6 +203,7 @@ function importar()
  */
 function inserirAvaliacaoCertificador($conn, $filtro, $uf)
 {
+    set_time_limit(-1);
     $whereCertTipo = 'AND cert.tipo = :tipo';
     $inscricoes = $conn->fetchAll("SELECT
                                         insc.id
@@ -219,7 +220,6 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                                         AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
                                     LEFT JOIN agent_relation rel_ponto
                                         ON rel_ponto.object_id = reg.id
-                                        AND rel_ponto.type = 'ponto'
                                         AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
                                     LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
                                     LEFT JOIN agent_meta ent_meta_uf
@@ -371,6 +371,7 @@ function inserirAvaliacaoMinerva($conn)
 
 function notificarCertificacoesDeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Deferidas\n");
 
     $registros = $conn->fetchAll(loadScript('9-obter-inscricoes-certificadas.sql'));
@@ -415,6 +416,7 @@ function notificarCertificacoesDeferidas($app, $conn)
 
 function notificarCertificacoesIndeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Indeferidas\n");
 
     $registros = $conn->fetchAll(loadScript('10-obter-inscricoes-indeferidas.sql'));
