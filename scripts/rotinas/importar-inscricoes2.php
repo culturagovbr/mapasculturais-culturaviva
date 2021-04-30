@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../../../../../protected/application/bootstrap.php';
 
 // Remove timeout de execução do script
-set_time_limit(0);
+set_time_limit(-1);
 
 /**
  * Rotina para importação das inscrições cadastradas
@@ -118,18 +118,9 @@ function importar()
 
 
     // 2º Passo: REGISTRO DE INSCRIÇÕES
+    // 2º Passo: REGISTRO DE INSCRIÇÕES
     print("Registra as inscricoes dos pontos de cultura\n");
-    $conn->executeQuery("INSERT INTO culturaviva.inscricao(agente_id, estado)
-                                SELECT
-                                    r.agent_id,
-                                    'P'
-                                FROM registration r
-                                LEFT JOIN culturaviva.inscricao insc
-                                    ON insc.agente_id = r.agent_id
-                                WHERE r.opportunity_id = 1
-                                AND r.status = 1
-                                AND insc.id IS NULL
-                                AND (insc.estado = 'P' OR insc.estado is null);");
+    $conn->executeQuery(loadScript('1-registrar-inscricoes.sql'));
 
     print("Registra as ressubmissões dos pontos de cultura\n");
     $conn->executeQuery(loadScript('11-registrar-ressubmissoes.sql'));
@@ -139,30 +130,13 @@ function importar()
     $conn->executeQuery(loadScript('2-remover-criterios-inscricoes_B.sql'));
 
     print("Registrar os critérios das inscrições\n");
-    $conn->executeQuery("INSERT INTO culturaviva.inscricao_criterio (criterio_id, inscricao_id)
-                                SELECT
-                                        crit.id,
-                                        insc.id
-                                FROM culturaviva.inscricao insc
-                                JOIN culturaviva.criterio crit
-                                    ON  crit.ativo = TRUE
-                                LEFT JOIN culturaviva.inscricao_criterio incrit
-                                    ON incrit.inscricao_id = insc.id
-                                    AND incrit.criterio_id = crit.id
-                                WHERE insc.estado = ANY(ARRAY['P'::text, 'R'::text])
-                                AND incrit.inscricao_id IS NULL;");
+    $conn->executeQuery(loadScript('3-incluir-criterios-inscricoes.sql'));
 
 
     // 3º Passo: DISTRIBUIR AVALIAÇÕES
+    // 3º Passo: DISTRIBUIR AVALIAÇÕES
     print("Remover avaliações avaliadores inativos:\n");
-    $conn->executeQuery("UPDATE culturaviva.avaliacao SET estado = 'C'
-                                WHERE certificador_id IN (
-                                    SELECT
-                                        id
-                                    FROM culturaviva.certificador cert
-                                    WHERE cert.ativo = FALSE OR cert.titular = FALSE
-                                )
-                                AND culturaviva.avaliacao.estado = ANY (ARRAY['P'::text, 'A'::text])");
+    $conn->executeQuery(loadScript('4-remover-avaliacoes-avaliador-inativo.sql'));
 
     //Procura estados selecionados para redistribuição
     $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
