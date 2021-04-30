@@ -27,7 +27,6 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
     $scope.marcaTodos = false;
-    $scope.checked = false;
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
@@ -69,9 +68,9 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             }
         }
     };
-
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
+        console.log(dto, 'aqui');
         $http.post('/avaliacao/configurar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
@@ -124,17 +123,13 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     console.log(dto);
     for (var uf in dto) {
+        console
         if (dto[uf] === true) {
-            out.push(uf);
-        } else {
-            var out = $scope.redistribuicao.indexOf(row.sigla);
-            $scope.redistribuicao.splice(out, 1);
             out.push(uf);
         }
         if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
-    console.log(out, 'resultado')
     return out;
 };
