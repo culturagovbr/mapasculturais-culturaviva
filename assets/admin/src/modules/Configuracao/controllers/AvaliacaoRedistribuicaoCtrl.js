@@ -26,7 +26,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.subTitulo = 'Configuração de rotina de redistribuição de avaliações para certificação de inscrições';
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
-    $scope.marcarTodos = false;
+    $scope.marcaTodos = false;
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
@@ -72,6 +72,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     $scope.redistribuicao = function (uf) {
         for (var ufx in $scope.ufs) {
             if ($scope.ufs[ufx].sigla == uf.row['sigla']) {
+
                 $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
             }
         }
@@ -131,7 +132,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
 AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     for (var uf in dto) {
-        if (dto[uf].redistribuicao == true) {
+        if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
