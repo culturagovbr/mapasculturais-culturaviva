@@ -61,15 +61,15 @@
     </div>
     <div class="form form-opcional">
         <div class="row">
-            <span class="destaque">Conte um pouco sobre a história do ponto de Cultura (800 caracteres)
+            <span class="destaque">Conte um pouco sobre a história do ponto de Cultura
                 <i class='hltip'
                    title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>
             </span>
             <label class="colunm1">
                 <span><b>{{ponto.longDescription}}</b></span>
                 <span ng-if="!ponto.longDescription"><b>Não informado</b></span>
-            </label>
 
+            </label>
         </div>
         <div class="clear"></div>
         <div class="row">
