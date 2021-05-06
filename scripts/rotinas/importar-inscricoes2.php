@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../../../../../protected/application/bootstrap.php';
 
 // Remove timeout de execução do script
-set_time_limit(0);
+set_time_limit(-1);
 
 /**
  * Rotina para importação das inscrições cadastradas
@@ -33,11 +33,13 @@ set_time_limit(0);
  */
 function loadScript($file)
 {
+    set_time_limit(-1);
     return file_get_contents(__DIR__ . "/importar/$file");
 }
 
 function importar()
 {
+    set_time_limit(-1);
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
 
@@ -118,18 +120,9 @@ function importar()
 
 
     // 2º Passo: REGISTRO DE INSCRIÇÕES
+    // 2º Passo: REGISTRO DE INSCRIÇÕES
     print("Registra as inscricoes dos pontos de cultura\n");
-    $conn->executeQuery("INSERT INTO culturaviva.inscricao(agente_id, estado)
-                                SELECT
-                                    r.agent_id,
-                                    'P'
-                                FROM registration r
-                                LEFT JOIN culturaviva.inscricao insc
-                                    ON insc.agente_id = r.agent_id
-                                WHERE r.opportunity_id = 1
-                                AND r.status = 1
-                                AND insc.id IS NULL
-                                AND (insc.estado = 'P' OR insc.estado is null);");
+    $conn->executeQuery(loadScript('1-registrar-inscricoes.sql'));
 
     print("Registra as ressubmissões dos pontos de cultura\n");
     $conn->executeQuery(loadScript('11-registrar-ressubmissoes.sql'));
@@ -139,30 +132,11 @@ function importar()
     $conn->executeQuery(loadScript('2-remover-criterios-inscricoes_B.sql'));
 
     print("Registrar os critérios das inscrições\n");
-    $conn->executeQuery("INSERT INTO culturaviva.inscricao_criterio (criterio_id, inscricao_id)
-                                SELECT
-                                        crit.id,
-                                        insc.id
-                                FROM culturaviva.inscricao insc
-                                JOIN culturaviva.criterio crit
-                                    ON  crit.ativo = TRUE
-                                LEFT JOIN culturaviva.inscricao_criterio incrit
-                                    ON incrit.inscricao_id = insc.id
-                                    AND incrit.criterio_id = crit.id
-                                WHERE insc.estado = ANY(ARRAY['P'::text, 'R'::text])
-                                AND incrit.inscricao_id IS NULL;");
-
+    $conn->executeQuery(loadScript('3-incluir-criterios-inscricoes.sql'));
 
     // 3º Passo: DISTRIBUIR AVALIAÇÕES
     print("Remover avaliações avaliadores inativos:\n");
-    $conn->executeQuery("UPDATE culturaviva.avaliacao SET estado = 'C'
-                                WHERE certificador_id IN (
-                                    SELECT
-                                        id
-                                    FROM culturaviva.certificador cert
-                                    WHERE cert.ativo = FALSE OR cert.titular = FALSE
-                                )
-                                AND culturaviva.avaliacao.estado = ANY (ARRAY['P'::text, 'A'::text])");
+    $conn->executeQuery(loadScript('4-remover-avaliacoes-avaliador-inativo.sql'));
 
     //Procura estados selecionados para redistribuição
     $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf;");
@@ -203,6 +177,7 @@ function importar()
  */
 function inserirAvaliacaoCertificador($conn, $filtro, $uf)
 {
+    set_time_limit(-1);
     $whereCertTipo = 'AND cert.tipo = :tipo';
     $inscricoes = $conn->fetchAll("SELECT
                                         insc.id
@@ -219,7 +194,6 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                                         AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
                                     LEFT JOIN agent_relation rel_ponto
                                         ON rel_ponto.object_id = reg.id
-                                        AND rel_ponto.type = 'ponto'
                                         AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
                                     LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
                                     LEFT JOIN agent_meta ent_meta_uf
@@ -336,6 +310,7 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
  */
 function inserirAvaliacaoMinerva($conn)
 {
+    set_time_limit(-1);
     $inscricoes = $conn->fetchAll(loadScript('7-obter-inscricoes-avaliacoes-conflitantes.sql'));
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
@@ -371,6 +346,7 @@ function inserirAvaliacaoMinerva($conn)
 
 function notificarCertificacoesDeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Deferidas\n");
 
     $registros = $conn->fetchAll(loadScript('9-obter-inscricoes-certificadas.sql'));
@@ -415,6 +391,7 @@ function notificarCertificacoesDeferidas($app, $conn)
 
 function notificarCertificacoesIndeferidas($app, $conn)
 {
+    set_time_limit(-1);
     print("Notificando via e-mail as inscrições Indeferidas\n");
 
     $registros = $conn->fetchAll(loadScript('10-obter-inscricoes-indeferidas.sql'));

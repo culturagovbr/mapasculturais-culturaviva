@@ -55,25 +55,35 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             });
         }
     };
-    $scope.marcarTodos = function (teste) {
-        if($scope.marcaTodos == false){
+    $scope.marcarTodos = function () {
+        if ($scope.marcaTodos === false) {
             $scope.marcaTodos = true;
             for (var uf in $scope.ufs) {
                 $scope.ufs[uf].redistribuicao = true;
             }
-        }else{
+        } else {
             $scope.marcaTodos = false;
             for (var uf in $scope.ufs) {
                 $scope.ufs[uf].redistribuicao = false;
             }
         }
     };
+
+    $scope.redistribuicao = function (uf) {
+        for (var ufx in $scope.ufs) {
+            if ($scope.ufs[ufx].sigla == uf.row['sigla']) {
+
+                $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
+            }
+        }
+    }
+
     $scope.salvar = function () {
         var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
         $http.post('/avaliacao/configurar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
-                reload: false,
+                reload: true,
                 inherit: true,
                 notify: true
             });
@@ -122,12 +132,10 @@ AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
     var out = [];
     console.log(dto);
     for (var uf in dto) {
-        if(dto[uf] == true){
-            out.push(uf);
-        }
-        if(dto[uf].redistribuicao == true){
+        if (dto[uf].redistribuicao === true) {
             out.push(dto[uf].sigla);
         }
     }
+    console.log(dto, '2');
     return out;
 };
