@@ -55,7 +55,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
                 <header>
                     <span class="icon icon-user"></span>
                     <!--                    <h4> 1. Entidade ou Coletivo Cultural</h4>-->
-                    <h4> 1. Identificação Responsável Cadastro</h4>
+                    <h4> 1. Identificação Responsável</h4>
                     <span class="btn_mais"> + </span>
 
                 </header>
