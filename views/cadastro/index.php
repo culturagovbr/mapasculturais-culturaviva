@@ -11,16 +11,18 @@ $this->bodyProperties['ng-app'] = "culturaviva";
       margin-left: 760px;
       margin-top: -191px;
   }
-  #selo-img{
-    height: 180px;
-    width:auto;
+
+  #selo-img {
+      height: 180px;
+      width: auto;
   }
-  canvas{
+
+  canvas {
       width: 10px;
       height: 10px;
   }
 </style>
-<div id="page-cadastro" ng-controller="DashboardCtrl">
+<div class="col-md-10" id="page-cadastro" ng-controller="DashboardCtrl">
     <?php $this->part('messages'); ?>
     <section class="texto">
 <!--        <div class="messenger">
