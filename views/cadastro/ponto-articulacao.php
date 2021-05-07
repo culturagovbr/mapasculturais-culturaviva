@@ -100,7 +100,6 @@
             </div>
 
             <div class="colunm-full">
-                <span class="destaque">Participa de instância de representação junto ao Ministério do Turismo? * </span>
                 <span class="destaque" ng-if="agent_entidade.tipoPontoCulturaDesejado != 'pontao'">Participa de instância de representação junto ao Ministério do Turismo? </span>
                 <span class="destaque" ng-if="agent_entidade.tipoPontoCulturaDesejado == 'pontao'">Participa de instância de representação junto ao Ministério do Turismo?* </span>
             </div>
