@@ -49,17 +49,17 @@ $this->bodyProperties['ng-app'] = "culturaviva";
     <section class="boxs-cadastro">
 	<article class="boxs-cadastro" style="width: 100%; background: #078979 none repeat scroll 0% 0%;"><header><center><h4>Certificação Simplificada</h4></center></header></article>
         <a href="<?php echo $app->createUrl('cadastro', 'responsavel'); ?>">
-        <article class="box-info-responsavel">
-            <header>
-              <span class="icon icon-user"></span>
-              <h4> 1. Identificação Responsável Cadastro</h4>
-              <span class="btn_mais"> + </span>
-            </header>
-            <div class="infos">
-              <div class="texto">
-                <p>Precisamos saber quem é você e pegar seus contatos</p>
-              </div>
-            </div>
+            <article class="box-info-responsavel border-left">
+                <header>
+                    <span class="icon icon-user"></span>
+                    <h4> 1. Identificação Responsável Cadastro</h4>
+                    <span class="btn_mais"> + </span>
+                </header>
+                <div class="infos">
+                    <div class="texto">
+                        <p>Precisamos saber quem é você e pegar seus contatos</p>
+                    </div>
+                </div>
         </article>
         </a>
         <a href="<?php echo $app->createUrl('cadastro', 'entidadeDados'); ?>">
