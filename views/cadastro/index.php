@@ -22,7 +22,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
       height: 10px;
   }
 </style>
-<div class="col-md-10" id="page-cadastro" ng-controller="DashboardCtrl">
+<div id="page-cadastro" ng-controller="DashboardCtrl">
     <?php $this->part('messages'); ?>
     <section class="texto">
 <!--        <div class="messenger">
