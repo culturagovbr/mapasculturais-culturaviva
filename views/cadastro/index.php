@@ -11,11 +11,13 @@ $this->bodyProperties['ng-app'] = "culturaviva";
       margin-left: 760px;
       margin-top: -191px;
   }
-  #selo-img{
-    height: 180px;
-    width:auto;
+
+  #selo-img {
+      height: 180px;
+      width: auto;
   }
-  canvas{
+
+  canvas {
       width: 10px;
       height: 10px;
   }
@@ -49,18 +51,19 @@ $this->bodyProperties['ng-app'] = "culturaviva";
     <section class="boxs-cadastro">
 	<article class="boxs-cadastro" style="width: 100%; background: #078979 none repeat scroll 0% 0%;"><header><center><h4>Certificação Simplificada</h4></center></header></article>
         <a href="<?php echo $app->createUrl('cadastro', 'responsavel'); ?>">
-        <article class="box-info-responsavel">
-            <header>
-              <span class="icon icon-user"></span>
-              <h4> 1. Identificação Responsável Cadastro</h4>
-              <span class="btn_mais"> + </span>
-            </header>
-            <div class="infos">
-              <div class="texto">
-                <p>Precisamos saber quem é você e pegar seus contatos</p>
-              </div>
-            </div>
-        </article>
+            <article class="box-info-responsavel border-left">
+                <header>
+                    <span class="icon icon-user"></span>
+                    <h4> 1. Identificação Responsável</h4>
+                    <span class="btn_mais"> + </span>
+
+                </header>
+                <div class="infos">
+                    <div class="texto">
+                        <p>Precisamos saber quem é você e pegar seus contatos</p>
+                    </div>
+                </div>
+            </article>
         </a>
         <a href="<?php echo $app->createUrl('cadastro', 'entidadeDados'); ?>">
         <article class="box-entidade-dados border-left">
@@ -109,7 +112,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
         </a>
 
         <a href="<?php echo $app->createUrl('cadastro', 'economiaViva'); ?>">
-            <article class="box-ponto-mapa">
+            <article style="width: 100%" class="box-ponto-mapa">
                 <header>
                     <span class="icon icon-dollar"></span>
                     <h4> 5. Selos Rede Viva (Opcional)</h4>
