@@ -1,13 +1,15 @@
 <?php
-    $this->bodyProperties['ng-app'] = "culturaviva";
-    $this->layout = 'cadastro';
-    $this->cadastroTitle = '3. Portfólio e Anexos';
-    $this->cadastroText = 'Inclua suas fotos, links e redes sociais! Isto nos ajuda a entender que tipo de atividades culturais você realiza como Ponto de Cultura!';
-    $this->cadastroIcon = 'icon-picture';
-    $this->cadastroPageClass = 'portfolio page-base-form';
-    //$this->cadastroLinkContinuar = 'entidadeFinanciamento';
-    $this->cadastroLinkContinuar = 'articulacao';
-    $this->cadastroLinkBack = 'entidadeDados';
+require __DIR__ . '/../../assets/php/functions.php';
+
+$this->bodyProperties['ng-app'] = "culturaviva";
+$this->layout = 'cadastro';
+$this->cadastroTitle = '3. Portfólio e Anexos';
+$this->cadastroText = 'Inclua suas fotos, links e redes sociais! Isto nos ajuda a entender que tipo de atividades culturais você realiza como Ponto de Cultura!';
+$this->cadastroIcon = 'icon-picture';
+$this->cadastroPageClass = 'portfolio page-base-form';
+//$this->cadastroLinkContinuar = 'entidadeFinanciamento';
+$this->cadastroLinkContinuar = 'articulacao';
+$this->cadastroLinkBack = 'entidadeDados';
 ?>
 <form name="form_portifolio" ng-controller="PortifolioCtrl">
     <?php $this->part('messages'); ?>
