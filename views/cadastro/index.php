@@ -52,15 +52,17 @@ $this->bodyProperties['ng-app'] = "culturaviva";
             <article class="box-info-responsavel border-left">
                 <header>
                     <span class="icon icon-user"></span>
-                    <h4> 1. Identificação Responsável Cadastro</h4>
+                    <h4> 1. Entidade ou Coletivo Cultural</h4>
+                    <!--                    <h4> 1. Identificação Responsável Cadastro</h4>-->
                     <span class="btn_mais"> + </span>
+
                 </header>
                 <div class="infos">
                     <div class="texto">
                         <p>Precisamos saber quem é você e pegar seus contatos</p>
                     </div>
                 </div>
-        </article>
+            </article>
         </a>
         <a href="<?php echo $app->createUrl('cadastro', 'entidadeDados'); ?>">
         <article class="box-entidade-dados border-left">
