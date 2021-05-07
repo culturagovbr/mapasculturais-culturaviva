@@ -786,7 +786,7 @@
                     $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
                 }
 
-                if ((sucesso.longDescription.indexOf("3") > 1) || (sucesso.longDescription > 1)) {
+                if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
                     $scope.save_field('longDescription');
                     $scope.messages.show('sucesso', 'alterações salvas');
                 }
