@@ -113,7 +113,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
         </a>
 
         <a href="<?php echo $app->createUrl('cadastro', 'economiaViva'); ?>">
-            <article class="box-ponto-mapa">
+            <article width="100%" class="box-ponto-mapa">
                 <header>
                     <span class="icon icon-dollar"></span>
                     <h4> 5. Selos Rede Viva (Opcional)</h4>
