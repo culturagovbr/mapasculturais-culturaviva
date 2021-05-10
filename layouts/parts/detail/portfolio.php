@@ -18,7 +18,7 @@
                 <span ng-if="!ponto['@files:portifolio'].url && !ponto.atividadesEmRealizacaoLink"><b>Não informado</b></span>
             </div>
         </div>
-        <div>
+        <div class="row" ng-if="entidade.tipoOrganizacao == 'coletivo'">
             <h4>Ata de composição e constituição do coletivo</h4>
             <div class="row">
                 <span class="destaque">Ata*</span>
@@ -36,7 +36,7 @@
         <!-- <h4>Carta de Autorização de Coletivo sem Constituição Jurídica</h4> -->
         <!-- </div> -->
         <div class="row" ng-if="entidade.tipoOrganizacao == 'coletivo'">
-            <span class="destaque">Carta de Autorização de Coletivo sem Constituição Jurídica*</span>
+            <span class="destaque">Carta de Autorização de Coletivo sem Constituição Jurídica</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="agent['@files:ata'].url"
                    href="{{ponto['@files:ata'].url}}"
@@ -53,7 +53,7 @@
         <!-- <div class="row"> -->
         <!-- <h4>Cartas de Reconhecimento</h4> -->
         <!-- </div> -->
-        <div class="row" ng-if="entidade.tipoOrganizacao == 'coletivo'">
+        <div class="row">
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
