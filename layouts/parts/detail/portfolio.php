@@ -35,7 +35,7 @@
         <!-- <div class="row"> -->
         <!-- <h4>Carta de Autorização de Coletivo sem Constituição Jurídica</h4> -->
         <!-- </div> -->
-        <div class="row" ng-if="entidade.tipoOrganizacao == 'ponto_coletivo'">
+        <div class="row" ng-if="entidade.tipoOrganizacao == 'coletivo'">
             <span class="destaque">Carta de Autorização de Coletivo sem Constituição Jurídica*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="agent['@files:ata'].url"
