@@ -53,7 +53,7 @@
         <!-- <div class="row"> -->
         <!-- <h4>Cartas de Reconhecimento</h4> -->
         <!-- </div> -->
-        <div class="row">
+        <div class="row" ng-if="entidade.tipoOrganizacao == 'coletivo'">
             <span class="destaque">Cartas de Reconhecimento*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="ponto['@files:carta1'].url"
