@@ -33,6 +33,24 @@
         </div>
 
         <!-- <div class="row"> -->
+        <!-- <h4>Carta de Autorização de Coletivo sem Constituição Jurídica</h4> -->
+        <!-- </div> -->
+        <div class="row" ng-if="entidade.tipoOrganizacao == 'ponto_coletivo'">
+            <span class="destaque">Carta de Autorização de Coletivo sem Constituição Jurídica*</span>
+            <div class="colunm1">
+                <a style="font-size: 12px; color: inherit" ng-if="agent['@files:ata'].url"
+                   href="{{agent['@files:ata'].url}}"
+                   target="_blank">
+                    <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar primeira carta"/>
+                    {{agent.files.ata.name}}
+                    <p>Baixar primeira carta</p>
+                </a>
+                <span ng-if="!agent['@files:ata'].url"><b>Não informado</b></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- <div class="row"> -->
         <!-- <h4>Cartas de Reconhecimento</h4> -->
         <!-- </div> -->
         <div class="row">
