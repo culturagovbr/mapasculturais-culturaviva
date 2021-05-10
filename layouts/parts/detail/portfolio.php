@@ -39,7 +39,7 @@
             <span class="destaque">Carta de Autorização de Coletivo sem Constituição Jurídica*</span>
             <div class="colunm1">
                 <a style="font-size: 12px; color: inherit" ng-if="agent['@files:ata'].url"
-                   href="{{agent['@files:ata'].url}}"
+                   href="{{ponto['@files:ata'].url}}"
                    target="_blank">
                     <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar primeira carta"/>
                     {{agent.files.ata.name}}
