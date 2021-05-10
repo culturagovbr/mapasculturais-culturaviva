@@ -18,7 +18,7 @@
                 <span ng-if="!ponto['@files:portifolio'].url && !ponto.atividadesEmRealizacaoLink"><b>Não informado</b></span>
             </div>
         </div>
-        <div ng-if="entidade.tipoOrganizacao == 'coletivo'">
+        <div>
             <h4>Ata de composição e constituição do coletivo</h4>
             <div class="row">
                 <span class="destaque">Ata*</span>
