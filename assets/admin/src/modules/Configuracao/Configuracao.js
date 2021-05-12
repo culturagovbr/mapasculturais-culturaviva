@@ -1,11 +1,15 @@
 'use strict';
 
 angular
-    .module('Configuracao', [])
-    .config(ConfiguracaoConfig);
+    .module('Configuracao', [
+        'blockUI',
+        'oc.lazyLoad'
+        ])
+    .config(ConfiguracaoConfig, AppConfiguracaoConfig);
 
 
 ConfiguracaoConfig.$inject = ['blockUIConfig'];
+AppConfiguracaoConfig.$inject = ['blockUIConfig'];
 
 function ConfiguracaoConfig(blockUIConfig) {
     debugger;
@@ -16,4 +20,24 @@ function ConfiguracaoConfig(blockUIConfig) {
             return false;
         }
     };
+}
+
+function AppConfiguracaoConfig(blockUIConfig) {
+
+    /*========================================================================================
+     * BlockUI
+     *----------------------------------------------------------------------------------------*/
+    blockUIConfig.message = 'Carregando...';
+    blockUIConfig.delay = 100;
+    blockUIConfig.autoInjectBodyBlock = false;
+    blockUIConfig.template = [
+        '<div class="block-ui-overlay"></div>',
+        '<div class="block-ui-message-container" aria-live="assertive" aria-atomic="true">',
+        '    <div class="block-ui-message" ng-class="$_blockUiMessageClass">',
+        '        <img src="/assets/img/cultura-viva-share.png" class="heartbeat-loading heartbeat" />',
+        '        {{ state.message }}',
+        '    </div>',
+        '</div>'
+    ].join('');
+    /*========================================================================================*/
 }
