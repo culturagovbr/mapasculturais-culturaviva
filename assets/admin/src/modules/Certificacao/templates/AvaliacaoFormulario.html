@@ -4,7 +4,7 @@
         <tc-input ng-model="avaliacao.pontoNome"
                   label="Nome do Ponto/Pontão de Cultura"
                   col="4"
-                  readonly="true">
+                  readonly="cert.agente_id && cert.agente_id === cert.agente_id ? 'false' : 'true'">
         </tc-input>
 
         <tc-input ng-model="avaliacao.certificadorNome"
