@@ -14,9 +14,7 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http'];
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    // {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
@@ -46,9 +44,6 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        // uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-        //     return item.valor === dto.uf;
-        // }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
         }),
@@ -75,7 +70,6 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        // uf: dto.uf
     };
 };
 
@@ -111,19 +105,9 @@ function CertificadorFormularioCtrl($scope, $state, $http) {
             sref: 'pagina.configuracao.certificador.lista'
         }
     ];
-    // CertificadorFormularioCtrl.ESTADOS = (function () {
-    //     var out = [];
-    //     for (var uf in estadosBrasil) {
-    //         if (estadosBrasil.hasOwnProperty(uf)) {
-    //             out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-    //         }
-    //     }
-    //     return out;
-    // })();
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
-    // $scope.uf = CertificadorFormularioCtrl.ESTADOS;
     // Variaveis utilitárias
     $scope.ref = {
         buscarAgente: false,
@@ -186,9 +170,7 @@ function CertificadorFormularioCtrl($scope, $state, $http) {
         }
 
         $scope.agentes = [];
-
         $scope.$emit('msgClear', 'filtro-promocoes');
-
         $http.get('/certificador/buscarAgente', {
             params: {
                 nome: texto
