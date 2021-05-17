@@ -141,6 +141,11 @@ class Certificador extends Controller
             $certificador->tipo = $data->tipo;
         }
 
+        //Salva a UF
+        if (isset($data->uf) && !CertificadorEntity::TP_MINERVA) {
+            $certificador->uf = $data->uf->valor;
+        }
+
         // Permite alterar apenas status e grupo do certificador
         $certificador->ativo = $data->ativo ? 't' : 'f';
         $certificador->titular = $data->titular ? 't' : 'f';
