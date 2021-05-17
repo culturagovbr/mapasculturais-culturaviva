@@ -14,9 +14,9 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasi
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    {codigo: 'E', label: 'Poder Público Estadual'},
+    // {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    {codigo: 'S', label: 'Sociedade Civil Estadual'},
+    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 

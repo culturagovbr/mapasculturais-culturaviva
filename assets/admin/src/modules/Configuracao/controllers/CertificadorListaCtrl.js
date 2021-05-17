@@ -51,10 +51,10 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
     }
     filter();
 
-    function filter() {
+    function filter(uf) {
         $http.get('/certificador/listar', {
             params: {
-                // uf: uf
+                uf: uf
             }
         }).then(function (response) {
             $scope.certificadores.civil = {
@@ -65,14 +65,6 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
                     return cert.tipo === 'C' && !cert.titular;
                 })
             };
-            // $scope.certificadores.civilEstadual = {
-            //     titular: response.data.filter(function (cert) {
-            //         return cert.tipo === 'S' && cert.titular;
-            //     }),
-            //     suplente: response.data.filter(function (cert) {
-            //         return cert.tipo === 'S' && !cert.titular;
-            //     })
-            // };
             $scope.certificadores.publico = {
                 titular: response.data.filter(function (cert) {
                     return cert.tipo === 'P' && cert.titular;
@@ -81,14 +73,6 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
                     return cert.tipo === 'P' && !cert.titular;
                 })
             };
-            // $scope.certificadores.publicoEstadual = {
-            //     titular: response.data.filter(function (cert) {
-            //         return cert.tipo === 'E' && cert.titular;
-            //     }),
-            //     suplente: response.data.filter(function (cert) {
-            //         return cert.tipo === 'E' && !cert.titular;
-            //     })
-            // };
             $scope.certificadores.minerva = {
                 titular: response.data.filter(function (cert) {
                     return cert.tipo === 'M' && cert.titular;
