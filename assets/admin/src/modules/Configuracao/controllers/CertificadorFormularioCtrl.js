@@ -14,12 +14,15 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasi
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    // {codigo: 'E', label: 'Poder Público Estadual'},
+    {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
+    {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
+// [{codigo: 'P', label: 'Poder Público'},
+//     {codigo: 'C', label: 'Sociedade Civil'},
+//     {codigo: 'M', label: 'Voto de Minerva'}]
 
 CertificadorFormularioCtrl.OPCOES_ATIVO = [
     {valor: true, label: 'Ativo'},
@@ -43,8 +46,8 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        uf: CertificadorFormularioCtrl.ESTADOS.find(function () {
-            return null;
+        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
+            return item.valor === dto.uf;
         }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
@@ -72,7 +75,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        uf: dto.uf ? dto.uf : null
+        uf: dto.uf
     };
 };
 
@@ -120,7 +123,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
-    $scope.uf = null;
+    $scope.uf = CertificadorFormularioCtrl.ESTADOS;
     // Variaveis utilitárias
     $scope.ref = {
         buscarAgente: false,
@@ -153,7 +156,6 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
 
     $scope.salvar = function () {
         var dto = CertificadorFormularioCtrl.converterParaSalvar($scope.dto);
-        console.log($scope.dto);
         $http.post('/certificador/salvar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Agente de Certificação salvo com sucesso', null, 'success');
             if (novoRegistro) {
@@ -168,7 +170,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
                 $state.reload();
             }
         }, function (response) {
-            var msg = 'Erro inesperado ao salvar dados';
+            var msg = 'Erro inesperado salvar dados';
             if (response.data && response.data.message) {
                 msg = response.data.message;
             }
