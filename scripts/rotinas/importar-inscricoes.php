@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../../../../../protected/application/bootstrap.php';
 
 // Remove timeout de execução do script
-set_time_limit(-1);
+set_time_limit(0);
 
 /**
  * Rotina para importação das inscrições cadastradas
@@ -186,6 +186,7 @@ function inserirAvaliacaoCertificador($conn, $filtro)
         }
         array_push($certInscric[$idx], $inscricao['id']);
     }
+
 
 
     foreach ($certificadores as $index => $certificador) {
@@ -379,4 +380,4 @@ function notificarCertificacoesIndeferidas($app, $conn)
     }
 }
 
-importar1();
+importar();
