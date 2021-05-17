@@ -238,6 +238,9 @@ class Avaliacao extends Controller
                 AND rel_ponto.type = 'ponto'
                 AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
             LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
+            LEFT JOIN agent_meta ent_meta_uf
+                ON  ent_meta_uf.object_id = entidade.id
+                AND ent_meta_uf.key = 'En_Estado'
             LEFT JOIN agent_meta ent_meta_municipio
                 ON  ent_meta_municipio.object_id = entidade.id
                 AND ent_meta_municipio.key = 'En_Municipio'

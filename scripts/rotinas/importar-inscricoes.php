@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../../../../../protected/application/bootstrap.php';
 
 // Remove timeout de execução do script
-set_time_limit(0);
+set_time_limit(-1);
 
 /**
  * Rotina para importação das inscrições cadastradas
