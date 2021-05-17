@@ -4,7 +4,7 @@ angular
     .module('Configuracao')
     .controller('CertificadorListaCtrl', CertificadorListaCtrl);
 
-CertificadorListaCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
+CertificadorListaCtrl.$inject = ['$scope', '$state', '$http'];
 
 /**
  * Listagem de certificadores
@@ -14,7 +14,7 @@ CertificadorListaCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
  * @param {type} $http
  * @returns {undefined}
  */
-function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
+function CertificadorListaCtrl($scope, $state, $http) {
 
 
     // Configuração da página
@@ -22,15 +22,15 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
     $scope.pagina.subTitulo = 'Listagem de Agentes de certificação';
     $scope.pagina.classTitulo = '';
     $scope.pagina.ajudaTemplateUrl = '';
-    $scope.uf = (function () {
-        var out = [];
-        for (var uf in estadosBrasil) {
-            if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-            }
-        }
-        return out;
-    })();
+    // $scope.uf = (function () {
+    //     var out = [];
+    //     for (var uf in estadosBrasil) {
+    //         if (estadosBrasil.hasOwnProperty(uf)) {
+    //             out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
+    //         }
+    //     }
+    //     return out;
+    // })();
     $scope.pagina.breadcrumb = [
         {
             title: 'Início',
@@ -46,10 +46,6 @@ function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
     $scope.certificadores = {};
 
 
-    $scope.filtrar = function (uf) {
-        filter(uf.valor);
-    }
-    filter();
 
     function filter() {
         $http.get('/certificador/listar', {

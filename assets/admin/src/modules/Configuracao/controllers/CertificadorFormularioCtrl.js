@@ -5,7 +5,7 @@ angular
     .controller('CertificadorFormularioCtrl', CertificadorFormularioCtrl);
 
 
-CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
+CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http'];
 
 /**
  * O tipo de certificador sendo cadastrado
@@ -42,9 +42,9 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-            return item.valor === dto.uf;
-        }),
+        // uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
+        //     return item.valor === dto.uf;
+        // }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
         }),
@@ -83,7 +83,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
  * @param {type} $http
  * @returns {undefined}
  */
-function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
+function CertificadorFormularioCtrl($scope, $state, $http) {
 
     var codigo = $state.params.id;
     var novoRegistro = (!codigo || codigo === '');
@@ -106,19 +106,19 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
             sref: 'pagina.configuracao.certificador.lista'
         }
     ];
-    CertificadorFormularioCtrl.ESTADOS = (function () {
-        var out = [];
-        for (var uf in estadosBrasil) {
-            if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-            }
-        }
-        return out;
-    })();
+    // CertificadorFormularioCtrl.ESTADOS = (function () {
+    //     var out = [];
+    //     for (var uf in estadosBrasil) {
+    //         if (estadosBrasil.hasOwnProperty(uf)) {
+    //             out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
+    //         }
+    //     }
+    //     return out;
+    // })();
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
-    $scope.uf = CertificadorFormularioCtrl.ESTADOS;
+    // $scope.uf = CertificadorFormularioCtrl.ESTADOS;
     // Variaveis utilitárias
     $scope.ref = {
         buscarAgente: false,
