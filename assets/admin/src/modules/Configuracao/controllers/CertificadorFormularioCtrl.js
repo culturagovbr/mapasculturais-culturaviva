@@ -169,12 +169,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
             } else {
                 $state.reload();
             }
-        }, function (response) {
-            var msg = 'Erro inesperado salvar dados';
-            if (response.data && response.data.message) {
-                msg = response.data.message;
-            }
-            $scope.$emit('msg', msg, null, 'error', 'formulario');
+        }, function () {
         });
     };
 

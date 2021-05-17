@@ -38,18 +38,18 @@
         >
         </tc-select>
         <tc-select
-                ng-model="dto.uf"
-                label="UF Certificador"
                 col="4"
                 field="label"
-                options="uf"
+                label="UF Certificador"
                 ng-if="dto.tipo.codigo != 'M' && dto.tipo.codigo != 'P' && dto.tipo.codigo != 'C'"
+                ng-model="dto.uf"
+                options="uf"
         >
         </tc-select>
         <tc-select
-                ng-model="dto.titular"
-                label="Grupo"
                 help="Informe se este Certificador é Titular ou Suplente"
+                label="Grupo"
+                ng-model="dto.titular"
                 col-input="2"
                 field="label"
                 options="opcoesGrupo"

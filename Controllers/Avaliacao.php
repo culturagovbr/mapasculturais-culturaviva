@@ -29,164 +29,35 @@ class Avaliacao extends Controller
         $this->requireAuthentication();
         $app = App::i();
 
-        $agenteId = $app->user->profile->id;
-        if ($app->user->is('rcv_agente_area')) {
-            // Agente da área pode ver avaliações de todos os certificadores
-            $agenteId = 0;
+        $usuario = $app->user;
+
+        $agenteIdFiltro = $usuario->profile->id;
+        if ($usuario->is('rcv_agente_area')) {
+            // Agente da área pode ver os totais de todos os certificadores
+            $agenteIdFiltro = 0;
         }
 
         $sql = "
-            WITH avaliacoes AS (
-                SELECT
-                    avl.id,
-                    avl.inscricao_id,
-                    avl.certificador_id,
-                    cert.tipo AS certificador_tipo,
-                    cert.agente_id,
-                    cert.uf AS certificador_uf,
-                    agt.name AS certificador_nome,
-                    avl.estado
-                FROM culturaviva.avaliacao avl
-                JOIN culturaviva.certificador cert ON cert.id = avl.certificador_id
-                JOIN agent agt ON agt.id = cert.agente_id
-                WHERE estado <> 'C'
-            )
             SELECT
-                insc.id,
-                insc.agente_id,
-                insc.estado,
-                usuario.id              AS usuario_id,
-                ponto.name              AS ponto_nome,
-                ponto.id                AS ponto_id,
-                entidade.name           AS entidade_nome,
-                entidade.id             AS entidade_id,
-                tp.value                AS tipo_ponto_desejado,
-                
-                avl_p.id                AS avaliacao_publica_federal_id,
-                avl_p.estado            AS avaliacao_publica_federal_estado,
-                avl_p.certificador_nome AS avaliacao_publica_federal_certificador,
-                avl_p.agente_id         AS avaliacao_publica_federal_certificador_id,
-                
-                avl_e.id                AS avaliacao_publica_estadual_id,
-                avl_e.estado            AS avaliacao_publica_estadual_estado,
-                avl_e.certificador_nome AS avaliacao_publica_estadual_certificador,
-                avl_e.agente_id         AS avaliacao_publica_estadual_certificador_id,
-                avl_e.certificador_uf   AS avaliacao_publica_estadual_certificador_uf,
-                
-                avl_c.id                AS avaliacao_civil_federal_id,
-                avl_c.estado            AS avaliacao_civil_federal_estado,
-                avl_c.certificador_nome AS avaliacao_civil_federal_certificador,
-                avl_c.agente_id         AS avaliacao_civil_federal_certificador_id,
-                
-                avl_s.id                AS avaliacao_civil_estadual_id,
-                avl_s.estado            AS avaliacao_civil_estadual_estado,
-                avl_s.certificador_nome AS avaliacao_civil_estadual_certificador,
-                avl_s.agente_id         AS avaliacao_civil_estadual_certificador_id,
-                avl_s.certificador_uf   AS avaliacao_civil_estadual_certificador_uf,
-                
-                avl_m.id                AS avaliacao_minerva_id,
-                avl_m.estado            AS avaliacao_minerva_estado,
-                avl_m.certificador_nome AS avaliacao_minerva_certificador,
-                avl_m.agente_id         AS avaliacao_minerva_certificador_id
-            FROM culturaviva.inscricao insc
-            LEFT JOIN agent agente ON agente.id = insc.agente_id
-            LEFT JOIN usr usuario ON usuario.id = agente.user_id
-            LEFT JOIN registration reg
-                on reg.agent_id = insc.agente_id
-                AND reg.opportunity_id = 1
-                AND reg.status = 1
-            LEFT JOIN agent_relation rel_entidade
-                ON rel_entidade.object_id = reg.id
-                AND rel_entidade.type = 'entidade'
-                AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
-            LEFT JOIN agent_relation rel_ponto
-                ON rel_ponto.object_id = reg.id
-                AND rel_ponto.type = 'ponto'
-                AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
-            LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
-            LEFT JOIN agent_meta ent_meta_uf
-                ON  ent_meta_uf.object_id = entidade.id
-                AND ent_meta_uf.key = 'En_Estado'
-            LEFT JOIN agent_meta ent_meta_municipio
-                ON  ent_meta_municipio.object_id = entidade.id
-                AND ent_meta_municipio.key = 'En_Municipio'
-            LEFT JOIN agent ponto ON ponto.id = rel_ponto.agent_id
-            LEFT JOIN agent_meta tp
-                ON tp.key = 'tipoPontoCulturaDesejado'
-                AND tp.object_id = entidade.id
-            LEFT JOIN avaliacoes avl_p
-                ON insc.id = avl_p.inscricao_id
-                AND avl_p.certificador_tipo = 'P'
-            LEFT JOIN avaliacoes avl_e
-                ON insc.id = avl_e.inscricao_id
-                AND avl_e.certificador_tipo = 'E'    
-            LEFT JOIN avaliacoes avl_c
-                ON insc.id = avl_c.inscricao_id
-                AND avl_c.certificador_tipo = 'C'
-            LEFT JOIN avaliacoes avl_s
-                ON insc.id = avl_s.inscricao_id
-                AND avl_s.certificador_tipo = 'S'
-            LEFT JOIN avaliacoes avl_m
-                ON insc.id = avl_m.inscricao_id
-                AND avl_m.certificador_tipo = 'M'
-            WHERE 1=1
-            AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)
-            AND (
-                :estado = ''
-                OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado])
-                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado]::varchar[]))
-            )
-            AND (
-                :nome = ''
-                OR unaccent(lower(ponto.name)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(entidade.name)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_c.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_e.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_s.certificador_nome)) LIKE unaccent(lower(:nome))
-            )
-            AND (:uf = '' OR ent_meta_uf.value = :uf)
-            AND (:municipio = ''
-                OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
-            ORDER BY insc.agente_id, ts_criacao DESC
-           ";
-
+                count(CASE WHEN avl.estado = 'P' THEN 1 END) as pendentes,
+                count(CASE WHEN avl.estado = 'A' THEN 1 END) as em_analise,
+                count(CASE WHEN avl.estado = ANY(ARRAY['D','I']) THEN 1 END) as finalizadas
+            FROM culturaviva.avaliacao avl
+            JOIN culturaviva.certificador cert ON cert.id = avl.certificador_id
+            WHERE avl.estado <> 'C'
+            AND (:agenteId = 0 OR cert.agente_id = :agenteId)";
 
         $campos = [
-            'id',
+            'pendentes',
+            'em_analise',
+            'finalizadas'
         ];
-        $parametros = [
-            'agenteId' => $agenteId,
-            'estado' => 'P',
-            'nome' => isset($this->data['nome']) ? "%{$this->data['nome']}%" : '',
-            'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
-            'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
-        ];
-        $resultP = (new NativeQueryUtil($sql, $campos, $parametros))->getTotal();
 
         $parametros = [
-            'agenteId' => $agenteId,
-            'estado' => 'A',
-            'nome' => isset($this->data['nome']) ? "%{$this->data['nome']}%" : '',
-            'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
-            'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
+            'agenteId' => $agenteIdFiltro
         ];
-        $resultA = (new NativeQueryUtil($sql, $campos, $parametros))->getTotal();
 
-        $parametros = [
-            'agenteId' => $agenteId,
-            'estado' => 'F',
-            'nome' => isset($this->data['nome']) ? "%{$this->data['nome']}%" : '',
-            'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
-            'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
-        ];
-        $resultF = (new NativeQueryUtil($sql, $campos, $parametros))->getTotal();
-
-        $result['pendentes'] = $resultP;
-        $result['emAnalise'] = $resultA;
-        $result['finalizadas'] = $resultF;
-        $this->json($result);
+        $this->json((new NativeQueryUtil($sql, $campos, $parametros))->getSingleResult());
     }
 
     /**
@@ -215,7 +86,6 @@ class Avaliacao extends Controller
                     avl.certificador_id,
                     cert.tipo AS certificador_tipo,
                     cert.agente_id,
-                    cert.uf AS certificador_uf,
                     agt.name AS certificador_nome,
                     avl.estado
                 FROM culturaviva.avaliacao avl
@@ -239,22 +109,10 @@ class Avaliacao extends Controller
                 avl_p.certificador_nome AS avaliacao_publica_federal_certificador,
                 avl_p.agente_id         AS avaliacao_publica_federal_certificador_id,
                 
-                avl_e.id                AS avaliacao_publica_estadual_id,
-                avl_e.estado            AS avaliacao_publica_estadual_estado,
-                avl_e.certificador_nome AS avaliacao_publica_estadual_certificador,
-                avl_e.agente_id         AS avaliacao_publica_estadual_certificador_id,
-                avl_e.certificador_uf   AS avaliacao_publica_estadual_certificador_uf,
-                
                 avl_c.id                AS avaliacao_civil_federal_id,
                 avl_c.estado            AS avaliacao_civil_federal_estado,
                 avl_c.certificador_nome AS avaliacao_civil_federal_certificador,
                 avl_c.agente_id         AS avaliacao_civil_federal_certificador_id,
-                
-                avl_s.id                AS avaliacao_civil_estadual_id,
-                avl_s.estado            AS avaliacao_civil_estadual_estado,
-                avl_s.certificador_nome AS avaliacao_civil_estadual_certificador,
-                avl_s.agente_id         AS avaliacao_civil_estadual_certificador_id,
-                avl_s.certificador_uf   AS avaliacao_civil_estadual_certificador_uf,
                 
                 avl_m.id                AS avaliacao_minerva_id,
                 avl_m.estado            AS avaliacao_minerva_estado,
@@ -289,15 +147,9 @@ class Avaliacao extends Controller
             LEFT JOIN avaliacoes avl_p
                 ON insc.id = avl_p.inscricao_id
                 AND avl_p.certificador_tipo = 'P'
-            LEFT JOIN avaliacoes avl_e
-                ON insc.id = avl_e.inscricao_id
-                AND avl_e.certificador_tipo = 'E'    
             LEFT JOIN avaliacoes avl_c
                 ON insc.id = avl_c.inscricao_id
                 AND avl_c.certificador_tipo = 'C'
-            LEFT JOIN avaliacoes avl_s
-                ON insc.id = avl_s.inscricao_id
-                AND avl_s.certificador_tipo = 'S'
             LEFT JOIN avaliacoes avl_m
                 ON insc.id = avl_m.inscricao_id
                 AND avl_m.certificador_tipo = 'M'
@@ -305,8 +157,8 @@ class Avaliacao extends Controller
             AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)
             AND (
                 :estado = ''
-                OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado])
-                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado, avl_e.estado, avl_s.estado]::varchar[]))
+                OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado])
+                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado]::varchar[]))
             )
             AND (
                 :nome = ''
@@ -315,10 +167,7 @@ class Avaliacao extends Controller
                 OR unaccent(lower(avl_c.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_e.certificador_nome)) LIKE unaccent(lower(:nome))
-                OR unaccent(lower(avl_s.certificador_nome)) LIKE unaccent(lower(:nome))
             )
-            AND (:uf = '' OR ent_meta_uf.value = :uf)
             AND (:municipio = ''
                 OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
             ORDER BY insc.agente_id, ts_criacao DESC
@@ -341,22 +190,10 @@ class Avaliacao extends Controller
             'avaliacao_publica_federal_certificador',
             'avaliacao_publica_federal_certificador_id',
 
-            'avaliacao_publica_estadual_id',
-            'avaliacao_publica_estadual_estado',
-            'avaliacao_publica_estadual_certificador',
-            'avaliacao_publica_estadual_certificador_id',
-            'avaliacao_publica_estadual_certificador_uf',
-
             'avaliacao_civil_federal_id',
             'avaliacao_civil_federal_estado',
             'avaliacao_civil_federal_certificador',
             'avaliacao_civil_federal_certificador_id',
-
-            'avaliacao_civil_estadual_id',
-            'avaliacao_civil_estadual_estado',
-            'avaliacao_civil_estadual_certificador',
-            'avaliacao_civil_estadual_certificador_id',
-            'avaliacao_civil_estadual_certificador_uf',
 
             'avaliacao_minerva_id',
             'avaliacao_minerva_estado',
@@ -557,7 +394,8 @@ class Avaliacao extends Controller
         $this->requireAuthentication();
         $app = App::i();
         if ($app->user->is('rcv_agente_area')) {
-            include(__DIR__ . "/../scripts/rotinas/importar-inscricoes2.php");
+            include(__DIR__ . "/../scripts/rotinas/importar-inscricoes.php");
+
             importar();
         } else {
             return $this->json(["message" => 'Você não tem permissão para realizar essa ação'], 403);
@@ -602,42 +440,6 @@ class Avaliacao extends Controller
         ];
 
         return (new NativeQueryUtil($sql, $campos, $parametros))->getResult();
-    }
-
-    /**
-     * Configura estados que distribuirão para os entes federais
-     */
-    function POST_configurar()
-    {
-        $this->requireAuthentication();
-        $app = App::i();
-        $conn = $app->em->getConnection();
-        $data = json_decode($app->request()->getBody());
-
-        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf");
-
-        foreach ($ufs as $u) {
-            if (in_array($u['sigla'], $data)) {
-                $update = "UPDATE culturaviva.uf set redistribuicao = true where sigla = '{$u['sigla']}'";
-            } else {
-                $update = "UPDATE culturaviva.uf set redistribuicao = false where sigla = '{$u['sigla']}'";
-            }
-            $conn->executeQuery($update);
-        }
-        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf");
-        $this->json($ufs);
-    }
-
-    /**
-     * Configura estados que distribuirão para os entes federais
-     */
-    function GET_configurar()
-    {
-        $this->requireAuthentication();
-        $app = App::i();
-        $conn = $app->em->getConnection();
-        $ufs = $conn->fetchAll("SELECT * FROM culturaviva.uf order by nome");
-        $this->json($ufs);
     }
 
 }
