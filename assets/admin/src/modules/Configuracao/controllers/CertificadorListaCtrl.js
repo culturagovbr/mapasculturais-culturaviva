@@ -4,7 +4,7 @@ angular
     .module('Configuracao')
     .controller('CertificadorListaCtrl', CertificadorListaCtrl);
 
-CertificadorListaCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
+CertificadorListaCtrl.$inject = ['$scope', '$state', '$http'];
 
 /**
  * Listagem de certificadores
@@ -14,7 +14,7 @@ CertificadorListaCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
  * @param {type} $http
  * @returns {undefined}
  */
-function CertificadorListaCtrl($scope, $state, $http, estadosBrasil) {
+function CertificadorListaCtrl($scope, $state, $http) {
 
 
     // Configuração da página
