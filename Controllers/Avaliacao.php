@@ -259,7 +259,7 @@ class Avaliacao extends Controller
             AND (
                 :estado = ''
                 OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado])
-                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado::varchar[]))
+                OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado]::varchar[]))
             )
             AND (
                 :nome = ''
