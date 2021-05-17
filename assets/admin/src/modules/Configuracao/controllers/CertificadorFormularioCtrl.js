@@ -69,6 +69,7 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
  * @returns {Object}
  */
 CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
+    copnsole.log('Aqui')
     return {
         id: dto.id,
         agenteId: dto.agenteId ? dto.agenteId : dto._agente.id,
