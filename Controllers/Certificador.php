@@ -113,13 +113,12 @@ class Certificador extends Controller
             'avaliacoes_pendentes',
             'avaliacoes_em_analise',
             'avaliacoes_finalizadas',
-            'uf_nome'
         ];
         $params = null;
-        if ($uf) {
-            $sql .= " WHERE c.uf = :uf";
-            $params = ['uf' => $_GET['uf']];
-        }
+//        if ($uf) {
+//            $sql .= " WHERE c.uf = :uf";
+//            $params = ['uf' => $_GET['uf']];
+//        }
         $this->json((new NativeQueryUtil($sql, $campos, $params))->getResult());
     }
 
