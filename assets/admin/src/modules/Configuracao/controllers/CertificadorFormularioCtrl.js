@@ -76,7 +76,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        uf: dto.uf
+        uf: 'DF'
     };
 };
 
