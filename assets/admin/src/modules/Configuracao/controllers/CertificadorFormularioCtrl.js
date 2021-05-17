@@ -72,6 +72,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
+        uf: dto.uf
     };
 };
 
@@ -166,7 +167,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
                 $state.reload();
             }
         }, function (response) {
-            var msg = 'Erro inesperado salvar dados';
+            var msg = 'Erro inesperado ao salvar dados';
             if (response.data && response.data.message) {
                 msg = response.data.message;
             }
