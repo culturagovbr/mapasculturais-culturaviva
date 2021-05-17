@@ -14,15 +14,10 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasi
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    // {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
-// [{codigo: 'P', label: 'Poder Público'},
-//     {codigo: 'C', label: 'Sociedade Civil'},
-//     {codigo: 'M', label: 'Voto de Minerva'}]
 
 CertificadorFormularioCtrl.OPCOES_ATIVO = [
     {valor: true, label: 'Ativo'},
@@ -89,7 +84,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
  * @param {type} $http
  * @returns {undefined}
  */
-function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
+function CertificadorFormularioCtrl($scope, $state, $http) {
 
     var codigo = $state.params.id;
     var novoRegistro = (!codigo || codigo === '');
@@ -112,19 +107,10 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
             sref: 'pagina.configuracao.certificador.lista'
         }
     ];
-    CertificadorFormularioCtrl.ESTADOS = (function () {
-        var out = [];
-        for (var uf in estadosBrasil) {
-            if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-            }
-        }
-        return out;
-    })();
+
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
-    $scope.uf = 'DF';
     // Variaveis utilitárias
     $scope.ref = {
         buscarAgente: false,
