@@ -91,9 +91,9 @@ class Avaliacao extends Controller
                 AND rel_ponto.type = 'ponto'
                 AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
             LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
-//            LEFT JOIN agent_meta ent_meta_uf
-//                ON  ent_meta_uf.object_id = entidade.id
-//                AND ent_meta_uf.key = 'En_Estado'
+            LEFT JOIN agent_meta ent_meta_uf
+                ON  ent_meta_uf.object_id = entidade.id
+                AND ent_meta_uf.key = 'En_Estado'
             LEFT JOIN agent_meta ent_meta_municipio
                 ON  ent_meta_municipio.object_id = entidade.id
                 AND ent_meta_municipio.key = 'En_Municipio'
@@ -125,7 +125,6 @@ class Avaliacao extends Controller
                 OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
             )
-            AND (:uf = '' OR ent_meta_uf.value = :uf)
             AND (:municipio = ''
                 OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
             ORDER BY insc.agente_id, ts_criacao DESC
@@ -239,9 +238,6 @@ class Avaliacao extends Controller
                 AND rel_ponto.type = 'ponto'
                 AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
             LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
-            LEFT JOIN agent_meta ent_meta_uf
-                ON  ent_meta_uf.object_id = entidade.id
-                AND ent_meta_uf.key = 'En_Estado'
             LEFT JOIN agent_meta ent_meta_municipio
                 ON  ent_meta_municipio.object_id = entidade.id
                 AND ent_meta_municipio.key = 'En_Municipio'
@@ -273,7 +269,6 @@ class Avaliacao extends Controller
                 OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
             )
-            AND (:uf = '' OR ent_meta_uf.value = :uf)
             AND (:municipio = ''
                 OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
             ORDER BY insc.agente_id, ts_criacao DESC
