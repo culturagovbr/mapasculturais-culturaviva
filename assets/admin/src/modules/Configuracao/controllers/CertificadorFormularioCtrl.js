@@ -14,9 +14,9 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasi
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    {codigo: 'E', label: 'Poder Público Estadual'},
+    // {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    {codigo: 'S', label: 'Sociedade Civil Estadual'},
+    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
@@ -75,7 +75,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        uf: dto.uf
+        // uf: dto.uf
     };
 };
 
@@ -115,7 +115,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
         var out = [];
         for (var uf in estadosBrasil) {
             if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: true});
+                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
             }
         }
         return out;
