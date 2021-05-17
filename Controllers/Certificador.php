@@ -181,10 +181,13 @@ class Certificador extends Controller
         $perfilUsuario = null;
         if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_PUBLICO;
+            $certificador->uf = null;
         } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_CIVIL;
+            $certificador->uf = null;
         } else if ($certificador->tipo == CertificadorEntity::TP_MINERVA) {
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
+            $certificador->uf = null;
         }
         if ($certificador->ativo) {
             $agent->user->addRole($perfilUsuario);
