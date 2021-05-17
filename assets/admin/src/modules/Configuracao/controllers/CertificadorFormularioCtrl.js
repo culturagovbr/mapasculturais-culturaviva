@@ -40,9 +40,6 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-            return item.valor === dto.uf;
-        }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
         }),
