@@ -5,7 +5,7 @@ angular
     .controller('CertificadorFormularioCtrl', CertificadorFormularioCtrl);
 
 
-CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasil'];
+CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http'];
 
 /**
  * O tipo de certificador sendo cadastrado
