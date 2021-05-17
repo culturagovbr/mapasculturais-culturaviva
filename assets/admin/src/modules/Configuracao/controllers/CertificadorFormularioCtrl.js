@@ -164,6 +164,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
                     notify: true
                 });
             } else {
+                console.log(response.data);
                 $state.reload();
             }
         }, function (response) {
