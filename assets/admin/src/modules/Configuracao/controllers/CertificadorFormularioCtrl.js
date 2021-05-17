@@ -43,8 +43,8 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-            return item.valor === dto.uf;
+        uf: CertificadorFormularioCtrl.ESTADOS.find(function () {
+            return null;
         }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
@@ -72,7 +72,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        uf: dto.uf
+        uf: dto.uf ? dto.uf : null
     };
 };
 
@@ -120,7 +120,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
-    $scope.uf = CertificadorFormularioCtrl.ESTADOS;
+    $scope.uf = null;
     // Variaveis utilitárias
     $scope.ref = {
         buscarAgente: false,
