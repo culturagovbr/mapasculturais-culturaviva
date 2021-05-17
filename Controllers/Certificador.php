@@ -86,7 +86,6 @@ class Certificador extends Controller
             )
             SELECT
                 c.*,
-                uf.sigla ||' - '|| uf.nome as uf_nome,
                 a.name AS agente_nome,
                 COALESCE(ap.qtd, 0) AS avaliacoes_pendentes,
                 COALESCE(aa.qtd, 0) AS avaliacoes_em_analise,
@@ -96,7 +95,6 @@ class Certificador extends Controller
             LEFT JOIN avaliacoes ap ON ap.certificador_id = c.id AND ap.estado = 'P'
             LEFT JOIN avaliacoes aa ON aa.certificador_id = c.id AND aa.estado = 'A'
             LEFT JOIN avaliacoes af ON af.certificador_id = c.id AND af.estado = 'F'
-            LEFT JOIN culturaviva.uf uf ON c.uf = uf.sigla
             ";
 
         $campos = [
