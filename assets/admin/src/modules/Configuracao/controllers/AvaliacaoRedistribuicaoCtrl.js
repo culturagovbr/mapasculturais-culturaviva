@@ -39,15 +39,15 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             title: 'Redistribuição',
         }
     ];
-    $http.get('/avaliacao/configurar').then(function (response) {
-        $scope.ufs = response.data;
-    }, function (response) {
-        var msg = 'Erro inesperado recuperar dados';
-        if (response.data && response.data.message) {
-            msg = response.data.message;
-        }
-        $scope.$emit('msg', msg, null, 'error', 'formulario');
-    });
+    // $http.get('/avaliacao/configurar').then(function (response) {
+    //     $scope.ufs = response.data;
+    // }, function (response) {
+    //     var msg = 'Erro inesperado recuperar dados';
+    //     if (response.data && response.data.message) {
+    //         msg = response.data.message;
+    //     }
+    //     $scope.$emit('msg', msg, null, 'error', 'formulario');
+    // });
     $scope.redistribuir = function () {
         if (confirm("Tem certeza que deseja executar a rotina de distribuição e certificação? Esta ação não pode ser desfeita.")) {
             $http.get('/avaliacao/distribuir').then(function (response) {
@@ -55,32 +55,32 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             });
         }
     };
-    $scope.marcarTodos = function () {
-        if ($scope.marcaTodos === false) {
-            $scope.marcaTodos = true;
-            for (var uf in $scope.ufs) {
-                $scope.ufs[uf].redistribuicao = true;
-            }
-        } else {
-            $scope.marcaTodos = false;
-            for (var uf in $scope.ufs) {
-                $scope.ufs[uf].redistribuicao = false;
-            }
-        }
-    };
-
-    $scope.redistribuicao = function (uf) {
-        for (var ufx in $scope.ufs) {
-            if ($scope.ufs[ufx].sigla == uf.row['sigla']) {
-
-                $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
-            }
-        }
-    }
+    // $scope.marcarTodos = function () {
+    //     if ($scope.marcaTodos === false) {
+    //         $scope.marcaTodos = true;
+    //         for (var uf in $scope.ufs) {
+    //             $scope.ufs[uf].redistribuicao = true;
+    //         }
+    //     } else {
+    //         $scope.marcaTodos = false;
+    //         for (var uf in $scope.ufs) {
+    //             $scope.ufs[uf].redistribuicao = false;
+    //         }
+    //     }
+    // };
+    //
+    // $scope.redistribuicao = function (uf) {
+    //     for (var ufx in $scope.ufs) {
+    //         if ($scope.ufs[ufx].sigla == uf.row['sigla']) {
+    //
+    //             $scope.ufs[ufx].redistribuicao = !$scope.ufs[ufx].redistribuicao;
+    //         }
+    //     }
+    // }
 
     $scope.salvar = function () {
-        var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
-        $http.post('/avaliacao/configurar', dto).then(function (response) {
+        // var dto = AvaliacaoRedistribuicaoCtrl.converterParaEscopo($scope.ufs);
+        $http.post('/avaliacao/configurar').then(function (response) {
             $scope.$emit('msgNextState', 'Certificadores Federais entrarão na redistribuição dos estados selecionados.', null, 'success');
             $state.go('pagina.configuracao.redistribuir', {}, {
                 reload: true,
@@ -104,9 +104,7 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
         }
 
         $scope.agentes = [];
-
         $scope.$emit('msgClear', 'filtro-promocoes');
-
         $http.get('/certificador/buscarAgente', {
             params: {
                 nome: texto
@@ -128,14 +126,12 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     };
 }
 
-AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
-    var out = [];
-    console.log(dto);
-    for (var uf in dto) {
-        if (dto[uf].redistribuicao === true) {
-            out.push(dto[uf].sigla);
-        }
-    }
-    console.log(dto, '2');
-    return out;
-};
+// AvaliacaoRedistribuicaoCtrl.converterParaEscopo = function (dto) {
+//     var out = [];
+//     for (var uf in dto) {
+//         if (dto[uf].redistribuicao === true) {
+//             out.push(dto[uf].sigla);
+//         }
+//     }
+//     return out;
+// };
