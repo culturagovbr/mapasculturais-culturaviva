@@ -20,9 +20,9 @@ CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
-// [{codigo: 'P', label: 'Poder Público'},
-//     {codigo: 'C', label: 'Sociedade Civil'},
-//     {codigo: 'M', label: 'Voto de Minerva'}]
+[{codigo: 'P', label: 'Poder Público'},
+    {codigo: 'C', label: 'Sociedade Civil'},
+    {codigo: 'M', label: 'Voto de Minerva'}]
 
 CertificadorFormularioCtrl.OPCOES_ATIVO = [
     {valor: true, label: 'Ativo'},
