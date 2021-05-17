@@ -46,9 +46,9 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-            return item.valor === dto.uf;
-        }),
+        // uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
+        //     return item.valor === dto.uf;
+        // }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
         }),
@@ -115,7 +115,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
         var out = [];
         for (var uf in estadosBrasil) {
             if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
+                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: true});
             }
         }
         return out;
@@ -170,12 +170,11 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
                 $state.reload();
             }
         }, function (response) {
-            $scope.$emit('msgNextState', 'Agente de Certificação salvo com sucesso', null, 'success');
-            // var msg = 'Erro inesperado salvar dados';
-            // if (response.data && response.data.message) {
-            //     msg = response.data.message;
-            // }
-            // $scope.$emit('msg', msg, null, 'error', 'formulario');
+            var msg = 'Erro inesperado salvar dados';
+            if (response.data && response.data.message) {
+                msg = response.data.message;
+            }
+            $scope.$emit('msg', msg, null, 'error', 'formulario');
         });
     };
 
