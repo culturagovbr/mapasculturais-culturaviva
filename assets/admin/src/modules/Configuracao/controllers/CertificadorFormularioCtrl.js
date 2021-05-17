@@ -153,6 +153,7 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
 
     $scope.salvar = function () {
         var dto = CertificadorFormularioCtrl.converterParaSalvar($scope.dto);
+        console.log($scope.dto);
         $http.post('/certificador/salvar', dto).then(function (response) {
             $scope.$emit('msgNextState', 'Agente de Certificação salvo com sucesso', null, 'success');
             if (novoRegistro) {
@@ -164,7 +165,6 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
                     notify: true
                 });
             } else {
-                console.log(response.data);
                 $state.reload();
             }
         }, function (response) {
