@@ -111,15 +111,15 @@ function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
             sref: 'pagina.configuracao.certificador.lista'
         }
     ];
-    CertificadorFormularioCtrl.ESTADOS = (function () {
-        var out = [];
-        for (var uf in estadosBrasil) {
-            if (estadosBrasil.hasOwnProperty(uf)) {
-                out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
-            }
-        }
-        return out;
-    })();
+    // CertificadorFormularioCtrl.ESTADOS = (function () {
+    //     var out = [];
+    //     for (var uf in estadosBrasil) {
+    //         if (estadosBrasil.hasOwnProperty(uf)) {
+    //             out.push({valor: uf, label: uf + ' - ' + estadosBrasil[uf], active: false});
+    //         }
+    //     }
+    //     return out;
+    // })();
     $scope.tipos = CertificadorFormularioCtrl.TIPO_CERTIFICADOR;
     $scope.opcoesAtivo = CertificadorFormularioCtrl.OPCOES_ATIVO;
     $scope.opcoesGrupo = CertificadorFormularioCtrl.OPCOES_GRUPO;
