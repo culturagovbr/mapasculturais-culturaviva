@@ -14,9 +14,9 @@ CertificadorFormularioCtrl.$inject = ['$scope', '$state', '$http', 'estadosBrasi
  */
 CertificadorFormularioCtrl.TIPO_CERTIFICADOR = [
     {codigo: 'P', label: 'Poder Público Federal'},
-    // {codigo: 'E', label: 'Poder Público Estadual'},
+    {codigo: 'E', label: 'Poder Público Estadual'},
     {codigo: 'C', label: 'Sociedade Civil Federal'},
-    // {codigo: 'S', label: 'Sociedade Civil Estadual'},
+    {codigo: 'S', label: 'Sociedade Civil Estadual'},
     {codigo: 'M', label: 'Voto de Minerva'}
 ];
 
@@ -46,9 +46,9 @@ CertificadorFormularioCtrl.converterParaEscopo = function (dto) {
         id: dto.id,
         agenteId: dto.agenteId,
         agenteNome: dto.agenteNome,
-        // uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
-        //     return item.valor === dto.uf;
-        // }),
+        uf: CertificadorFormularioCtrl.ESTADOS.find(function (item) {
+            return item.valor === dto.uf;
+        }),
         tipo: CertificadorFormularioCtrl.TIPO_CERTIFICADOR.find(function (item) {
             return item.codigo === dto.tipo;
         }),
@@ -75,7 +75,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
         tipo: dto.tipo.codigo,
         titular: dto.titular ? dto.titular.valor : true,
         ativo: dto.ativo.valor,
-        // uf: dto.uf
+        uf: dto.uf
     };
 };
 
