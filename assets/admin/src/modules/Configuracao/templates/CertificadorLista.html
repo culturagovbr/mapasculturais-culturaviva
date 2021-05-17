@@ -1,20 +1,5 @@
 <div ng-controller="CertificadorListaCtrl" ng-cloak class="lista-certificadores">
     <tc-form on-save="salvar()" buttons="botoes" name="formCriterios" hide-buttons="true">
-        <div class="row">
-            <!--            <div class="col-md-12">-->
-            <!--                <tc-select-->
-            <!--                        ng-model="dto.uf"-->
-            <!--                        label="UF Entidade"-->
-            <!--                        col="4"-->
-            <!--                        field="label"-->
-            <!--                        options="uf"-->
-            <!--                >-->
-            <!--                </tc-select>-->
-            <!--                <button class="btn btn-primary" style="margin-top: 25px;" ng-click="filtrar(dto.uf)" type="button">-->
-            <!--                    Filtrar-->
-            <!--                </button>-->
-            <!--            </div>-->
-        </div>
         <hr>
     </tc-form>
     <uib-tabset>
@@ -42,6 +27,7 @@
                     descricao="Suplentes do Poder Público">
             </certificador-lista-tabela>
         </uib-tab>
+
         <uib-tab>
             <uib-tab-heading>
                 <span class="hidden-xs">Sociedade</span> Civil Federal
