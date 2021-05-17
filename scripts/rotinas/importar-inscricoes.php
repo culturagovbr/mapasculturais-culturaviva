@@ -31,11 +31,21 @@ set_time_limit(0);
  *  2.1 - Criar registro de inscrição culturaviva.inscricao
  *  2.2 - Registrar os critérios da avaliação (culturaviva.inscricao_criterio)
  */
+<<<<<<< HEAD
 function loadScript($file) {
     return file_get_contents(__DIR__ . "/importar/$file");
 }
 
 function importar() {
+=======
+function loadScript($file)
+{
+    return file_get_contents(__DIR__ . "/importar/$file");
+}
+
+function importar()
+{
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
 
@@ -158,7 +168,12 @@ function importar() {
  * @param type $filtro
  * @return type
  */
+<<<<<<< HEAD
 function inserirAvaliacaoCertificador($conn, $filtro) {
+=======
+function inserirAvaliacaoCertificador($conn, $filtro)
+{
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     $inscricoes = $conn->fetchAll(loadScript('5-obter-inscricoes-para-distribuir.sql'), $filtro);
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
@@ -185,7 +200,10 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     foreach ($certificadores as $index => $certificador) {
         $idCertificador = $certificador['id'];
         if (!isset($certInscric[$index])) {
@@ -204,7 +222,11 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
                     WHERE aval.estado <> 'C'
                     AND aval.inscricao_id = ?
                     AND aval.certificador_id = ?
+<<<<<<< HEAD
                     ", [ $idInscricao, $idCertificador]);
+=======
+                    ", [$idInscricao, $idCertificador]);
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
 
             if ($existe > 0) {
                 continue;
@@ -222,7 +244,11 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
                         WHERE aval.estado <> 'C'
                         AND aval.inscricao_id = ?
                     )
+<<<<<<< HEAD
                     ", [ $idInscricao]);
+=======
+                    ", [$idInscricao]);
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
 
             // Registra avaliação com o certificador atual
             $conn->executeQuery(
@@ -233,12 +259,22 @@ function inserirAvaliacaoCertificador($conn, $filtro) {
 }
 
 /**
+<<<<<<< HEAD
  * @todo Executar mesmo processo anterior
  *
  * @param type $conn
  * @return type
  */
 function inserirAvaliacaoMinerva($conn) {
+=======
+ * @param type $conn
+ * @return type
+ * @todo Executar mesmo processo anterior
+ *
+ */
+function inserirAvaliacaoMinerva($conn)
+{
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     $inscricoes = $conn->fetchAll(loadScript('7-obter-inscricoes-avaliacoes-conflitantes.sql'));
     if (!isset($inscricoes) || empty($inscricoes)) {
         // Nao existem INSCRICOES para distribuir
@@ -272,7 +308,12 @@ function inserirAvaliacaoMinerva($conn) {
     }
 }
 
+<<<<<<< HEAD
 function notificarCertificacoesDeferidas($app, $conn) {
+=======
+function notificarCertificacoesDeferidas($app, $conn)
+{
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     print("Notificando via e-mail as inscrições Deferidas\n");
 
     $registros = $conn->fetchAll(loadScript('9-obter-inscricoes-certificadas.sql'));
@@ -315,7 +356,12 @@ function notificarCertificacoesDeferidas($app, $conn) {
     }
 }
 
+<<<<<<< HEAD
 function notificarCertificacoesIndeferidas($app, $conn) {
+=======
+function notificarCertificacoesIndeferidas($app, $conn)
+{
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
     print("Notificando via e-mail as inscrições Indeferidas\n");
 
     $registros = $conn->fetchAll(loadScript('10-obter-inscricoes-indeferidas.sql'));
@@ -339,15 +385,25 @@ function notificarCertificacoesIndeferidas($app, $conn) {
                 "SELECT id,certificador_id,estado,observacoes
                 FROM culturaviva.avaliacao
                 WHERE estado='I' AND inscricao_id=?"
+<<<<<<< HEAD
                 ,[$registro['id']]);
 
             foreach($avaliacoes as &$avaliacao){
+=======
+                , [$registro['id']]);
+
+            foreach ($avaliacoes as &$avaliacao) {
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
                 $avaliacao['criterios'] = $conn->fetchAll(
                     "SELECT ac.aprovado,c.descricao
                     FROM culturaviva.avaliacao_criterio ac
                     JOIN culturaviva.criterio c ON ac.criterio_id = c.id
                     WHERE ac.avaliacao_id=?"
+<<<<<<< HEAD
                     ,[$avaliacao['id']]
+=======
+                    , [$avaliacao['id']]
+>>>>>>> 775b141a37ad0bb7a44d9f5369c06447ce8b56ac
                 );
             }
 
