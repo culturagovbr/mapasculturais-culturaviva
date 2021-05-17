@@ -84,7 +84,7 @@ CertificadorFormularioCtrl.converterParaSalvar = function (dto) {
  * @param {type} $http
  * @returns {undefined}
  */
-function CertificadorFormularioCtrl($scope, $state, $http) {
+function CertificadorFormularioCtrl($scope, $state, $http, estadosBrasil) {
 
     var codigo = $state.params.id;
     var novoRegistro = (!codigo || codigo === '');
