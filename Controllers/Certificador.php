@@ -204,12 +204,12 @@ class Certificador extends Controller
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
             $certificador->uf = null;
         }
-        if ($certificador->ativo) {
-            $agent->user->addRole($perfilUsuario);
-            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
-        } else {
-            $agent->user->removeRole($perfilUsuario);
-        }
+//        if ($certificador->ativo) {
+//            $agent->user->addRole($perfilUsuario);
+//            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
+//        } else {
+//            $agent->user->removeRole($perfilUsuario);
+//        }
 
         $app->em->flush();
 

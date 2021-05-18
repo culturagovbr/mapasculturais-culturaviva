@@ -2,7 +2,10 @@
 
 namespace CulturaViva\Entities;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use MapasCulturais\Entities\User;
+use MapasCulturais\Entity;
 
 /**
  * Registra os Agentes Certificadores do sistema
@@ -11,7 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="culturaviva.certificador")
  * @ORM\entity(repositoryClass="MapasCulturais\Repository")
  */
-class Certificador extends \MapasCulturais\Entity {
+class Certificador extends Entity
+{
 
     /**
      * Representa Agente Certificador Membro do Poder Publico Federal
@@ -63,7 +67,7 @@ class Certificador extends \MapasCulturais\Entity {
      *
      * @var integer
      */
-    protected $id;
+    public $id;
 
     /**
      * Referencia para o usuário AGENT cadastrado no schema do MapasCulturais
@@ -72,7 +76,7 @@ class Certificador extends \MapasCulturais\Entity {
      *
      * @var integer
      */
-    protected $agenteId;
+    public $agenteId;
 
     /**
      * Informa se este certificadro está ativo
@@ -81,7 +85,7 @@ class Certificador extends \MapasCulturais\Entity {
      *
      * @var bool
      */
-    protected $ativo;
+    public $ativo;
 
     /**
      * Identifica o Tipo de Certificador
@@ -94,7 +98,7 @@ class Certificador extends \MapasCulturais\Entity {
      *
      * @var string
      */
-    protected $tipo;
+    public $tipo;
 
     /**
      * Informa se este certificador é TITULAR ou SUPLENTE
@@ -103,23 +107,23 @@ class Certificador extends \MapasCulturais\Entity {
      *
      * @var string
      */
-    protected $titular;
+    public $titular;
 
     /**
      * Quando o registro foi criado
      *
      * @ORM\Column(name="ts_criacao", type="string", nullable=false)
      *
-     * @var \DateTime
+     * @var DateTime
      */
-    protected $tsCriacao;
+    public $tsCriacao;
 
     /**
      * Quando o registro foi atualizado
      *
      * @ORM\Column(name="ts_atualizacao", type="string", nullable=true)
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $tsAtualizacao;
 
@@ -128,7 +132,7 @@ class Certificador extends \MapasCulturais\Entity {
      * @ORM\Column(name="uf", type="string", length=2, nullable=true)
      * @var string
      */
-    protected $uf;
+    public $uf;
 
     //============================================================= //
     // The following lines ara used by MapasCulturais hook system.
@@ -172,7 +176,7 @@ class Certificador extends \MapasCulturais\Entity {
     /**
      * Somente usuários com perfil AGENTE DA AREA pode fazer alterações nos certificadores
      *
-     * @param \MapasCulturais\Entities\User $user
+     * @param User $user
      * @return boolean
      */
     protected function canUserCreate($user) {
@@ -182,7 +186,7 @@ class Certificador extends \MapasCulturais\Entity {
     /**
      * Somente usuários com perfil AGENTE DA AREA pode fazer alterações nos certificadores
      *
-     * @param \MapasCulturais\Entities\User $user
+     * @param User $user
      * @return boolean
      */
     protected function canUserModify($user) {
