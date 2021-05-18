@@ -36,7 +36,8 @@ class Certificador extends Controller
                     c.titular,
                     c.tsCriacao,
                     c.tsAtualizacao,
-                    a.name AS agenteNome
+                    a.name AS agenteNome,
+                    c.uf
                 FROM \CulturaViva\Entities\Certificador c
                 JOIN \MapasCulturais\Entities\Agent a
                 WHERE a.id = c.agenteId
@@ -65,6 +66,8 @@ class Certificador extends Controller
     {
         $app = App::i();
         $this->requireAuthentication();
+
+        $uf = $app->request()->get('uf');
 
         $sql = "
             WITH avaliacoes AS (
@@ -96,6 +99,7 @@ class Certificador extends Controller
             LEFT JOIN avaliacoes ap ON ap.certificador_id = c.id AND ap.estado = 'P'
             LEFT JOIN avaliacoes aa ON aa.certificador_id = c.id AND aa.estado = 'A'
             LEFT JOIN avaliacoes af ON af.certificador_id = c.id AND af.estado = 'F'
+            LEFT JOIN culturaviva.uf uf ON c.uf = uf.sigla
             ";
 
         $campos = [
@@ -112,7 +116,12 @@ class Certificador extends Controller
             'avaliacoes_finalizadas',
             'uf_nome'
         ];
-        $this->json((new NativeQueryUtil($sql, $campos, null))->getResult());
+        $params = null;
+        if ($uf) {
+            $sql .= " WHERE c.uf = :uf";
+            $params = ['uf' => $_GET['uf']];
+        }
+        $this->json((new NativeQueryUtil($sql, $campos, $params))->getResult());
     }
 
     /**
@@ -187,9 +196,9 @@ class Certificador extends Controller
          */
         $agent = $app->repo('Agent')->find($certificador->agenteId);
         $perfilUsuario = null;
-        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL) {
+        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL || $certificador->tipo == CertificadorEntity::TP_PUBLICO_ESTADUAL) {
             $perfilUsuario = CertificadorEntity::ROLE_PUBLICO;
-        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL) {
+        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL || $certificador->tipo == CertificadorEntity::TP_CIVIL_ESTADUAL) {
             $perfilUsuario = CertificadorEntity::ROLE_CIVIL;
         } else if ($certificador->tipo == CertificadorEntity::TP_MINERVA) {
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
