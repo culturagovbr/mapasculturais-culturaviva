@@ -206,7 +206,7 @@ class Certificador extends Controller
         }
         if ($certificador->ativo) {
             $agent->user->addRole($perfilUsuario);
-            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
+//            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
         } else {
             $agent->user->removeRole($perfilUsuario);
         }
