@@ -195,6 +195,7 @@ function importar()
     print("Notificando via e-mail as entidades com inscrições finalizadas (Deferidas e Indeferidas)\n");
     notificarCertificacoesDeferidas($app, $conn);
     notificarCertificacoesIndeferidas($app, $conn);
+    var_dump($conn, $app, $_POST, $ufs);
 }
 
 /**
