@@ -63,7 +63,7 @@
                 baixar um modelo com orientações.
             </p>
             <!--Hitória do ponto de cultura-->
-            <div class="row" ng-controller="PortifolioCtrl">
+            <div class="row" ng-controller="PortifolioCtrl" ng-init="init('ponto')">
                 <label class="colunm-full">
                     <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura (max. 800 caracteres)* <i
                                 class='hltip'
