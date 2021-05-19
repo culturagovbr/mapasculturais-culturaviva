@@ -83,7 +83,7 @@
                                                         certificador-nome="{{inscricao.avaliacaoCivilFederalCertificador}}"
                                                         certificador-tipo="Sociedade Civil Federal"
                                                         estado-avaliacao="{{inscricao.avaliacaoCivilFederalEstado}}"
-                                                        ng-if="usuario.roles.indexOf('rcv_certificador_civil') > -1"
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1"
                                                 >
                                                 </avaliacao-lista-certificador>
 
@@ -103,7 +103,7 @@
                                                         certificador-nome="{{inscricao.avaliacaoPublicaFederalCertificador}}"
                                                         certificador-tipo="Poder Público Federal"
                                                         estado-avaliacao="{{inscricao.avaliacaoPublicaFederalEstado}}"
-                                                        ng-if="usuario.roles.indexOf('rcv_certificador_publico') > -1"
+                                                        ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 &&"
                                                 >
                                                 </avaliacao-lista-certificador>
 
