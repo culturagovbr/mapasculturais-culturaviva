@@ -769,13 +769,13 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
+                '@select': 'id,homologado_rcv,longDescription',
                 '@permissions': 'view'
             };
 
