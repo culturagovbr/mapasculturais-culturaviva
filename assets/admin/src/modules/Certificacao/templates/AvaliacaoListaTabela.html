@@ -78,42 +78,23 @@
                                                 >
 
                                                 <avaliacao-lista-certificador
-                                                    ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilFederalId != null"
-                                                    certificador-tipo="Sociedade Civil Federal"
-                                                    avaliacao-id="{{inscricao.avaliacaoCivilFederalId}}"
-                                                    certificador-id="{{inscricao.avaliacaoCivilFederalCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoCivilFederalEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoCivilFederalCertificador}}"
-                                                    >
-                                                </avaliacao-lista-certificador>
-
-                                                <avaliacao-lista-certificador
-                                                        ng-if="usuario.roles.indexOf('rcv_certificador_civil') == -1 && inscricao.avaliacaoCivilEstadualId != null"
-                                                        certificador-tipo="Sociedade Civil - {{inscricao.avaliacaoCivilEstadualCertificadorUf}}"
-                                                        avaliacao-id="{{inscricao.avaliacaoCivilEstadualId}}"
-                                                        certificador-id="{{inscricao.avaliacaoCivilEstadualCertificadorId}}"
-                                                        estado-avaliacao="{{inscricao.avaliacaoCivilEstadualEstado}}"
-                                                        certificador-nome="{{inscricao.avaliacaoCivilEstadualCertificador}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoPublicaId}}"
+                                                        certificador-id="{{inscricao.avaliacaoPublicaCertificadorId}}"
+                                                        certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}"
+                                                        certificador-tipo="Poder Publico"
+                                                        estado-avaliacao="{{inscricao.avaliacaoPublicaEstado}}"
+                                                        ng-hide="usuario.roles.indexOf('rcv_certificador_civil') > -1"
                                                 >
                                                 </avaliacao-lista-certificador>
 
                                                 <avaliacao-lista-certificador
-                                                    ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaFederalId != null"
-                                                    certificador-tipo="Poder Público Federal"
-                                                    avaliacao-id="{{inscricao.avaliacaoPublicaFederalId}}"
-                                                    certificador-id="{{inscricao.avaliacaoPublicaFederalCertificadorId}}"
-                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaFederalEstado}}"
-                                                    certificador-nome="{{inscricao.avaliacaoPublicaFederalCertificador}}"
-                                                    >
-                                                </avaliacao-lista-certificador>
-
-                                                <avaliacao-lista-certificador
-                                                        ng-if="usuario.roles.indexOf('rcv_certificador_publico') == -1 && inscricao.avaliacaoPublicaEstadualId != null"
-                                                        certificador-tipo="Poder Público - {{inscricao.avaliacaoPublicaEstadualCertificadorUf}}"
-                                                        avaliacao-id="{{inscricao.avaliacaoPublicaEstadualId}}"
-                                                        certificador-id="{{inscricao.avaliacaoPublicaEstadualCertificadorId}}"
-                                                        estado-avaliacao="{{inscricao.avaliacaoPublicaEstadualEstado}}"
-                                                        certificador-nome="{{inscricao.avaliacaoPublicaEstadualCertificador}}"
+                                                        avaliacao-id="{{inscricao.avaliacaoCivilId}}"
+                                                        certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
+                                                        certificador-nome="{{inscricao.avaliacaoCivilCertificador}}"
+                                                        certificador-tipo="Sociedade Civil"
+                                                        estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
+                                                        ng-hide="usuario.roles.indexOf('rcv_certificador_publico') > -1"
+                                                        ng-if="inscricao.avaliacaoCivilId"
                                                 >
                                                 </avaliacao-lista-certificador>
 
@@ -123,7 +104,8 @@
                                                         avaliacao-id="{{inscricao.avaliacaoMinervaId}}"
                                                         certificador-id="{{inscricao.avaliacaoMinervaCertificadorId}}"
                                                         estado-avaliacao="{{inscricao.avaliacaoMinervaEstado}}"
-                                                        certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}">
+                                                        certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}"
+                                                >
                                                 </avaliacao-lista-certificador>
                                             </div>
                                         </div>
