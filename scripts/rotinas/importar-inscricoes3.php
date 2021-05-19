@@ -320,6 +320,8 @@ function inserirAvaliacaoCertificador($conn, $filtro, $uf)
                         AND aval.inscricao_id = ?
                     )
                     ", [$idInscricao]);
+            var_dump($conn);
+            die();
 
 
             // Registra avaliação com o certificador atual
