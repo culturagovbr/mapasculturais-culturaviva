@@ -184,22 +184,20 @@ class Avaliacao extends Controller
             'entidade_nome',
             'entidade_id',
             'tipo_ponto_desejado',
-
-            'avaliacao_publica_federal_id',
-            'avaliacao_publica_federal_estado',
-            'avaliacao_publica_federal_certificador',
-            'avaliacao_publica_federal_certificador_id',
-
-            'avaliacao_civil_federal_id',
-            'avaliacao_civil_federal_estado',
-            'avaliacao_civil_federal_certificador',
-            'avaliacao_civil_federal_certificador_id',
-
+            'avaliacao_civil_id',
+            'avaliacao_civil_estado',
+            'avaliacao_civil_certificador',
+            'avaliacao_civil_certificador_id',
+            'avaliacao_publica_id',
+            'avaliacao_publica_estado',
+            'avaliacao_publica_certificador',
+            'avaliacao_publica_certificador_id',
             'avaliacao_minerva_id',
             'avaliacao_minerva_estado',
             'avaliacao_minerva_certificador',
             'avaliacao_minerva_certificador_id',
         ];
+
         $parametros = [
             'agenteId' => $agenteId,
             'estado' => isset($this->data['estado']) ? $this->data['estado'] : '',
@@ -207,6 +205,7 @@ class Avaliacao extends Controller
             'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
             'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
         ];
+
         $pagina = isset($this->data['pagina']) ? intval($this->data['pagina']) : 1;
         $this->json((new NativeQueryUtil($sql, $campos, $parametros))->paginate($pagina));
     }
