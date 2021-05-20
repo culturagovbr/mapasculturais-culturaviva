@@ -103,53 +103,50 @@ class Avaliacao extends Controller
                 entidade.name           AS entidade_nome,
                 entidade.id             AS entidade_id,
                 tp.value                AS tipo_ponto_desejado,
-                
-                avl_p.id                AS avaliacao_publica_federal_id,
-                avl_p.estado            AS avaliacao_publica_federal_estado,
-                avl_p.certificador_nome AS avaliacao_publica_federal_certificador,
-                avl_p.agente_id         AS avaliacao_publica_federal_certificador_id,
-                
-                avl_c.id                AS avaliacao_civil_federal_id,
-                avl_c.estado            AS avaliacao_civil_federal_estado,
-                avl_c.certificador_nome AS avaliacao_civil_federal_certificador,
-                avl_c.agente_id         AS avaliacao_civil_federal_certificador_id,
-                
+                avl_c.id                AS avaliacao_civil_id,
+                avl_c.estado            AS avaliacao_civil_estado,
+                avl_c.certificador_nome AS avaliacao_civil_certificador,
+                avl_c.agente_id         AS avaliacao_civil_certificador_id,
+                avl_p.id                AS avaliacao_publica_id,
+                avl_p.estado            AS avaliacao_publica_estado,
+                avl_p.certificador_nome AS avaliacao_publica_certificador,
+                avl_p.agente_id         AS avaliacao_publica_certificador_id,
                 avl_m.id                AS avaliacao_minerva_id,
                 avl_m.estado            AS avaliacao_minerva_estado,
                 avl_m.certificador_nome AS avaliacao_minerva_certificador,
                 avl_m.agente_id         AS avaliacao_minerva_certificador_id
             FROM culturaviva.inscricao insc
-            JOIN agent agente ON agente.id = insc.agente_id
-            JOIN usr usuario ON usuario.id = agente.user_id
-            JOIN registration reg
+            LEFT JOIN agent agente ON agente.id = insc.agente_id
+            LEFT JOIN usr usuario ON usuario.id = agente.user_id
+            LEFT JOIN registration reg
                 on reg.agent_id = insc.agente_id
                 AND reg.opportunity_id = 1
                 AND reg.status = 1
-            JOIN agent_relation rel_entidade
+            LEFT JOIN agent_relation rel_entidade
                 ON rel_entidade.object_id = reg.id
                 AND rel_entidade.type = 'entidade'
                 AND rel_entidade.object_type = 'MapasCulturais\Entities\Registration'
-            JOIN agent_relation rel_ponto
+            LEFT JOIN agent_relation rel_ponto
                 ON rel_ponto.object_id = reg.id
                 AND rel_ponto.type = 'ponto'
                 AND rel_ponto.object_type = 'MapasCulturais\Entities\Registration'
-            JOIN agent entidade ON entidade.id = rel_entidade.agent_id
-            JOIN agent_meta ent_meta_uf
+            LEFT JOIN agent entidade ON entidade.id = rel_entidade.agent_id
+            LEFT JOIN agent_meta ent_meta_uf
                 ON  ent_meta_uf.object_id = entidade.id
-                AND ent_meta_uf.key = 'En_Estado'
+                AND ent_meta_uf.key = 'geoEstado'
             LEFT JOIN agent_meta ent_meta_municipio
                 ON  ent_meta_municipio.object_id = entidade.id
-                AND ent_meta_municipio.key = 'En_Municipio'
-            JOIN agent ponto ON ponto.id = rel_ponto.agent_id
-            JOIN agent_meta tp
+                AND ent_meta_municipio.key = 'geoMunicipio'
+            LEFT JOIN agent ponto ON ponto.id = rel_ponto.agent_id
+            LEFT JOIN agent_meta tp
                 ON tp.key = 'tipoPontoCulturaDesejado'
                 AND tp.object_id = entidade.id
-            LEFT JOIN avaliacoes avl_p
-                ON insc.id = avl_p.inscricao_id
-                AND avl_p.certificador_tipo = 'P'
             LEFT JOIN avaliacoes avl_c
                 ON insc.id = avl_c.inscricao_id
                 AND avl_c.certificador_tipo = 'C'
+            LEFT JOIN avaliacoes avl_p
+                ON insc.id = avl_p.inscricao_id
+                AND avl_p.certificador_tipo = 'P'
             LEFT JOIN avaliacoes avl_m
                 ON insc.id = avl_m.inscricao_id
                 AND avl_m.certificador_tipo = 'M'
@@ -168,10 +165,10 @@ class Avaliacao extends Controller
                 OR unaccent(lower(avl_p.certificador_nome)) LIKE unaccent(lower(:nome))
                 OR unaccent(lower(avl_m.certificador_nome)) LIKE unaccent(lower(:nome))
             )
+            AND (:uf = '' OR ent_meta_uf.value = :uf)
             AND (:municipio = ''
-                OR unaccent(lower(ent_meta_municipio.value)) ILIKE unaccent(lower(:municipio)))
-            ORDER BY insc.agente_id, ts_criacao DESC
-           ";
+                OR unaccent(lower(ent_meta_municipio.value)) LIKE unaccent(lower(:municipio)))
+            ORDER BY insc.agente_id, ts_criacao DESC";
 
 
         $campos = [
