@@ -196,9 +196,9 @@ class Certificador extends Controller
          */
         $agent = $app->repo('Agent')->find($certificador->agenteId);
         $perfilUsuario = null;
-        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL || $certificador->tipo == CertificadorEntity::TP_PUBLICO_ESTADUAL) {
+        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_PUBLICO;
-        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL || $certificador->tipo == CertificadorEntity::TP_CIVIL_ESTADUAL) {
+        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_CIVIL;
         } else if ($certificador->tipo == CertificadorEntity::TP_MINERVA) {
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
