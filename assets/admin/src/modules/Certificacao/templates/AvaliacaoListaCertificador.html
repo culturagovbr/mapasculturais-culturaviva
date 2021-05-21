@@ -24,8 +24,7 @@
     </div>
     <a class="list-group-item"
        ui-sref="pagina.certificacao.formulario({id:avaliacaoId})"
-       ng-class="{'active-cert': certificadorId == usuario.agentId}"
-       ng-if="certificadorId">
+       ng-class="{'active-cert': certificadorId == usuario.agentId}">
         <div class="list-view-pf-main-info" style="padding: 0;">
             <div class="list-view-pf-left">
                 <span ng-show="estadoAvaliacao == 'P'"

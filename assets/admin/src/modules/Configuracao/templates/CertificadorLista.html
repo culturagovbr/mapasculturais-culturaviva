@@ -1,20 +1,5 @@
 <div ng-controller="CertificadorListaCtrl" ng-cloak class="lista-certificadores">
     <tc-form on-save="salvar()" buttons="botoes" name="formCriterios" hide-buttons="true">
-        <div class="row">
-            <div class="col-md-12">
-                <tc-select
-                        ng-model="dto.uf"
-                        label="UF Entidade"
-                        col="4"
-                        field="label"
-                        options="uf"
-                >
-                </tc-select>
-                <button class="btn btn-primary" style="margin-top: 25px;" ng-click="filtrar(dto.uf)" type="button">
-                    Filtrar
-                </button>
-            </div>
-        </div>
         <hr>
     </tc-form>
     <uib-tabset>
@@ -31,8 +16,7 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.publico.titular"
-                    descricao="Titulares do Poder Público"
-            >
+                    descricao="Titulares do Poder Público">
             </certificador-lista-tabela>
 
             <header class="section-header row">
@@ -40,28 +24,10 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.publico.suplente"
-                    descricao="Suplentes do Poder Público"
-            >
+                    descricao="Suplentes do Poder Público">
             </certificador-lista-tabela>
         </uib-tab>
-        <uib-tab>
-            <uib-tab-heading>
-                <span class="hidden-xs">Poder</span> Público Estadual
-                <span class="badge">
-                    {{certificadores.publicoEstadual.titular.length || 0}}
-                </span>
-            </uib-tab-heading>
 
-            <header class="section-header row">
-                <h2 class="col-md-12">Titulares</h2>
-            </header>
-            <certificador-lista-tabela
-                    certificadores="certificadores.publicoEstadual.titular"
-                    descricao="Titulares do Poder Público Estadual"
-            >
-            </certificador-lista-tabela>
-
-        </uib-tab>
         <uib-tab>
             <uib-tab-heading>
                 <span class="hidden-xs">Sociedade</span> Civil Federal
@@ -75,8 +41,7 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.civil.titular"
-                    descricao="Titulares da Sociedade Civil"
-            >
+                    descricao="Titulares da Sociedade Civil">
             </certificador-lista-tabela>
 
             <header class="section-header row">
@@ -84,25 +49,7 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.civil.suplente"
-                    descricao="Suplentes da Sociedade Civil Federal"
-            >
-            </certificador-lista-tabela>
-        </uib-tab>
-        <uib-tab>
-            <uib-tab-heading>
-                <span class="hidden-xs">Sociedade</span> Civil Estadual
-                <span class="badge">
-                    {{certificadores.civilEstadual.titular.length || 0}}
-                </span>
-            </uib-tab-heading>
-
-            <header class="section-header row">
-                <h2 class="col-md-12">Titulares</h2>
-            </header>
-            <certificador-lista-tabela
-                    certificadores="certificadores.civilEstadual.titular"
-                    descricao="Titulares da Sociedade Civil Estadual"
-            >
+                    descricao="Suplentes da Sociedade Civil Federal">
             </certificador-lista-tabela>
         </uib-tab>
 
@@ -119,8 +66,7 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.minerva.titular"
-                    descricao="Titulares com Voto de Minerva"
-            >
+                    descricao="Titulares com Voto de Minerva">
             </certificador-lista-tabela>
 
             <header class="section-header row">
@@ -128,8 +74,7 @@
             </header>
             <certificador-lista-tabela
                     certificadores="certificadores.minerva.suplente"
-                    descricao="Suplentes com Voto de Minerva"
-            >
+                    descricao="Suplentes com Voto de Minerva">
             </certificador-lista-tabela>
         </uib-tab>
     </uib-tabset>
@@ -140,8 +85,7 @@
                     <span>&nbsp;</span>
                     <a
                             class="btn btn-primary"
-                            ui-sref="pagina.configuracao.certificador.formulario"
-                    >
+                            ui-sref="pagina.configuracao.certificador.formulario">
                         Adicionar Certificador
                     </a>
                 </span>
