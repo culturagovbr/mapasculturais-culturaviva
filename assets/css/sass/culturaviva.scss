@@ -334,10 +334,11 @@ section{
         &.slide-home {
             background: url('../img/banner-home2.jpg');
             height: 450px;
+            width: 550px;
             padding-top: 30px;
             max-height: 480px;
 
-            .bg-transparent{
+            .bg-transparent {
                 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
                 filter: alpha(opacity=50);
                 -moz-opacity: 0.5;
