@@ -24,12 +24,13 @@ module.exports = {
     livereload: {
         options: {
             livereload: '<%= connectLivereload %>',
-            event: ['changed']
+            event: ['changed'],
         },
         files: [
             '<%= srcDir %>/<%= mdlDir %>/**/*',
             '!<%= srcDir %>/<%= mdlDir %>/**/*.scss',
             '<%= distDir %>/**/*'
-        ]
+        ],
+        tasks: ['dist']
     }
 };

@@ -2,23 +2,31 @@
 
 namespace CulturaViva;
 
+use CulturaViva\Controller\Cadastro;
+use MapasCulturais\AssetManager;
+use MapasCulturais\Definitions\FileGroup;
+use MapasCulturais\Definitions\Metadata;
+use MapasCulturais\Definitions\Taxonomy;
+use MapasCulturais\Entities\Registration;
 use MapasCulturais\Themes\BaseV1;
 use MapasCulturais\App;
 
-class Theme extends BaseV1\Theme {
+class Theme extends BaseV1\Theme
+{
 
     /**
      * Controller Cadastro
      *
-     * @var \CulturaViva\Controller\Cadastro
+     * @var Cadastro
      */
     protected $_cadastro;
 
-    public function __construct(\MapasCulturais\AssetManager $asset_manager) {
+    public function __construct(AssetManager $asset_manager)
+    {
         parent::__construct($asset_manager);
         $app = App::i();
         $view = $this;
-        $app->hook('mapasculturais.run:before', function() use($view) {
+        $app->hook('mapasculturais.run:before', function () use ($view) {
             $view->initUsermeta();
         });
     }
@@ -40,8 +48,8 @@ class Theme extends BaseV1\Theme {
 
     protected static function _getTexts() {
         return array(
-            'site: owner' => 'Ministério da Cidadania',
-            'site: by the site owner' => 'pelo Ministério da Cidadania',
+            'site: owner' => 'Ministério do Turismo',
+            'site: by the site owner' => 'pelo Ministério do Turismo',
             'search: verified results' => 'Pontos Certificados',
             'search: verified' => "Certificados",
         );
@@ -53,7 +61,7 @@ class Theme extends BaseV1\Theme {
 
     function aprovado() {
         $inscricao = $this->_cadastro->getInscricao();
-        return $inscricao->status === \MapasCulturais\Entities\Registration::STATUS_APPROVED;
+        return $inscricao->status === Registration::STATUS_APPROVED;
     }
 
     protected function _init() {
@@ -251,13 +259,13 @@ class Theme extends BaseV1\Theme {
         $app->registerController('relatorios', 'CulturaViva\Controllers\Relatorios');
 
 //        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('portifolio', ['^application\/pdf$'], 'O portifólio deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('portifolio', ['.*'], 'O portifólio deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('carta1', ['.*'], 'a carta deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('carta2', ['.*'], 'a carta deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('cartaReferencia1', ['.*'], 'a carta deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('cartaReferencia2', ['.*'], 'a carta deve ser um arquivo pdf.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('logoponto', ['.*'], 'O logotipo deve ser uma imagem.', true));
-        $app->registerFileGroup('agent', new \MapasCulturais\Definitions\FileGroup('ata', ['.*'], 'a ata deve ser um arquivo pdf', true));
+        $app->registerFileGroup('agent', new FileGroup('portifolio', ['.*'], 'O portifólio deve ser um arquivo pdf.', true));
+        $app->registerFileGroup('agent', new FileGroup('carta1', ['.*'], 'a carta deve ser um arquivo pdf.', true));
+        $app->registerFileGroup('agent', new FileGroup('carta2', ['.*'], 'a carta deve ser um arquivo pdf.', true));
+        $app->registerFileGroup('agent', new FileGroup('cartaReferencia1', ['.*'], 'a carta deve ser um arquivo pdf.', true));
+        $app->registerFileGroup('agent', new FileGroup('cartaReferencia2', ['.*'], 'a carta deve ser um arquivo pdf.', true));
+        $app->registerFileGroup('agent', new FileGroup('logoponto', ['.*'], 'O logotipo deve ser uma imagem.', true));
+        $app->registerFileGroup('agent', new FileGroup('ata', ['.*'], 'a ata deve ser um arquivo pdf', true));
 
         $metadata = [
             'MapasCulturais\Entities\User' => [
@@ -895,17 +903,17 @@ class Theme extends BaseV1\Theme {
                 // Ponto Articulação
                 'participacaoMovPolitico' => [
                     'label' => '',
-                    'required' => false,
+                    'required' => true,
                     'private' => true
                 ],
                 'participacaoForumCultura' => [
                     'label' => '',
-                    'required' => false,
+                    'required' => true,
                     'private' => true
                 ],
                 'parceriaPoderPublico' => [
                     'label' => '',
-                    'required' => false,
+                    'required' => true,
                     'private' => true
                 ],
                 'fomentoPublico' => [
@@ -915,32 +923,32 @@ class Theme extends BaseV1\Theme {
                 ],
                 'parceriaPrivada' => [
                     'label' => 'Possui parceria privada?',
-                    'required' => false,
+                    'required' => true,
                     'private' => true
                 ],
                 'parceriaPrivadaQual' => [
                     'label' => 'Qual?',
-                    'required' => false,
+                    'required' => true,
                     'private' => true
                 ],
                 'representacaoMinc' => [
-                    'label' => 'Participa de instância de representação junto ao Ministério da Cidadania?',
+                    'label' => 'Participa de instância de representação junto ao Ministério do Turismo?',
                     'required' => false,
                     'private' => true
                 ],
                 'simPoderPublico' => [
                     'label' => 'Quais para radio participa poder publico',
-                    //              'required' => false,
+                    'required' => false,
                     'private' => true
                 ],
                 'simMovimentoPoliticoCultural' => [
                     'label' => 'Quais para radio participa movimento politico cultural',
-                    //              'required' => false,
+                    'required' => false,
                     'private' => true
                 ],
                 'simForumCultural' => [
                     'label' => 'Quais para radio participa forum cultural',
-                    //              'required' => false,
+                    'required' => false,
                     'private' => true
                 ],
                 // Economia Viva
@@ -1189,7 +1197,7 @@ class Theme extends BaseV1\Theme {
 
         foreach ($metadata as $entity_class => $metas) {
             foreach ($metas as $key => $cfg) {
-                $def = new \MapasCulturais\Definitions\Metadata($key, $cfg);
+                $def = new Metadata($key, $cfg);
                 $app->registerMetadata($def, $entity_class);
             }
         }
@@ -1197,12 +1205,12 @@ class Theme extends BaseV1\Theme {
         $taxonomies = [
             // Atuação e Articulação
 //            'area' => 'São as áreas do Ponto/Pontão de Cultura',
-            'contemplado_edital' => 'Editais do Ministério da Cidadania em que foi contemplado',
+            'contemplado_edital' => 'Editais do Ministério do Turismo em que foi contemplado',
             'acao_estruturante' => 'Ações Estruturantes',
             'publico_participante' => 'Públicos que participam das ações',
             'local_realizacao' => 'Locais onde são realizadas as ações culturais',
             'area_atuacao' => 'Área de experiência e temas',
-            'instancia_representacao_minc' => 'Instância de representação junto ao Ministério da Cidadania',
+            'instancia_representacao_minc' => 'Instância de representação junto ao Ministério do Turismo',
             // Economia Viva
             'ponto_infra_estrutura' => '',
             'ponto_equipamentos' => '',
@@ -1220,7 +1228,7 @@ class Theme extends BaseV1\Theme {
 
         foreach ($taxonomies as $slug => $description) {
             $id++;
-            $def = new \MapasCulturais\Definitions\Taxonomy($id, $slug, $description);
+            $def = new Taxonomy($id, $slug, $description);
             $app->registerTaxonomy('MapasCulturais\Entities\Agent', $def);
         }
     }

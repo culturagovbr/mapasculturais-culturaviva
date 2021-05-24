@@ -44,22 +44,22 @@
                                                      name="tipoFomento"
                                                      value="tcc"
                                                      ng-change="save_field('tipoFomento')"
-                                                     ng-model="agent.tipoFomento" > TCC - Celebração de Termo de Compromisso Cultural como resultado de seleção em edital público do Ministério da Cidadania ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
+                                                     ng-model="agent.tipoFomento" > TCC - Celebração de Termo de Compromisso Cultural como resultado de seleção em edital público do Ministério do Turismo ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
                     <label class="label-radio"><input type="radio"
                                                      name="tipoFomento"
                                                      value="premio"
                                                      ng-change="save_field('tipoFomento')"
-                                                     ng-model="agent.tipoFomento" > Prêmio - Recebimento de Premiação em recursos financeiros como resultado de seleção em edital público do Ministério da Cidadania ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
+                                                     ng-model="agent.tipoFomento" > Prêmio - Recebimento de Premiação em recursos financeiros como resultado de seleção em edital público do Ministério do Turismo ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
                     <label class="label-radio"><input type="radio"
                                                      name="tipoFomento"
                                                      value="bolsa"
                                                      ng-change="save_field('tipoFomento')"
-                                                     ng-model="agent.tipoFomento" > Bolsa - Recebimento de Bolsa como resultado de seleção em edital público do Ministério da Cidadania ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
+                                                     ng-model="agent.tipoFomento" > Bolsa - Recebimento de Bolsa como resultado de seleção em edital público do Ministério do Turismo ou de entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.</label>
                     <label class="label-radio"><input type="radio"
                                                      name="tipoFomento"
                                                      value="convenio"
                                                      ng-change="save_field('tipoFomento')"
-                                                     ng-model="agent.tipoFomento" > Convênio - Celebração de Convênio com o Ministério da Cidadania ou com entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.para realização de projeto cultural.</label>
+                                                     ng-model="agent.tipoFomento" > Convênio - Celebração de Convênio com o Ministério do Turismo ou com entes federados parceiros nas Redes Estaduais/Municipais/Intermunicipais de Pontos e Pontões de Cultura.para realização de projeto cultural.</label>
                     <label class="label-radio"><input type="radio"
                                                      name="tipoFomento"
                                                      value="rouanet"

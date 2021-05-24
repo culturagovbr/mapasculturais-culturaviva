@@ -32,24 +32,25 @@
             </li>
             <li
                 ng-class="{active:$state.includes('pagina.certificacao.*')}"
-                access-level="AGENTES"
-                >
+                access-level="AGENTES">
                 <a ui-sref="pagina.certificacao.lista">Avaliações</a>
             </li>
             <li class="dropdown"
                 ng-class="{active:$state.includes('pagina.configuracao.*')||$state.includes('pagina.configuracao.*.*')}"
-                access-level="AGENTE_AREA"
-                >
+                access-level="AGENTE_AREA">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     Configurações
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropup">
-                    <li ui-sref-active="active" >
+                    <li ui-sref-active="active">
                         <a ui-sref="pagina.configuracao.criterios">Critérios</a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="pagina.configuracao.certificador.lista">Certificadores</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="pagina.configuracao.redistribuir">Redistribuição</a>
                     </li>
                 </ul>
             </li>

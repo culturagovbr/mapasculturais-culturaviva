@@ -1,8 +1,8 @@
 /* global google */
 
 angular
-        .module('Certificacao')
-        .controller('AvaliacaoTabPontoCtrl', AvaliacaoTabPontoCtrl);
+    .module('Certificacao')
+    .controller('AvaliacaoTabPontoCtrl', AvaliacaoTabPontoCtrl);
 
 AvaliacaoTabPontoCtrl.$inject = ['$scope', 'Entity', 'estadosBrasil'];
 
@@ -56,4 +56,3 @@ function AvaliacaoTabPontoCtrl($scope, Entity, estadosBrasil) {
         }
     });
 }
-

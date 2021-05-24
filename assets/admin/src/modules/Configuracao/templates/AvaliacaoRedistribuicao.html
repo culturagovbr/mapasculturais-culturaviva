@@ -1,0 +1,34 @@
+<div ng-controller="AvaliacaoRedistribuicaoCtrl" ng-cloak>
+    <tc-form name="formCertificador" on-save="salvar()">
+        <div class="col-md-12">
+            <tc-notitication id="formulario"></tc-notitication>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-danger pull-right" ng-click="redistribuir()" type="button"
+                    access-level="AGENTE_AREA">
+                Executar redistribuição e certificação
+            </button>
+        </div>
+        <div class="col-md-12">
+            <p>Incluir/Remover certificadores federais na redistribuição dos estados:</p>
+            <div class="row">
+                <div class="col-md-12 form-check">
+                    <label class="form-check-label" style="padding-left: 5px;">
+                        <input class="form-check-input" type="checkbox" ng-click="marcarTodos(this)">
+                        Marcar Todos
+                    </label>
+                </div>
+                <div class="col-md-3 form-check" ng-repeat="row in ufs">
+                    <input class="form-check-input" id="{{row.sigla}}" ng-checked="row.redistribuicao"
+                           ng-model="ufs[row.sigla]"
+                           ng-click="redistribuicao(this)"
+                           type="checkbox" value="{{row.sigla}}">
+                    <label class="form-check-label" for="{{row.sigla}}" style="padding-left: 5px;">
+                        {{row.nome}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </tc-form>
+</div>

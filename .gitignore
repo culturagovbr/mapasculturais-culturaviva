@@ -8,3 +8,5 @@ main.css.map
 /assets/admin/dist/vendor/
 /assets/admin/nbproject/private/
 config.php
+.idea/
+bkp_config.php_06-10-17

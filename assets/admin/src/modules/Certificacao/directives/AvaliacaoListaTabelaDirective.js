@@ -19,6 +19,7 @@ function AvaliacaoListaTabelaDirective(estadosBrasil) {
             pagina: 1,
             data: null
         };
+        $scope.registros = null;
 
         UsuarioSrv.obterUsuario().then(function (usuario){$scope.usuario = usuario;});
 
@@ -48,6 +49,13 @@ function AvaliacaoListaTabelaDirective(estadosBrasil) {
                 }
             }).then(function (response) {
                 $scope.ref.data = response.data;
+                $scope.$emit("changetotal", {
+                    pagina: $scope.ref.pagina,
+                    nome: $scope.ref.filtrarTexto,
+                    uf: $scope.ref.filtrarUf ? $scope.ref.filtrarUf.valor : undefined,
+                    municipio: $scope.ref.filtrarMunicipio,
+                    estado: $scope.estado
+                });
                 if ($scope.ref.data.rows) {
                     $scope.ref.data.chunk = (function chunk(arr, size) {
                         var newArr = [];

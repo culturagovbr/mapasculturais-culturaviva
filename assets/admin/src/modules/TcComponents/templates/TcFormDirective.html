@@ -10,20 +10,20 @@
             <span ng-repeat="item in buttons">
                 <span>&nbsp;</span>
                 <a
-                    ng-if="item.sref"
-                    class="btn {{item.class|| 'btn-primary'}}"
-                    ui-sref="{{item.sref}}"
-                    ng-disabled="item.disabled"
-                    >
+                        class="btn {{item.class|| 'btn-primary'}}"
+                        ng-disabled="item.disabled"
+                        ng-if="item.sref"
+                        ui-sref="{{item.sref}}"
+                >
                     {{item.title}}
                 </a>
                 <button
-                    ng-if="!item.sref"
-                    class="btn {{item.class|| 'btn-primary'}}"
-                    type="{{item.type|| 'button'}}"
-                    ng-click="item.click()"
-                    ng-disabled="item.disabled"
-                    >
+                        ng-disabled="item.disabled"
+                        class="btn {{item.class|| 'btn-primary'}}"
+                        type="{{item.type|| 'button'}}"
+                        ng-click="item.click()"
+                        ng-if="!item.sref"
+                >
                     {{item.title}}
                 </button>
             </span>
@@ -32,10 +32,10 @@
             <span ng-if="onClear">
                 &nbsp;
                 <button
-                    type="button"
-                    ng-click="clear()"
-                    class="btn btn-warning"
-                    >
+                        class="btn btn-warning"
+                        ng-click="clear()"
+                        type="button"
+                >
                     Limpar
                 </button>
             </span>
@@ -43,11 +43,11 @@
             <span ng-if="onSave">
                 &nbsp;
                 <button
-                    type="submit"
-                    class="btn btn-primary"
-                    ng-click="submit()"
-                    >
-                    {{onSaveLabel|| 'Salvar'}}
+                        class="btn btn-primary"
+                        ng-click="submit()"
+                        type="submit"
+                >
+                    {{onSaveLabel || 'Salvar'}}
                 </button>
             </span>
         </div>
