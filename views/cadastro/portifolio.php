@@ -62,7 +62,7 @@
                 <a href="<?php $this->asset('pdf/modelos_de_portfolio.docx')?>" target="_blank">Clique aqui</a> para baixar um modelo com orientações.
             </p>
             <!--Hitória do ponto de cultura-->
-            <div class="row">
+            <div class="row" ng-controller="PortifolioCtrl">
                 <label class="colunm-full">
                     <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura (max. 800 caracteres)* <i class='hltip' title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>  </span>
                     <textarea rows="8" required ng-blur="save_field('longDescription')" maxlength="800" ng-model="agent.longDescription"></textarea>
