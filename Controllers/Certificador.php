@@ -62,7 +62,8 @@ class Certificador extends Controller
      * Lista todos os certificadores cadastrados, com informações sobre o
      * status dos processos
      */
-    function GET_listar() {
+    function GET_listar()
+    {
         $app = App::i();
         $this->requireAuthentication();
 
@@ -116,7 +117,7 @@ class Certificador extends Controller
             'uf_nome'
         ];
         $params = null;
-        if($uf) {
+        if ($uf) {
             $sql .= " WHERE c.uf = :uf";
             $params = ['uf' => $_GET['uf']];
         }
@@ -153,7 +154,7 @@ class Certificador extends Controller
         }
 
         //Salva a UF
-        if(isset($data->uf) && $certificador->tipo != CertificadorEntity::TP_MINERVA){
+        if (isset($data->uf) && $certificador->tipo != CertificadorEntity::TP_MINERVA) {
             $certificador->uf = $data->uf->valor;
         }
 
@@ -164,7 +165,7 @@ class Certificador extends Controller
         // Validação de consistencia
         $tiposValidos = [CertificadorEntity::TP_PUBLICO_FEDERAL, CertificadorEntity::TP_PUBLICO_ESTADUAL, CertificadorEntity::TP_CIVIL_FEDERAL, CertificadorEntity::TP_CIVIL_ESTADUAL, CertificadorEntity::TP_MINERVA];
         if (!in_array($certificador->tipo, $tiposValidos)) {
-            return $this->json([ "message" => 'O tipo do Agente Certificador informado é inválido'], 400);
+            return $this->json(["message" => 'O tipo do Agente Certificador informado é inválido'], 400);
         }
         // Verifica se já existe cadastro do mesmo agente como certificador do mesmo tipo
         $salvos = App::i()->repo('\CulturaViva\Entities\Certificador')->findBy(['agenteId' => $certificador->agenteId]);
@@ -195,20 +196,20 @@ class Certificador extends Controller
          */
         $agent = $app->repo('Agent')->find($certificador->agenteId);
         $perfilUsuario = null;
-        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL || $certificador->tipo == CertificadorEntity::TP_PUBLICO_ESTADUAL) {
+        if ($certificador->tipo == CertificadorEntity::TP_PUBLICO_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_PUBLICO;
-        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL || $certificador->tipo == CertificadorEntity::TP_CIVIL_ESTADUAL) {
+        } else if ($certificador->tipo == CertificadorEntity::TP_CIVIL_FEDERAL) {
             $perfilUsuario = CertificadorEntity::ROLE_CIVIL;
         } else if ($certificador->tipo == CertificadorEntity::TP_MINERVA) {
             $perfilUsuario = CertificadorEntity::ROLE_MINERVA;
             $certificador->uf = null;
         }
-        if ($certificador->ativo) {
-            $agent->user->addRole($perfilUsuario);
-            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
-        } else {
-            $agent->user->removeRole($perfilUsuario);
-        }
+//        if ($certificador->ativo) {
+//            $agent->user->addRole($perfilUsuario);
+//            $agent->user->addRole("admin"); //adiciona também o perfil de administrador
+//        } else {
+//            $agent->user->removeRole($perfilUsuario);
+//        }
 
         $app->em->flush();
 
