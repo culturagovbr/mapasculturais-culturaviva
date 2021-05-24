@@ -153,11 +153,9 @@ class Avaliacao extends Controller
             LEFT JOIN avaliacoes avl_m
                 ON insc.id = avl_m.inscricao_id
                 AND avl_m.certificador_tipo = 'M'
-            WHERE 1=1";
-
-        $sql .= "AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)";
-
-        $sql .= "AND (
+            WHERE 1=1
+            AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)
+            AND (
                 :estado = ''
                 OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado])
                 OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado]::varchar[]))
