@@ -155,13 +155,9 @@ class Avaliacao extends Controller
                 AND avl_m.certificador_tipo = 'M'
             WHERE 1=1";
 
-        if ($agenteId == 0) {
-            $sql .= " AND (:agenteId = 0)";
-        } else {
-            $sql .= " AND (avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)";
-        }
+        $sql .= "AND (:agenteId = 0 OR avl_c.agente_id = :agenteId OR avl_p.agente_id = :agenteId OR avl_m.agente_id = :agenteId)";
 
-        $sql .= " AND (
+        $sql .= "AND (
                 :estado = ''
                 OR :estado = ANY(ARRAY[avl_c.estado, avl_p.estado, avl_m.estado])
                 OR (:estado = 'F' AND (ARRAY['D', 'I']::varchar[] && ARRAY[avl_c.estado, avl_p.estado, avl_m.estado]::varchar[]))
