@@ -85,7 +85,8 @@ class Avaliacao extends Controller
                     avl.inscricao_id,
                     avl.certificador_id,
                     cert.tipo AS certificador_tipo,
-                    cert.agente_id,
+                    cert.agente_id,                    
+                    cert.uf AS certificador_uf,
                     agt.name AS certificador_nome,
                     avl.estado
                 FROM culturaviva.avaliacao avl
@@ -103,17 +104,14 @@ class Avaliacao extends Controller
                 entidade.name           AS entidade_nome,
                 entidade.id             AS entidade_id,
                 tp.value                AS tipo_ponto_desejado,
-                
-                avl_p.id                AS avaliacao_publica_federal_id,
-                avl_p.estado            AS avaliacao_publica_federal_estado,
-                avl_p.certificador_nome AS avaliacao_publica_federal_certificador,
-                avl_p.agente_id         AS avaliacao_publica_federal_certificador_id,
-                
-                avl_c.id                AS avaliacao_civil_federal_id,
-                avl_c.estado            AS avaliacao_civil_federal_estado,
-                avl_c.certificador_nome AS avaliacao_civil_federal_certificador,
-                avl_c.agente_id         AS avaliacao_civil_federal_certificador_id,
-                
+                avl_c.id                AS avaliacao_civil_id,
+                avl_c.estado            AS avaliacao_civil_estado,
+                avl_c.certificador_nome AS avaliacao_civil_certificador,
+                avl_c.agente_id         AS avaliacao_civil_certificador_id,
+                avl_p.id                AS avaliacao_publica_id,
+                avl_p.estado            AS avaliacao_publica_estado,
+                avl_p.certificador_nome AS avaliacao_publica_certificador,
+                avl_p.agente_id         AS avaliacao_publica_certificador_id,
                 avl_m.id                AS avaliacao_minerva_id,
                 avl_m.estado            AS avaliacao_minerva_estado,
                 avl_m.certificador_nome AS avaliacao_minerva_certificador,
@@ -144,12 +142,12 @@ class Avaliacao extends Controller
             JOIN agent_meta tp
                 ON tp.key = 'tipoPontoCulturaDesejado'
                 AND tp.object_id = entidade.id
-            LEFT JOIN avaliacoes avl_p
-                ON insc.id = avl_p.inscricao_id
-                AND avl_p.certificador_tipo = 'P'
             LEFT JOIN avaliacoes avl_c
                 ON insc.id = avl_c.inscricao_id
                 AND avl_c.certificador_tipo = 'C'
+            LEFT JOIN avaliacoes avl_p
+                ON insc.id = avl_p.inscricao_id
+                AND avl_p.certificador_tipo = 'P'
             LEFT JOIN avaliacoes avl_m
                 ON insc.id = avl_m.inscricao_id
                 AND avl_m.certificador_tipo = 'M'
@@ -184,17 +182,14 @@ class Avaliacao extends Controller
             'entidade_nome',
             'entidade_id',
             'tipo_ponto_desejado',
-
-            'avaliacao_publica_federal_id',
-            'avaliacao_publica_federal_estado',
-            'avaliacao_publica_federal_certificador',
-            'avaliacao_publica_federal_certificador_id',
-
-            'avaliacao_civil_federal_id',
-            'avaliacao_civil_federal_estado',
-            'avaliacao_civil_federal_certificador',
-            'avaliacao_civil_federal_certificador_id',
-
+            'avaliacao_civil_id',
+            'avaliacao_civil_estado',
+            'avaliacao_civil_certificador',
+            'avaliacao_civil_certificador_id',
+            'avaliacao_publica_id',
+            'avaliacao_publica_estado',
+            'avaliacao_publica_certificador',
+            'avaliacao_publica_certificador_id',
             'avaliacao_minerva_id',
             'avaliacao_minerva_estado',
             'avaliacao_minerva_certificador',
