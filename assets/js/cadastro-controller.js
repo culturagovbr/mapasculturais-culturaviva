@@ -491,7 +491,7 @@
 
             $scope.data = MapasCulturais.redeCulturaViva;
             $scope.enviar = function () {
-                $http.post(MapasCulturais.createUrl('cadastro', 'enviar', $scope.data)).
+                $http.post(MapasCulturais.createUrl('cadastro', 'enviar')).
                 success(function successCallback(response) {
                     $scope.data.validationErrors = null;
                     if ($scope.data.statusInscricao == 1) {
