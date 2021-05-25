@@ -497,12 +497,12 @@
                     if ($scope.data.statusInscricao == 1) {
                         ngDialog.open({
                             template: 'modal1',
-                            scope: $scope
+                            scope: $scope.data
                         });
                     } else {
                         ngDialog.open({
                             template: 'modal2',
-                            scope: $scope
+                            scope: $scope.data
                         });
                     }
                     $scope.saveObs = function () {
