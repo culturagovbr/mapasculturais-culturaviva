@@ -1521,7 +1521,7 @@
                 };
                 var ponto = {
                     'id': rcv.agentePonto,
-                    '@select': 'id,rcv_tipo,files,longDescription,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,' +
+                    '@select': 'id,rcv_tipo,files,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,' +
                         'terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,pais,En_Estado,En_Municipio,' +
                         'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                         'localRealizacao_cidade,localRealizacao_espaco,location,' +
