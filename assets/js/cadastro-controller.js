@@ -769,7 +769,7 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto',
                 '@permissions': 'view'
             };
 
