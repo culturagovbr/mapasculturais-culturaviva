@@ -755,24 +755,40 @@
     ]);
 
     app.controller('PortifolioCtrl', ['$scope', 'Entity', 'MapasCulturais', 'Upload', '$timeout', 'geocoder', 'cepcoder', '$location', '$http',
-        function PortifolioCtrl($scope, Entity, MapasCulturais, Upload, $timeout, geocoder, cepcoder, $location, $http)
-        {
+        function PortifolioCtrl($scope, Entity, MapasCulturais, Upload, $timeout, geocoder, cepcoder, $location, $http) {
             var agent_id = MapasCulturais.redeCulturaViva.agentePonto;
+            var agent_id_entidade = MapasCulturais.redeCulturaViva.agenteEntidade;
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink',
-                '@files':'(avatar.avatarBig,portifolio,gallery.avatarBig,cartasRecomendacao):url',
+                '@select': 'id,longDescription,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
 
-            $scope.agent = Entity.get(params, function(){
+            var params_entidade = {
+                'id': agent_id_entidade,
+                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@permissions': 'view'
+            };
+
+            var params_ponto = {
+                'id': agent_id_ponto,
+                '@select': 'id,longDescription,homologado_rcv',
+                '@permissions': 'view'
+            };
+
+            $scope.agent = Entity.get(params, function () {
                 extendController($scope, $timeout, Entity, agent_id, $http);
 
-                if($location.search().invalid === '1'){
+                if ($location.search().invalid === '1') {
                     $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
                 }
             });
+
+
+            $scope.agent_entidade = Entity.get(params_entidade);
+            $scope.agent_ponto = Entity.get(params_ponto);
         }
     ]);
 
