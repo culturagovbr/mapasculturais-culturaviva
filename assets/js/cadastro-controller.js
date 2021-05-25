@@ -467,7 +467,7 @@
                 '@select': 'id,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,nomeCompleto,' +
                     'En_Municipio,facebook,twitter,googleplus,mesmoEndereco,shortDescription,' +
-                    'termos_de_uso,info_verdadeira,longDescription,obs',
+                    'termos_de_uso,info_verdadeira,obs',
                 '@permissions': 'view'
             };
 
@@ -739,7 +739,7 @@
                 'id': agent_id,
                 '@select': 'id,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,telefone2,nomeCompleto,' +
-                    'En_Municipio,mesmoEndereco,shortDescription,longDescription',
+                    'En_Municipio,mesmoEndereco,shortDescription',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):id,url',
                 '@permissions': 'view'
             };
@@ -775,7 +775,7 @@
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv,longDescription',
+                '@select': 'id,homologado_rcv',
                 '@permissions': 'view'
             };
 
@@ -810,7 +810,7 @@
             var params = {
                 'id': agent_id,
                 '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,' +
-                    'tipoPontoCulturaDesejado,emailPrivado,telefone1,longDescription,' +
+                    'tipoPontoCulturaDesejado,emailPrivado,telefone1,' +
                     'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,' +
                     'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,cep,En_Complemento,' +
                     'facebook,twitter,googleplus,telegram,whatsapp,culturadigital,diaspora,instagram,flickr,youtube,' +
@@ -1021,15 +1021,15 @@
         }
     ]);
 
-    app.controller('PortifolioCtrl', ['$scope', 'Entity', 'MapasCulturais', 'Upload', '$timeout', 'geocoder', 'cepcoder', '$location', '$http', 'cidadecoder',
-        function PortifolioCtrl($scope, Entity, MapasCulturais, Upload, $timeout, geocoder, cepcoder, $location, $http, cidadecoder) {
+    app.controller('PointCtrl', ['$scope', 'Entity', 'MapasCulturais', 'Upload', '$timeout', 'geocoder', 'cepcoder', '$location', '$http', 'cidadecoder',
+        function PointCtrl($scope, Entity, MapasCulturais, Upload, $timeout, geocoder, cepcoder, $location, $http, cidadecoder) {
             var agent_id = MapasCulturais.redeCulturaViva.agentePonto;
 
             var params = {
                 'id': agent_id,
                 '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
                     'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
-                    'localRealizacao_cidade,localRealizacao_espaco,location,longDescription',
+                    'localRealizacao_cidade,localRealizacao_espaco,location',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):url',
                 '@permissions': 'view'
             };
