@@ -479,7 +479,7 @@
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
+                '@select': 'id,longDescription,homologado_rcv',
                 '@permissions': 'view'
             };
 
