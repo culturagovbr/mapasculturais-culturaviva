@@ -467,7 +467,7 @@
                 '@select': 'id,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,nomeCompleto,' +
                     'En_Municipio,facebook,twitter,googleplus,mesmoEndereco,shortDescription,' +
-                    'termos_de_uso,info_verdadeira,obs',
+                    'termos_de_uso,info_verdadeira,longDescription,obs',
                 '@permissions': 'view'
             };
 
@@ -739,7 +739,7 @@
                 'id': agent_id,
                 '@select': 'id,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,telefone2,nomeCompleto,' +
-                    'En_Municipio,mesmoEndereco,shortDescription',
+                    'En_Municipio,mesmoEndereco,shortDescription,longDescription',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):id,url',
                 '@permissions': 'view'
             };
