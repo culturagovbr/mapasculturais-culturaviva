@@ -491,19 +491,18 @@
 
             $scope.data = MapasCulturais.redeCulturaViva;
             $scope.enviar = function () {
-                $http.post(MapasCulturais.createUrl('cadastro', 'enviar'), $scope.data).
+                $http.post(MapasCulturais.createUrl('cadastro', 'enviar'), data).
                 success(function successCallback(response) {
                     $scope.data.validationErrors = null;
                     if ($scope.data.statusInscricao == 1) {
-                        console.log($scope.data);
                         ngDialog.open({
                             template: 'modal1',
-                            scope: $scope
+                            scope: $scope.data
                         });
                     } else {
                         ngDialog.open({
                             template: 'modal2',
-                            scope: $scope
+                            scope: $scope.data
                         });
                     }
                     $scope.saveObs = function () {
