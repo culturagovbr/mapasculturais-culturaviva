@@ -102,6 +102,7 @@ class Cadastro extends \MapasCulturais\Controller{
         $required_properties = [
             'name',
             'shortDescription',
+            'longDescription',
             'tem_sede',
             'pais',
             'location', // ponto no mapa
