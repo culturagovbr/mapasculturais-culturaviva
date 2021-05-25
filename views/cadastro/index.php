@@ -11,13 +11,11 @@ $this->bodyProperties['ng-app'] = "culturaviva";
       margin-left: 760px;
       margin-top: -191px;
   }
-
-  #selo-img {
-      height: 180px;
-      width: auto;
+  #selo-img{
+    height: 180px;
+    width:auto;
   }
-
-  canvas {
+  canvas{
       width: 10px;
       height: 10px;
   }
@@ -42,7 +40,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
             <h2>Seja bem-vindo(a) à Rede Cultura Viva</h2>
             <p>Esta é a página do seu Ponto de Cultura. Apenas você tem acesso a ela.</p>
             <p>Fique a vontade para ir preenchendo as sessões. Você não precisa fazer tudo agora! Quando sua página estiver completa clique em "Enviar".</p>
-            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o Ministério do Turismo.</p>
+            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o Ministério da Cidadania.</p>
         </article>
         <div ng-if="agent_ponto.homologado_rcv" id="selo-index">
           <img id="selo-img" src="<?php $this->asset('img/verified-icon-big.png') ?>">
@@ -51,19 +49,18 @@ $this->bodyProperties['ng-app'] = "culturaviva";
     <section class="boxs-cadastro">
 	<article class="boxs-cadastro" style="width: 100%; background: #078979 none repeat scroll 0% 0%;"><header><center><h4>Certificação Simplificada</h4></center></header></article>
         <a href="<?php echo $app->createUrl('cadastro', 'responsavel'); ?>">
-            <article class="box-info-responsavel border-left">
-                <header>
-                    <span class="icon icon-user"></span>
-                    <h4> 1. Identificação Responsável</h4>
-                    <span class="btn_mais"> + </span>
-
-                </header>
-                <div class="infos">
-                    <div class="texto">
-                        <p>Precisamos saber quem é você e pegar seus contatos</p>
-                    </div>
-                </div>
-            </article>
+        <article class="box-info-responsavel">
+            <header>
+              <span class="icon icon-user"></span>
+              <h4> 1. Identificação Responsável</h4>
+              <span class="btn_mais"> + </span>
+            </header>
+            <div class="infos">
+              <div class="texto">
+                <p>Precisamos saber quem é você e pegar seus contatos</p>
+              </div>
+            </div>
+        </article>
         </a>
         <a href="<?php echo $app->createUrl('cadastro', 'entidadeDados'); ?>">
         <article class="box-entidade-dados border-left">
@@ -138,7 +135,7 @@ $this->bodyProperties['ng-app'] = "culturaviva";
             </header>
             <div class="infos">
                <div class="texto">
-                     <p>Já recebeu recursos do Ministério do Turismo? </p>
+                     <p>Já recebeu recursos do Ministério da Cidadania? </p>
                 </div>
             </div>
         </article>

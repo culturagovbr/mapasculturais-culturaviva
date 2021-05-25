@@ -188,6 +188,7 @@ class Cadastro extends \MapasCulturais\Controller{
             'portifolio',
             'carta1',
             'carta2',
+            'longDescription'
         ];
 
         if ($agentEntidade->tipoOrganizacao === 'coletivo') {

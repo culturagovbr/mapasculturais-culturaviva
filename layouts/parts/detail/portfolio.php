@@ -5,7 +5,6 @@
         </div>
         <div class="row">
             <span class="destaque">Portfólio*</span>
-
             <div>
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
                     <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar portifólio"/>
@@ -30,8 +29,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- <div class="row"> -->
         <!-- <h4>Cartas de Reconhecimento</h4> -->
         <!-- </div> -->
@@ -71,7 +68,6 @@
             <label class="colunm1">
                 <span><b>{{ponto.longDescription}}</b></span>
                 <span ng-if="!ponto.longDescription"><b>Não informado</b></span>
-
             </label>
         </div>
         <div class="clear"></div>
