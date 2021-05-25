@@ -758,6 +758,7 @@
         function PortifolioCtrl($scope, Entity, MapasCulturais, Upload, $timeout, geocoder, cepcoder, $location, $http) {
             var agent_id = MapasCulturais.redeCulturaViva.agentePonto;
             var agent_id_entidade = MapasCulturais.redeCulturaViva.agenteEntidade;
+            var agent_id_ponto = MapasCulturais.redeCulturaViva.agentePonto;
 
             var params = {
                 'id': agent_id,
@@ -768,7 +769,7 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto',
                 '@permissions': 'view'
             };
 
@@ -777,7 +778,7 @@
                 '@select': 'id,longDescription,homologado_rcv',
                 '@permissions': 'view'
             };
-
+console.log($scope.agent)
             $scope.agent = Entity.get(params, function () {
                 extendController($scope, $timeout, Entity, agent_id, $http);
 
