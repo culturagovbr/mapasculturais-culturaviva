@@ -1502,7 +1502,7 @@
                     'id': rcv.agenteIndividual,
                     '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                         'emailPrivado,telefone1,telefone2,nomeCompleto,' +
-                        'En_Municipio,shortDescription',
+                        'En_Municipio,shortDescription,longDescription',
                     '@permissions': 'view'
                 };
                 var entidade = {
