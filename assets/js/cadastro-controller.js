@@ -464,7 +464,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,longDescription,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
+                '@select': 'id,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,nomeCompleto,' +
                     'En_Municipio,facebook,twitter,googleplus,mesmoEndereco,shortDescription,' +
                     'termos_de_uso,info_verdadeira,obs',
@@ -479,7 +479,7 @@
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,longDescription,homologado_rcv',
+                '@select': 'id,homologado_rcv',
                 '@permissions': 'view'
             };
 
@@ -494,15 +494,15 @@
                 $http.post(MapasCulturais.createUrl('cadastro', 'enviar')).
                 success(function successCallback(response) {
                     $scope.data.validationErrors = null;
-                    if ($scope.data.statusInscricao == 1) {
+                    if ($scope.data.statusInscricao == 0) {
                         ngDialog.open({
                             template: 'modal1',
-                            scope: $scope.data
+                            scope: $scope
                         });
                     } else {
                         ngDialog.open({
                             template: 'modal2',
-                            scope: $scope.data
+                            scope: $scope
                         });
                     }
                     $scope.saveObs = function () {
@@ -571,7 +571,7 @@
                 //@TODO refatorar todo esse método
                 var params = {
                     'id': agent_id,
-                    '@select': 'id,longDescription,files',
+                    '@select': 'id,files',
                     '@permissions': 'view',
                     '@files': '(avatar,avatar.avatarSmall,avatar.avatarMedium,avatar.avatarBig,gallery,ata,portifolio,carta1,carta2, cartaReferencia1, cartaReferencia2):url,id,name'
                 };
@@ -736,7 +736,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,longDescription,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
+                '@select': 'id,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,telefone2,nomeCompleto,' +
                     'En_Municipio,mesmoEndereco,shortDescription',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):id,url',
@@ -768,13 +768,13 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto',
+                '@select': 'id,tipoOrganizacao,tipoPonto',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,longDescription,homologado_rcv',
+                '@select': 'id,homologado_rcv',
                 '@permissions': 'view'
             };
 
@@ -1026,7 +1026,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,longDescription,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
+                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
                     'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                     'localRealizacao_cidade,localRealizacao_espaco,location',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):url',
@@ -1501,7 +1501,7 @@
                     'id': rcv.agenteIndividual,
                     '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                         'emailPrivado,telefone1,telefone2,nomeCompleto,' +
-                        'En_Municipio,shortDescription,longDescription',
+                        'En_Municipio,shortDescription',
                     '@permissions': 'view'
                 };
                 var entidade = {
