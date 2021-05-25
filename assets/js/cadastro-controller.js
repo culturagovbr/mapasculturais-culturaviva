@@ -464,7 +464,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
+                '@select': 'id,longDescription,singleUrl,name,rg,rg_orgao,relacaoPonto,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,nomeCompleto,' +
                     'En_Municipio,facebook,twitter,googleplus,mesmoEndereco,shortDescription,' +
                     'termos_de_uso,info_verdadeira,obs',
@@ -491,7 +491,7 @@
 
             $scope.data = MapasCulturais.redeCulturaViva;
             $scope.enviar = function () {
-                $http.post(MapasCulturais.createUrl('cadastro', 'enviar', data)).
+                $http.post(MapasCulturais.createUrl('cadastro', 'enviar', $scope.data)).
                 success(function successCallback(response) {
                     $scope.data.validationErrors = null;
                     if ($scope.data.statusInscricao == 1) {
