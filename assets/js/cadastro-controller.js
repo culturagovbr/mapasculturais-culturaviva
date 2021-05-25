@@ -571,7 +571,7 @@
                 //@TODO refatorar todo esse método
                 var params = {
                     'id': agent_id,
-                    '@select': 'id,files',
+                    '@select': 'id,longDescription,files',
                     '@permissions': 'view',
                     '@files': '(avatar,avatar.avatarSmall,avatar.avatarMedium,avatar.avatarBig,gallery,ata,portifolio,carta1,carta2, cartaReferencia1, cartaReferencia2):url,id,name'
                 };
@@ -736,7 +736,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
+                '@select': 'id,longDescription,rcv_tipo,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                     'emailPrivado,telefone1,telefone2,nomeCompleto,' +
                     'En_Municipio,mesmoEndereco,shortDescription',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):id,url',
@@ -774,7 +774,7 @@
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
+                '@select': 'id,longDescription,homologado_rcv',
                 '@permissions': 'view'
             };
 
@@ -1026,7 +1026,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
+                '@select': 'id,longDescription,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
                     'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                     'localRealizacao_cidade,localRealizacao_espaco,location',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):url',
