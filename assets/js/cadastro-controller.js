@@ -490,7 +490,6 @@
             extendController($scope, $timeout, Entity, agent_id);
 
             $scope.data = MapasCulturais.redeCulturaViva;
-
             $scope.enviar = function () {
                 $http.post(MapasCulturais.createUrl('cadastro', 'enviar')).
                 success(function successCallback(response) {
@@ -762,7 +761,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
@@ -1517,7 +1516,7 @@
                 };
                 var ponto = {
                     'id': rcv.agentePonto,
-                    '@select': 'id,rcv_tipo,files,longDescription,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,' +
+                    '@select': 'id,rcv_tipo,files,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,' +
                         'terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,pais,En_Estado,En_Municipio,' +
                         'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                         'localRealizacao_cidade,localRealizacao_espaco,location,' +

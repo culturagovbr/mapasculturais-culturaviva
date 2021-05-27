@@ -1,6 +1,4 @@
 <?php
-require __DIR__ . '/../../assets/php/functions.php';
-
 $this->bodyProperties['ng-app'] = "culturaviva";
 $this->layout = 'cadastro';
 $this->cadastroTitle = '3. Portfólio e Anexos';
@@ -11,6 +9,9 @@ $this->cadastroPageClass = 'portfolio page-base-form';
 $this->cadastroLinkContinuar = 'articulacao';
 $this->cadastroLinkBack = 'entidadeDados';
 ?>
+<style>
+
+</style>
 <form name="form_portifolio" ng-controller="PortifolioCtrl">
     <?php $this->part('messages'); ?>
     <div class="form">
@@ -26,7 +27,7 @@ $this->cadastroLinkBack = 'entidadeDados';
                                           Portfólio Online
                         <i class='hltip' title="Caso possua um portfolio online, coloque o link aqui.">?</i></span>
                         <input type="text" name="atividadesEmRealizacaoLink" placeholder="http://"
-                               ng-change="save_field('atividadesEmRealizacaoLink')"
+                               ng-blur="save_field('atividadesEmRealizacaoLink')"
                                ng-model="agent.atividadesEmRealizacaoLink"/>
                     </label>
                 </div>
@@ -41,7 +42,8 @@ $this->cadastroLinkBack = 'entidadeDados';
             <!-- Portifolio -->
             <div class="colunm-20">
                 <div class="file-item">
-                    <a ng-if="agent.files.portifolio" href="#" class="exclui" ng-click="deleteFile(agent.files.portifolio)" title="Excluir Portfólio">x</a>
+                    <a ng-if="agent.files.portifolio" href="#" class="exclui"
+                       ng-click="deleteFile(agent.files.portifolio)" title="Excluir Portfólio">x</a>
                     <div type="file" ngf-select="uploadFile($file, 'portifolio')" accept="config.pdf.validation" ngf-max-size="config.pdf.maxUploadSize" title="{{agent.files.portifolio ? 'Clique para alterar o Portfólio' : 'Clique para incluir um Portfólio'}}">
                         <img ng-if="!agent.files.portifolio" src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
                         <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
@@ -59,18 +61,20 @@ $this->cadastroLinkBack = 'entidadeDados';
             <p>
                 Precisa de ajuda para montar seu portfólio?
                 <span class="destaque" style="display: inline-block">
-                    <i class="hltip" title='Um portfólio é um relatório das atividades desenvolvidas pelo Ponto de Cultura com imagens, vídeos e outros itens que comprovem a sua existência'>?</i>
+                    <i class="hltip"
+                       title='Um portfólio é um relatório das atividades desenvolvidas pelo Ponto de Cultura com imagens, vídeos e outros itens que comprovem a sua existência'>?</i>
                 </span> <br>
-                <a href="<?php $this->asset('pdf/modelos_de_portfolio.docx')?>" target="_blank">Clique aqui</a> para
+                <a href="<?php $this->asset('pdf/modelos_de_portfolio.docx') ?>" target="_blank">Clique aqui</a> para
                 baixar um modelo com orientações.
             </p>
             <!--Hitória do ponto de cultura-->
-            <div class="row" ng-controller="PortifolioCtrl" ng-init="init('ponto')">
+            <div class="row" ng-controller="PortifolioCtrl">
                 <label class="colunm-full">
-                    <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura (max. 800 caracteres)* <i
-                                class='hltip'
-                                title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>  </span>
-                    <textarea rows="8" name="longDescription" required ng-change="save_field('longDescription')"
+                    <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura (max. 800 caracteres)*
+                        <i class='hltip'
+                           title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>
+                    </span>
+                    <textarea name="longDescription" rows="8" required ng-blur="save_field('longDescription')"
                               maxlength="800" ng-model="agent.longDescription"></textarea>
                     <span>{{800 - agent.longDescription.length}} caracteres restantes</span>
                     <span ng-class="error" style="color: red" ng-show="form_portifolio.longDescription.$error.required">Descrição Obrigatória</span>
@@ -183,58 +187,58 @@ $this->cadastroLinkBack = 'entidadeDados';
                 </div>
                 <div class="colunm-20" ng-controller="ImageUploadCtrl" ng-init="init('ponto')">
                     <div class="file-item">
-                        <a ng-if="agent.files.cartaReferencia2" href="#" class="exclui" ng-click="deleteFile(agent.files.cartaReferencia2)" title="Excluir Carta de Referência">x</a>
-                        <div type="file" ngf-select="uploadFile($file, 'cartaReferencia2')" accept="config.pdf.validation" ngf-max-size="config.pdf.maxUploadSize" title="{{agent.files.cartaReferencia2 ? 'Clique para alterar a carta de referência' : 'Clique para incluir uma carta de referência'}}">
-                            <img ng-if="!agent.files.cartaReferencia2" src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
+                        <a ng-if="agent.files.cartaReferencia2" href="#" class="exclui"
+                           ng-click="deleteFile(agent.files.cartaReferencia2)" title="Excluir Carta de Referência">x</a>
+                        <div type="file" ngf-select="uploadFile($file, 'cartaReferencia2')"
+                             accept="config.pdf.validation" ngf-max-size="config.pdf.maxUploadSize"
+                             title="{{agent.files.cartaReferencia2 ? 'Clique para alterar a carta de referência' : 'Clique para incluir uma carta de referência'}}">
+                            <img ng-if="!agent.files.cartaReferencia2"
+                                 src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
                             <img ng-if="agent.files.cartaReferencia2" src="<?php $this->asset('img/pdflogo.png') ?>"
                                  width="160" height="138">
                         </div>
                     </div>
-                </div>
-                Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia
-                <a ng-if="agent.files.cartaReferencia2" href="{{agent.files.cartaReferencia2.url}}"
-                   target="_blank">{{agent.files.cartaReferencia2.name}}</a>
-                <div class="progress row" ng-show="f.progress >= 0">
-                    <span style="width:{{f.progress}}%;" ng-bind="f.progress + '%'"></span>
-                </div>
-            </div>
-
-            <label class="colunm-50">
-
-                <p>
-                    Precisa de um modelo de carta de referência?
-                    <br>
-                    <a href="<?php $this->asset('pdf/modelo_de_carta_de_referencia_pontao.docx') ?>" target="_blank">Clique
-                        aqui</a> para baixar.
-                </p>
-            </label>
-        </div>
-        <div class="clear"></div>
-
-        <div class="row">
-            <div class="row">
-                <h4>Informações Opcionais</h4>
-            </div>
-            <div class="row" ng-controller="ImageUploadCtrl" ng-init="init('ponto')">
-                <span class="destaque espacoleft">Fotos de Divulgação do Ponto de Cultura <i class='hltip'
-                                                                                             title='Essas imagens devem mostrar as atividades que seu Ponto de Cultura desenvolve'>?</i></span>
-                <p class="espacoleft">Inclua no máximo 10 arquivos, no formato JPG ou PNG com até 1MB</p>
-                <div class="img_updade file-item" ng-repeat="f in agent.files.gallery">
-                    <a class="exclui" ng-click="deleteFile(f)" title="Excluir arquivo">x</a>
-                    <img src="{{f.url}}" width="160" height="138">
-                </div>
-                <div class="img_updade file-item">
-                    <div type="file" ngf-select="uploadFile($file, 'gallery')" accept="config.image.validation"
-                         ngf-max-size="config.image.maxUploadSize" title="Clique para incluir uma foto">
-                        <img src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
-                    </div>
+                    <a ng-if="agent.files.cartaReferencia2" href="{{agent.files.cartaReferencia2.url}}" target="_blank">{{agent.files.cartaReferencia2.name}}</a>
                     <div class="progress row" ng-show="f.progress >= 0">
                         <span style="width:{{f.progress}}%;" ng-bind="f.progress + '%'"></span>
                     </div>
                 </div>
-            </div>
 
+                <label class="colunm-50">
+
+                    <p>
+                        Precisa de um modelo de carta de referência?
+                        <br>
+                        <a href="<?php $this->asset('pdf/modelo_de_carta_de_referencia_pontao.docx') ?>"
+                           target="_blank">Clique aqui</a> para baixar.
+                    </p>
+                </label>
+            </div>
             <div class="clear"></div>
         </div>
+    </div>
+
+    <div class="form form-opcional">
+        <h4>Informações Opcionais</h4>
+        <div class="row" ng-controller="ImageUploadCtrl" ng-init="init('ponto')">
+            <span class="destaque espacoleft">Fotos de Divulgação do Ponto de Cultura <i class='hltip'
+                                                                                         title='Essas imagens devem mostrar as atividades que seu Ponto de Cultura desenvolve'>?</i></span>
+            <p class="espacoleft">Inclua no máximo 10 arquivos, no formato JPG ou PNG com até 1MB</p>
+            <div class="img_updade file-item" ng-repeat="f in agent.files.gallery">
+                <a class="exclui" ng-click="deleteFile(f)" title="Excluir arquivo">x</a>
+                <img src="{{f.url}}" width="160" height="138">
+            </div>
+            <div class="img_updade file-item">
+                <div type="file" ngf-select="uploadFile($file, 'gallery')" accept="config.image.validation"
+                     ngf-max-size="config.image.maxUploadSize" title="Clique para incluir uma foto">
+                    <img src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
+                </div>
+                <div class="progress row" ng-show="f.progress >= 0">
+                    <span style="width:{{f.progress}}%;" ng-bind="f.progress + '%'"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
     </div>
 </form>

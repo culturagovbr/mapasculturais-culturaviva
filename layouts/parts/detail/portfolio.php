@@ -5,7 +5,6 @@
         </div>
         <div class="row">
             <span class="destaque">Portfólio*</span>
-
             <div>
                 <a ng-if="ponto['@files:portifolio'].url" href="{{ponto['@files:portifolio'].url}}" target="_blank">
                     <img height="100px" width="80px" src="../../../assets/img/pdflogo.png" alt="Baixar portifólio"/>
@@ -30,8 +29,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- <div class="row"> -->
         <!-- <h4>Cartas de Reconhecimento</h4> -->
         <!-- </div> -->
@@ -63,18 +60,14 @@
         <div class="clear"></div>
     </div>
     <div class="form form-opcional">
-        <div class="row" ng-controller="PortifolioCtrl">
-            <label class="colunm-full">
-                <span class="destaque">Conte um pouco sobre a história do Ponto de Cultura
-                    <i class='hltip'
-                       title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?
-                    </i>
-                </span>
-                <textarea rows="8" name="longDescription" required
-                          ng-blur="save_field('longDescription')"
-                          maxlength="800" ng-model="agent.longDescription" disabled></textarea>
-                <span>{{800 - agent.longDescription.length}} caracteres restantes</span>
-                <span ng-class="error" style="color: red" ng-show="form_portifolio.longDescription.$error.required">Descrição Obrigatória</span>
+        <div class="row">
+            <span class="destaque">Conte um pouco sobre a história do ponto de Cultura
+                <i class='hltip'
+                   title='Nos diga um pouco mais sobre o ponto de cultura, como por exemplo como ele começou e como surgiu a idéia'>?</i>
+            </span>
+            <label class="colunm1">
+                <span><b>{{ponto.longDescription}}</b></span>
+                <span ng-if="!ponto.longDescription"><b>Não informado</b></span>
             </label>
         </div>
         <div class="clear"></div>

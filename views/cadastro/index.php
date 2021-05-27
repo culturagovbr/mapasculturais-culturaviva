@@ -2,25 +2,28 @@
 $this->bodyProperties['ng-app'] = "culturaviva";
 ?>
 <style>
-  a{
-    color: #078979;
-  }
-  a:hover{color: #078979;
-  }
-  #selo-index{
-      margin-left: 760px;
-      margin-top: -191px;
-  }
+    a {
+        color: #078979;
+    }
 
-  #selo-img {
-      height: 180px;
-      width: auto;
-  }
+    a:hover {
+        color: #078979;
+    }
 
-  canvas {
-      width: 10px;
-      height: 10px;
-  }
+    #selo-index {
+        margin-left: 760px;
+        margin-top: -191px;
+    }
+
+    #selo-img {
+        height: 180px;
+        width: auto;
+    }
+
+    canvas {
+        width: 10px;
+        height: 10px;
+    }
 </style>
 <div id="page-cadastro" ng-controller="DashboardCtrl">
     <?php $this->part('messages'); ?>
@@ -41,22 +44,23 @@ $this->bodyProperties['ng-app'] = "culturaviva";
         <article id="box-saudacao">
             <h2>Seja bem-vindo(a) à Rede Cultura Viva</h2>
             <p>Esta é a página do seu Ponto de Cultura. Apenas você tem acesso a ela.</p>
-            <p>Fique a vontade para ir preenchendo as sessões. Você não precisa fazer tudo agora! Quando sua página estiver completa clique em "Enviar".</p>
-            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o Ministério do Turismo.</p>
+            <p>Fique a vontade para ir preenchendo as sessões. Você não precisa fazer tudo agora! Quando sua página
+                estiver completa clique em "Enviar".</p>
+            <p>Depois, seu ponto poderá criar eventos, projetos e usar a plataforma para se manter em contato com o
+                Ministério da Cidadania.</p>
         </article>
         <div ng-if="agent_ponto.homologado_rcv" id="selo-index">
-          <img id="selo-img" src="<?php $this->asset('img/verified-icon-big.png') ?>">
+            <img id="selo-img" src="<?php $this->asset('img/verified-icon-big.png') ?>">
         </div>
     </section>
     <section class="boxs-cadastro">
 	<article class="boxs-cadastro" style="width: 100%; background: #078979 none repeat scroll 0% 0%;"><header><center><h4>Certificação Simplificada</h4></center></header></article>
         <a href="<?php echo $app->createUrl('cadastro', 'responsavel'); ?>">
-            <article class="box-info-responsavel border-left">
+            <article class="box-info-responsavel">
                 <header>
                     <span class="icon icon-user"></span>
                     <h4> 1. Identificação Responsável</h4>
                     <span class="btn_mais"> + </span>
-
                 </header>
                 <div class="infos">
                     <div class="texto">
@@ -129,19 +133,19 @@ $this->bodyProperties['ng-app'] = "culturaviva";
 	<div ng-show="0">
 	<article class="boxs-cadastro" style="width: 100%; background: #078979 none repeat scroll 0% 0%;"><header><center><h4>Informações Complementares</h4></center></header></article>
         <a href="<?php echo $app->createUrl('cadastro', 'entidadeFinanciamento'); ?>">
-        <article class="box-entidade-financiados">
-            <header>
-              <span class="icon icon-dollar"></span>
-              <h4 ng-if="agent_entidade.tipoPontoCulturaDesejado != 'pontao'"> 5. Projetos Financiados</h4>
-              <h4 ng-if="agent_entidade.tipoPontoCulturaDesejado == 'pontao'"> 6. Projetos Financiados</h4>
-              <span class="btn_mais"> + </span>
-            </header>
-            <div class="infos">
-               <div class="texto">
-                     <p>Já recebeu recursos do Ministério do Turismo? </p>
+            <article class="box-entidade-financiados">
+                <header>
+                    <span class="icon icon-dollar"></span>
+                    <h4 ng-if="agent_entidade.tipoPontoCulturaDesejado != 'pontao'"> 5. Projetos Financiados</h4>
+                    <h4 ng-if="agent_entidade.tipoPontoCulturaDesejado == 'pontao'"> 6. Projetos Financiados</h4>
+                    <span class="btn_mais"> + </span>
+                </header>
+                <div class="infos">
+                    <div class="texto">
+                        <p>Já recebeu recursos do Ministério da Cidadania? </p>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
         </a>
         <a href="<?php echo $app->createUrl('cadastro', 'articulacao'); ?>" ng-if="agent_entidade.tipoPontoCulturaDesejado != 'pontao'">
         <article class="box-atuacao-articulaco border-left">
