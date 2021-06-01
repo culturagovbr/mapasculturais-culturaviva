@@ -1,0 +1,32 @@
+{
+  "name": "rcv-admin",
+  "version": "1.0.0",
+  "description": "Plataforma da Rede Cultura Viva",
+  "homepage": "http://culturaviva.gov.br/",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-connect-apimock": "^1.1.0",
+    "grunt-connect-proxy": "0.2.0",
+    "grunt-contrib-clean": "^1.0.x",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.x",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-htmlmin": "^2.2.x",
+    "grunt-contrib-uglify": "^2.0.x",
+    "grunt-contrib-watch": "^1.0.x",
+    "grunt-css-url-embed": "^1.10.x",
+    "grunt-css2js": "^0.2.6",
+    "grunt-html2js": "^0.3.6",
+    "grunt-include-source": "^1.0.x",
+    "grunt-processhtml": "^0.4.1",
+    "grunt-replace": "^1.0.1",
+    "grunt-sass": "^2.0.x",
+    "http-rewrite-middleware": "^0.1.6",
+    "load-grunt-config": "^0.19.2",
+    "serve-static": "^1.11.2",
+    "time-grunt": "^1.4.x"
+  }
+}

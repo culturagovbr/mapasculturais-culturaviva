@@ -1,0 +1,55 @@
+<div ng-form="{{formName}}" novalidate ktc-form-isolate class="tc-form row" ng-submit="submit(onSave)">
+    <div class="col-md-12">
+        <tc-notitication id="{{formName}}"></tc-notitication>
+    </div>
+
+    <ng-transclude></ng-transclude>
+
+    <div class="form-buttons col-md-12" ng-if="buttons || onClear || onSave" ng-hide="hideButtons">
+        <div class="text-right form-buttons-content">
+            <span ng-repeat="item in buttons">
+                <span>&nbsp;</span>
+                <a
+                    ng-if="item.sref"
+                    class="btn {{item.class|| 'btn-primary'}}"
+                    ui-sref="{{item.sref}}"
+                    ng-disabled="item.disabled"
+                    >
+                    {{item.title}}
+                </a>
+                <button
+                    ng-if="!item.sref"
+                    class="btn {{item.class|| 'btn-primary'}}"
+                    type="{{item.type|| 'button'}}"
+                    ng-click="item.click()"
+                    ng-disabled="item.disabled"
+                    >
+                    {{item.title}}
+                </button>
+            </span>
+            <span ng-if="buttons && (onClear || onSave)">&nbsp; |</span>
+
+            <span ng-if="onClear">
+                &nbsp;
+                <button
+                    type="button"
+                    ng-click="clear()"
+                    class="btn btn-warning"
+                    >
+                    Limpar
+                </button>
+            </span>
+
+            <span ng-if="onSave">
+                &nbsp;
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    ng-click="submit()"
+                    >
+                    {{onSaveLabel|| 'Salvar'}}
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

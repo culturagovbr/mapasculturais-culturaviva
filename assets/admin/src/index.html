@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AppAdmin">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="Alex Rodin">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+        <title>Rede Cultura Viva</title>
+        <!-- build:template:dist
+            <base href="/admin" />
+        /build -->
+
+
+        <!-- build:css /assets/admin/vendor/styles/vendor.min.css -->
+        <!-- concat:css[:dist_vendor_css] vendor/styles/vendor.min.css -->
+        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/angular-block-ui/dist/angular-block-ui.min.css"/>
+        <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly.min.css"/>
+        <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly-additions.min.css"/>
+        <!--vendor/bootstrap-select/bootstrap-select.min.css-->
+        <!-- /concat -->
+        <!-- /build -->
+
+        <!-- build:remove -->
+        <!--All styles are added automatically by the includeSource task-->
+        <!-- include: "type": "css", "files": "modules/**/*.scss,!modules/**/_*.scss", "ordering": "top-down" -->
+        <!-- /build -->
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div ui-view></div>
+
+        <!-- build:js /assets/admin/vendor/vendor.min.js -->
+        <!-- concat:js[:dist_vendor_js] vendor/vendor.min.js -->
+        <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <script src="vendor/angular/angular.min.js"></script>
+        <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="vendor/angular-messages/angular-messages.min.js"></script>
+        <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="vendor/angular-block-ui/dist/angular-block-ui.min.js"></script>
+        <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="vendor/bootstrap-select/dist/js/i18n/defaults-pt_BR.min.js"></script>
+        <script src="vendor/oclazyload/dist/ocLazyLoad.min.js"></script>
+        <!--vendor/jquery.bootstrap-touchspin.min.js-->
+        <!-- /concat -->
+        <!-- /build -->
+
+        <!-- build:js /assets/admin/modules/AppAdmin/AppAdmin.bundle.min.js -->
+        <!--All js are added automatically by the includeSource task-->
+        <!-- include: "type": "js", "files": "modules/**/*.js", "ordering": "top-down" -->
+        <!-- /build -->
+    </body>
+</html>

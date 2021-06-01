@@ -1,0 +1,408 @@
+@charset "UTF-8";
+
+
+body {
+    background: url(../img/bg.png),linear-gradient(to right,#075579 0,#078979 51%,#075579 100%);
+    overflow-y: scroll;
+}
+
+.h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small{
+    font-size: 70%;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
+.main-container{
+    background: #fff;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    margin-bottom: 100px;
+    padding-bottom: 20px;
+}
+
+@media (min-width: 768px){
+    .main-container{
+        border-radius: 0 0 2px 2px;
+    }
+}
+
+.form-buttons-content{
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+
+.page-header {
+    margin: 15px 0;
+}
+
+@media (min-width: 768px){
+    #top-navbar{
+        padding: 0;
+        margin-top: 30px;
+    }
+
+    #top-navbar .navbar-primary{
+        padding: 0 20px;
+    }
+
+    .page-header {
+        vertical-align: middle;
+        border-bottom: 1px solid #D5D5D5;
+    }
+
+    .page-header h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-header .lead {
+        margin: 0;
+        font-size: 16px;
+        padding-top: 5px;
+    }
+}
+
+.section-header {
+    padding: 30px 0 20px;
+}
+.section-header h2{
+    line-height: 1.4;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D5D5D5;
+}
+
+.breadcrumb {
+    padding-bottom: 0;
+    margin: 0;
+}
+
+
+
+.tc-prettyprint{
+    position: relative;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 14px;
+    margin: 15px 0;
+}
+
+.tc-prettyprint .title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1px 5px;
+    font-weight: normal;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #9da0a4;
+    border-radius: 0 0 4px 0;
+    font-size: 9px;
+    line-height: 9px;
+}
+
+.tc-prettyprint pre {
+    white-space: pre-wrap;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    background-color: #fafafa;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    padding: 12px 5px 5px;
+}
+
+.tc-prettyprint pre code{
+    display: block;
+    font-family: monospace;
+    font-size: 12px;
+    border: 0;
+}
+
+.tc-prettyprint pre code .key {
+    color: brown;
+}
+
+.tc-prettyprint pre code .value {
+    color: navy;
+}
+
+.tc-prettyprint pre code .string {
+    color: olive;
+}
+
+.header-pre-cards-pf{
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.cards-pf{
+    padding-top: 20px;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    box-shadow: inset 0 1px 0 rgba(3,3,3,.045);
+}
+
+.card-pf {
+    margin: 0 0 20px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    border-radius: 0 0 1px 1px;
+
+    .ponto-certificado{
+        font-size: 40px;
+        line-height: 40px;
+        position: absolute;
+        right: 13px;
+        top: -11px;
+        color: #f2d732;
+        text-shadow: 1px 2px 0px #555;
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+}
+
+
+/*Block-ui, loading*/
+.block-ui-visible > .block-ui-container {
+    /*position: fixed;*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.block-ui-visible > .block-ui-container > .block-ui-message-container{
+    /*    position: fixed;
+        top: 200px;*/
+}
+
+.block-ui-overlay {
+    background-color: #000;
+}
+
+.block-ui-message {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 15px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/*Efeito batimento cardiaco (Cultura Viva)*/
+@-webkit-keyframes heartbeat {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-moz-keyframes heartbeat {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-o-keyframes heartbeat {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes heartbeat {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/* Styles for old versions of IE */
+.heartbeat {
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.heartbeat:not(:required) {
+    -webkit-animation: heartbeat 1300ms ease 0s infinite normal;
+    -khtml-animation: heartbeat 1300ms ease 0s infinite normal;
+    -moz-animation: heartbeat 1300ms ease 0s infinite normal;
+    -ms-animation: heartbeat 1300ms ease 0s infinite normal;
+    -o-animation: heartbeat 1300ms ease 0s infinite normal;
+    animation: heartbeat 1300ms ease 0s infinite normal;
+}
+
+.heartbeat-loading{
+    height: 50px;
+    display: block;
+    margin: 15px;
+}
+
+
+/*List Group*/
+.list-group-item{
+
+    &.active-cert{
+        border-left: 5px solid #39a5dc;
+        padding-left: 10px;
+    }
+}
+
+.list-group-item:last-child{
+    border-bottom: 0;
+}
+
+.list-view-pf-actions{
+    margin: 10px 0;
+}
+
+.list-view-pf-main-info{
+    padding: 10px 0;
+}
+
+.blank-slate-pf {
+    padding: 30px;
+}
+
+.blank-slate-pf,
+.dataTables_wrapper,
+.progress,
+.toolbar-pf {
+    margin-bottom: 10px;
+}
+
+/*.row > .blank-slate-pf{
+    border-right: 0;
+    border-left: 0;
+}*/
+
+
+.card-heading-config{
+    font-size: 16px;
+    opacity: 0.5;
+    top: 5px;
+    position: absolute;
+    right: 20px;
+}
+
+.popover.popover-lg {
+    max-width: 500px;
+    /*@todo: responsive*/
+}

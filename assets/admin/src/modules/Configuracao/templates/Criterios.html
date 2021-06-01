@@ -1,0 +1,23 @@
+<div ng-controller="CriteriosCtrl" ng-cloak>
+    <tc-form on-save="salvar()" on-clear="limpar()" buttons="botoes" name="formCriterios">
+        <div
+            ng-repeat="criterio in criterios | orderBy:'ordem'"
+            >
+            <tc-input-text
+                label="{{$index+1}}º Critério"
+                ng-model="criterio.descricao"            
+                required="true"
+                >
+            </tc-input-text>
+            <div class="text-right col-md-12 form-group" ng-if="criterios.length > 1">
+                <button                    
+                    class="btn btn-warning"
+                    type="button"
+                    ng-click="removerCriterio(criterio)"
+                    >
+                    Remover {{$index+1}}º critério
+                </button>
+            </div>
+        </div>
+    </tc-form>
+</div>

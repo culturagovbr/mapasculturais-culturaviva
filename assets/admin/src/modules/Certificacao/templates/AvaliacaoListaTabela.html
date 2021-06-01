@@ -1,0 +1,155 @@
+<div class="card-pf card-pf-utilization card-pf-accented">
+    <div class="card-pf-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="row" ng-form>
+                    <tc-input
+                        ng-model="ref.filtrarTexto"
+                        label="Nome"
+                        col="4"
+                        >
+                    </tc-input>
+
+                    <tc-select
+                        ng-model="ref.filtrarUf"
+                        label="UF Entidade"
+                        col="4"
+                        field="label"
+                        options="estadosBrasil"
+                        >
+                    </tc-select>
+
+                    <tc-input
+                        ng-model="ref.filtrarMunicipio"
+                        label="Município Entidade"
+                        col="4"
+                        >
+                    </tc-input>
+
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary" ng-click="filtrar()" type="button">
+                            Filtrar
+                        </button>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <hr/>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-danger" ng-click="redistribuir()" type="button" access-level="AGENTE_AREA">
+                            Executar redistribuição e certificação
+                        </button>
+                        <tc-notitication id="bag-filtro-agentes"></tc-notitication>
+
+                        <div ng-if="ref.data.total > 0" style="margin-top: 20px;">
+                            <div
+                                class="row"
+                                ng-repeat="rows in ref.data.chunk"
+                                style="margin-bottom: 30px; border-bottom: 1px solid #efefef;"
+                                >
+                                <div ng-repeat="inscricao in rows" class="col-xs-12 col-md-4">
+                                    <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                                        <a
+                                            ng-if="inscricao.estado === 'C'"
+                                            class="ponto-certificado"
+                                            ng-href="/agente/{{inscricao.pontoId}}"
+                                            target="_blank"
+                                            >
+                                            <i
+                                                class="glyphicon glyphicon-certificate"
+                                                title="Entidade certificada"
+                                                >
+                                            </i>
+                                        </a>
+                                        <h2 class="card-pf-title">
+                                            <a ng-href="/agente/{{inscricao.pontoId}}" target="_blank">
+                                                {{inscricao.pontoNome}}
+                                            </a>
+                                            <p>
+                                                <small>
+                                                    <strong>
+                                                        {{inscricao.entidadeNome}}
+                                                    </strong>
+                                                </small>
+                                            </p>
+                                            <p>
+                                                <small>tipo: <strong>{{inscricao.tipoPontoDesejado}}</strong></small>
+                                            </p>
+                                        </h2>
+                                        <div class="card-pf-body" style="padding-bottom: 0;">
+                                            <p class="card-pf-aggregate-status-notifications">
+                                                <strong class="card-pf-aggregate-status-notification">
+                                                    # {{inscricao.id}}
+                                                </strong>
+                                            </p>
+
+                                            <div
+                                                class="list-group-item list-view-pf-stacked"
+                                                style="border: 0; margin: 0 -10px; padding: 0;"
+                                                >
+
+                                                <avaliacao-lista-certificador
+                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_civil') > -1"
+                                                    certificador-tipo="Poder Publico"
+                                                    avaliacao-id="{{inscricao.avaliacaoPublicaId}}"
+                                                    certificador-id="{{inscricao.avaliacaoPublicaCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoPublicaEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoPublicaCertificador}}"
+                                                    >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                    ng-if="inscricao.avaliacaoCivilId"
+                                                    ng-hide="usuario.roles.indexOf('rcv_certificador_publico') > -1"
+                                                    certificador-tipo="Sociedade Civil"
+                                                    avaliacao-id="{{inscricao.avaliacaoCivilId}}"
+                                                    certificador-id="{{inscricao.avaliacaoCivilCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoCivilEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoCivilCertificador}}"
+                                                    >
+                                                </avaliacao-lista-certificador>
+
+                                                <avaliacao-lista-certificador
+                                                    ng-if="inscricao.avaliacaoMinervaId"
+                                                    certificador-tipo="Voto de Minerva"
+                                                    avaliacao-id="{{inscricao.avaliacaoMinervaId}}"
+                                                    certificador-id="{{inscricao.avaliacaoMinervaCertificadorId}}"
+                                                    estado-avaliacao="{{inscricao.avaliacaoMinervaEstado}}"
+                                                    certificador-nome="{{inscricao.avaliacaoMinervaCertificador}}"
+                                                    >
+                                                </avaliacao-lista-certificador>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul
+                                uib-pagination
+                                total-items="ref.data.total"
+                                ng-model="ref.pagina"
+                                class="pagination-sm"
+                                items-per-page="10"
+                                max-size="10"
+                                previous-text="&laquo;"
+                                next-text="&raquo;"
+                                >
+                            </ul>
+                        </div>
+
+                        <div class="blank-slate-pf" ng-show="ref.data.total < 1" style="margin-top: 20px;">
+                            <p>
+                                <span ng-show="ref.texto">
+                                    Não foram encontrados avaliações {{descricao}} com o filtro informado.
+                                </span>
+                                <span ng-hide="ref.texto">
+                                    Não existem avaliações {{descricao}}.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
