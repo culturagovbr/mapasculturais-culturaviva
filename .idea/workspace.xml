@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4643894e-b42d-451e-b75a-21c45ab41cdb" name="Default Changelist" comment="Reajuste redecultura">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/assets/admin/dist/modules/Configuracao" />
       <recent name="$PROJECT_DIR$/scripts/rotinas" />
       <recent name="$PROJECT_DIR$/assets/admin" />
@@ -116,7 +117,7 @@
       <workItem from="1622121236434" duration="5144000" />
       <workItem from="1622207174822" duration="1876000" />
       <workItem from="1622465864465" duration="3900000" />
-      <workItem from="1622571546041" duration="926000" />
+      <workItem from="1622571546041" duration="1421000" />
     </task>
     <task id="LOCAL-00265" summary="lista certificador avaliador">
       <created>1621880887680</created>
