@@ -768,13 +768,13 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto,longDwewscription',
+                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv,longDwewscription',
+                '@select': 'id,homologado_rcv,longDescription',
                 '@permissions': 'view'
             };
 
@@ -802,13 +802,13 @@
 
             var registrant_params = {
                 'id': registrant_id,
-                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto,longDwewscription',
+                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto,longDescription',
                 '@permissions': 'view'
             };
 
             var params = {
                 'id': agent_id,
-                '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,longDwewscription,' +
+                '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,longDewscription,' +
                     'tipoPontoCulturaDesejado,emailPrivado,telefone1,' +
                     'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,' +
                     'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,cep,En_Complemento,' +
@@ -1026,7 +1026,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,longDwewscription,' +
+                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,longDescription,' +
                     'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                     'localRealizacao_cidade,localRealizacao_espaco,location',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):url',
@@ -1156,7 +1156,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc,longDwewscription',
+                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc,longDescription',
                 '@permissions': 'view'
             };
 
@@ -1187,7 +1187,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,longDwewscription,' +
+                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,longDescription,' +
                     'pontoNumPessoasIndiretas,pontoNumPessoasParceiros,pontoNumPessoasApoiadores,pontoNumRedes,' +
                     'pontoRedesDescricao,pontoMovimentos,pontoEconomiaSolidaria,pontoEconomiaSolidariaDescricao,' +
                     'pontoEconomiaCultura,pontoEconomiaCulturaDescricao,pontoMoedaSocial,pontoMoedaSocialDescricao,' +
@@ -1215,7 +1215,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,longDwewscription,' +
+                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,longDescription,' +
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' +
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' +
                     'metodologia1_cargaHoraria,metodologia1_certificacao,',
@@ -1242,7 +1242,7 @@
             var params = {
                 'id': agent_id,
 
-                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,longDwewscription,longDwewscription,' +
+                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,longDescription,longDescription,' +
                     'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
                     'edital_proponente,edital_projeto_resumo,edital_prestacaoContas_envio,' +
                     'edital_prestacaoContas_status,edital_projeto_vigencia_inicio,' +
@@ -1268,7 +1268,7 @@
         function ($scope, Entity, MapasCulturais, $timeout, $location, $http, $q) {
             var agenteRes = [];
             var paramsFiltroResponsavel = {
-                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv,longDwewscription',
+                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv,longDescription',
                 'rcv_tipo': 'OR(EQ(responsavel),EQ(ponto),EQ(entidade))'
             };
             $http.get("/api/agent/find", {
@@ -1499,14 +1499,14 @@
                 var rcv = JSON.parse(data.redeCulturaViva);
                 var responsavel = {
                     'id': rcv.agenteIndividual,
-                    '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,longDwewscription,' +
+                    '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,longDescription,' +
                         'emailPrivado,telefone1,telefone2,nomeCompleto,' +
                         'En_Municipio,shortDescription',
                     '@permissions': 'view'
                 };
                 var entidade = {
                     'id': rcv.agenteEntidade,
-                    '@select': 'id,rcv_tipo,files,name,nomeCompleto,cnpj,representanteLegal,longDwewscription,' +
+                    '@select': 'id,rcv_tipo,files,name,nomeCompleto,cnpj,representanteLegal,longDescription,' +
                         'tipoPontoCulturaDesejado,tipoPonto,mesmoEndereco,' +
                         'emailPrivado,telefone1,telefone2,' +
                         'responsavel_nome,responsavel_email,responsavel_cargo,responsavel_telefone,responsavel_cpf,' +
@@ -1567,7 +1567,7 @@
             $scope.urlQRCODE = null;
 
             var ponto = {
-                '@select': 'id,name,user.id,homologado_rcv,status,longDwewscription',
+                '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
                 '@permissions': 'view',
                 'id': id
             };

@@ -26,12 +26,14 @@
                                 <span class="destaque">
                                           Portfólio Online
                         <i class='hltip' title="Caso possua um portfolio online, coloque o link aqui.">?</i></span>
-                        <input type="text" name="atividadesEmRealizacaoLink" placeholder="http://" ng-blur="save_field('atividadesEmRealizacaoLink')" ng-model="agent.atividadesEmRealizacaoLink" />
+                        <input type="text" name="atividadesEmRealizacaoLink" placeholder="http://"
+                               ng-blur="save_field('atividadesEmRealizacaoLink')"
+                               ng-model="agent.atividadesEmRealizacaoLink"/>
                     </label>
                 </div>
-                <p>Caso ainda não possua um portfolio online, uma possibilidade é gravar um vídeo de até 10 minutos contando sobre seu Ponto de Cultura.
-                    Publique-o no Youtube e compartilhe o link aqui.</p>
-                <p>Se preferir, envie no campo abaixo arquivos no formato PDF de até 20MB. </p>
+                <!--                <p>Caso ainda não possua um portfolio online, uma possibilidade é gravar um vídeo de até 10 minutos contando sobre seu Ponto de Cultura.-->
+                <!--                    Publique-o no Youtube e compartilhe o link aqui.</p>-->
+                <!--                <p>Se preferir, envie no campo abaixo arquivos no formato PDF de até 20MB. </p>-->
             </label>
 
             <p><strong>Você deve adicionar somente um: ou portifólio online ou arquivo PDF.</strong></p>
@@ -39,8 +41,11 @@
             <!-- Portifolio -->
             <div class="colunm-20">
                 <div class="file-item">
-                    <a ng-if="agent.files.portifolio" href="#" class="exclui" ng-click="deleteFile(agent.files.portifolio)" title="Excluir Portfólio">x</a>
-                    <div type="file" ngf-select="uploadFile($file, 'portifolio')" accept="config.pdf.validation" ngf-max-size="config.pdf.maxUploadSize" title="{{agent.files.portifolio ? 'Clique para alterar o Portfólio' : 'Clique para incluir um Portfólio'}}">
+                    <a ng-if="agent.files.portifolio" href="#" class="exclui"
+                       ng-click="deleteFile(agent.files.portifolio)" title="Excluir Portfólio">x</a>
+                    <div type="file" ngf-select="uploadFile($file, 'portifolio')" accept="config.pdf.validation"
+                         ngf-max-size="config.pdf.maxUploadSize"
+                         title="{{agent.files.portifolio ? 'Clique para alterar o Portfólio' : 'Clique para incluir um Portfólio'}}">
                         <img ng-if="!agent.files.portifolio" src="<?php $this->asset('img/incluir_img.png') ?>" width="160" height="138">
                         <img ng-if="agent.files.portifolio" src="<?php $this->asset('img/pdflogo.png') ?>" width="160" height="138">
                     </div>
