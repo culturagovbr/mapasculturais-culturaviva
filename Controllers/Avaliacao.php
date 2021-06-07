@@ -6,18 +6,21 @@ use CulturaViva\Entities\Avaliacao as AvaliacaoEntity;
 use CulturaViva\Entities\AvaliacaoCriterio as AvaliacaoCriterioEntity;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
+use MapasCulturais\Controller;
 
 /**
  * Api base do processo de certificação
  */
-class Avaliacao extends \MapasCulturais\Controller {
+class Avaliacao extends Controller
+{
 
     // @todo
     protected $_user = 3;
 
     const MINERVA_DILIGENCE = 'M';
 
-    function getUser() {
+    function getUser()
+    {
         return $this->_user;
     }
 
@@ -199,7 +202,8 @@ class Avaliacao extends \MapasCulturais\Controller {
             'avaliacao_minerva_certificador',
             'avaliacao_minerva_certificador_id',
         ];
-
+        echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
+        var_dump($sql, 3);
         $parametros = [
             'agenteId' => $agenteId,
             'estado' => isset($this->data['estado']) ? $this->data['estado'] : '',
@@ -207,6 +211,9 @@ class Avaliacao extends \MapasCulturais\Controller {
             'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
             'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
         ];
+        echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
+        var_dump($parametros, 3);
+        exit;
 
         $pagina = isset($this->data['pagina']) ? intval($this->data['pagina']) : 1;
         $this->json((new NativeQueryUtil($sql, $campos, $parametros))->paginate($pagina));
