@@ -761,7 +761,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,longDescription,',
+                '@select': 'id,rcv_tipo,atividadesEmRealizacao,longDescription,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
