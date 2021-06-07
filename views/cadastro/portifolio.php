@@ -31,9 +31,10 @@
                                ng-model="agent.atividadesEmRealizacaoLink"/>
                     </label>
                 </div>
-                <!--                <p>Caso ainda não possua um portfolio online, uma possibilidade é gravar um vídeo de até 10 minutos contando sobre seu Ponto de Cultura.-->
-                <!--                    Publique-o no Youtube e compartilhe o link aqui.</p>-->
-                <!--                <p>Se preferir, envie no campo abaixo arquivos no formato PDF de até 20MB. </p>-->
+                <p>Caso ainda não possua um portfolio online, uma possibilidade é gravar um vídeo de até 10 minutos
+                    contando sobre seu Ponto de Cultura.
+                    Publique-o no Youtube e compartilhe o link aqui.</p>
+                <p>Se preferir, envie no campo abaixo arquivos no formato PDF de até 20MB. </p>
             </label>
 
             <p><strong>Você deve adicionar somente um: ou portifólio online ou arquivo PDF.</strong></p>
