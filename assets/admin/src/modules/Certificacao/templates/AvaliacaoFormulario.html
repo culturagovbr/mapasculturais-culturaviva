@@ -143,16 +143,18 @@
                 <span class="visible-md-inline-block visible-sm-inline-block">Cadastro</span>
             </uib-tab-heading>
 
-            <div class="blank-slate-pf">
-                <p>
-                    <a id="download" ng-click="alert('oi')">Clique aqui
-                    </a>
-                    para realizar o download do certificado.
-                <div ng-hide="urlQRCODE.length != 0">
-                    <qr id="qrcode" text="urlQRCODE"></qr>
-                </div>
-                </p>
-            </div>
+            <ng-include ng-if="ref_active === 2"
+                        src="'modules/Certificacao/templates/TabCertificado.html'"></ng-include>
+            <!--            <div class="blank-slate-pf">-->
+            <!--                <p>-->
+            <!--                    <a id="download" ng-click="alert('oi')">Clique aqui-->
+            <!--                    </a>-->
+            <!--                    para realizar o download do certificado.-->
+            <!--                <div ng-hide="urlQRCODE.length != 0">-->
+            <!--                    <qr id="qrcode" text="urlQRCODE"></qr>-->
+            <!--                </div>-->
+            <!--                </p>-->
+            <!--            </div>-->
         </uib-tab>
 
     </uib-tabset>

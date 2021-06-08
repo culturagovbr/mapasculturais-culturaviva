@@ -1,0 +1,100 @@
+<div class="row" ng-controller="AvaliacaoTabPontoCtrl" ng-form style="padding-top: 30px;">
+
+    <img height="138" ng-if="agent.files.logoponto" src="{{agent.files.logoponto.url}}" width="160">
+
+    <tc-input
+            col="12"
+            col-input="6"
+            label="Nome do Ponto/Pontão de Cultura"
+            ng-model="agent.name"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input-text
+            disabled="!avaliacao.autorizaEdicao"
+            label="Breve descrição do Ponto/Pontão de Cultura"
+            ng-model="agent.shortDescription"
+            readonly="true"
+            rows="8"
+    >
+    </tc-input-text>
+
+    <header class="section-header">
+        <h2 class="col-md-12">Endereço do Ponto/Pontão de Cultura</h2>
+    </header>
+
+    <tc-input
+            col="3"
+            label="País"
+            ng-model="agent.pais"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="3"
+            label="Estado"
+            ng-if="agent.pais === 'Brasil'"
+            ng-model="agent._En_EstadoTexto"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="3"
+            label="Estado"
+            ng-if="agent.pais !== 'Brasil'"
+            ng-model="agent.En_Estado"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="3"
+            label="Cidade"
+            ng-model="agent.En_Municipio"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="3"
+            label="Bairro"
+            ng-model="agent.En_Bairro"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="3"
+            label="Rua"
+            ng-model="agent.En_Nome_Logradouro"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="2"
+            label="Número"
+            ng-model="agent.En_Num"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="2"
+            label="CEP"
+            ng-model="agent.cep"
+            readonly="true"
+    >
+    </tc-input>
+
+    <tc-input
+            col="4"
+            label="Complemento"
+            ng-model="agent.En_Complemento"
+            readonly="true"
+    >
+    </tc-input>
+</div>
