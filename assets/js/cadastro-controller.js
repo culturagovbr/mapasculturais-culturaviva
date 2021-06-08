@@ -760,6 +760,7 @@
             var agent_id_ponto = MapasCulturais.redeCulturaViva.agentePonto;
 
             var params = {
+
                 'id': agent_id,
                 '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
