@@ -215,6 +215,11 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         }
     };
 
+    $scope.createPDF = function () {
+        createPDF();
+    };
+
+
     function createPDF() {
         $scope.createPdf = function () {
             var qr = document.getElementById('qrcode');
@@ -271,7 +276,6 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
             });
         }
     }
-
 
 }
 
