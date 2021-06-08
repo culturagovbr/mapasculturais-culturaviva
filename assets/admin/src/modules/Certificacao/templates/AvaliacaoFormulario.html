@@ -145,15 +145,15 @@
 
             <div class="blank-slate-pf">
                 <p>
-                    <a
-                            class="btn btn-primary"
-                            ng-href="/admin/cadastro/{{avaliacao.usuarioId}}"
-                            target="_blank"
-                    > Clique Aqui
+                    <a id="download" ng-click="createPdf()">Visualizar Certificado
                     </a>
                     para realizar o download do certificado.
+                <div ng-hide="urlQRCODE.length != 0">
+                    <qr id="qrcode" text="urlQRCODE"></qr>
+                </div>
                 </p>
             </div>
         </uib-tab>
+
     </uib-tabset>
 </div>
