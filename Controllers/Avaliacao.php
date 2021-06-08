@@ -202,8 +202,6 @@ class Avaliacao extends Controller
             'avaliacao_minerva_certificador',
             'avaliacao_minerva_certificador_id',
         ];
-        echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
-        var_dump($sql, 3);
         $parametros = [
             'agenteId' => $agenteId,
             'estado' => isset($this->data['estado']) ? $this->data['estado'] : '',
@@ -211,9 +209,6 @@ class Avaliacao extends Controller
             'uf' => isset($this->data['uf']) ? $this->data['uf'] : '',
             'municipio' => isset($this->data['municipio']) ? "%{$this->data['municipio']}%" : ''
         ];
-        echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
-        var_dump($parametros, 3);
-        exit;
 
         $pagina = isset($this->data['pagina']) ? intval($this->data['pagina']) : 1;
         $this->json((new NativeQueryUtil($sql, $campos, $parametros))->paginate($pagina));
