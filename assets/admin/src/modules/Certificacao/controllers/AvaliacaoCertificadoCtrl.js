@@ -91,190 +91,64 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         $scope.$emit('msg', msg, null, 'error');
     });
 
-
-    var botaoDeferirIndeferir = {
-        title: '...',
-        disabled: true,
-        click: function () {
-            submit(botaoDeferirIndeferir.estadoAcao);
-        }
-    };
-
-//    setTimeout(function () {
-//        botao.title = "lba";
-//        $scope.$digest();
-//    }, 2000);
-    $scope.botoes = [
-        // Botões adicionais para o formulário
-        botaoDeferirIndeferir
-    ];
-
-
-    $scope.permiteDeferir = false;
-    $scope.permiteIndeferir = false;
-
-    $scope.$watch('avaliacao.criterios', function (old, nue) {
-        if (old === nue) {
-            return;
-        }
-
-        $scope.permiteDeferir = true;
-        $scope.permiteIndeferir = false;
-        var botaoBloqueado = false;
-
-        for (var a = 0, l = $scope.avaliacao.criterios.length; a < l; a++) {
-            var criterio = $scope.avaliacao.criterios[a];
-            if (criterio.aprovado === undefined || criterio.aprovado === null) {
-                botaoBloqueado = true;
-                break;
-            }
-
-            if (criterio.aprovado.valor === true && $scope.permiteIndeferir) {
-                $scope.permiteDeferir = false;
-            } else if (criterio.aprovado.valor === false) {
-                $scope.permiteIndeferir = true;
-                $scope.permiteDeferir = false;
-            }
-        }
-
-        botaoDeferirIndeferir.disabled = botaoBloqueado;
-        if (botaoBloqueado) {
-            botaoDeferirIndeferir.title = "...";
-            botaoDeferirIndeferir.class = "btn-default";
-        } else if ($scope.permiteDeferir) {
-            botaoDeferirIndeferir.title = "Deferir";
-            botaoDeferirIndeferir.disabled = botaoBloqueado;
-            botaoDeferirIndeferir.estadoAcao = ST_DEFERIDO;
-            botaoDeferirIndeferir.class = "btn-success";
-        } else if ($scope.permiteIndeferir) {
-            botaoDeferirIndeferir.title = "Indeferir";
-            botaoDeferirIndeferir.class = "btn-danger";
-            botaoDeferirIndeferir.estadoAcao = ST_INDEFERIDO;
-        }
-
-        // criterio.aprovado
-        // criterio.aprovado
-    }, true);
-
-    $scope.salvar = function (estado) {
-        salvar();
-    };
-
-    function submit(estado) {
-        var formName = 'formCriterios'
-        if ($scope[formName].isValid()) {
-            salvar(estado);
-        } else {
-            $scope.$emit('msg', 'Existem erros no preenchimento do formulário', null, 'error', formName);
-            $window.scrollTo(0, 0);
-        }
-    }
-
-    /**
-     *
-     * @param {type} estado
-     * @returns {undefined}
-     */
-    function salvar(estado) {
-        var criterios = [];
-        for (var a = 0, l = $scope.avaliacao.criterios.length; a < l; a++) {
-            var criterio = $scope.avaliacao.criterios[a];
-            if (criterio.aprovado === undefined || criterio.aprovado === null) {
-                continue;
-            }
-
-            criterios.push({
-                id: criterio.id,
-                aprovado: criterio.aprovado.valor
-            });
-        }
-
-        $http.post('/avaliacao/salvar', {
-            id: $scope.avaliacao.id,
-            observacoes: $scope.avaliacao.observacoes,
-            criterios: criterios,
-            estado: estado
-        }).then(function (response) {
-            $scope.$emit('msgNextState', 'Dados da avaliação salvo com sucesso', null, 'success');
-            //$scope.$emit('scrollToTop');
-            $state.reload();
-        }, function (response) {
-            var msg = 'Erro inesperado salvar dados';
-            if (response.data && response.data.message) {
-                msg = response.data.message;
-            }
-            $scope.$emit('msg', msg, null, 'error', 'formulario');
-        });
-    }
-
-    $scope.indeferido = function () {
-        if ($scope.avaliacao != undefined) {
-            return $scope.avaliacao.criterios.some(function (c) {
-                return c.aprovado.valor === false;
-            }) ? true : false;
-        }
-    };
-
     $scope.createPDF = function () {
         createPDF();
     };
 
 
     function createPDF() {
-        $scope.createPdf = function () {
-            var qr = document.getElementById('qrcode');
+        var qr = document.getElementById('qrcode');
 
-            function convertImgToBase64(callback) {
-                var img = new Image();
-                img.onload = function () {
-                    var canvas = document.createElement('CANVAS');
-                    var ctx = canvas.getContext('2d');
-                    // canvas.height = 1241;
-                    // canvas.width = 1754;
-                    canvas.height = img.height;
-                    canvas.width = img.width;
-                    ctx.drawImage(this, 0, 0);
-                    var dataURL = canvas.toDataURL('image/jpeg');
-                    if (typeof callback === 'function') {
-                        callback(dataURL);
-                    }
-                    // canvas = null;
-                };
-                img.src = '/assets/img/certificado.png';
-            }
-
-            var button = document.getElementById("download");
-
-            convertImgToBase64(function (dataUrl) {
-                var doc = new jsPDF('l', 'pt', [1755, 1238]);
-
-                doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
-
-                doc.setFontType("bold");
-                doc.setTextColor("#FFFFFF");
-                doc.setFontSize(35);
-                var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
-                    "\n\n" +
-                    "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
-                    "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
-                    "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
-
-                var text = doc.splitTextToSize(text, 1090)
-                doc.text(text, 490, 290, '', '', 'center');
-
-                var name = doc.splitTextToSize($scope.ponto.name, 1400)
-                doc.setFontSize(25);
-                doc.text(name, 490, 410);
-
-                var dataURLQR = qr.children[0].toDataURL('image/png');
-                doc.setFontSize(20);
-                doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
-                doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
-
-                doc.save('Certificado.pdf');
-                return doc;
-            });
+        function convertImgToBase64(callback) {
+            var img = new Image();
+            img.onload = function () {
+                var canvas = document.createElement('CANVAS');
+                var ctx = canvas.getContext('2d');
+                // canvas.height = 1241;
+                // canvas.width = 1754;
+                canvas.height = img.height;
+                canvas.width = img.width;
+                ctx.drawImage(this, 0, 0);
+                var dataURL = canvas.toDataURL('image/jpeg');
+                if (typeof callback === 'function') {
+                    callback(dataURL);
+                }
+                // canvas = null;
+            };
+            img.src = '/assets/img/certificado.png';
         }
+
+        var button = document.getElementById("download");
+
+        convertImgToBase64(function (dataUrl) {
+            var doc = new jsPDF('l', 'pt', [1755, 1238]);
+
+            doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
+
+            doc.setFontType("bold");
+            doc.setTextColor("#FFFFFF");
+            doc.setFontSize(35);
+            var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
+                "\n\n" +
+                "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
+                "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
+                "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
+
+            var text = doc.splitTextToSize(text, 1090)
+            doc.text(text, 490, 290, '', '', 'center');
+
+            var name = doc.splitTextToSize($scope.ponto.name, 1400)
+            doc.setFontSize(25);
+            doc.text(name, 490, 410);
+
+            var dataURLQR = qr.children[0].toDataURL('image/png');
+            doc.setFontSize(20);
+            doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
+            doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
+
+            doc.save('Certificado.pdf');
+            return doc;
+        });
     }
 
 }
