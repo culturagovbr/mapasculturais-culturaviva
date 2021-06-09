@@ -97,6 +97,7 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
 
 
     function createPDF() {
+        console.log('teste');
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
