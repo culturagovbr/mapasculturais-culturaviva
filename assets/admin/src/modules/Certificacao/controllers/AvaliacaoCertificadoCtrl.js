@@ -2,7 +2,7 @@
 
 angular
     .module('Certificacao')
-    .controller('AvaliacaoCertificadoCtrl', AvaliacaoCertificadoCtrl);
+    .controller('AvaliacaoSeloCtrl', AvaliacaoCertificadoCtrl);
 
 AvaliacaoCertificadoCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
@@ -14,82 +14,7 @@ AvaliacaoCertificadoCtrl.$inject = ['$scope', '$state', '$http', '$window'];
  * @param {type} $http
  * @returns {undefined}
  */
-function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
-
-    /**
-     * Indica que o Certificador finalizou a análise da Inscrição como DEFERIDO
-     */
-    var ST_DEFERIDO = 'D';
-
-    /**
-     * Indica que o Certificador finalizou a análise da Inscrição como INDEFERIDO
-     */
-    var ST_INDEFERIDO = 'I';
-
-    // Configuração da página
-    $scope.pagina.titulo = 'Avaliação do Ponto/Pontão de Cultura';
-    $scope.pagina.subTitulo = '';
-    $scope.pagina.classTitulo = '';
-    $scope.pagina.ajudaTemplateUrl = '';
-    $scope.pagina.breadcrumb = [
-        {
-            title: 'Início',
-            sref: 'pagina.relatorios'
-        },
-        {
-            title: 'Avaliações',
-            sref: 'pagina.certificacao.lista'
-        }
-    ];
-
-    $scope.certificadores = null;
-    $scope.form = {};
-    $scope.certificadores = {};
-
-    var codigo = $state.params.id;
-
-    $scope.simNao = [
-        {valor: true, label: 'Sim'},
-        {valor: false, label: 'Não'}
-    ];
-
-
-    $http.get('/avaliacao/obter/' + codigo).then(function (response) {
-        var data = response.data;
-        $scope.avaliacao = data;
-
-        // Usado pelos controllers filhos
-        $scope.agentId = data.agenteId;
-
-        $scope.situacaoAvaliacao = {
-            'P': 'Pendente',
-            'A': 'Em Análise',
-            'D': 'Deferido',
-            'I': 'Indeferido'
-        }[data.estado];
-
-        $scope.situacaoInscricao = {
-            'P': 'Pendente',
-            'C': 'Certificado',
-            'N': 'Não Certificado',
-            'R': 'Re-Submissão',
-        }[data.inscricaoEstado];
-
-        angular.forEach($scope.avaliacao.criterios, function (criterio) {
-            if (criterio.aprovado === true) {
-                criterio.aprovado = $scope.simNao[0];
-            } else if (criterio.aprovado === false) {
-                criterio.aprovado = $scope.simNao[1];
-            }
-        })
-    }, function (cause) {
-        var data = cause.data;
-        var msg = 'Erro ao recuperar dados da Avaliação';
-        if (data && data.message) {
-            msg = data.message;
-        }
-        $scope.$emit('msg', msg, null, 'error');
-    });
+function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
 
     $scope.createPDF = function () {
         createPDF();
@@ -157,7 +82,7 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
             doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
-            doc.save('Certificado.pdf');
+            doc.save('Selo.pdf');
             return doc;
         });
     }
