@@ -97,7 +97,6 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
 
 
     function createPDF() {
-        console.log('teste');
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
@@ -122,6 +121,7 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
+            console.log('aqui');
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
