@@ -117,7 +117,6 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
     }
 
     function createPDF() {
-        console.log('aqui')
         $scope.createPdf = function () {
             var qr = document.getElementById('qrcode');
 
