@@ -96,19 +96,6 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
     };
 
     function createPDF() {
-        // var doc = new jsPDF()
-        //
-        // doc.text('Hello world!', 10, 10)
-        // doc.save('a4.pdf')
-
-        var app = angular.module('culturaviva.services', ['ngResource']);
-        app.factory('MapasCulturais', function () {
-            if (!window.MapasCulturais) {
-                throw new Error('É necessário ter o obj "MapasCulturais" em window');
-            }
-            return window.MapasCulturais;
-        });
-
         var id = MapasCulturais.redeCulturaViva.agentePonto;
 
         $scope.data = MapasCulturais.redeCulturaViva;
