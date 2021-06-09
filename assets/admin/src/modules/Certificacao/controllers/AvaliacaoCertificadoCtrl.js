@@ -91,36 +91,36 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         $scope.$emit('msg', msg, null, 'error');
     });
 
-    // var app = angular.module('culturaviva.services', ['ngResource']);
-    // app.factory('MapasCulturais', function () {
-    //     if (!window.MapasCulturais) {
-    //         throw new Error('É necessário ter o obj "MapasCulturais" em window');
-    //     }
-    //     return window.MapasCulturais;
-    // });
-    //
-    // var id = MapasCulturais.redeCulturaViva.agentePonto;
-    //
-    // $scope.data = MapasCulturais.redeCulturaViva;
-    // $scope.urlQRCODE = null;
-    //
-    // var ponto = {
-    //     '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
-    //     '@permissions': 'view',
-    //     'id': id
-    // };
-    //
-    // $scope.ponto = Entity.get(ponto);
-    //
     $scope.createPDF = function () {
         createPDF();
-    }
+    };
 
     function createPDF() {
         // var doc = new jsPDF()
         //
         // doc.text('Hello world!', 10, 10)
         // doc.save('a4.pdf')
+
+        var app = angular.module('culturaviva.services', ['ngResource']);
+        app.factory('MapasCulturais', function () {
+            if (!window.MapasCulturais) {
+                throw new Error('É necessário ter o obj "MapasCulturais" em window');
+            }
+            return window.MapasCulturais;
+        });
+
+        var id = MapasCulturais.redeCulturaViva.agentePonto;
+
+        $scope.data = MapasCulturais.redeCulturaViva;
+        $scope.urlQRCODE = null;
+
+        var ponto = {
+            '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
+            '@permissions': 'view',
+            'id': id
+        };
+        $scope.ponto = Entity.get(ponto);
+
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
