@@ -91,12 +91,13 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         $scope.$emit('msg', msg, null, 'error');
     });
 
+    var id = MapasCulturais.redeCulturaViva.agentePonto;
+
     var ponto = {
         '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
         '@permissions': 'view',
         'id': id
     };
-
     $scope.data = MapasCulturais.redeCulturaViva;
     $scope.urlQRCODE = null;
 
