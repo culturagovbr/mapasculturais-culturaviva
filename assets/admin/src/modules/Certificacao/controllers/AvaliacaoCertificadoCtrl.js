@@ -121,8 +121,8 @@ function AvaliacaoCertificadoCtrl($scope, $state, $http, $window) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
-            console.log('aqui');
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
+            console.log('aqui');
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
 
