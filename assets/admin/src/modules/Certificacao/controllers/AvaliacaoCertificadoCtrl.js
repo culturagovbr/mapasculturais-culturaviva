@@ -2,9 +2,9 @@
 
 angular
     .module('Certificacao')
-    .controller('AvaliacaoSeloCtrl', AvaliacaoCertificadoCtrl);
+    .controller('AvaliacaoSeloCtrl', AvaliacaoSeloCtrl);
 
-AvaliacaoCertificadoCtrl.$inject = ['$scope', '$state', '$http', '$window'];
+AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
 /**
  * Listagem de Inscrições disponíveis para Avaliação
