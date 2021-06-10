@@ -5,7 +5,7 @@ angular
 
 /* global google */
 
-AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
+AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window', 'Entity'];
 
 
 /**
@@ -16,7 +16,7 @@ AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
  * @param {type} $http
  * @returns {undefined}
  */
-function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
+function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
     var app = angular.module('culturaviva.services', ['ngResource']);
     var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
