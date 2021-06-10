@@ -18,11 +18,8 @@ AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
  */
 function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
 
-    var app = angular.module('culturaviva.services', ['ngResource']);
-    app.factory('MapasCulturais', function () {
-        return window.MapasCulturais;
-    });
-
+    var MapasCulturais = angular.factory('MapasCulturais', MapasCulturais);
+    console.log(MapasCulturais);
     $scope.createPDF = function () {
         createPDF();
     };
