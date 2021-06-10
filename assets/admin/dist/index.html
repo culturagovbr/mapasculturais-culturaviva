@@ -3,103 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-
+    <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="Alex Rodin" name="author">
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-
     <title>Rede Cultura Viva</title>
-    <!-- build:template:dist
-        <base href="/admin" />
-    /build -->
-
-
-    <!-- build:css /assets/admin/vendor/styles/vendor.min.css -->
-    <!-- concat:css[:dist_vendor_css] vendor/styles/vendor.min.css -->
-    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/angular-block-ui/dist/angular-block-ui.min.css" rel="stylesheet"/>
-    <link href="vendor/patternfly/dist/css/patternfly.min.css" rel="stylesheet"/>
-    <link href="vendor/patternfly/dist/css/patternfly-additions.min.css" rel="stylesheet"/>
-    <!--vendor/bootstrap-select/bootstrap-select.min.css-->
-    <!-- /concat -->
-    <!-- /build -->
-
-    <!-- build:remove -->
-    <!--All styles are added automatically by the includeSource task-->
-    <link href="modules/AppAdmin/styles/rcv-admin.scss" rel="stylesheet" type="text/css">
-    <link href="modules/Certificacao/styles/certificacao.scss" rel="stylesheet" type="text/css">
-    <link href="modules/Configuracao/styles/styles.scss" rel="stylesheet" type="text/css">
-    <!-- /build -->
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <base href="/admin">
+    <link href="/assets/admin/vendor/styles/vendor.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
+    <![endif]--></head>
 <body>
 <div ui-view></div>
-
-<!-- build:js /assets/admin/vendor/vendor.min.js -->
-<!-- concat:js[:dist_vendor_js] vendor/vendor.min.js -->
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/angular/angular.min.js"></script>
-<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="vendor/angular-messages/angular-messages.min.js"></script>
-<script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="vendor/angular-block-ui/dist/angular-block-ui.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
-<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="vendor/bootstrap-select/dist/js/i18n/defaults-pt_BR.min.js"></script>
-<script src="vendor/oclazyload/dist/ocLazyLoad.min.js"></script>
-<!--vendor/jquery.bootstrap-touchspin.min.js-->
-<!-- /concat -->
-<!-- /build -->
-
-<!-- build:js /assets/admin/modules/AppAdmin/AppAdmin.bundle.min.js -->
-<!--All js are added automatically by the includeSource task-->
-<script src="modules/AppAdmin/AppAdmin.js"></script>
-<script src="modules/AppAdmin/Rotas.js"></script>
-<script src="modules/AppAdmin/controllers/BarraNavegacaoCtrl.js"></script>
-<script src="modules/AppAdmin/controllers/PaginaCtrl.js"></script>
-<script src="modules/AppAdmin/directives/AccessLevelDirective.js"></script>
-<script src="modules/AppAdmin/services/EntityFactory.js"></script>
-<script src="modules/AppAdmin/services/EstadosBrasilFactory.js"></script>
-<script src="modules/AppAdmin/services/RBAC.js"></script>
-<script src="modules/AppAdmin/services/UsuarioSrv.js"></script>
-<script src="modules/Certificacao/Certificacao.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoCertificadoCtrl.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoFormularioCtrl.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoListaCtrl.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoTabEntidadeCtrl.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoTabPontoCtrl.js"></script>
-<script src="modules/Certificacao/controllers/AvaliacaoTabResponsavelCtrl.js"></script>
-<script src="modules/Certificacao/directives/AvaliacaoListaTabelaDirective.js"></script>
-<script src="modules/Configuracao/Configuracao.js"></script>
-<script src="modules/Configuracao/controllers/CertificadorFormularioCtrl.js"></script>
-<script src="modules/Configuracao/controllers/CertificadorListaCtrl.js"></script>
-<script src="modules/Configuracao/controllers/CriteriosCtrl.js"></script>
-<script src="modules/Configuracao/directives/CertificadorListaTabelaDirective.js"></script>
-<script src="modules/Configuracao/directives/InputAgenteDirective.js"></script>
-<script src="modules/Relatorios/Relatorios.js"></script>
-<script src="modules/Relatorios/controllers/RelatoriosInicioCtrl.js"></script>
-<script src="modules/TcComponents/TcComponents.js"></script>
-<script src="modules/TcComponents/directives/TcBaseFieldDirective.js"></script>
-<script src="modules/TcComponents/directives/TcDebugDirective.js"></script>
-<script src="modules/TcComponents/directives/TcFormDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputArrayDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputEnterDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputNumberDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputSearchDirective.js"></script>
-<script src="modules/TcComponents/directives/TcInputTextDirective.js"></script>
-<script src="modules/TcComponents/directives/TcNotiticationDirective.js"></script>
-<script src="modules/TcComponents/directives/TcSelectDirective.js"></script>
-<script src="modules/TcComponents/services/TcNotiticationFactory.js"></script>
-<!-- /build -->
+<script src="/assets/admin/vendor/vendor.min.js"></script>
+<script src="/assets/admin/modules/AppAdmin/AppAdmin.bundle.min.js"></script>
 </body>
 </html>
