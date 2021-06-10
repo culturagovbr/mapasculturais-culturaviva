@@ -36,7 +36,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             'id': id
         };
         $scope.ponto = Entity.get(ponto);
-        console.log($scope.ponto);
 
         var qr = document.getElementById('qrcode');
 
@@ -63,7 +62,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
         convertImgToBase64(function (dataUrl) {
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
-            pdf.internal.scaleFactor = 2.25;
+
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
 
             doc.setFontType("bold");
