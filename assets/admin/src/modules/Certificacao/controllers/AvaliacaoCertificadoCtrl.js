@@ -32,7 +32,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
             }
             return window.MapasCulturais;
         });
-
+        console.log(MapasCulturais);
         var id = MapasCulturais.redeCulturaViva.agentePonto;
 
         $scope.data = MapasCulturais.redeCulturaViva;
