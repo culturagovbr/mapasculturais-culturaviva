@@ -6,7 +6,7 @@ angular
 
 /* global google */
 
-AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
+AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window', MapasCulturais];
 
 
 /**
