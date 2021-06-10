@@ -36,8 +36,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             '@permissions': 'view',
             'id': id
         };
-        console.log(ponto);
         $scope.ponto = Entity.get(ponto);
+        console.log($scope.ponto);
 
         var qr = document.getElementById('qrcode');
 
