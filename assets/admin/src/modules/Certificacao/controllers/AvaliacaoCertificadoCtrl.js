@@ -28,7 +28,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
     function createPDF() {
         var id = $scope.avaliacao.pontoId;
 
-        $scope.data = MapasCulturais.redeCulturaViva;
         $scope.urlQRCODE = null;
 
         var ponto = {
@@ -85,7 +84,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
             var dataURLQR = qr.children[0].toDataURL('image/png');
             doc.setFontSize(20);
-            doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
+            doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.id]), 630, 1225);
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
             doc.save('Selo.pdf');
