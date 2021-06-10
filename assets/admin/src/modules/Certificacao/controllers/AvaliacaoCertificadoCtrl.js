@@ -5,7 +5,7 @@ angular
 
 /* global google */
 
-AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window', 'MapasCulturais'];
+AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
 
 /**
@@ -22,7 +22,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
         createPDF();
     };
 
-    function createPDF(MapasCulturais) {
+    function createPDF() {
         var id = MapasCulturais.redeCulturaViva.agentePonto;
 
         $scope.data = MapasCulturais.redeCulturaViva;
