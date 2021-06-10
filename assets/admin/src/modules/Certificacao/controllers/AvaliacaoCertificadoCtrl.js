@@ -1,8 +1,10 @@
-/* global google */
-
 angular
     .module('Certificacao')
+    .factory('MapasCulturais', MapasCulturais)
     .controller('AvaliacaoSeloCtrl', AvaliacaoSeloCtrl);
+
+
+/* global google */
 
 AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
@@ -15,7 +17,7 @@ AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
  * @param {type} $http
  * @returns {undefined}
  */
-function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
+function AvaliacaoSeloCtrl($scope, $state, $http, $window, MapasCulturais) {
 
     $scope.createPDF = function () {
         createPDF();
