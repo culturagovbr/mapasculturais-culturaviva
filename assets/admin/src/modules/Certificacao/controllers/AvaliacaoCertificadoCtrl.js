@@ -28,7 +28,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
     function createPDF() {
         var id = $scope.avaliacao.pontoId;
 
-        console.log(id);
         $scope.data = MapasCulturais.redeCulturaViva;
         $scope.urlQRCODE = null;
 
@@ -37,6 +36,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             '@permissions': 'view',
             'id': id
         };
+        console.log(ponto);
         $scope.ponto = Entity.get(ponto);
 
         var qr = document.getElementById('qrcode');
