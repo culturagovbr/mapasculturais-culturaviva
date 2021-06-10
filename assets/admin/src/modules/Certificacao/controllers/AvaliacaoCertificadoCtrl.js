@@ -7,8 +7,7 @@ angular
 AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window'];
 
 
-angular
-    .module('culturaviva.controllers', []);
+
 
 
 /**
@@ -91,7 +90,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
     //         return doc;
     //     });
     // }
-
+    var app = angular.module('culturaviva.controllers', []);
     app.controller('layoutPDFCtrl', ['$scope', 'Entity', 'MapasCulturais', '$timeout', '$location', '$http',
         function ($scope, Entity, MapasCulturais, $timeout, $location, $http) {
             var id = MapasCulturais.redeCulturaViva.agentePonto;
