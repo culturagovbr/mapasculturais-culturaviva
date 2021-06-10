@@ -26,7 +26,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
     };
 
     function createPDF() {
-        var id = $scope.agent;
+        var id = $scope.avaliacao.pomtoId;
 
         console.log(id);
         $scope.data = MapasCulturais.redeCulturaViva;
