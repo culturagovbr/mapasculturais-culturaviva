@@ -76,7 +76,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
             var text = doc.splitTextToSize(text, 1090)
             doc.text(text, 490, 290, '', '', 'center');
-            console.log($scope.ponto.data(name));
+            console.log($scope.ponto.name);
             var name = doc.splitTextToSize($scope.ponto.value.data.name, 1400)
             doc.setFontSize(25);
             doc.text(name, 490, 410);
