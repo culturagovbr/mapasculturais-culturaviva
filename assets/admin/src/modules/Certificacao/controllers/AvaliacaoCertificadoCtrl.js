@@ -35,8 +35,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             '@permissions': 'view',
             'id': id
         };
-        $scope.ponto = Entity.get(ponto);
-        console.log($scope.ponto);
+        var scope = $scope.ponto = Entity.get(ponto);
+        console.log(scope);
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
@@ -76,7 +76,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
             var text = doc.splitTextToSize(text, 1090)
             doc.text(text, 490, 290, '', '', 'center');
-            console.log($scope.name);
+            console.log($scope.ponto.);
             var name = doc.splitTextToSize($scope.ponto.value.data.name, 1400)
             doc.setFontSize(25);
             doc.text(name, 490, 410);
