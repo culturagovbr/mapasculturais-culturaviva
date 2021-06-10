@@ -20,13 +20,13 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window) {
 
     var app = angular.module('culturaviva.services', ['ngResource']);
     var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
-    console.log(MapasCulturais);
+
     $scope.createPDF = function () {
         createPDF();
     };
 
     function createPDF() {
-        var id = MapasCulturais.redeCulturaViva.agentePonto;
+        var id = $scope.avaliacao.usuarioId
 
         $scope.data = MapasCulturais.redeCulturaViva;
         $scope.urlQRCODE = null;
