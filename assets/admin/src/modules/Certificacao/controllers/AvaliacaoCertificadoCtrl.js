@@ -41,7 +41,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         // var test = Object["values"]($scope.ponto);
         // var key = Object.keys(test)
         console.log('objeto');
-        console.log($scope.ponto.$$state.data.value);
         console.log($scope.ponto.data.name);
         console.log('array');
         console.log(test);
