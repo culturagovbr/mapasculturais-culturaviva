@@ -39,7 +39,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
         var test = Object.values($scope.ponto);
         console.log(test[0]);
-        console.log(test[0]['data']);
+        console.log(test[0]['status']);
+        console.log(test[0].status);
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
