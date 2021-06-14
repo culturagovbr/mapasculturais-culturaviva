@@ -38,7 +38,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         $scope.ponto = Entity.get(ponto);
 
         console.log(ponto);
-        console.log($scope.ponto);
+        console.log(JSON.stringify($scope.ponto));
 
         var qr = document.getElementById('qrcode');
 
@@ -88,7 +88,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.value.data.id]), 630, 1225);
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
-            doc.save('Selo.pdf');
+            doc.save('Certificado.pdf');
             return doc;
         });
     }
