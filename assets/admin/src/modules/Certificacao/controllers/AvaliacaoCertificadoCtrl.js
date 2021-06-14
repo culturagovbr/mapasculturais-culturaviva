@@ -37,7 +37,9 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         };
         $scope.ponto = Entity.get(ponto);
 
-console.log(typeof $scope.ponto);
+        console.log($scope.ponto.value);
+        console.log(typeof $scope.ponto.value);
+
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
