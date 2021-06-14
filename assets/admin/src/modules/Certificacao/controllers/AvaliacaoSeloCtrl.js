@@ -40,6 +40,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var o = $scope.ponto.status;
         for (var prop in o) {
             console.log(o[prop]);
+            console.log(o[prop].value);
             // console.log(o[prop].status['value']);
         }
 
