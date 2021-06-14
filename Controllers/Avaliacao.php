@@ -6,18 +6,21 @@ use CulturaViva\Entities\Avaliacao as AvaliacaoEntity;
 use CulturaViva\Entities\AvaliacaoCriterio as AvaliacaoCriterioEntity;
 use CulturaViva\Util\NativeQueryUtil;
 use MapasCulturais\App;
+use MapasCulturais\Controller;
 
 /**
  * Api base do processo de certificação
  */
-class Avaliacao extends \MapasCulturais\Controller {
+class Avaliacao extends Controller
+{
 
     // @todo
     protected $_user = 3;
 
     const MINERVA_DILIGENCE = 'M';
 
-    function getUser() {
+    function getUser()
+    {
         return $this->_user;
     }
 
@@ -199,7 +202,6 @@ class Avaliacao extends \MapasCulturais\Controller {
             'avaliacao_minerva_certificador',
             'avaliacao_minerva_certificador_id',
         ];
-
         $parametros = [
             'agenteId' => $agenteId,
             'estado' => isset($this->data['estado']) ? $this->data['estado'] : '',

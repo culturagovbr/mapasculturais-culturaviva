@@ -761,20 +761,20 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto,',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
+                '@select': 'id,longDescription,homologado_rcv,',
                 '@permissions': 'view'
             };
 
@@ -802,7 +802,7 @@
 
             var registrant_params = {
                 'id': registrant_id,
-                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto',
+                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto,longDescription',
                 '@permissions': 'view'
             };
 
@@ -1156,7 +1156,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc',
+                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc,longDescription',
                 '@permissions': 'view'
             };
 
@@ -1187,7 +1187,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,' +
+                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,' +
                     'pontoNumPessoasIndiretas,pontoNumPessoasParceiros,pontoNumPessoasApoiadores,pontoNumRedes,' +
                     'pontoRedesDescricao,pontoMovimentos,pontoEconomiaSolidaria,pontoEconomiaSolidariaDescricao,' +
                     'pontoEconomiaCultura,pontoEconomiaCulturaDescricao,pontoMoedaSocial,pontoMoedaSocialDescricao,' +
@@ -1215,7 +1215,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,' +
+                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,' +
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' +
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' +
                     'metodologia1_cargaHoraria,metodologia1_certificacao,',
@@ -1242,7 +1242,7 @@
             var params = {
                 'id': agent_id,
 
-                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,' +
+                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,' +
                     'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
                     'edital_proponente,edital_projeto_resumo,edital_prestacaoContas_envio,' +
                     'edital_prestacaoContas_status,edital_projeto_vigencia_inicio,' +
@@ -1268,7 +1268,7 @@
         function ($scope, Entity, MapasCulturais, $timeout, $location, $http, $q) {
             var agenteRes = [];
             var paramsFiltroResponsavel = {
-                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv',
+                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv,longDescription',
                 'rcv_tipo': 'OR(EQ(responsavel),EQ(ponto),EQ(entidade))'
             };
             $http.get("/api/agent/find", {
@@ -1567,7 +1567,7 @@
             $scope.urlQRCODE = null;
 
             var ponto = {
-                '@select': 'id,name,user.id,homologado_rcv,status',
+                '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
                 '@permissions': 'view',
                 'id': id
             };
