@@ -37,18 +37,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         };
         $scope.ponto = Entity.get(ponto);
 
-        // var test = new Array($scope.ponto);
-        var test = Object["values"]($scope.ponto);
-        var o = $scope.ponto.$$state
-        console.log('objeto');
-        console.log(o.ponto);
-        console.log('array');
-        console.log($scope.ponto['status']);
-
-        for (const valor in o) {
-            console.log(`o[${value}] = ${o[value]}`);
-        }
-
 
         var qr = document.getElementById('qrcode');
 
