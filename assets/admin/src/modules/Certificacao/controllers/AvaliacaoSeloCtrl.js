@@ -78,7 +78,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 var name = doc.splitTextToSize(ponto.data.name, 1400)
                 doc.setFontSize(25);
                 doc.text(name, 490, 410);
-
+                console.log(qr);
                 var dataURLQR = qr.toDataURL('image/png');
                 doc.setFontSize(20);
                 doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.data.id]), 630, 1225);
