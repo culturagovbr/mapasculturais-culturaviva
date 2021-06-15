@@ -33,7 +33,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var ponto = {
             '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
             '@permissions': 'view',
-            'id': id
+            'id': id,
+            'name': ''
         };
         //$scope.ponto = Entity.get(ponto);
 
@@ -48,8 +49,9 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
           console.log($scope.ponto.$$state.value.data.name); */
 
         Entity.get(ponto).then(function (ponto) {
-            console.log(ponto);
             $scope.ponto = ponto;
+            $scope.ponto.name = ponto.data.name;
+            $scope.ponto.id = ponto.data.id;
         });
 
         var qr = document.getElementById('qrcode');
@@ -91,13 +93,13 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
             var text = doc.splitTextToSize(text, 1090)
             doc.text(text, 490, 290, '', '', 'center');
-            var name = doc.splitTextToSize($scope.ponto.value.data.name, 1400)
+            var name = doc.splitTextToSize($scope.ponto.name, 1400)
             doc.setFontSize(25);
             doc.text(name, 490, 410);
 
             var dataURLQR = qr.children[0].toDataURL('image/png');
             doc.setFontSize(20);
-            doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.value.data.id]), 630, 1225);
+            doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.id]), 630, 1225);
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
             doc.save('Certificado.pdf');
