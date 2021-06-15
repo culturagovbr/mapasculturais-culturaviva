@@ -30,31 +30,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
         $scope.urlQRCODE = null;
 
-        var ponto = {
-            '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
-            '@permissions': 'view',
-            'id': id,
-            'name': ''
-        };
-        //$scope.ponto = Entity.get(ponto);
-
-        /*  console.log(ponto);
-          console.log('---1---');
-          console.log('---1---');
-          console.log($scope.ponto);
-
-          console.log($scope.ponto.$$state);
-          console.log($scope.ponto.$$state.value);
-          console.log($scope.ponto.$$state.value.data);
-          console.log($scope.ponto.$$state.value.data.name); */
-
-        Entity.get(ponto).then(function (ponto) {
-            console.log('2');
-            $scope.ponto = ponto;
-            $scope.ponto.name = ponto.data.name;
-            $scope.ponto.id = ponto.data.id;
-        });
-
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
@@ -79,7 +54,20 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
-            console.log('1');
+
+            var ponto = {
+                '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
+                '@permissions': 'view',
+                'id': id,
+                'name': ''
+            };
+
+            Entity.get(ponto).then(function (ponto) {
+                $scope.ponto = ponto;
+                $scope.ponto.name = ponto.data.name;
+                $scope.ponto.id = ponto.data.id;
+            });
+
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
