@@ -36,7 +36,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
     $scope.ponto = Entity.get(ponto);
 
-    $scope.createPdf = function () {
+    $scope.createPDF = function () {
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
