@@ -18,80 +18,85 @@ AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window', 'Entity'];
  */
 function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
-    var app = angular.module('culturaviva.services', ['ngResource']);
-    var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
 
-    var id = $scope.avaliacao.pontoId;
-    var app = angular.module('culturaviva.services', ['ngResource']);
-    var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
-
-
-    $scope.urlQRCODE = null;
-
-    var ponto = {
-        '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
-        '@permissions': 'view',
-        'id': id
-    };
-
-    $scope.ponto = Entity.get(ponto);
 
     $scope.createPDF = function () {
-        var qr = document.getElementById('qrcode');
 
-        function convertImgToBase64(callback) {
-            var img = new Image();
-            img.onload = function () {
-                var canvas = document.createElement('CANVAS');
-                var ctx = canvas.getContext('2d');
-                // canvas.height = 1241;
-                // canvas.width = 1754;
-                canvas.height = img.height;
-                canvas.width = img.width;
-                ctx.drawImage(this, 0, 0);
-                var dataURL = canvas.toDataURL('image/jpeg');
-                if (typeof callback === 'function') {
-                    callback(dataURL);
-                }
-                // canvas = null;
-            };
-            img.src = '/assets/img/certificado.png';
-        }
+        var ponto = {
+            '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
+            '@permissions': 'view',
+            'id': $scope.avaliacao.pontoId
+        };
 
-        var button = document.getElementById("download");
+        Entity.get(ponto).then(function (ponto) {
+            $scope.urlQRCODE = null;
 
-        convertImgToBase64(function (dataUrl) {
-            console.log('aqui');
-            var doc = new jsPDF('l', 'pt', [1755, 1238]);
+            var qr = document.getElementById('qrcode');
 
-            doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
+            function convertImgToBase64(callback) {
+                console.log('###');
+                var img = new Image();
+                img.onload = function () {
+                    var canvas = document.createElement('CANVAS');
+                    var ctx = canvas.getContext('2d');
+                    // canvas.height = 1241;
+                    // canvas.width = 1754;
+                    canvas.height = img.height;
+                    canvas.width = img.width;
+                    ctx.drawImage(this, 0, 0);
+                    var dataURL = canvas.toDataURL('image/jpeg');
+                    if (typeof callback === 'function') {
+                        callback(dataURL);
+                    }
+                    // canvas = null;
+                };
+                img.src = '/assets/img/certificado.png';
+            }
 
-            doc.setFontType("bold");
-            doc.setTextColor("#FFFFFF");
-            doc.setFontSize(35);
-            var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
-                "\n\n" +
-                "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
-                "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
-                "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
+            var button = document.getElementById("download");
 
-            var text = doc.splitTextToSize(text, 1090)
-            doc.text(text, 490, 290, '', '', 'center');
+            convertImgToBase64(function (dataUrl) {
 
-            var name = doc.splitTextToSize($scope.ponto.name, 1400)
-            doc.setFontSize(25);
-            doc.text(name, 490, 410);
+                var app = angular.module('culturaviva.services', ['ngResource']);
+                var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
 
-            console.log('aqui2');
-            var dataURLQR = qr.children[0].toDataURL('image/png');
-            doc.setFontSize(20);
-            doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
-            console.log('aqui3');
-            doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
-            console.log('aqui4');
-            doc.save('Certificado.pdf');
-            return doc;
+                console.log('aqui');
+                console.log($scope.ponto.name);
+                var doc = new jsPDF('l', 'pt', [1755, 1238]);
+
+                doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
+
+                doc.setFontType("bold");
+                doc.setTextColor("#FFFFFF");
+                doc.setFontSize(35);
+                var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
+                    "\n\n" +
+                    "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
+                    "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
+                    "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
+
+                var text = doc.splitTextToSize(text, 1090)
+                doc.text(text, 490, 290, '', '', 'center');
+
+                var name = doc.splitTextToSize($scope.ponto.name, 1400)
+                doc.setFontSize(25);
+                doc.text(name, 490, 410);
+
+                console.log('aqui2');
+                var dataURLQR = qr.children[0].toDataURL('image/png');
+                doc.setFontSize(20);
+                doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
+                console.log('aqui3');
+                doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
+                console.log('aqui4');
+                doc.save('Certificado.pdf');
+                return doc;
+            });
+
+
         });
+
+
     }
 }
 
