@@ -75,7 +75,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
-            var doc = new jsPDF('l', 'pt', [1755, 1238]);
+        /*    var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
 
@@ -90,7 +90,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
             var text = doc.splitTextToSize(text, 1090)
             doc.text(text, 490, 290, '', '', 'center');
-            var name = doc.splitTextToSize('hshhs', 1400)
+            var name = doc.splitTextToSize($scope.ponto.value.data.name, 1400)
             doc.setFontSize(25);
             doc.text(name, 490, 410);
 
@@ -100,7 +100,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
             doc.save('Certificado.pdf');
-            return doc;
+            return doc; */
         });
     }
 }
