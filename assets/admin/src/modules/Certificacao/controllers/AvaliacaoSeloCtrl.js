@@ -30,7 +30,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
         Entity.get(ponto).then(function (ponto) {
             $scope.urlQRCODE = null;
-
+            $scope.ponto = ponto.data;
             var qr = document.getElementById('qrcode');
 
             function convertImgToBase64(callback) {
@@ -61,6 +61,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
 
                 console.log('aqui');
+                console.log(dataUrl);
                 console.log($scope.ponto.name);
                 var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
