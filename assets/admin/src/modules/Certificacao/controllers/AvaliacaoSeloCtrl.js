@@ -44,7 +44,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                     canvas.height = img.height;
                     canvas.width = img.width;
                     ctx.drawImage(this, 0, 0);
-                    var dataURL = canvas.toDataURL('image/jpeg');
+                    var dataURL = canvas.toDataURL('image/png');
                     if (typeof callback === 'function') {
                         callback(dataURL);
                     }
@@ -84,7 +84,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 doc.text(name, 490, 410);
 
                 console.log('aqui2');
-                var dataURLQR = qr.children[0].toDataURL('image/png');
+                var dataURLQR = qr.toDataURL('image/png');
                 doc.setFontSize(20);
                 doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
                 console.log('aqui3');
