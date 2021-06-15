@@ -60,8 +60,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             };
 
             Entity.get(ponto).then(function (ponto) {
-                console.log('2');
-                console.log(ponto);
                 var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
                 doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
@@ -81,7 +79,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 doc.setFontSize(25);
                 doc.text(name, 490, 410);
 
-                var dataURLQR = qr.children[0].toDataURL('image/png');
+                var dataURLQR = qr.toDataURL('image/png');
                 doc.setFontSize(20);
                 doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.data.id]), 630, 1225);
                 doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
