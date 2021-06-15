@@ -28,10 +28,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
     function createPDF() {
         var id = $scope.avaliacao.pontoId;
 
-        $scope.urlQRCODE = null;
-
-        var qr = document.getElementById('qrcode');
-
         function convertImgToBase64(callback) {
             var img = new Image();
             img.onload = function () {
@@ -54,7 +50,9 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
+            $scope.urlQRCODE = null;
 
+            var qr = document.getElementById('qrcode');
             var ponto = {
                 '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
                 '@permissions': 'view',
