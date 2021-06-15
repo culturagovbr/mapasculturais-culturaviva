@@ -48,7 +48,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
           console.log($scope.ponto.$$state.value.data);
           console.log($scope.ponto.$$state.value.data.name); */
 
-        Entity.get(ponto).bpor(function (ponto) {
+        Entity.get(ponto).then(function (ponto) {
             console.log('2');
             $scope.ponto = ponto;
             $scope.ponto.name = ponto.data.name;
