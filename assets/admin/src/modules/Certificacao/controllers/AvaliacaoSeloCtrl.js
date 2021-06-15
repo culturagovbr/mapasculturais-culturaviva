@@ -61,8 +61,12 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 'id': $scope.avaliacao.pontoId,
                 'name': ''
             };
+            console.log('1');
+            console.log(ponto);
 
             Entity.get(ponto).then(function (ponto) {
+                console.log('2');
+                console.log(ponto);
                 var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
                 doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
