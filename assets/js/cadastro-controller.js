@@ -1599,7 +1599,6 @@
                 var button = document.getElementById("download");
 
                 convertImgToBase64(function (dataUrl) {
-                    console.log('uuuuuu');
                     var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
                     doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');

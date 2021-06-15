@@ -61,6 +61,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
+            console.log('aqui');
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
@@ -81,11 +82,13 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             doc.setFontSize(25);
             doc.text(name, 490, 410);
 
+            console.log('aqui2');
             var dataURLQR = qr.children[0].toDataURL('image/png');
             doc.setFontSize(20);
             doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
+            console.log('aqui3');
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
-
+            console.log('aqui4');
             doc.save('Certificado.pdf');
             return doc;
         });
