@@ -31,7 +31,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         Entity.get(ponto).then(function (ponto) {
             $scope.urlQRCODE = null;
             $scope.ponto = ponto.data;
-            var qr = document.getElementById('qrcode');
 
             function convertImgToBase64(callback) {
                 console.log('###');
@@ -59,6 +58,13 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
                 var app = angular.module('culturaviva.services', ['ngResource']);
                 var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
+                var qr = document.getElementById('qrcode');
+                var dataURLQR = qr[0].toDataURL("image/png");
+
+                console.log('qr');
+                console.log(qr);
+                console.log('dataURLQR');
+                console.log(dataURLQR);
 
                 console.log('aqui');
                 console.log(dataUrl);
@@ -84,7 +90,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 doc.text(name, 490, 410);
 
                 console.log('aqui2');
-                var dataURLQR = qr.toDataURL('image/png');
                 doc.setFontSize(20);
                 doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
                 console.log('aqui3');
