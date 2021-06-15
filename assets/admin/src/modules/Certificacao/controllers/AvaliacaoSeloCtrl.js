@@ -48,7 +48,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
           console.log($scope.ponto.$$state.value.data);
           console.log($scope.ponto.$$state.value.data.name); */
 
-        Entity.get(ponto).then(function (ponto) {
+        Entity.get(ponto).bpor(function (ponto) {
+            console.log('2');
             $scope.ponto = ponto;
             $scope.ponto.name = ponto.data.name;
             $scope.ponto.id = ponto.data.id;
@@ -78,6 +79,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
+            console.log('1');
             var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
