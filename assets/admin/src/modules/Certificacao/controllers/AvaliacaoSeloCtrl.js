@@ -37,16 +37,18 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         };
         $scope.ponto = Entity.get(ponto);
 
-        var o = $scope.ponto.status;
-        for (var prop in o) {
-            console.log(o[prop]);
-            console.log(o[prop].value);
-            // console.log(o[prop].status['value']);
-        }
-
-        console.log(ponto);
-        console.log($scope.ponto.$sstate.value.data.name);
-
+        this.name = $scope.ponto.map(it => it.name)
+        console.log(this.name)
+        // console.log(ponto);
+        // console.log('---1---');
+        // console.log('---1---');
+        // console.log($scope.ponto);
+        //
+        // console.log($scope.ponto.$$state);
+        // console.log($scope.ponto.$$state.value);
+        // console.log($scope.ponto.$$state.value.data);
+        // console.log($scope.ponto.$$state.value.data.name);
+        //
         var qr = document.getElementById('qrcode');
 
         function convertImgToBase64(callback) {
