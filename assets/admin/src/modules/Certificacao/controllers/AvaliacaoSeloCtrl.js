@@ -37,15 +37,19 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         };
         $scope.ponto = Entity.get(ponto);
 
-        console.log(ponto);
-        console.log('---1---');
-        console.log('---1---');
-        console.log($scope.ponto);
+        /*  console.log(ponto);
+          console.log('---1---');
+          console.log('---1---');
+          console.log($scope.ponto);
 
-        console.log($scope.ponto.$$state);
-        console.log($scope.ponto.$$state.value);
-        console.log($scope.ponto.$$state.value.data);
-        console.log($scope.ponto.$$state.value.data.name);
+          console.log($scope.ponto.$$state);
+          console.log($scope.ponto.$$state.value);
+          console.log($scope.ponto.$$state.value.data);
+          console.log($scope.ponto.$$state.value.data.name); */
+
+        Entity.get(ponto).then(function (x) {
+            console.log(x);
+        });
 
         var qr = document.getElementById('qrcode');
 
