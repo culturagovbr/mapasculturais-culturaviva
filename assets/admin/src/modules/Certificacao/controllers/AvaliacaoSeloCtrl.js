@@ -33,7 +33,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             $scope.ponto = ponto.data;
 
             function convertImgToBase64(callback) {
-                console.log('###');
                 var img = new Image();
                 img.onload = function () {
                     var canvas = document.createElement('CANVAS');
