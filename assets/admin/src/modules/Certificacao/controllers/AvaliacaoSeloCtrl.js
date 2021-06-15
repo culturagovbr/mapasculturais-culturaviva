@@ -83,7 +83,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
                 console.log('aqui2');
                 doc.setFontSize(20);
-                doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
+                doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.id]), 630, 1225);
                 console.log('aqui3');
                 doc.addImage(dataUrl, 'png', 659, 996, 200, 199);
                 console.log('aqui4');
