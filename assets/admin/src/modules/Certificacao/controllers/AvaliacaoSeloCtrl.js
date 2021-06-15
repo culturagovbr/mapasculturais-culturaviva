@@ -48,6 +48,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
           console.log($scope.ponto.$$state.value.data.name); */
 
         Entity.get(ponto).then(function (ponto) {
+            console.log(ponto);
             $scope.ponto = ponto;
         });
 
@@ -75,7 +76,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
         var button = document.getElementById("download");
 
         convertImgToBase64(function (dataUrl) {
-        /*    var doc = new jsPDF('l', 'pt', [1755, 1238]);
+            var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
             doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
 
@@ -100,7 +101,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
 
             doc.save('Certificado.pdf');
-            return doc; */
+            return doc;
         });
     }
 }
