@@ -58,8 +58,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
                 var app = angular.module('culturaviva.services', ['ngResource']);
                 var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
-                // var qr = document.getElementById('qrcode');
-                // var dataURLQR = qr[0].toDataURL("image/png");
 
                 var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
@@ -80,13 +78,9 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 var name = doc.splitTextToSize($scope.ponto.name, 1400)
                 doc.setFontSize(25);
                 doc.text(name, 490, 410);
-
-                console.log('aqui2');
                 doc.setFontSize(20);
                 // doc.text(MapasCulturais.createUrl('agent', 'single', [$scope.ponto.id]), 630, 1225);
-                console.log('aqui3');
                 doc.addImage(dataUrl, 'png', 659, 996, 200, 199);
-                console.log('aqui4');
                 doc.save('Certificado.pdf');
                 return doc;
             });
