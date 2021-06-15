@@ -58,11 +58,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
             var ponto = {
                 '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
                 '@permissions': 'view',
-                'id': $scope.avaliacao.pontoId,
-                'name': ''
+                'id': $scope.avaliacao.pontoId
             };
-            console.log('1');
-            console.log(ponto);
 
             Entity.get(ponto).then(function (ponto) {
                 console.log('2');
