@@ -10,11 +10,13 @@
 (function (angular) {
     'use strict';
 
-    app.controller('AvaliacaoSeloCtrl', ['$scope', 'Entity', 'MapasCulturais', '$timeout', '$location', '$http',
-        function ($scope, Entity, MapasCulturais, $timeout, $location, $http) {
+    app.controller('AvaliacaoSeloCtrl', ['$scope', 'Entity', '$timeout', '$location', '$http',
+        function ($scope, Entity, $timeout, $location, $http) {
             var id = $scope.avaliacao.pontoId;
+            var app = angular.module('culturaviva.services', ['ngResource']);
+            var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
 
-            $scope.data = MapasCulturais.redeCulturaViva;
+
             $scope.urlQRCODE = null;
 
             var ponto = {
@@ -83,3 +85,6 @@
 
     ]);
 })(angular);
+
+
+
