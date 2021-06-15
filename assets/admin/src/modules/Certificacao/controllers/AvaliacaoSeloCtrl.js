@@ -58,8 +58,8 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
 
                 var app = angular.module('culturaviva.services', ['ngResource']);
                 var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
-                var qr = document.getElementById('qrcode');
-                var dataURLQR = qr[0].toDataURL("image/png");
+                // var qr = document.getElementById('qrcode');
+                // var dataURLQR = qr[0].toDataURL("image/png");
 
                 console.log('qr');
                 console.log(qr);
@@ -93,7 +93,7 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 doc.setFontSize(20);
                 doc.text(MapasCulturais.createUrl('agent', 'single', [ponto.id]), 630, 1225);
                 console.log('aqui3');
-                doc.addImage(dataURLQR, 'png', 659, 996, 200, 199);
+                doc.addImage(dataUrl, 'png', 659, 996, 200, 199);
                 console.log('aqui4');
                 doc.save('Certificado.pdf');
                 return doc;
