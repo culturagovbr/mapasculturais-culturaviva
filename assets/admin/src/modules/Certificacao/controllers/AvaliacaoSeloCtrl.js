@@ -61,14 +61,6 @@ function AvaliacaoSeloCtrl($scope, $state, $http, $window, Entity) {
                 // var qr = document.getElementById('qrcode');
                 // var dataURLQR = qr[0].toDataURL("image/png");
 
-                console.log('qr');
-                console.log(qr);
-                console.log('dataURLQR');
-                console.log(dataURLQR);
-
-                console.log('aqui');
-                console.log(dataUrl);
-                console.log($scope.ponto.name);
                 var doc = new jsPDF('l', 'pt', [1755, 1238]);
 
                 doc.addImage(dataUrl, 'png', 0, 0, 1755, 1238, '', 'NONE');
