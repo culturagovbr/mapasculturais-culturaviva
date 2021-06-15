@@ -7,17 +7,19 @@
 
 //AvaliacaoSeloCtrl.$inject = ['$scope', '$state', '$http', '$window', 'Entity'];
 
-(function (angular) {
-    'use strict';
-
-    app.controller('AvaliacaoSeloCtrl', ['$scope', 'Entity', '$timeout', '$location', '$http',
-        function ($scope, Entity, $timeout, $location, $http) {
-            var id = $scope.avaliacao.pontoId;
-            var app = angular.module('culturaviva.services', ['ngResource']);
-            var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
+angular
+    .module('Certificacao')
+    .controller('AvaliacaoSeloCtrl', AvaliacaoSeloCtrl);
 
 
-            $scope.urlQRCODE = null;
+app.controller('AvaliacaoSeloCtrl', ['$scope', 'Entity', '$timeout', '$location', '$http',
+    function ($scope, Entity, $timeout, $location, $http) {
+        var id = $scope.avaliacao.pontoId;
+        var app = angular.module('culturaviva.services', ['ngResource']);
+        var MapasCulturais = app.factory('MapasCulturais', MapasCulturais);
+
+
+        $scope.urlQRCODE = null;
 
             var ponto = {
                 '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
@@ -58,7 +60,6 @@
         }
 
     ]);
-})(angular);
 
 
 
