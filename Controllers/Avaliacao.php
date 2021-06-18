@@ -399,9 +399,6 @@ class Avaliacao extends Controller
     {
         $this->requireAuthentication();
         $app = App::i();
-        echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
-        var_dump($app, 3);
-        exit;
         if ($app->user->is('rcv_agente_area')) {
             include(__DIR__ . "/../scripts/rotinas/importar-inscricoes3.php");
             importar();
