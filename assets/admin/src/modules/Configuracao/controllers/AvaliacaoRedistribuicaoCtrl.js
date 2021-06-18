@@ -48,26 +48,26 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
     //     }
     //     $scope.$emit('msg', msg, null, 'error', 'formulario');
     // });
-    $scope.redistribuir = function () {
-        if (confirm("Tem certeza que deseja executar a rotina de distribuição e certificação? Esta ação não pode ser desfeita.")) {
-            $http.get('/avaliacao/distribuir').then(function (response) {
-                $scope.filtrar();
-            });
-        }
-    };
-    // $scope.marcarTodos = function () {
-    //     if ($scope.marcaTodos === false) {
-    //         $scope.marcaTodos = true;
-    //         for (var uf in $scope.ufs) {
-    //             $scope.ufs[uf].redistribuicao = true;
-    //         }
-    //     } else {
-    //         $scope.marcaTodos = false;
-    //         for (var uf in $scope.ufs) {
-    //             $scope.ufs[uf].redistribuicao = false;
-    //         }
+    // $scope.redistribuir = function () {
+    //     if (confirm("Tem certeza que deseja executar a rotina de distribuição e certificação? Esta ação não pode ser desfeita.")) {
+    //         $http.get('/avaliacao/distribuir').then(function (response) {
+    //             $scope.filtrar();
+    //         });
     //     }
     // };
+    $scope.marcarTodos = function () {
+        if ($scope.marcaTodos === false) {
+            $scope.marcaTodos = true;
+            for (var uf in $scope.ufs) {
+                $scope.ufs[uf].redistribuicao = true;
+            }
+        } else {
+            $scope.marcaTodos = false;
+            for (var uf in $scope.ufs) {
+                $scope.ufs[uf].redistribuicao = false;
+            }
+        }
+    };
     //
     // $scope.redistribuicao = function (uf) {
     //     for (var ufx in $scope.ufs) {
