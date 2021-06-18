@@ -55,19 +55,19 @@ function AvaliacaoRedistribuicaoCtrl($scope, $state, $http, estadosBrasil) {
             });
         }
     };
-    $scope.marcarTodos = function () {
-        if ($scope.marcaTodos === false) {
-            $scope.marcaTodos = true;
-            for (var uf in $scope.ufs) {
-                $scope.ufs[uf].redistribuicao = true;
-            }
-        } else {
-            $scope.marcaTodos = false;
-            for (var uf in $scope.ufs) {
-                $scope.ufs[uf].redistribuicao = false;
-            }
-        }
-    };
+    // $scope.marcarTodos = function () {
+    //     if ($scope.marcaTodos === false) {
+    //         $scope.marcaTodos = true;
+    //         for (var uf in $scope.ufs) {
+    //             $scope.ufs[uf].redistribuicao = true;
+    //         }
+    //     } else {
+    //         $scope.marcaTodos = false;
+    //         for (var uf in $scope.ufs) {
+    //             $scope.ufs[uf].redistribuicao = false;
+    //         }
+    //     }
+    // };
     //
     // $scope.redistribuicao = function (uf) {
     //     for (var ufx in $scope.ufs) {
