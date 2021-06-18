@@ -39,6 +39,9 @@ function loadScript($file)
 
 function importar()
 {
+    echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';
+    var_dump('aqui', 3);
+    exit;
     set_time_limit(-1);
     $app = MapasCulturais\App::i();
     $conn = $app->em->getConnection();
