@@ -176,13 +176,15 @@ function importar()
 
             print("Distribuir avaliações para Representantes do Poder Público Estadual\n");
             inserirAvaliacaoCertificador($conn, ['tipo' => 'E'], $uf);
+
+            print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
+
+            print("Distribuir avaliações para Representantes do Poder Público Federal\n");
+            inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
 //
 //            if ($uf['redistribuicao'] == true) {
-//                print("Distribuir avaliações para Representantes do Poder Civil Federal\n");
-//                inserirAvaliacaoCertificador($conn, ['tipo' => 'C'], $uf);
 //
-//                print("Distribuir avaliações para Representantes do Poder Público Federal\n");
-//                inserirAvaliacaoCertificador($conn, ['tipo' => 'P'], $uf);
 //            }
         }
     }
