@@ -760,6 +760,7 @@
             var agent_id_ponto = MapasCulturais.redeCulturaViva.agentePonto;
 
             var params = {
+
                 'id': agent_id,
                 '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
@@ -768,13 +769,13 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto',
+                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
+                '@select': 'id,homologado_rcv,longDescription',
                 '@permissions': 'view'
             };
 
@@ -783,6 +784,11 @@
 
                 if ($location.search().invalid === '1') {
                     $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
+                }
+
+                if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
+                    $scope.save_field('longDescription');
+                    $scope.messages.show('sucesso', 'alterações salvas');
                 }
             });
 
@@ -1003,16 +1009,11 @@
 
                     }).error(function errorCallback(erro) {
                         if (erro.data === "CNPJ invalido") {
-                            ngDialog.open({
-                                template: 'modalCNPJInvalido',
-                                scope: $scope
-                            });
-
+                            $scope.inputCNPJ = undefined;
+                            alert('CNPJ Inválido');
                         } else if (erro.data === "CNPJ com fins lucrativos") {
-                            ngDialog.open({
-                                template: 'modalFinsLucrativos',
-                                scope: $scope
-                            });
+                            $scope.inputCNPJ = undefined;
+                            alert('CNPJ com fins lucrativos');
                         }
                     });
                 }
@@ -1403,17 +1404,12 @@
 
             }).error(function errorCallback(erro) {
                 if (erro.data === "CNPJ invalido") {
-                    ngDialog.open({
-                        template: 'modalCNPJInvalido',
-                        scope: $scope
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ Inválido');
 
                 } else if (erro.data === "CNPJ com fins lucrativos") {
-                    ngDialog.open({
-                        template: 'modalFinsLucrativos',
-                        scope: $scope
-
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ com fins lucrativos');
                 }
             });
         };
@@ -1555,8 +1551,8 @@
 
 
             }).error(function () {
-                $scope.messages.show('erro', "O usuário não foi encontrado");
-            });
+            $scope.messages.show('erro', "O usuário não foi encontrado");
+        });
     }]);
 
     app.controller('layoutPDFCtrl', ['$scope', 'Entity', 'MapasCulturais', '$timeout', '$location', '$http',
@@ -1606,11 +1602,11 @@
                     doc.setFontType("bold");
                     doc.setTextColor("#FFFFFF");
                     doc.setFontSize(35);
-                    var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
-                    "\n\n" +
-                    "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
-                    "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
-                    "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
+                    var text = "A Secretaria Especial da Cultura do Ministério do Turismo, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
+                        "\n\n" +
+                        "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
+                        "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
+                        "e contribui para o acesso, a proteção e a promoção dos direitos, do Turismo e da diversidade cultural no Brasil."
 
                     var text = doc.splitTextToSize(text, 1090)
                     doc.text(text, 490, 290, '', '', 'center');

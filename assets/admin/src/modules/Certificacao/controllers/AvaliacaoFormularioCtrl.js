@@ -207,9 +207,11 @@ function AvaliacaoFormularioCtrl($scope, $state, $http, $window) {
         });
     }
 
-    $scope.indeferido = function(){
-        if($scope.avaliacao != undefined){
-            return $scope.avaliacao.criterios.some(function(c) { return c.aprovado.valor === false; }) ? true : false;
+    $scope.indeferido = function () {
+        if ($scope.avaliacao != undefined) {
+            return $scope.avaliacao.criterios.some(function (c) {
+                return c.aprovado.valor === false;
+            }) ? true : false;
         }
     };
 }
