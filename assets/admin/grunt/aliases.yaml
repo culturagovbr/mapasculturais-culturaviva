@@ -7,10 +7,14 @@ server:
     - 'watch'
 
 dist:
+    - 'clean'
     - 'packModules'
     - 'replace:concat'
     - 'processhtml:dist'
     - 'htmlmin:dist'
+    - 'concat:dist_vendor_js'
+    - 'concat:dist_vendor_css'
+    - 'copy:dist_vendor_fonts'
     - 'copy:dist_index'
 
 dist-server:
