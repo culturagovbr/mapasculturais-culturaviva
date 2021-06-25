@@ -126,14 +126,25 @@
             <div class="blank-slate-pf" >
                 <p>
                     <a
-                        class="btn btn-primary"
-                        ng-href="/admin/cadastro/{{avaliacao.usuarioId}}"
-                        target="_blank"
-                        > Clique Aqui
+                            class="btn btn-primary"
+                            ng-href="/admin/cadastro/{{avaliacao.usuarioId}}"
+                            target="_blank"
+                    > Clique Aqui
                     </a>
                     para visualizar o formulário de cadastro
                 </p>
             </div>
+        </uib-tab>
+
+        <uib-tab select="ref_active = 4">
+            <uib-tab-heading>
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <span class="visible-lg-inline-block">Visualizar Certificado</span>
+                <span class="visible-md-inline-block visible-sm-inline-block">Cadastro</span>
+            </uib-tab-heading>
+
+            <ng-include ng-if="ref_active === 4"
+                        src="'modules/Certificacao/templates/TabSelo.html'"></ng-include>
         </uib-tab>
 
     </uib-tabset>

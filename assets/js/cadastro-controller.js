@@ -760,21 +760,22 @@
             var agent_id_ponto = MapasCulturais.redeCulturaViva.agentePonto;
 
             var params = {
+
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto,',
+                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,longDescription,homologado_rcv,',
+                '@select': 'id,homologado_rcv,longDescription',
                 '@permissions': 'view'
             };
 
@@ -783,6 +784,11 @@
 
                 if ($location.search().invalid === '1') {
                     $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
+                }
+
+                if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
+                    $scope.save_field('longDescription');
+                    $scope.messages.show('sucesso', 'alterações salvas');
                 }
             });
 
@@ -802,7 +808,7 @@
 
             var registrant_params = {
                 'id': registrant_id,
-                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto,longDescription',
+                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto',
                 '@permissions': 'view'
             };
 
@@ -1003,16 +1009,11 @@
 
                     }).error(function errorCallback(erro) {
                         if (erro.data === "CNPJ invalido") {
-                            ngDialog.open({
-                                template: 'modalCNPJInvalido',
-                                scope: $scope
-                            });
-
+                            $scope.inputCNPJ = undefined;
+                            alert('CNPJ Inválido');
                         } else if (erro.data === "CNPJ com fins lucrativos") {
-                            ngDialog.open({
-                                template: 'modalFinsLucrativos',
-                                scope: $scope
-                            });
+                            $scope.inputCNPJ = undefined;
+                            alert('CNPJ com fins lucrativos');
                         }
                     });
                 }
@@ -1156,7 +1157,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc,longDescription',
+                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc',
                 '@permissions': 'view'
             };
 
@@ -1187,7 +1188,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,' +
+                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,' +
                     'pontoNumPessoasIndiretas,pontoNumPessoasParceiros,pontoNumPessoasApoiadores,pontoNumRedes,' +
                     'pontoRedesDescricao,pontoMovimentos,pontoEconomiaSolidaria,pontoEconomiaSolidariaDescricao,' +
                     'pontoEconomiaCultura,pontoEconomiaCulturaDescricao,pontoMoedaSocial,pontoMoedaSocialDescricao,' +
@@ -1215,7 +1216,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,' +
+                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,' +
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' +
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' +
                     'metodologia1_cargaHoraria,metodologia1_certificacao,',
@@ -1242,7 +1243,7 @@
             var params = {
                 'id': agent_id,
 
-                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,' +
+                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,' +
                     'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
                     'edital_proponente,edital_projeto_resumo,edital_prestacaoContas_envio,' +
                     'edital_prestacaoContas_status,edital_projeto_vigencia_inicio,' +
@@ -1268,7 +1269,7 @@
         function ($scope, Entity, MapasCulturais, $timeout, $location, $http, $q) {
             var agenteRes = [];
             var paramsFiltroResponsavel = {
-                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv,longDescription',
+                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv',
                 'rcv_tipo': 'OR(EQ(responsavel),EQ(ponto),EQ(entidade))'
             };
             $http.get("/api/agent/find", {
@@ -1403,17 +1404,12 @@
 
             }).error(function errorCallback(erro) {
                 if (erro.data === "CNPJ invalido") {
-                    ngDialog.open({
-                        template: 'modalCNPJInvalido',
-                        scope: $scope
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ Inválido');
 
                 } else if (erro.data === "CNPJ com fins lucrativos") {
-                    ngDialog.open({
-                        template: 'modalFinsLucrativos',
-                        scope: $scope
-
-                    });
+                    $scope.inputCNPJ = undefined;
+                    alert('CNPJ com fins lucrativos');
                 }
             });
         };
@@ -1555,8 +1551,8 @@
 
 
             }).error(function () {
-                $scope.messages.show('erro', "O usuário não foi encontrado");
-            });
+            $scope.messages.show('erro', "O usuário não foi encontrado");
+        });
     }]);
 
     app.controller('layoutPDFCtrl', ['$scope', 'Entity', 'MapasCulturais', '$timeout', '$location', '$http',
@@ -1567,7 +1563,7 @@
             $scope.urlQRCODE = null;
 
             var ponto = {
-                '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
+                '@select': 'id,name,user.id,homologado_rcv,status',
                 '@permissions': 'view',
                 'id': id
             };
@@ -1606,11 +1602,11 @@
                     doc.setFontType("bold");
                     doc.setTextColor("#FFFFFF");
                     doc.setFontSize(35);
-                    var text = "A Secretaria Especial da Cultura do Ministério da Cidadania, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
-                    "\n\n" +
-                    "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
-                    "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
-                    "e contribui para o acesso, a proteção e a promoção dos direitos, da cidadania e da diversidade cultural no Brasil."
+                    var text = "A Secretaria Especial da Cultura do Ministério do Turismo, por meio da Secretaria da Diversidade Cultural, reconhece o coletivo/entidade\n\n" +
+                        "\n\n" +
+                        "como Ponto de Cultura a partir dos critérios estabelecidos na Lei Cultura Viva (13.018/2014).\n\n" +
+                        "Este certificado comprova que a iniciativa desenvolve e articula atividades culturais em sua comunidade, " +
+                        "e contribui para o acesso, a proteção e a promoção dos direitos, do Turismo e da diversidade cultural no Brasil."
 
                     var text = doc.splitTextToSize(text, 1090)
                     doc.text(text, 490, 290, '', '', 'center');

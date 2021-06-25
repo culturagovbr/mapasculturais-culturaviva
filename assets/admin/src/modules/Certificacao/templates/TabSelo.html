@@ -1,0 +1,13 @@
+<div class="row" ng-controller="AvaliacaoSeloCtrl" ng-form style="padding-top: 30px;">
+    <div class="blank-slate-pf">
+        <p>
+            <a id="download" ng-click="createPDF()">Clique aqui
+            </a>
+            para realizar o download do certificado.
+        <div ng-hide="urlQRCODE.length != 0">
+            <qr id="qrcode" text="urlQRCODE"></qr>
+        </div>
+        </p>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
