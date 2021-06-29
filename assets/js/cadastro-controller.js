@@ -14,6 +14,7 @@
         "telefone2",
         "responsavel_nome",
         "responsavel_email",
+        "responsavel_email1",
         "responsavel_cargo",
         "responsavel_telefone",
         "En_Estado",
@@ -762,7 +763,7 @@
             var params = {
 
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,longDescription,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
@@ -816,7 +817,7 @@
                 'id': agent_id,
                 '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,' +
                     'tipoPontoCulturaDesejado,emailPrivado,telefone1,' +
-                    'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,' +
+                    'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,responsavel_email1,' +
                     'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,cep,En_Complemento,' +
                     'facebook,twitter,googleplus,telegram,whatsapp,culturadigital,diaspora,instagram,flickr,youtube,' +
                     'En_EstadoPontaPontao,En_MunicipioPontaPontao,paisPontaPontao,En_BairroPontaPontao,En_NumPontaPontao,' +
@@ -849,6 +850,9 @@
 
                     agent.responsavel_email = $scope.registrant.emailPrivado;
                     $scope.save_field('responsavel_email');
+
+                    agent.responsavel_email1 = $scope.registrant.emailPrivado;
+                    $scope.save_field('responsavel_email1');
 
                     agent.responsavel_telefone = $scope.registrant.telefone1;
                     $scope.save_field('responsavel_telefone');
@@ -1505,7 +1509,7 @@
                     '@select': 'id,rcv_tipo,files,name,nomeCompleto,cnpj,representanteLegal,' +
                         'tipoPontoCulturaDesejado,tipoPonto,mesmoEndereco,' +
                         'emailPrivado,telefone1,telefone2,' +
-                        'responsavel_nome,responsavel_email,responsavel_cargo,responsavel_telefone,responsavel_cpf,' +
+                        'responsavel_nome,responsavel_email,responsavel_cargo,responsavel_telefone,responsavel_cpf,responsavel_email1' +
                         'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,cep,' +
                         'tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,' +
                         'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
