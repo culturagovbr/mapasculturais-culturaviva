@@ -770,13 +770,13 @@
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
+                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription,',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv,longDescription',
+                '@select': 'id,homologado_rcv,longDescription,',
                 '@permissions': 'view'
             };
 
@@ -816,7 +816,7 @@
             var params = {
                 'id': agent_id,
                 '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,' +
-                    'tipoPontoCulturaDesejado,emailPrivado,telefone1,' +
+                    'tipoPontoCulturaDesejado,emailPrivado,telefone1,longDescription,' +
                     'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,responsavel_email1,' +
                     'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,cep,En_Complemento,' +
                     'facebook,twitter,googleplus,telegram,whatsapp,culturadigital,diaspora,instagram,flickr,youtube,' +
