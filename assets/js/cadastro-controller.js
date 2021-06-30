@@ -763,20 +763,20 @@
             var params = {
 
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,longDescription,',
+                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
+                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto,',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv,longDescription',
+                '@select': 'id,longDescription,homologado_rcv,',
                 '@permissions': 'view'
             };
 
@@ -815,7 +815,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,longDewscription,' +
+                '@select': 'terms,redePertencente,nomePonto,mesmoEndereco,id,rcv_tipo,name,nomeCompleto,cnpj,representanteLegal,' +
                     'tipoPontoCulturaDesejado,emailPrivado,telefone1,' +
                     'responsavel_nome,responsavel_email,responsavel_telefone,responsavel_cpf,' +
                     'En_Estado,En_Municipio,pais,En_Bairro,En_Num,En_Nome_Logradouro,cep,En_Complemento,' +
@@ -1031,7 +1031,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,longDescription,' +
+                '@select': 'id,rcv_tipo,terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,mesmoEndereco,pais,En_Estado,En_Municipio,' +
                     'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                     'localRealizacao_cidade,localRealizacao_espaco,location',
                 '@files': '(avatar.avatarBig,portifolio,gallery.avatarBig):url',
@@ -1192,7 +1192,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,longDescription,' +
+                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,' +
                     'pontoNumPessoasIndiretas,pontoNumPessoasParceiros,pontoNumPessoasApoiadores,pontoNumRedes,' +
                     'pontoRedesDescricao,pontoMovimentos,pontoEconomiaSolidaria,pontoEconomiaSolidariaDescricao,' +
                     'pontoEconomiaCultura,pontoEconomiaCulturaDescricao,pontoMoedaSocial,pontoMoedaSocialDescricao,' +
@@ -1220,7 +1220,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,longDescription,' +
+                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,' +
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' +
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' +
                     'metodologia1_cargaHoraria,metodologia1_certificacao,',
@@ -1247,7 +1247,7 @@
             var params = {
                 'id': agent_id,
 
-                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,longDescription,longDescription,' +
+                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,' +
                     'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
                     'edital_proponente,edital_projeto_resumo,edital_prestacaoContas_envio,' +
                     'edital_prestacaoContas_status,edital_projeto_vigencia_inicio,' +
@@ -1499,14 +1499,14 @@
                 var rcv = JSON.parse(data.redeCulturaViva);
                 var responsavel = {
                     'id': rcv.agenteIndividual,
-                    '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,longDescription,' +
+                    '@select': 'id,rcv_tipo,files,singleUrl,name,rg,rg_orgao,relacaoPonto,pais,cpf,En_Estado,terms,' +
                         'emailPrivado,telefone1,telefone2,nomeCompleto,' +
                         'En_Municipio,shortDescription',
                     '@permissions': 'view'
                 };
                 var entidade = {
                     'id': rcv.agenteEntidade,
-                    '@select': 'id,rcv_tipo,files,name,nomeCompleto,cnpj,representanteLegal,longDescription,' +
+                    '@select': 'id,rcv_tipo,files,name,nomeCompleto,cnpj,representanteLegal,' +
                         'tipoPontoCulturaDesejado,tipoPonto,mesmoEndereco,' +
                         'emailPrivado,telefone1,telefone2,' +
                         'responsavel_nome,responsavel_email,responsavel_cargo,responsavel_telefone,responsavel_cpf,' +
@@ -1521,7 +1521,7 @@
                 };
                 var ponto = {
                     'id': rcv.agentePonto,
-                    '@select': 'id,rcv_tipo,files,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,longDescription,' +
+                    '@select': 'id,rcv_tipo,files,atividadesEmRealizacaoLink,site,facebook,twitter,googleplus,flickr,diaspora,youtube,instagram,culturadigital,atividadesEmRealizacaoLink,' +
                         'terms,name,shortDescription,cep,tem_sede,sede_realizaAtividades,pais,En_Estado,En_Municipio,' +
                         'En_Bairro,En_Num,En_Nome_Logradouro,En_Complemento,localRealizacao_estado,localRealizacao_cidade,' +
                         'localRealizacao_cidade,localRealizacao_espaco,location,' +
