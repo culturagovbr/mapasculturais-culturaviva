@@ -12,6 +12,7 @@
         "emailPrivado",
         "telefone1",
         "telefone2",
+        'longDescription',
         "responsavel_nome",
         "responsavel_email",
         "responsavel_email1",
@@ -30,6 +31,7 @@
     var agentPontoMapa = [
         "name",
         "shortDescription",
+        'longDescription',
         "cep",
         "tem_sede",
         "En_Estado",
