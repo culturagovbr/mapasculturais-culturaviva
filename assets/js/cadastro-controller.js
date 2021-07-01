@@ -809,7 +809,7 @@
 
             var registrant_params = {
                 'id': registrant_id,
-                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto,longDescription',
+                '@select': 'id,singleUrl,relacaoPonto,cpf,emailPrivado,telefone1,nomeCompleto',
                 '@permissions': 'view'
             };
 
@@ -1161,7 +1161,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc,longDescription',
+                '@select': 'id,rcv_tipo,terms,fomentoPublico,esferaFomento,parceriaPrivada, parceriaPrivadaQual,participacaoMovPolitico,participacaoForumCultura,parceriaPoderPublico, simMovimentoPoliticoCultural, simForumCultural, simPoderPublico,representacaoMinc',
                 '@permissions': 'view'
             };
 
@@ -1273,7 +1273,7 @@
         function ($scope, Entity, MapasCulturais, $timeout, $location, $http, $q) {
             var agenteRes = [];
             var paramsFiltroResponsavel = {
-                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv,longDescription',
+                '@select': 'id,user.id,parent.id,status,cnpj,name,rcv_tipo,cpf,nomeCompleto,emailPrivado,En_Estado,homologado_rcv',
                 'rcv_tipo': 'OR(EQ(responsavel),EQ(ponto),EQ(entidade))'
             };
             $http.get("/api/agent/find", {
@@ -1567,7 +1567,7 @@
             $scope.urlQRCODE = null;
 
             var ponto = {
-                '@select': 'id,name,user.id,homologado_rcv,status,longDescription',
+                '@select': 'id,name,user.id,homologado_rcv,status',
                 '@permissions': 'view',
                 'id': id
             };
