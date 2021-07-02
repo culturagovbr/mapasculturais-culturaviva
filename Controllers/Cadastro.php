@@ -604,15 +604,15 @@ class Cadastro extends \MapasCulturais\Controller{
 
         $erros_responsavel = $this->getErrorsResponsavel();
         $erros_entidade = $this->getErrorsEntidade();
-    echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';var_dump($inscricao,3);
+    var_dump($inscricao);
         if(!$erros_responsavel && !$erros_entidade){
             $responsavel = $this->getResponsavel();
             $entidade = $this->getEntidade();
             $ponto = $this->getPonto();
 
-            echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';var_dump($responsavel,3);
-            echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';var_dump($ponto,3);
-            echo '<pre>' . __FILE__ . ' [' . __LINE__ . ']:<br />';var_dump($entidade,3);exit;
+            var_dump($responsavel);
+            var_dump($entidade);
+            var_dump($ponto);
 
             $responsavel->publish(true);
             $entidade->publish(true);
