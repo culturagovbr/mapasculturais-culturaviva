@@ -604,15 +604,10 @@ class Cadastro extends \MapasCulturais\Controller{
 
         $erros_responsavel = $this->getErrorsResponsavel();
         $erros_entidade = $this->getErrorsEntidade();
-    var_dump($inscricao);
         if(!$erros_responsavel && !$erros_entidade){
             $responsavel = $this->getResponsavel();
             $entidade = $this->getEntidade();
             $ponto = $this->getPonto();
-
-            var_dump($responsavel);
-            var_dump($entidade);
-            var_dump($ponto);
 
             $responsavel->publish(true);
             $entidade->publish(true);
