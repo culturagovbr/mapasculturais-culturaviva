@@ -372,7 +372,7 @@
             $scope.save_field = function save_field(field) {
                 var validaLink = "http://";
                 var flag = false;
-
+console.log('aqui')
                 if (field === "tipoPontoCulturaDesejado" && $scope.agent[field] == 'pontao') {
                     $scope.agent['tipoOrganizacao'] = 'entidade';
                 }
