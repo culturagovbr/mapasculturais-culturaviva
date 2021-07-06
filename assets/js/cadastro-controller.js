@@ -372,7 +372,7 @@
             $scope.save_field = function save_field(field) {
                 var validaLink = "http://";
                 var flag = false;
-console.log('aqui')
+
                 if (field === "tipoPontoCulturaDesejado" && $scope.agent[field] == 'pontao') {
                     $scope.agent['tipoOrganizacao'] = 'entidade';
                 }
@@ -782,22 +782,27 @@ console.log('aqui')
                 '@permissions': 'view'
             };
 
-            $scope.agent = Entity.get(params, function () {
-                extendController($scope, $timeout, Entity, agent_id, $http);
+          Entity.get(params, function (agent) {
+            extendController($scope, $timeout, Entity, agent_id, $http);
 
-                if ($location.search().invalid === '1') {
-                    $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
-                }
+            if ($location.search().invalid === '1') {
+              $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
+            }
 
-                if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
-                    $scope.save_field('longDescription');
-                    $scope.messages.show('sucesso', 'alterações salvas');
-                }
-            });
+            if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
+              $scope.save_field('longDescription');
+              $scope.messages.show('sucesso', 'alterações salvas');
+            }
+            $scope.agent = agent;
+            console.log('aqui');
+            console.log($scope.agent);
+          });
+          console.log('aqui2');
+          console.log($scope.agent);
 
 
-            $scope.agent_entidade = Entity.get(params_entidade);
-            $scope.agent_ponto = Entity.get(params_ponto);
+          $scope.agent_entidade = Entity.get(params_entidade);
+          $scope.agent_ponto = Entity.get(params_ponto);
         }
     ]);
 
