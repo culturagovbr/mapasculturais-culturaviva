@@ -481,9 +481,9 @@
             };
 
             var params_ponto = {
-                'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
-                '@permissions': 'view'
+              'id': agent_id_ponto,
+              '@select': 'id,homologado_rcv, longDescription',
+              '@permissions': 'view'
             };
 
             $scope.agent = Entity.get(params);
@@ -494,17 +494,17 @@
 
             $scope.data = MapasCulturais.redeCulturaViva;
             $scope.enviar = function () {
-                $http.post(MapasCulturais.createUrl('cadastro', 'enviar')).
-                success(function successCallback(response) {
-                    $scope.data.validationErrors = null;
-                    if ($scope.data.statusInscricao == 0) {
-                        ngDialog.open({
-                            template: 'modal1',
-                            scope: $scope
-                        });
-                    } else {
-                        ngDialog.open({
-                            template: 'modal2',
+              $scope.data.longDescription = $scope.agent_ponto.longDescription;
+              $http.post(MapasCulturais.createUrl('cadastro', 'enviar'), $scope.data).success(function successCallback(response) {
+                $scope.data.validationErrors = null;
+                if ($scope.data.statusInscricao == 0) {
+                  ngDialog.open({
+                    template: 'modal1',
+                    scope: $scope
+                  });
+                } else {
+                  ngDialog.open({
+                    template: 'modal2',
                             scope: $scope
                         });
                     }

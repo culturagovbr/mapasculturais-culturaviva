@@ -2,37 +2,42 @@
 namespace CulturaViva\Controllers;
 
 use MapasCulturais\App;
+use MapasCulturais\Controller;
+use MapasCulturais\Entities\Agent;
+use MapasCulturais\Entities\Registration;
+use MapasCulturais\Entities\Space;
 
-class Cadastro extends \MapasCulturais\Controller{
-    /**
-     * Objeto com os ids dos agentes, inscrição e se o usuário informou um cnpj ou não.
-     *
-     * @var stdClass
-     */
-    protected $_usermeta = null;
+class Cadastro extends Controller
+{
+  /**
+   * Objeto com os ids dos agentes, inscrição e se o usuário informou um cnpj ou não.
+   *
+   * @var stdClass
+   */
+  protected $_usermeta = null;
 
-    /**
-     * Inscrição no edital Cultura Viva
-     * @var \MapasCulturais\Entities\Registration
-     */
+  /**
+   * Inscrição no edital Cultura Viva
+   * @var Registration
+   */
     protected $_inscricao = null;
 
-    /**
-     * Agente individual (Responsável pelo Ponto de Cultura)
-     * @var \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente individual (Responsável pelo Ponto de Cultura)
+   * @var Agent
+   */
     protected $_responsavel = null;
 
-    /**
-     * Agente coletivo (Entidade)
-     * @var \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente coletivo (Entidade)
+   * @var Agent
+   */
     protected $_entidade = null;
 
-    /**
-     * Agente coletivo (Ponto/Pontão de Cultura)
-     * @var \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente coletivo (Ponto/Pontão de Cultura)
+   * @var Agent
+   */
     protected $_ponto = null;
 
     protected function __construct() {
@@ -60,34 +65,34 @@ class Cadastro extends \MapasCulturais\Controller{
         return $this->_usermeta;
     }
 
-    /**
-     * Inscrição no edital Cultura Viva
-     * @return \MapasCulturais\Entities\Registration
-     */
+  /**
+   * Inscrição no edital Cultura Viva
+   * @return Registration
+   */
     function getInscricao(){
         return $this->_inscricao;
     }
 
-    /**
-     * Agente individual (Responsável pelo Ponto de Cultura)
-     * @return \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente individual (Responsável pelo Ponto de Cultura)
+   * @return Agent
+   */
     function getResponsavel(){
         return $this->_responsavel;
     }
 
-    /**
-     * Agente coletivo (Entidade)
-     * @return \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente coletivo (Entidade)
+   * @return Agent
+   */
     function getEntidade(){
         return $this->_entidade;
     }
 
-    /**
-     * Agente coletivo (Ponto/Pontão de Cultura)
-     * @return \MapasCulturais\Entities\Agent
-     */
+  /**
+   * Agente coletivo (Ponto/Pontão de Cultura)
+   * @return Agent
+   */
     function getPonto(){
         return $this->_ponto;
     }
@@ -302,17 +307,18 @@ class Cadastro extends \MapasCulturais\Controller{
         $agent->checkPermission('@control');
     }
 
-    protected function _getErrors(\MapasCulturais\Entities\Agent $entity, array $required_properties, array $required_taxonomies = [], array $required_files = []){
-        $errors = [];
-        foreach($required_properties as $prop){
-            if(is_null($entity->$prop) || $entity->$prop === ''){
-                $errors[] = $prop;
-            }
-        }
+  protected function _getErrors(Agent $entity, array $required_properties, array $required_taxonomies = [], array $required_files = [])
+  {
+    $errors = [];
+    foreach ($required_properties as $prop) {
+      if (is_null($entity->$prop) || $entity->$prop === '') {
+        $errors[] = $prop;
+      }
+    }
 
-        foreach($required_taxonomies as $prop){
-            if(is_null($entity->terms[$prop]) || empty($entity->terms[$prop])){
-                $errors[] = $prop;
+    foreach ($required_taxonomies as $prop) {
+      if (is_null($entity->terms[$prop]) || empty($entity->terms[$prop])) {
+        $errors[] = $prop;
             }
         }
 
@@ -509,9 +515,9 @@ class Cadastro extends \MapasCulturais\Controller{
         if(!$app->user->redeCulturaViva){
             $user = $app->user;
 
-            $user->profile->rcv_tipo = 'responsavel';
-            $user->profile->status = \MapasCulturais\Entities\Agent::STATUS_ENABLED;
-            $user->profile->save(true);
+          $user->profile->rcv_tipo = 'responsavel';
+          $user->profile->status = Agent::STATUS_ENABLED;
+          $user->profile->save(true);
 
             $opportunity = $app->repo('Opportunity')->find($app->config['redeCulturaViva.projectId']); //By(['owner' => 1], ['id' => 'asc'], 1);
             //
@@ -519,22 +525,22 @@ class Cadastro extends \MapasCulturais\Controller{
             $app->disableAccessControl(); // não sei se é necessário desabilitar
 
             // criando o agente coletivo vazio
-            $entidade = new \MapasCulturais\Entities\Agent;
-            $entidade->type = 2;
+          $entidade = new Agent;
+          $entidade->type = 2;
             $entidade->parent = $user->profile;
-            $entidade->name = '';
-            $entidade->status = \MapasCulturais\Entities\Agent::STATUS_ENABLED;
-            $entidade->rcv_tipo = 'entidade';
+          $entidade->name = '';
+          $entidade->status = Agent::STATUS_ENABLED;
+          $entidade->rcv_tipo = 'entidade';
 
 
             // criando o agente coletivo vazio
-            $ponto = new \MapasCulturais\Entities\Agent;
-            $ponto->publicLocation = 1;
+          $ponto = new Agent;
+          $ponto->publicLocation = 1;
             $ponto->type = 2;
             $ponto->parent = $user->profile;
-            $ponto->name = '';
-            $ponto->status = \MapasCulturais\Entities\Agent::STATUS_ENABLED;
-            $ponto->rcv_tipo = 'ponto';
+          $ponto->name = '';
+          $ponto->status = Agent::STATUS_ENABLED;
+          $ponto->rcv_tipo = 'ponto';
 
             if(isset($this->data['comCNPJ']) && $this->data['comCNPJ'] && isset($this->data['CNPJ']) && $this->data['CNPJ']){
                 $entidade->cnpj = $this->data['CNPJ'];
@@ -549,8 +555,8 @@ class Cadastro extends \MapasCulturais\Controller{
             // criando a inscrição
 
             // relaciona o agente responsável, que é o proprietário da inscrição
-            $registration = new \MapasCulturais\Entities\Registration;
-            $registration->owner = $user->profile;
+          $registration = new Registration;
+          $registration->owner = $user->profile;
             $registration->opportunity = $opportunity;
 
             // inserir que as inscricoes online estao ativadas
@@ -613,14 +619,14 @@ class Cadastro extends \MapasCulturais\Controller{
             $entidade->publish(true);
             $ponto->publish(true);
 
-            $espaco = new \MapasCulturais\Entities\Space;
-            $espaco->type = 125; // ponto de cultura
+          $espaco = new Space;
+          $espaco->type = 125; // ponto de cultura
             $espaco->owner = $entidade;
             $espaco->name = $entidade->name;
             $espaco->nomeCompleto = $entidade->nomeCompleto;
-            $espaco->shortDescription = $entidade->shortDescription;
-            $espaco->longDescription = $entidade->longDescription;
-            $espaco->location = $entidade->location;
+          $espaco->shortDescription = $entidade->shortDescription;
+          $espaco->longDescription = $ponto->longDescription;
+          $espaco->location = $entidade->location;
             $espaco->En_Estado = $entidade->En_Estado;
             $espaco->En_Municipio = $entidade->En_Municipio;
             $espaco->En_Bairro = $entidade->En_Bairro;
@@ -633,9 +639,9 @@ class Cadastro extends \MapasCulturais\Controller{
             $ponto->owner = $entidade;
             $ponto->name = $entidade->name;
             $ponto->nomeCompleto = $entidade->nomeCompleto;
-            $ponto->shortDescription = $entidade->shortDescription;
-            $ponto->longDescription = $entidade->longDescription;
-            $ponto->location = $entidade->location;
+          $ponto->shortDescription = $entidade->shortDescription;
+          $ponto->longDescription = $ponto->longDescription;
+          $ponto->location = $entidade->location;
             $ponto->En_Estado = $entidade->En_Estado;
             $ponto->En_Municipio = $entidade->En_Municipio;
             $ponto->En_Bairro = $entidade->En_Bairro;
@@ -649,9 +655,9 @@ class Cadastro extends \MapasCulturais\Controller{
             $entidade->save(true);
             $ponto->save(true);
 
-            $inscricao->send();
-            $app = \MapasCulturais\App::i();
-            $message = $app->renderMailerTemplate('cadastro_enviado', ['name' => $app->user->profile->name]);
+          $inscricao->send();
+          $app = App::i();
+          $message = $app->renderMailerTemplate('cadastro_enviado', ['name' => $app->user->profile->name]);
             $app->createAndSendMailMessage([
                 'from' => $app->config['mailer.from'],
                 'to' => $app->user->email,
