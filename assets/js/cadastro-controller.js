@@ -12,8 +12,10 @@
         "emailPrivado",
         "telefone1",
         "telefone2",
+        'longDescription',
         "responsavel_nome",
         "responsavel_email",
+        "responsavel_email1",
         "responsavel_cargo",
         "responsavel_telefone",
         "En_Estado",
@@ -29,6 +31,7 @@
     var agentPontoMapa = [
         "name",
         "shortDescription",
+        'longDescription',
         "cep",
         "tem_sede",
         "En_Estado",
@@ -478,9 +481,9 @@
             };
 
             var params_ponto = {
-                'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv',
-                '@permissions': 'view'
+              'id': agent_id_ponto,
+              '@select': 'id,homologado_rcv, longDescription',
+              '@permissions': 'view'
             };
 
             $scope.agent = Entity.get(params);
@@ -491,17 +494,17 @@
 
             $scope.data = MapasCulturais.redeCulturaViva;
             $scope.enviar = function () {
-                $http.post(MapasCulturais.createUrl('cadastro', 'enviar')).
-                success(function successCallback(response) {
-                    $scope.data.validationErrors = null;
-                    if ($scope.data.statusInscricao == 0) {
-                        ngDialog.open({
-                            template: 'modal1',
-                            scope: $scope
-                        });
-                    } else {
-                        ngDialog.open({
-                            template: 'modal2',
+              $scope.data.longDescription = $scope.agent_ponto.longDescription;
+              $http.post(MapasCulturais.createUrl('cadastro', 'enviar'), $scope.data).success(function successCallback(response) {
+                $scope.data.validationErrors = null;
+                if ($scope.data.statusInscricao == 0) {
+                  ngDialog.open({
+                    template: 'modal1',
+                    scope: $scope
+                  });
+                } else {
+                  ngDialog.open({
+                    template: 'modal2',
                             scope: $scope
                         });
                     }
@@ -762,39 +765,39 @@
             var params = {
 
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
+                '@select': 'id,rcv_tipo,longDescription,atividadesEmRealizacao,atividadesEmRealizacaoLink,',
                 '@files': '(portifolio,gallery,carta1,carta2,ata):url',
                 '@permissions': 'view'
             };
 
             var params_entidade = {
                 'id': agent_id_entidade,
-                '@select': 'id,tipoOrganizacao,tipoPonto,longDescription',
+                '@select': 'id,longDescription,tipoOrganizacao,tipoPonto,',
                 '@permissions': 'view'
             };
 
             var params_ponto = {
                 'id': agent_id_ponto,
-                '@select': 'id,homologado_rcv,longDescription',
+                '@select': 'id,longDescription,homologado_rcv,',
                 '@permissions': 'view'
             };
 
-            $scope.agent = Entity.get(params, function () {
-                extendController($scope, $timeout, Entity, agent_id, $http);
+          Entity.get(params, function (agent) {
+            extendController($scope, $timeout, Entity, agent_id, $http);
 
-                if ($location.search().invalid === '1') {
-                    $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
-                }
+            if ($location.search().invalid === '1') {
+              $scope.showInvalid($scope.agent.rcv_tipo, 'form_portifolio');
+            }
 
-                if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
-                    $scope.save_field('longDescription');
-                    $scope.messages.show('sucesso', 'alterações salvas');
-                }
-            });
+            if ((sucesso.longDescription > 1) || (sucesso.longDescription > 1)) {
+              $scope.save_field('longDescription');
+              $scope.messages.show('sucesso', 'alterações salvas');
+            }
+            $scope.agent = agent;
+          });
 
-
-            $scope.agent_entidade = Entity.get(params_entidade);
-            $scope.agent_ponto = Entity.get(params_ponto);
+          $scope.agent_entidade = Entity.get(params_entidade);
+          $scope.agent_ponto = Entity.get(params_ponto);
         }
     ]);
 
@@ -849,6 +852,9 @@
 
                     agent.responsavel_email = $scope.registrant.emailPrivado;
                     $scope.save_field('responsavel_email');
+
+                    agent.responsavel_email1 = $scope.registrant.emailPrivado;
+                    $scope.save_field('responsavel_email1');
 
                     agent.responsavel_telefone = $scope.registrant.telefone1;
                     $scope.save_field('responsavel_telefone');
@@ -1188,7 +1194,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,' +
+                '@select': 'id,rcv_tipo,terms,pontoOutrosRecursosRede,pontoNumPessoasNucleo,pontoNumPessoasColaboradores,,' +
                     'pontoNumPessoasIndiretas,pontoNumPessoasParceiros,pontoNumPessoasApoiadores,pontoNumRedes,' +
                     'pontoRedesDescricao,pontoMovimentos,pontoEconomiaSolidaria,pontoEconomiaSolidariaDescricao,' +
                     'pontoEconomiaCultura,pontoEconomiaCulturaDescricao,pontoMoedaSocial,pontoMoedaSocialDescricao,' +
@@ -1216,7 +1222,7 @@
 
             var params = {
                 'id': agent_id,
-                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,' +
+                '@select': 'id,rcv_tipo,terms,formador1_nome,formador1_email,formador1_telefone,formador1_areaAtuacao,,' +
                     'formador1_bio,formador1_facebook,formador1_twitter,formador1_google,espacoAprendizagem1_atuacao,espacoAprendizagem1_tipo,' +
                     'espacoAprendizagem1_desc,metodologia1_nome,metodologia1_desc,metodologia1_necessidades,metodologia1_capacidade,' +
                     'metodologia1_cargaHoraria,metodologia1_certificacao,',
@@ -1243,7 +1249,7 @@
             var params = {
                 'id': agent_id,
 
-                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,' +
+                '@select': 'id,rcv_tipo,tipoCertificacao,foiFomentado,tipoFomento,tipoFomentoOutros,tipoReconhecimento,edital_num,,' +
                     'edital_ano,edital_projeto_nome,edital_localRealizacao,edital_projeto_etapa,' +
                     'edital_proponente,edital_projeto_resumo,edital_prestacaoContas_envio,' +
                     'edital_prestacaoContas_status,edital_projeto_vigencia_inicio,' +
