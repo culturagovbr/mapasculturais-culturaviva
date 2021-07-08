@@ -794,12 +794,7 @@
               $scope.messages.show('sucesso', 'alterações salvas');
             }
             $scope.agent = agent;
-            console.log('aqui');
-            console.log($scope.agent);
           });
-          console.log('aqui2');
-          console.log($scope.agent);
-
 
           $scope.agent_entidade = Entity.get(params_entidade);
           $scope.agent_ponto = Entity.get(params_ponto);
